@@ -8,6 +8,8 @@ return [
     'product_manager'               => 'Product Manager',
     'product_catagories'            => 'Product Catagories',
     'product_types'                 => 'Product Type',
+    'project_manager'               => 'Project Manager',
+    'projects'                      => 'Projects',
     'account_settings_trans_key'    => 'ACCOUNT SETTINGS',
     'profile_trans_key'             => ':name Profile',
     'change_password'               => 'Change Password',

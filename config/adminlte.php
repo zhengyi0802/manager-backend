@@ -255,6 +255,15 @@ return [
                 ],
             ],
         ],
+        [   'text' => 'project_manager',
+            submenu => [
+                [
+                    'text'        => 'projects',
+                    'url'         => 'projects',
+                    'label_color' => 'success',
+                ],
+            ],
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

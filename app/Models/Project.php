@@ -5,20 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Material extends Model
+class Project extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'proj_id',
-        'position',
-        'prev_id',
-        'content',
-        'image',
-        'url_link',
+        'descriptions',
         'status',
+        'start_time',
+        'stop_time',
     ];
-
 
 }

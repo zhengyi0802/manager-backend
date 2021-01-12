@@ -33,7 +33,7 @@
         </tr>
         @foreach ($productCatagories as $productCatagory)
         <tr>
-            <td>{{ ++$i }}</td>
+            <td>{{ $productCatagory->id }}</td>
             <td>{{ $productCatagory->name }}</td>
             <td>{{ $productCatagory->descriptions }}</td>
             <td>

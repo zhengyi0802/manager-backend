@@ -269,7 +269,7 @@ return [
             ],
         ],
         [   'text' => 'project_manager',
-            submenu => [
+            'submenu' => [
                 [
                     'text'        => 'projects',
                     'url'         => 'projects',

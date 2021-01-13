@@ -14,8 +14,10 @@ class Material extends Model
         'proj_id',
         'position',
         'prev_id',
+        'mime_type',
         'content',
-        'image',
+        'video_url',
+        'image_url',
         'url_link',
         'status',
     ];

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductCatagoryController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ProjectController;
-
+use App\Http\Controllers\MaterialController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,3 +43,5 @@ Route::resource('/product_catagories', ProductCatagoryController::class);
 Route::resource('/product_types', ProductTypeController::class);
 
 Route::resource('/projects', ProjectController::class);
+
+Route::resource('/materials', MaterialController::class);

@@ -19,8 +19,10 @@ class CreateMaterialsTable extends Migration
             $table->integer('proj_id');
             $table->integer('position');
             $table->integer('prev_id');
+            $table->string('mime_type');
             $table->string('content')->nullable();
-            $table->string('image')->nullable();
+            $table->string('video_url')->nullable();
+            $table->string('image_url')->nullable();
             $table->string('url_link')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();

@@ -4,7 +4,9 @@ return [
 
     'main_navigation'               => '主導航',
     'blog'                          => '部落格',
+    'pages_manager'                 => '頁面管理系統',
     'pages'                         => '頁面',
+    'materials'                     => '素材資料表',
     'product_manager'               => '產品管理系統',
     'product_catagories'            => '產品類別資料表',
     'product_types'                 => '產品型號資料表',

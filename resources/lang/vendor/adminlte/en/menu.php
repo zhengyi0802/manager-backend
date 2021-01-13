@@ -4,7 +4,9 @@ return [
 
     'main_navigation'               => 'MAIN NAVIGATION',
     'blog'                          => 'Blog',
+    'pages_manager'                 => 'Page Manager',
     'pages'                         => 'Pages',
+    'materials'                     => 'Materials',
     'product_manager'               => 'Product Manager',
     'product_catagories'            => 'Product Catagories',
     'product_types'                 => 'Product Type',

@@ -234,12 +234,20 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
-            'text'        => 'pages',
-            'url'         => 'frontend_views',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+        [   'text'    => 'pages_manager',
+            'submenu' => [
+               [
+                    'text'        => 'pages',
+                    'url'         => 'frontend_views',
+                    'icon'        => 'far fa-fw fa-file',
+                    'label_color' => 'success',
+               ],
+               [
+                    'text'        => 'materials',
+                    'url'         => 'materials',
+                    'label_color' => 'success',
+               ],
+            ],
         ],
         [   'text'    => 'product_manager',
             'submenu' =>  [

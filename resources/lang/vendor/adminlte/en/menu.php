@@ -5,6 +5,7 @@ return [
     'main_navigation'               => 'MAIN NAVIGATION',
     'blog'                          => 'Blog',
     'pages_manager'                 => 'Page Manager',
+    'startpage'                     => 'Start Page',
     'pages'                         => 'Pages',
     'materials'                     => 'Materials',
     'product_manager'               => 'Product Manager',

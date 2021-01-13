@@ -5,6 +5,7 @@ return [
     'main_navigation'               => '主導航',
     'blog'                          => '部落格',
     'pages_manager'                 => '頁面管理系統',
+    'startpage'                     => '起始廣告頁面',
     'pages'                         => '頁面',
     'materials'                     => '素材資料表',
     'product_manager'               => '產品管理系統',

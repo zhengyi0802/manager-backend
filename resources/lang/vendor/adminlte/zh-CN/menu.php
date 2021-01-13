@@ -4,6 +4,7 @@ return [
 
     'main_navigation'               => '主导航',
     'blog'                          => '博客',
+    'startpage'                     => 'Start Page',
     'pages'                         => '页面',
     'product_manager'               => '產品管理系統',
     'product_catagories'            => '产品类别资料表',

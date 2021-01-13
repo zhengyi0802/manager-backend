@@ -237,6 +237,11 @@ return [
         [   'text'    => 'pages_manager',
             'submenu' => [
                [
+                    'text'        => 'startpage',
+                    'url'         => 'startpages',
+                    'label_color' => 'success',
+               ],
+               [
                     'text'        => 'pages',
                     'url'         => 'frontend_views',
                     'icon'        => 'far fa-fw fa-file',

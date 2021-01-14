@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\ImageUpload;
-use App\Models\Product;
+use App\Models\Project;
 use App\Models\File;
 use App\Models\Startpage;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +18,12 @@ class StartpageController extends Controller
      */
     public function index()
     {
-        //
+        $startpages = Startpage::leftJoin('projects', 'proj_id', '=', 'projects.id')
+                       ->select('startpages.*', 'projects.name as proj_name')->paginate(5);
+
+        return view('startpages.index',compact('startpages'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+
     }
 
     /**
@@ -28,7 +33,9 @@ class StartpageController extends Controller
      */
     public function create()
     {
-        //
+        $projects = Project::get();
+
+        return view('startpages.create', compact('projects'));
     }
 
     /**
@@ -39,7 +46,36 @@ class StartpageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'proj_id' => 'required',
+            'mime_type' => 'required',
+            'status' => 'required',
+        ]);
+
+        $startpage = new Startpage;
+
+        $startpage->name = $request->name;
+        $startpage->proj_id = $request->proj_id;
+        $startpage->mime_type = $request->mime_type;
+        $startpage->url = $request->url;
+        $startpage->status = $request->status;
+
+        if ($request->mime_type == 'image') {
+           if ($request->file()) {
+               $file = ImageUpload::fileUpload($request);
+               if ($file == null) {
+                   return back()->with('image', $fileName);
+               }
+               $startpage->url = $file->file_path;
+           }
+        }
+
+        $startpage->save();
+
+        return redirect()->route('startpages.index')
+                        ->with('success','Startpage created successfully.');
+
     }
 
     public function newstore(Request $request, $id)
@@ -97,7 +133,9 @@ class StartpageController extends Controller
      */
     public function show(Startpage $startpage)
     {
-        //
+        $project = Project::where('id', '=', $startpage->proj_id)->first();
+        return view('startpages.show', compact('startpage'))
+               ->with(compact('project'));
     }
 
     /**
@@ -108,7 +146,9 @@ class StartpageController extends Controller
      */
     public function edit(Startpage $startpage)
     {
-        //
+        $project = Project::where('id', '=', $startpage->proj_id)->first();
+        return view('startpages.edit', compact('startpage'))
+               ->with(compact('project'));
     }
 
     /**
@@ -122,36 +162,21 @@ class StartpageController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'required',
+            'mime_type' => 'required',
             'status' => 'required',
         ]);
 
-        $file = ImageUpload::fileUpload($request);
-
-        if ($file == null) {
-            return back()->with('image', $fileName);
-        } else {
-            $startpage = new Startpage;
-            $startpage->proj_id = ($id == 0) ? $request->proj_id : $id;
-            $startpage->name = $request->name;
-            $startpage->mime_type = $request->mime_type;
-            $startpage->detail = $request->detail;
-            $startpage->url = $file->file_path;
-            $startpage->status = $request->status;
-            $startpage->start_datetime= $request->start_datetime;
-            $startpage->stop_datetime = $request->stop_datetime;
-            $startpage->save();
+        if($request->file()) {
+            $file = ImageUpload::fileUpload($request);
+            if ($file == null) {
+                return back()->with('image', $fileName);
+            }
+            $startpage->merge(['url',  $file->file_path]);
         }
 
-        if ( $id == null ) {
-            return redirect()->route('projects.index')
-                        ->with('success','Startpage created successfully.');
-        } else {
-            $project = DB::table('projects')->where("id", $id)->first();
+        $startpage->update($request->all());
 
-            return redirect()->route('projects.index', $id)->with('success', 'Startpage created successfully.');
-        }
-
+        return redirect()->route('startpages.index', $id)->with('success', 'Startpage created successfully.');
     }
 
     /**
@@ -162,7 +187,10 @@ class StartpageController extends Controller
      */
     public function destroy(Startpage $startpage)
     {
-        //
+        $startpage->delete();
+
+        return redirect()->route('startpages.index')
+                        ->with('success','Start Page deleted successfully');
     }
 
     public function query(Request $request)

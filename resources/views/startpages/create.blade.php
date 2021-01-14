@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', '朕臨首頁設計')
+@section('title', __('startpages.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">首頁管理系統</h1>
+    <h1 class="m-0 text-dark">{{ __('startpages.header') }}</h1>
 @stop
 
 @section('content')
@@ -24,28 +24,33 @@
             </ul>
         </div>
     @endif
-    <div class="row">
-       <div class="col-xs-12 col-sm-12 col-md-12">
-           <strong>專案名稱 : {{ $project->name ?? '--------' }}</strong>
-       </div>
-    </div>
 
-    <form action="{{ route('startpages.update', $startpage->id) }}" method="POST" enctype="multipart/form-data" >
+    <form action="{{ route('startpages.store') }}" method="POST" enctype="multipart/form-data" >
          @csrf
-         @method('PUT')
-         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
+         <div class="row">\
+            <div class="col-xs-12 col-sm-12 col-me-12">
                 <div class="form-group">
-                    <strong>起始頁面名稱:</strong>
-                    <input type="text" name="name" value="{{ $startpage->name }}" class="form-control" placeholder="起始頁面名稱">
+                   <strong>{{ __('startpages.project_name') }} : </strong>
+                   <select id="proj_id" name="proj_id" >
+                         <option value="0" selected>--------</option>
+                      @foreach ($projects as $project)
+                         <option value="{{ $project->id }}" >{{ $project->name }}</option> 
+                      @endforeach
+                   </select>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>類型:</strong>
+                    <strong>{{ __('startpages.name') }} :</strong>
+                    <input type="text" name="name" class="form-control">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>{{ __('startpages.mime_type') }} : </strong>
                     <select name="mime_type" id="mime_type" onchange="changeInput(this)">
-                      <option value="image" selected >圖片</option>
-                      <option value="video" >影片</option>
+                      <option value="image" selected >{{ __('startpages.image') }}</option>
+                      <option value="video" >{{ __('startpages.video') }}</option>
                     </select>
                     <script>
                       var changeInput = function(select) {
@@ -64,15 +69,15 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>圖片/影片:</strong>
+                    <div id="div-url-name"><strong>{{ __('startpages.url') }} : </strong></div>
                     <div id="div-url" style="display:none">
-                        <input type="url" id="url" name="url" class="form-control" value="{{ $startpage->url }}">
+                        <input type="url" id="url" name="url" class="form-control">
                     </div>
                     <div id="div-image">
                         <input type="file" id="image" name="image" accept="image/*" onchange="loadImage(event)" >
                     </div>
                     <div id="div-preview">
-                        <img src="{{ $startpage->url }}" name="preview" id="preview" >
+                        <img name="preview" id="preview" >
                     </div>
                 </div>
                 <script>
@@ -87,32 +92,32 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>描述:</strong>
-                    <textarea class="form-control" style="height:150px" name="descriptions" placeholder="描述">{{ $startpage->descriptions }}</textarea>
+                    <strong>{{ __('startpages.description') }} : </strong>
+                    <textarea class="form-control" style="height:150px" name="descriptions" ></textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>狀態:  </strong>
-                    <input type="radio" name="status" value="1" {{ ($startpage->status==1) ? "checked":null }} >啟用
-                    <input type="radio" name="status" value="0" {{ ($startpage->status!=1) ? "checked":null }} >不啟用
+                    <strong>{{ __('startpages.status') }} : </strong>
+                    <input type="radio" name="status" value="1" checked>{{ __('tables.status_on') }}
+                    <input type="radio" name="status" value="0" >{{ __('tables.status_off') }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>起始時間:</strong>
-                    <input type="datetime_local" name="start_time" value="{{ $startpage->start_time }}" class="form-control" placeholder="YYYY-MM-DD hh:mm:ss">
+                    <strong>{{ __('startpages.start_time') }} : </strong>
+                    <input type="datetime_local" name="start_time" class="form-control" placeholder="YYYY-MM-DD hh:mm:ss">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>終止時間:</strong>
-                    <input type="datetime_local" name="stop_time" value="{{ $startpage->stop_time }}" class="form-control" placeholder="YYYY-MM-DD hh:mm:ss">
+                    <strong>{{ __('startpages.stop_time') }} : </strong>
+                    <input type="datetime_local" name="stop_time" class="form-control" placeholder="YYYY-MM-DD hh:mm:ss">
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-              <button type="submit" class="btn btn-primary">提交</button>
+              <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
             </div>
         </div>
     </form>

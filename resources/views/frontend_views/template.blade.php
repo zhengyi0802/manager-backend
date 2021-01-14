@@ -8,9 +8,14 @@
 
 @section('content')
     <style type="text/css">
-      .view {
+      img {
+         width  : 90%;
+         height : 90%;
+      }
+      #view {
          width     : 100%;
          height    : 100%;
+         background-image : url('images/background.png');
       }
       #topside {
             width  : 100%;
@@ -19,7 +24,6 @@
       #block1 {
             text-align: center;
             vertical-align: middle;
-            background-image : url('');
             width  : 15%;
             height : 100%;
             border : 1px #101010 solid;
@@ -28,7 +32,6 @@
       #block2 {
             text-align: center;
             vertical-align: middle;
-            background-image : url('');
             width  : 70%;
             height : 100%;
             border : 1px #1010101 solid;
@@ -189,72 +192,72 @@
             float  : left;
       }
    </style>
-   <div id="view">
+   <div id="view" name="view">
       <div id="topside">
           <div id="block1">
-             {{ __('frontend_views.logo') }}
+             <img src="images/block01.png">
           </div>
           <div id="block2">
-             {{ __('frontend_views.banner') }}
+             <img src="images/block02.png">
           </div>
           <div id="block3">
-             {{ __('frontend_views.datetime') }}
+             <img src="images/block03.png">
           </div>
       </div>
       <div id="middleside">
           <div id="leftside">
               <div id="block4">
-                 {{ __('frontend_views.logo2') }}
+                 <img src="images/block04.png">
               </div>
               <div id="block7">
-                 {{ __('frontend_views.advertisting') }}
+                 <img src="images/block07.png">
               </div>
           </div>
           <div id="block5" class="block5">
-             <h1> Video </h1>
+              <img src="images/block05.png">
           </div>
           <div id="rightside">
               <div id="block6">
-                 {{ __('frontend_views.announce') }}
+                 <img src="images/block06.png">
               </div>
               <div id="block8">
-                 {{ __('frontend_views.app') }}1
+                 <img src="images/block08.png">
               </div>
               <div id="block9">
-                 {{ __('frontend_views.app') }}2
+                 <img src="images/block09.png">
               </div>
               <div id="block10">
-                 {{ __('frontend_views.app') }}3
+                 <img src="images/block10.png">
               </div>
               <div id="block11">
-                 {{ __('frontend_views.app') }}4
+                 <img src="images/block11.png">
               </div>
               <div id="block12">
-                 {{ __('frontend_views.app') }}5
+                 <img src="images/block12.png">
               </div>
               <div id="block13">
-                 {{ __('frontend_views.app') }}6
+                 <img src="images/block13.png">
               </div>
               <div id="block14">
-                 {{ __('frontend_views.app') }}7
+                 <img src="images/block14.png">
               </div>
               <div id="block15">
-                 {{ __('frontend_views.app') }}8
+                 <img src="images/block15.png">
               </div>
               <div id="block16">
-                 {{ __('frontend_views.app') }}9
+                 <img src="images/block16.png">
               </div>
           </div>
       </div>
       <div id="bottomside">
           <div id="block17">
-             {{ __('frontend_views.network') }}
+             <img src="images/block17.png">
           </div>
           <div id="block18">
-             {{ __('frontend_views.marquee') }}
+             <img src="images/block18.png">
           </div>
           <div id="block19">
-             {{ __('frontend_views.system') }}
+             <img src="images/block19.png">
           </div>
       </div>
     </div>

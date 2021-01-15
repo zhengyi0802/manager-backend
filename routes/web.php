@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductCatagoryController;
 use App\Http\Controllers\ProductTypeController;
+use App\Http\Controllers\ProductStatusController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\StartpageController;
@@ -42,6 +43,8 @@ Route::get('/frontend_views', function() {
 Route::resource('/product_catagories', ProductCatagoryController::class);
 
 Route::resource('/product_types', ProductTypeController::class);
+
+Route::resource('/product_statuses', ProductStatusController::class);
 
 Route::resource('/projects', ProjectController::class);
 

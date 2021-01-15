@@ -9,6 +9,7 @@ return [
     'product_manager'               => '產品管理系統',
     'product_catagories'            => '产品类别资料表',
     'product_types'                 => '产品型号资料表',
+    'product_statuses'              => '产品状态资料表',
     'project_manager'               => '专案管理系统',
     'projects'                      => '专案管理',
     'account_settings'              => '账户设置',

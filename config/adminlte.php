@@ -266,6 +266,11 @@ return [
                     'url'         => 'product_types',
                     'label_color' => 'success',
                 ],
+                [
+                    'text'        => 'product_statuses',
+                    'url'         => 'product_statuses',
+                    'label_color' => 'success',
+                ],
             ],
         ],
         [   'text' => 'project_manager',

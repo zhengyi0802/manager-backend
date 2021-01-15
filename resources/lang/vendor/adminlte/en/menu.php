@@ -11,6 +11,7 @@ return [
     'product_manager'               => 'Product Manager',
     'product_catagories'            => 'Product Catagories',
     'product_types'                 => 'Product Type',
+    'product_statuses'              => 'Product STatus',
     'project_manager'               => 'Project Manager',
     'projects'                      => 'Projects',
     'account_settings_trans_key'    => 'ACCOUNT SETTINGS',

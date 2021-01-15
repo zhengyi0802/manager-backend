@@ -37,7 +37,7 @@
         </tr>
         @foreach ($projects as $project)
         <tr>
-            <td>{{ ++$i }}</td>
+            <td>{{ $project->id }}</td>
             <td>{{ $project->name }}</td>
             <td>{{ $project->detail }}</td>
             <td>{{ $project->mac_address }}</td>

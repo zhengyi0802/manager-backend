@@ -12,6 +12,7 @@ return [
     'product_catagories'            => '產品類別資料表',
     'product_types'                 => '產品型號資料表',
     'product_statuses'              => '產品狀態資料表',
+    'products'                      => '產品資料表',
     'project_manager'               => '專案管理系統',
     'projects'                      => '專案資料表',
     'account_settings'              => '賬號設定',

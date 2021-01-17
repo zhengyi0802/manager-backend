@@ -161,4 +161,48 @@ class MaterialController extends Controller
         return redirect()->route('materials.index')
                         ->with('success','Material deleted successfully');
     }
+
+    public function edit2(Project $project, $position)
+    {
+        $materials = Material::where('proj_id', $project->id)->where('position', $position)->get();
+        $material = $materials->last();
+        if ($material == null) {
+            $material = new Material;
+            $material->id = 0;
+        }
+        return view('materials.edit2',compact('materials'))
+               ->with(compact('material'))
+               ->with(compact('project'))
+               ->with('position', $position);
+
+    }
+
+    public function store2(Request $request, Material $material, $proj_id, $position)
+    {
+        $request->validate([
+                'name'      => 'required',
+                'prev_id'   => 'required',
+                'mime_type' => 'required',
+        ]);
+
+        if ($request->mime_type == 'image') {
+           if ($request->file()) {
+               $file = ImageUpload::fileUpload($request);
+               if ($file == null) {
+                   return back()->with('image', $fileName);
+               }
+               $request->merge(['image_url' => $file->file_path]);
+           }
+        }
+
+        if ($material->id > 0) {
+            $material->update($request->all());
+        } else {
+            Material::create($request->all());
+        }
+
+        return redirect()->route('frontend_views.index')
+                        ->with('success','Material created successfully.');
+    }
+
 }

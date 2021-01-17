@@ -8,6 +8,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\StartpageController;
+use App\Http\Controllers\FrontendViewController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,9 +39,6 @@ Route::get('/admin/settings', function() {
     return view('admin.settings');
 })->name('settings');
 
-Route::get('/frontend_views', function() {
-    return view('frontend_views.template');
-})->name('frontend');
 
 Route::resource('/product_catagories', ProductCatagoryController::class);
 
@@ -51,6 +50,14 @@ Route::resource('/products', ProductController::class);
 
 Route::resource('/projects', ProjectController::class);
 
+Route::get('/materials/{project}/{position}/edit2', [App\Http\Controllers\MaterialController::class, 'edit2'])
+       ->name('materials.edit2');
+
+Route::post('/materials/{material}/{project}/{position}/store2', [App\Http\Controllers\MaterialController::class, 'store2'])
+       ->name('materials.store2');
+
 Route::resource('/materials', MaterialController::class);
 
 Route::resource('/startpages', StartpageController::class);
+
+Route::resource('/frontend_views', FrontendViewController::class);

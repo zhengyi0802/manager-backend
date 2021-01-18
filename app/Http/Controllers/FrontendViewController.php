@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Product;
 use App\Models\Material;
 use Illuminate\Http\Request;
 
@@ -103,8 +104,8 @@ class FrontendViewController extends Controller
     public function getQuery($id) {
         $materials = [];
         for ($i=1; $i < 19; $i++) {
-           $blocks = Material::where('proj_id', $id)->where('position', $i)->where('statu', true)->get();
-           if ($blocaks!=null)
+           $blocks = Material::where('proj_id', $id)->where('position', $i)->where('status', true)->get();
+           if ($blocks!=null)
                $materials += ['block'.$i => $blocks->toArray()];
         }
 

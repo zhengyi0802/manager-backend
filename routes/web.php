@@ -61,10 +61,16 @@ Route::post('/materials/{project}/{position}/store2', [App\Http\Controllers\Mate
 
 Route::resource('/materials', MaterialController::class);
 
+Route::get('/startpages/query', [App\Http\Controllers\StartpageController::class, 'query'])
+       ->name('startpages.query');
+
 Route::resource('/startpages', StartpageController::class);
 
 Route::get('/frontend_views', [App\Http\Controllers\FrontendViewController::class, 'index'])
        ->name('frontend_views.index');
+
+Route::get('/frontend_views/query', [App\Http\Controllers\FrontendViewController::class, 'query'])
+       ->name('frontend_views.query');
 
 Route::get('/frontend_views/{project}/edit', [App\Http\Controllers\FrontendViewController::class, 'edit'])
        ->name('frontend_views.edit');

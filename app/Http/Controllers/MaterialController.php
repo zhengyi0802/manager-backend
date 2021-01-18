@@ -162,22 +162,31 @@ class MaterialController extends Controller
                         ->with('success','Material deleted successfully');
     }
 
+    public function create2(Project $project, $position)
+    {
+        $materials = Material::where('proj_id', $project->id)->where('position', $position)->get();
+        $material = new Material;
+
+        return view('materials.create2',compact('materials'))
+               ->with(compact('material'))
+               ->with(compact('project'))
+               ->with('position', $position);
+    }
+
     public function edit2(Project $project, $position)
     {
         $materials = Material::where('proj_id', $project->id)->where('position', $position)->get();
         $material = $materials->last();
         if ($material == null) {
-            $material = new Material;
-            $material->id = 0;
+           return $this->create2($project, $position);
         }
         return view('materials.edit2',compact('materials'))
                ->with(compact('material'))
                ->with(compact('project'))
                ->with('position', $position);
-
     }
 
-    public function store2(Request $request, Material $material, $proj_id, $position)
+    public function store2(Request $request, Project $project, $position, Material $material)
     {
         $request->validate([
                 'name'      => 'required',
@@ -198,6 +207,7 @@ class MaterialController extends Controller
         if ($material->id > 0) {
             $material->update($request->all());
         } else {
+            $request->merge(['proj_id' => $project->id, 'position' => $position]);
             Material::create($request->all());
         }
 

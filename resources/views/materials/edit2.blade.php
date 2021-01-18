@@ -13,7 +13,8 @@
                 <h1>{{ __('tables.edit') }}</h1>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('materials.index') }}">返回</a>
+                <a class="btn btn-primary" href="{{ route('materials.index') }}">{{ __('tables.back') }}</a>
+                <a class="btn btn-primary" href="{{ route('materials.create2', ['project' => $project, 'position' => $position]) }}">{{ __('tables.new') }}</a>
             </div>
         </div>
     </div>
@@ -29,7 +30,7 @@
         </div>
     @endif
 
-    <form action="{{ route('materials.store2', [ 'material' => $material ?? '', 'project' => $project, 'position' => $position] ) }}" method="POST"  enctype="multipart/form-data" >
+    <form action="{{ route('materials.store2', [ 'material' => $material, 'project' => $project, 'position' => $position] ) }}" method="POST"  enctype="multipart/form-data" >
         @csrf
          <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">

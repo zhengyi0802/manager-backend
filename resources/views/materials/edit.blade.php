@@ -13,7 +13,7 @@
                 <h1>{{ __('tables.edit') }}</h1>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('materials.index') }}">返回</a>
+                <a class="btn btn-primary" href="{{ route('materials.index') }}">{{ __('tables.back') }}</a>
             </div>
         </div>
     </div>

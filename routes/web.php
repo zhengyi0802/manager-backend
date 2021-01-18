@@ -53,7 +53,10 @@ Route::resource('/projects', ProjectController::class);
 Route::get('/materials/{project}/{position}/edit2', [App\Http\Controllers\MaterialController::class, 'edit2'])
        ->name('materials.edit2');
 
-Route::post('/materials/{material}/{project}/{position}/store2', [App\Http\Controllers\MaterialController::class, 'store2'])
+Route::get('/marerials/{project}/{position}/creat2', [App\Http\Controllers\MaterialController::class, 'create2'])
+       ->name('materials.create2');
+
+Route::post('/materials/{project}/{position}/store2', [App\Http\Controllers\MaterialController::class, 'store2'])
        ->name('materials.store2');
 
 Route::resource('/materials', MaterialController::class);

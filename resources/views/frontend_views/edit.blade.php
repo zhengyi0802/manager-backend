@@ -4,6 +4,7 @@
 
 @section('content_header')
     <h1 class="m-0 text-dark">{{ __('frontend_views.header') }}</h1>
+    {{ __('projects.name') }} {{ $project->name }}
 @stop
 
 @section('content')
@@ -195,69 +196,69 @@
    <div id="view" name="view">
       <div id="topside">
           <div id="block1">
-             <img src="images/block01.png">
+             <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '1']) }}" ><img src="{{ ($frontend_view['block1'] != null) ? $frontend_view['block1']['image_url'] : '/images/block01.png' }}"></a>
           </div>
           <div id="block2">
-             <img src="images/block02.png">
+             <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '2']) }}" ><img src="{{ ($frontend_view['block2'] != null) ? $frontend_view['block2']['image_url'] : '/images/block02.png' }}"></a>
           </div>
           <div id="block3">
-             <img src="images/block03.png">
+             <img src="/images/block03.png"></a>
           </div>
       </div>
       <div id="middleside">
           <div id="leftside">
               <div id="block4">
-                 <img src="images/block04.png">
-              </div>
-              <div id="block7">
-                 <img src="images/block07.png">
+                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '4']) }}" ><img src="{{ ($frontend_view['block4'] != null) ? $frontend_view['block4']['image_url'] : '/images/block04.png' }}"></a>
+             </div>
+             <div id="block7">
+                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '7']) }}" ><img src="{{ ($frontend_view['block7'] != null) ? $frontend_view['block7']['image_url'] : '/images/block07.png' }}"></a>
               </div>
           </div>
           <div id="block5" class="block5">
-              <img src="images/block05.png">
+             <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '5']) }}" ><img src="{{ ($frontend_view['block5'] != null) ? $frontend_view['block5']['image_url'] : '/images/block05.png' }}"></a>
           </div>
           <div id="rightside">
               <div id="block6">
-                 <img src="images/block06.png">
+                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '6']) }}" ><img src="{{ ($frontend_view['block6'] != null) ? $frontend_view['block6']['image_url'] : '/images/block06.png' }}"></a>
               </div>
               <div id="block8">
-                 <img src="images/block08.png">
+                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '8']) }}" ><img src="{{ ($frontend_view['block8'] != null) ? $frontend_view['block8']['image_url'] : '/images/block08.png' }}"></a>
               </div>
               <div id="block9">
-                 <img src="images/block09.png">
+                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '9']) }}" ><img src="{{ ($frontend_view['block9'] != null) ? $frontend_view['block9']['image_url'] : '/images/block09.png' }}"></a>
               </div>
               <div id="block10">
-                 <img src="images/block10.png">
+                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '10']) }}" ><img src="{{ ($frontend_view['block10'] != null) ? $frontend_view['block10']['image_url'] : '/images/block10.png' }}"></a>
               </div>
               <div id="block11">
-                 <img src="images/block11.png">
+                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '11']) }}" ><img src="{{ ($frontend_view['block11'] != null) ? $frontend_view['block11']['image_url'] : '/images/block11.png' }}"></a>
               </div>
               <div id="block12">
-                 <img src="images/block12.png">
+                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '12']) }}" ><img src="{{ ($frontend_view['block12'] != null) ? $frontend_view['block12']['image_url'] : '/images/block12.png' }}"></a>
               </div>
               <div id="block13">
-                 <img src="images/block13.png">
+                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '13']) }}" ><img src="{{ ($frontend_view['block13'] != null) ? $frontend_view['block13']['image_url'] : '/images/block13.png' }}"></a>
               </div>
               <div id="block14">
-                 <img src="images/block14.png">
+                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '14']) }}" ><img src="{{ ($frontend_view['block14'] != null) ? $frontend_view['block14']['image_url'] : '/images/block14.png' }}"></a>
               </div>
               <div id="block15">
-                 <img src="images/block15.png">
+                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '15']) }}" ><img src="{{ ($frontend_view['block15'] != null) ? $frontend_view['block15']['image_url'] : '/images/block15.png' }}"></a>
               </div>
               <div id="block16">
-                 <img src="images/block16.png">
+                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '16']) }}" ><img src="{{ ($frontend_view['block16'] != null) ? $frontend_view['block16']['image_url'] : '/images/block16.png' }}"></a>
               </div>
           </div>
       </div>
       <div id="bottomside">
           <div id="block17">
-             <img src="images/block17.png">
+             <img src="/images/block17.png">
           </div>
           <div id="block18">
-             <img src="images/block18.png">
+             <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '18']) }}" ><img src="{{ ($frontend_view['block18'] != null) ? $frontend_view['block18']['image_url'] : '/images/block18.png' }}"></a>
           </div>
           <div id="block19">
-             <img src="images/block19.png">
+             <img src="/images/block19.png">
           </div>
       </div>
     </div>

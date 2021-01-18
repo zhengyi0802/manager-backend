@@ -63,4 +63,8 @@ Route::resource('/materials', MaterialController::class);
 
 Route::resource('/startpages', StartpageController::class);
 
-Route::resource('/frontend_views', FrontendViewController::class);
+Route::get('/frontend_views', [App\Http\Controllers\FrontendViewController::class, 'index'])
+       ->name('frontend_views.index');
+
+Route::get('/frontend_views/{project}/edit', [App\Http\Controllers\FrontendViewController::class, 'edit'])
+       ->name('frontend_views.edit');

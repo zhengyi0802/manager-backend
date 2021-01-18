@@ -13,7 +13,7 @@
                 <h1>{{ __('tables.edit') }}</h1>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('materials.index') }}">{{ __('tables.back') }}</a>
+                <a class="btn btn-primary" href="{{ route('frontend_views.edit', $project->id) }}">{{ __('tables.back') }}</a>
                 <a class="btn btn-primary" href="{{ route('materials.create2', ['project' => $project, 'position' => $position]) }}">{{ __('tables.new') }}</a>
             </div>
         </div>

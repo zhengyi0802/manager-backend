@@ -6,10 +6,16 @@
     <h1 class="m-0 text-dark">{{ __('frontend_views.header') }}</h1>
     {{ __('projects.name') }}
     <select id="project" name="project">
+          <option value="" selected>--------</option>
       @foreach($projects as $project)
-          <option value="{{ $project->id }}">{{ $project->name }}</option>
+          <option value="{{ route('frontend_views.edit', $project->id) }}">{{ $project->name }}</option>
       @endforeach
     </select>
+    <script>
+      document.getElementById("project").addEventListener('change', function () {
+          window.location = this.value;
+      }, false);
+    </script>
 @stop
 
 @section('content')

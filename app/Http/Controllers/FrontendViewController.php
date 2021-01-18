@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FrontendView;
 use App\Models\Project;
+use App\Models\Material;
 use Illuminate\Http\Request;
 
 class FrontendViewController extends Controller
@@ -46,7 +46,7 @@ class FrontendViewController extends Controller
      * @param  \App\Models\FrontendView  $frontendView
      * @return \Illuminate\Http\Response
      */
-    public function show(FrontendView $frontendView)
+    public function show(Project $project)
     {
         return view('frontend_views.show');
     }
@@ -57,9 +57,13 @@ class FrontendViewController extends Controller
      * @param  \App\Models\FrontendView  $frontendView
      * @return \Illuminate\Http\Response
      */
-    public function edit(FrontendView $frontendView)
+    public function edit(Project $project)
     {
-        return view('frontend_views.edit');
+        if ($project->id == 0) $this->index();
+        $frontend_view = $this->getMaterials($project->id);
+
+        return view('frontend_views.edit', compact('project'))
+               ->with(compact('frontend_view'));
     }
 
     /**
@@ -69,7 +73,7 @@ class FrontendViewController extends Controller
      * @param  \App\Models\FrontendView  $frontendView
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FrontendView $frontendView)
+    public function update(Request $request, Project $project)
     {
         return view('frontend_views.index');
     }
@@ -80,8 +84,20 @@ class FrontendViewController extends Controller
      * @param  \App\Models\FrontendView  $frontendView
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FrontendView $frontendView)
+    public function destroy(Project $project)
     {
         return view('frontend_views.index');
     }
+
+    public function getMaterials($id)
+    {
+        $materials = [];
+        for($i = 1; $i < 19; $i++) {
+           $block = Material::where('proj_id', $id)->where('position', $i)->where('status', true)->where('prev_id', '0')->first();
+           $materials += ['block'.$i => $block];
+        }
+
+        return $materials;
+    }
+
 }

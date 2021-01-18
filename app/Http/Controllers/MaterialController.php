@@ -211,7 +211,7 @@ class MaterialController extends Controller
             Material::create($request->all());
         }
 
-        return redirect()->route('frontend_views.index')
+        return redirect()->route('frontend_views.edit', compact('project'))
                         ->with('success','Material created successfully.');
     }
 

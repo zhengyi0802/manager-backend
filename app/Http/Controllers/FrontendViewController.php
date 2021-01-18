@@ -92,12 +92,43 @@ class FrontendViewController extends Controller
     public function getMaterials($id)
     {
         $materials = [];
-        for($i = 1; $i < 19; $i++) {
+        for ($i = 1; $i < 19; $i++) {
            $block = Material::where('proj_id', $id)->where('position', $i)->where('status', true)->where('prev_id', '0')->first();
            $materials += ['block'.$i => $block];
         }
 
         return $materials;
+    }
+
+    public function getQuery($id) {
+        $materials = [];
+        for ($i=1; $i < 19; $i++) {
+           $blocks = Material::where('proj_id', $id)->where('position', $i)->where('statu', true)->get();
+           if ($blocks != null) {
+               $materials += ['block].$i => $blocks];
+           }
+        }
+
+        return $materials;
+    }
+
+    public function query() {
+        if ($request->input('mac')) {
+            $mac = str_replace(':', '', $request->input('mac'));
+            $mac = strtoupper($mac);
+            $product = Product::where('mac_address', '=', $mac)->firstOrFail();
+            //var_dump($product);
+            if ($product) {
+                $proj_id = $product->proj_id;
+            }
+        } else if ($request->input('id')) {
+            $proj_id = $request->input('id');
+        }
+
+        $data = $this->getQuery($proj_id);
+        if ($data)
+            return json_encode($startpage);
+
     }
 
 }

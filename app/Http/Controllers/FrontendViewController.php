@@ -112,7 +112,7 @@ class FrontendViewController extends Controller
         return $materials;
     }
 
-    public function query() {
+    public function query(Request $request) {
         if ($request->input('mac')) {
             $mac = str_replace(':', '', $request->input('mac'));
             $mac = strtoupper($mac);

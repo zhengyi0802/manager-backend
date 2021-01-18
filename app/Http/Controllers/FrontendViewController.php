@@ -104,9 +104,8 @@ class FrontendViewController extends Controller
         $materials = [];
         for ($i=1; $i < 19; $i++) {
            $blocks = Material::where('proj_id', $id)->where('position', $i)->where('statu', true)->get();
-           if ($blocks != null) {
-               $materials += ['block].$i => $blocks];
-           }
+           if ($blocaks!=null)
+               $materials += ['block'.$i => $blocks->toArray()];
         }
 
         return $materials;
@@ -127,8 +126,9 @@ class FrontendViewController extends Controller
 
         $data = $this->getQuery($proj_id);
         if ($data)
-            return json_encode($startpage);
+            return json_encode($data);
 
     }
+
 
 }

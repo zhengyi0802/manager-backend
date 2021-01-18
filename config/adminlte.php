@@ -298,6 +298,7 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
+/*
         [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
@@ -352,6 +353,7 @@ return [
             'icon_color' => 'cyan',
             'url'        => '#',
         ],
+*/
     ],
 
     /*

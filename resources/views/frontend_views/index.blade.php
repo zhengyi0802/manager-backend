@@ -207,10 +207,10 @@
    <div id="view" name="view">
       <div id="topside">
           <div id="block1">
-             <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '1']) }}" ><img src="images/block01.png"></a>
+             <img src="images/block01.png">
           </div>
           <div id="block2">
-             <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '2']) }}" ><img src="images/block02.png"></a>
+             <img src="images/block02.png">
           </div>
           <div id="block3">
              <img src="images/block03.png">
@@ -219,45 +219,45 @@
       <div id="middleside">
           <div id="leftside">
               <div id="block4">
-                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '4']) }}" ><img src="images/block04.png"></a>
+                 <img src="images/block04.png">
               </div>
               <div id="block7">
-                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '7']) }}" ><img src="images/block07.png"></a>
+                 <img src="images/block07.png">
               </div>
           </div>
           <div id="block5" class="block5">
-              <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '5']) }}" ><img src="images/block05.png"></a>
+              <img src="images/block05.png">
           </div>
           <div id="rightside">
               <div id="block6">
-                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '6']) }}" ><img src="images/block06.png"></a>
+                 <img src="images/block06.png">
               </div>
               <div id="block8">
-                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '8']) }}" ><img src="images/block08.png"></a>
+                 <img src="images/block08.png">
               </div>
               <div id="block9">
-                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '9']) }}" ><img src="images/block09.png"></a>
+                 <img src="images/block09.png">
               </div>
               <div id="block10">
-                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '10']) }}" ><img src="images/block10.png"></a>
+                 <img src="images/block10.png">
               </div>
               <div id="block11">
-                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '11']) }}" ><img src="images/block11.png"></a>
+                 <img src="images/block11.png">
               </div>
               <div id="block12">
-                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '12']) }}" ><img src="images/block12.png"></a>
+                 <img src="images/block12.png">
               </div>
               <div id="block13">
-                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '13']) }}" ><img src="images/block13.png"></a>
+                 <img src="images/block13.png">
               </div>
               <div id="block14">
-                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '14']) }}" ><img src="images/block14.png"></a>
+                 <img src="images/block14.png">
               </div>
               <div id="block15">
-                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '15']) }}" ><img src="images/block15.png"></a>
+                 <img src="images/block15.png">
               </div>
               <div id="block16">
-                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '16']) }}" ><img src="images/block16.png"></a>
+                 <img src="images/block16.png">
               </div>
           </div>
       </div>
@@ -266,7 +266,7 @@
              <img src="images/block17.png">
           </div>
           <div id="block18">
-             <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '18']) }}" ><img src="images/block18.png"></a>
+             <img src="images/block18.png">
           </div>
           <div id="block19">
              <img src="images/block19.png">

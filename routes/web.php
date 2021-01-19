@@ -76,5 +76,8 @@ Route::get('/frontend_views/query', [App\Http\Controllers\FrontendViewController
 Route::get('/frontend_views/{project}/edit', [App\Http\Controllers\FrontendViewController::class, 'edit'])
        ->name('frontend_views.edit');
 
+Route::get('/marquees/query', [App\Http\Controllers\MarqueeController::class, 'query'])
+       ->name('marquees.query');
+
 Route::resource('/marquees', MarqueeController::class);
 

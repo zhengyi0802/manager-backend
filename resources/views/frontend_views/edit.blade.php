@@ -199,7 +199,7 @@
              <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '1']) }}" ><img src="{{ ($frontend_view['block1'] != null) ? $frontend_view['block1']['image_url'] : '/images/block01.png' }}"></a>
           </div>
           <div id="block2">
-             <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '2']) }}" ><img src="{{ ($frontend_view['block2'] != null) ? $frontend_view['block2']['image_url'] : '/images/block02.png' }}"></a>
+             <img src="/images/block02.png">
           </div>
           <div id="block3">
              <img src="/images/block03.png"></a>
@@ -255,7 +255,7 @@
              <img src="/images/block17.png">
           </div>
           <div id="block18">
-             <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '18']) }}" ><img src="{{ ($frontend_view['block18'] != null) ? $frontend_view['block18']['image_url'] : '/images/block18.png' }}"></a>
+             <img src="/images/block18.png">
           </div>
           <div id="block19">
              <img src="/images/block19.png">

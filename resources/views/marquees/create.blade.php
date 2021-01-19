@@ -44,6 +44,7 @@
                 <select id="type" name="type" >
                     <option value="1" selected>{{ __('marquees.type_single') }}</option>
                     <option value="2">{{ __('marquees.type_project') }}</option>
+                    <option value="3">{{ __('marquees.type_all') }}</option>
                 </select>
             </div>
         </div>

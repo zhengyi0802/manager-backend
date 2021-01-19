@@ -130,4 +130,26 @@ class MarqueeController extends Controller
         return redirect()->route('marquees.index')
                         ->with('success','Marquee deleted successfully');
     }
+
+    public function query(Request $request)
+    {
+        if ($request->input('mac')) {
+            $mac = str_replace(':', '', $request->input('mac'));
+            $mac = strtoupper($mac);
+            $product = Product::where('mac_address', '=', $mac)->firstOrFail();
+
+            if ($product) {
+                $proj_id = $product->proj_id;
+            }
+        } else if ($request->input('id')) {
+            $proj_id = $request->input('id');
+            $product = Product::where('proj_id', $proj_id)->firstOrFail();
+        }
+
+        $marquees = Marquee::where('product_id', $product->id)->where('status', true)->get();
+        if ($marquee)
+            return json_encode($marquee);
+
+    }
+
 }

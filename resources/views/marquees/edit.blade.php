@@ -45,6 +45,7 @@
                      <select id="type" name="type" >
                         <option value="1" {{ ($marquee->type==1) ? "selected" : null }}>{{ __('marquees.type_single') }}</option>
                         <option value="2" {{ ($marquee->type==2) ? "selected" : null }}>{{ __('marquees.type_project') }}</option>
+                        <option value="3" {{ ($marquee->type==3) ? "selected" : null }}>{{ __('marquees.type_all') }}</option>
                     </select>
                 </div>
             </div>

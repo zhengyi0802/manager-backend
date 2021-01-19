@@ -62,7 +62,7 @@ class FrontendViewController extends Controller
     {
         if ($project->id == 0) $this->index();
         $frontend_view = $this->getMaterials($project->id);
-
+        //var_dump($frontend_view);
         return view('frontend_views.edit', compact('project'))
                ->with(compact('frontend_view'));
     }
@@ -90,23 +90,41 @@ class FrontendViewController extends Controller
         return view('frontend_views.index');
     }
 
-    public function getMaterials($id)
+    public function getQuery($id)
     {
+        $block_name = [
+                        '1'  => 'logo',
+                        '2'  => null,
+                        '3'  => null,
+                        '4'  => 'customLogo',
+                        '5'  => 'videos',
+                        '6'  => 'bulletin',
+                        '7'  => 'Ad',
+                        '8'  => 'app1',
+                        '9'  => 'app2',
+                        '10' => 'app3',
+                        '11' => 'app4',
+                        '12' => 'app5',
+                        '13' => 'app6',
+                        '14' => 'app7',
+                        '15' => 'app8',
+                        '16' => 'app9',
+        ];
+
         $materials = [];
-        for ($i = 1; $i < 19; $i++) {
-           $block = Material::where('proj_id', $id)->where('position', $i)->where('status', true)->where('prev_id', '0')->first();
-           $materials += ['block'.$i => $block];
+        for ($i = 1; $i < 17; $i++) {
+           $blocks = Material::where('proj_id', $id)->where('position', $i)->where('status', true)->get();
+           if ($block_name[$i] != null) $materials += [ $block_name[$i] => $blocks->toArray()];
         }
 
         return $materials;
     }
 
-    public function getQuery($id) {
+    public function getMaterials($id) {
         $materials = [];
         for ($i=1; $i < 19; $i++) {
-           $blocks = Material::where('proj_id', $id)->where('position', $i)->where('status', true)->get();
-           if ($blocks!=null)
-               $materials += ['block'.$i => $blocks->toArray()];
+           $block = Material::where('proj_id', $id)->where('position', $i)->where('status', true)->where('prev_id', '0')->first();
+           $materials += ['block'.$i => $block];
         }
 
         return $materials;

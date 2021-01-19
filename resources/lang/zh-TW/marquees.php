@@ -10,6 +10,7 @@
         'type'            => '類型',
         'type_single'     => '單機',
         'type_project'    => '專案',
+        'type_all'        => '全部',
         'mac_address'     => 'MAC位址',
         'serialno'        => '產品序號',
         'status'          => '狀態',

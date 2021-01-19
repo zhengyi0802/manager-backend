@@ -252,6 +252,11 @@ return [
                     'url'         => 'materials',
                     'label_color' => 'success',
                ],
+               [
+                    'text'        => 'marquees',
+                    'url'         => 'marquees',
+                    'label_color' => 'success',
+               ],
             ],
         ],
         [   'text'    => 'product_manager',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\ImageUpload;
 use App\Models\Project;
+use App\Models\Product;
 use App\Models\File;
 use App\Models\Startpage;
 use Illuminate\Support\Facades\DB;

@@ -8,6 +8,7 @@ return [
     'startpage'                     => '起始廣告頁面',
     'pages'                         => '首頁頁面',
     'materials'                     => '素材資料表',
+    'marquees'                      => '跑馬燈資料表',
     'product_manager'               => '產品管理系統',
     'product_catagories'            => '產品類別資料表',
     'product_types'                 => '產品型號資料表',

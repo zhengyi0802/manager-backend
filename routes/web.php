@@ -9,6 +9,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\StartpageController;
 use App\Http\Controllers\FrontendViewController;
+use App\Http\Controllers\MarqueeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,3 +75,6 @@ Route::get('/frontend_views/query', [App\Http\Controllers\FrontendViewController
 
 Route::get('/frontend_views/{project}/edit', [App\Http\Controllers\FrontendViewController::class, 'edit'])
        ->name('frontend_views.edit');
+
+Route::resource('/marquees', MarqueeController::class);
+

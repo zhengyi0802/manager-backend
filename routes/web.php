@@ -10,6 +10,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\StartpageController;
 use App\Http\Controllers\FrontendViewController;
 use App\Http\Controllers\MarqueeController;
+use App\Http\Controllers\PackageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,3 +82,4 @@ Route::get('/marquees/query', [App\Http\Controllers\MarqueeController::class, 'q
 
 Route::resource('/marquees', MarqueeController::class);
 
+Route::resource('/packages', PackageController::class);

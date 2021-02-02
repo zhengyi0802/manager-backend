@@ -234,6 +234,11 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        [
+            'text'         => 'packages_manager',
+            'url'          => 'packages',
+            'label_color'  => 'success',
+        ],
         [   'text'    => 'pages_manager',
             'submenu' => [
                [

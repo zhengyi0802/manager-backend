@@ -35,7 +35,7 @@ class MarqueeController extends Controller
     public function create()
     {
         $projects = Project::where('status', true)->get();
-        $products = Product::get();
+
         return view('marquees.create', compact('projects'))
                ->with(compact('products'));
     }

@@ -4,6 +4,7 @@ return [
 
     'main_navigation'               => '主導航',
     'blog'                          => '部落格',
+    'packages_manager'              => 'Packages',
     'pages_manager'                 => '頁面管理系統',
     'startpage'                     => '起始廣告頁面',
     'pages'                         => '首頁頁面',

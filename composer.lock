@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eab6b77c70ce222d3f73013b3dffa22a",
+    "content-hash": "ec057aec71c652be9cb0d062082b3721",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -4881,6 +4881,61 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.3"
             },
             "time": "2020-07-13T06:12:54+00:00"
+        },
+        {
+            "name": "tufanbarisyildirim/php-apk-parser",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tufanbarisyildirim/php-apk-parser.git",
+                "reference": "76a097c166877a44c8a5144c186e5306d10cd7f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tufanbarisyildirim/php-apk-parser/zipball/76a097c166877a44c8a5144c186e5306d10cd7f2",
+                "reference": "76a097c166877a44c8a5144c186e5306d10cd7f2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "ext-mbstring": "*",
+                "ext-simplexml": "*",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "ApkParser": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tufan Baris YILDIRIM",
+                    "email": "tufanbarisyildirim@gmail.com",
+                    "homepage": "http://tufanbarisyildirim.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Read basic info about an application from .apk file.",
+            "homepage": "https://github.com/tufanbarisyildirim/php-apk-parser",
+            "keywords": [
+                "android",
+                "apk",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/tufanbarisyildirim/php-apk-parser/issues",
+                "source": "https://github.com/tufanbarisyildirim/php-apk-parser/tree/2.0.2"
+            },
+            "time": "2020-01-27T15:23:37+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

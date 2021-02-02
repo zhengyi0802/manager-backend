@@ -21,7 +21,7 @@ class ImageUpload
 
         if($req->file()) {
             $fileName = time().'_'.$req->image->getClientOriginalName();
-            $filePath = $req->file('image')->storeAs('uploads', $fileName, 'public');
+            $filePath = $req->file('image')->storeAs('uploads/images/', $fileName, 'public');
 
             $fileModel->name = time().'_'.$req->image->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;

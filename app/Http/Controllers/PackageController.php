@@ -148,10 +148,9 @@ class PackageController extends Controller
             $proj_id = $product->proj_id;
             $type_id = $product->type_id;
         }
-
-        $project = Project::where('id', $proj_id)->firstOrFail();
-        $type = ProductType::where('id', $type_id)->firstOrFail();
-        $proj_name = $product->name;
+        $project = Project::where('id', $proj_id)->first();
+        $type = ProductType::where('id', $type_id)->first();
+        $proj_name = $project->name;
         $type_name = $type->name;
 
         if ($request->input('package')) {
@@ -162,24 +161,21 @@ class PackageController extends Controller
         }
 
         $list = array();
+        $i=0;
         foreach ($packages as $package) {
            if ($package->proj_id != null) {
                $proj_array = json_decode($package->proj_id);
                foreach ($proj_array as $prj) {
-                  if ($proj_name == $prj) {
-                      $list = array_merge($list, $package->toArray());
+                  if ($proj_name == $prj ) {
+                      $type_array = json_decode($package->type_id);
+                      foreach ($type_array as $type) {
+                          if ($type_name == $type) {
+                              $list[$i++]=$package->toArray();
+                          }
+                      }
                   }
                }
            }
-           if ($package->type_id != null) {
-              $type_array = json_decode($package->type_id);
-              foreach ($type_array as $type) {
-                  if ($type_name == $type) {
-                      $list = array_merge($list, $package->toArray());
-                  }
-              }
-           }
-
         }
 
         return json_encode($list);

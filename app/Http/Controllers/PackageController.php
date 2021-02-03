@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Package;
 use App\Models\Project;
 use App\Models\ProductType;
+use App\Models\Product;
 use App\Http\Middleware\PackageUpload;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -130,6 +131,59 @@ class PackageController extends Controller
                         ->with('success', 'Pacakge deleted successfully');
     }
 
+    public function query(Request $request)
+    {
+        if ($request->input('mac')) {
+            $mac = str_replace(':', '', $request->input('mac'));
+            $mac = strtoupper($mac);
+            $product = Product::where('mac_address', '=', $mac)->firstOrFail();
+            //var_dump($product);
+            if ($product) {
+                $proj_id = $product->proj_id;
+                $type_id = $product->type_id;
+            }
+        } else if ($request->input('id')) {
+            $id = $request->input('id');
+            $product = Product::where('id', $id)->firstOrFail();
+            $proj_id = $product->proj_id;
+            $type_id = $product->type_id;
+        }
+
+        $project = Project::where('id', $proj_id)->firstOrFail();
+        $type = ProductType::where('id', $type_id)->firstOrFail();
+        $proj_name = $product->name;
+        $type_name = $type->name;
+
+        if ($request->input('package')) {
+            $name = $request->input('package');
+            $packages = Package::where('name', $name)->where('status', true)->get();
+        } else {
+            $packages = Package::where('status', true)->get();
+        }
+
+        $list = array();
+        foreach ($packages as $package) {
+           if ($package->proj_id != null) {
+               $proj_array = json_decode($package->proj_id);
+               foreach ($proj_array as $prj) {
+                  if ($proj_name == $prj) {
+                      $list = array_merge($list, $package->toArray());
+                  }
+               }
+           }
+           if ($package->type_id != null) {
+              $type_array = json_decode($package->type_id);
+              foreach ($type_array as $type) {
+                  if ($type_name == $type) {
+                      $list = array_merge($list, $package->toArray());
+                  }
+              }
+           }
+
+        }
+
+        return json_encode($list);
+    }
 
     public function getPackageInfo($file_path, $filename) {
             $filepath = "/files/laravel/manager/public".$file_path;
@@ -153,4 +207,7 @@ class PackageController extends Controller
 
             return $apk_data;
     }
+
+
+
 }

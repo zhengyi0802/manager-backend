@@ -82,4 +82,7 @@ Route::get('/marquees/query', [App\Http\Controllers\MarqueeController::class, 'q
 
 Route::resource('/marquees', MarqueeController::class);
 
+Route::get('/packages/query', [App\Http\Controllers\PackageController::class, 'query'])
+       ->name('packages.query');
+
 Route::resource('/packages', PackageController::class);

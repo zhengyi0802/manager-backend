@@ -229,11 +229,7 @@ return [
             'search' => true,
             'topnav' => true,
         ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
+        [   'header' => 'backend_system' ],
         [
             'text'         => 'packages_manager',
             'url'          => 'packages',
@@ -296,6 +292,27 @@ return [
                     'label_color' => 'success',
                 ],
             ],
+        ],
+        [   'header' => 'backend_manager',
+            'can'  => 'manage-backends',
+        ],
+        [
+            'text' => 'managers',
+            'url'  => 'managers',
+            'icon' => 'fas fa-fw fa-user',
+            'can'  => 'manage-manager',
+        ],
+        [
+            'text' => 'resellers',
+            'url'  => 'resellers',
+            'icon' => 'fas fa-fw fa-lock',
+            'can'  => 'manage-resellers',
+        ],
+        [
+            'text' => 'members',
+            'url'  => 'members',
+            'icon' => 'fas fa-fw fa-lock',
+            'can'  => 'manage-members',
         ],
         ['header' => 'account_settings'],
         [

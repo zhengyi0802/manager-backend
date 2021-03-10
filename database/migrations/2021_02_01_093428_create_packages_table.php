@@ -17,14 +17,14 @@ class CreatePackagesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('icon_url')->nullable();
-            $table->string('app_url');
+            $table->string('app_app');
             $table->text('description')->nullable();
             $table->string('package_version')->nullable();
             $table->string('sdk_version')->nullable();
             $table->boolean('status');
             $table->json('type_id')->nullable();
             $table->json('proj_id')->nullable();
-            $table->json('mac_addressed')->nullable();
+            $table->json('mac_addresses')->nullable();
             $table->timestamps();
         });
     }

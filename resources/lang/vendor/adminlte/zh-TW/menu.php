@@ -3,7 +3,7 @@
 return [
 
     'main_navigation'               => '主導航',
-    'blog'                          => '部落格',
+    'backend_system'                => '後台管理系統',
     'packages_manager'              => '應用程式管理',
     'pages_manager'                 => '頁面管理系統',
     'startpage'                     => '起始廣告頁面',
@@ -20,6 +20,10 @@ return [
     'account_settings'              => '賬號設定',
     'profile'                       => '個人資料',
     'change_password'               => '修改密碼',
+    'backend_manager'               => '成員管理系統',
+    'managers'                      => '後台管理者管理',
+    'resellers'                     => '代理商/經銷商管理',
+    'members'                       => '會員管理',
     'multilevel'                    => '多級',
     'level_one'                     => '第一級',
     'level_two'                     => '第二級',

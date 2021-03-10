@@ -11,6 +11,9 @@ use App\Http\Controllers\StartpageController;
 use App\Http\Controllers\FrontendViewController;
 use App\Http\Controllers\MarqueeController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\ResellerController;
+use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,3 +89,10 @@ Route::get('/packages/query', [App\Http\Controllers\PackageController::class, 'q
        ->name('packages.query');
 
 Route::resource('/packages', PackageController::class);
+
+Route::resource('/managers', ManagerController::class);
+
+Route::resource('/resellers', ResellerController::class);
+
+Route::resource('/members', MemberController::class);
+

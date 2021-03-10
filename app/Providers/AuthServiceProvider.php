@@ -16,6 +16,11 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];
 
+    public static $permissions = [
+        'manage-manager'   => ['manager'],
+        'manage-resellers' => ['manager'],
+        'manage-users'     => ['manager', 'reseller'],
+    ];
     /**
      * Register any authentication / authorization services.
      *
@@ -25,6 +30,25 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // Roles based authorization
+        Gate::before(
+            function ($user, $ability) {
+                if ($user->role === 'admin') {
+                    return true;
+                }
+            }
+        );
+
+        foreach (self::$permissions as $action=> $roles) {
+            Gate::define(
+                $action,
+                function ($user) use($roles) {
+                    if (in_array($user->role, $roles)) {
+                        return true;
+                    }
+                }
+            );
+        }
+
     }
 }

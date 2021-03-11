@@ -14,6 +14,7 @@ use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ResellerController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ChangePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,13 @@ Route::get('/admin/settings', function() {
     return view('admin.settings');
 })->name('settings');
 
+Route::get('/admin/profile', function() {
+    return view('admin.profile');
+})->name('profile');
+
+Route::get('admin/change_password', [App\Http\Controllers\ChangePasswordController::class, 'index']);
+
+Route::post('admin/change_password', [App\Http\Controllers\ChangePasswordController::class, 'store'])->name('change.password');
 
 Route::resource('/product_catagories', ProductCatagoryController::class);
 

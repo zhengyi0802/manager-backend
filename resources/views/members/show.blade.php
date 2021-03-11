@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', __('projects.title'))
+@section('title', __('members.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ __('projects.header') }}</h1>
+    <h1 class="m-0 text-dark">{{ __('members.header') }}</h1>
 @stop
 
 @section('content')
@@ -13,7 +13,7 @@
                 <h1>{{ __('tables.details') }}</h1>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('projects.index') }}">{{ __('tables.back') }}</a>
+                <a class="btn btn-primary" href="{{ route('members.index') }}">{{ __('tables.back') }}</a>
             </div>
         </div>
     </div>
@@ -21,32 +21,44 @@
     <div class="row">
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('projects.name') }} :</strong>
-                {{ $project->name }}
+                <strong>{{ __('members.name') }} :</strong>
+                {{ $member->name }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('projects.description') }} :</strong>
-                {{ $project->descriptions }}
+                <strong>{{ __('members.account') }} :</strong>
+                {{ $member->account }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('projects.status') }} :</strong>
-                {{ ($project->status==1) ? __('tables.status_on'):__('tables.status_off') }}
+                <strong>{{ __('members.country') }} :</strong>
+                {{ $member->country }}
             </div>
-        </div>
+         </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('projects.start_time') }} :</strong>
-                {{ $project->start_time }}
+                <strong>{{ __('members.zipcode') }} :</strong>
+                {{ $member->zipcode }}
             </div>
-        </div>
+         </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('projects.stop_time') }} :</strong>
-                {{ $project->stop_time }}
+                <strong>{{ __('members.address') }} :</strong>
+                {{ $member->address }}
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('members.phones') }} :</strong>
+                {{ $member->phones }}
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('members.status') }} :</strong>
+                {{ ($member->status==1) ? __('tables.status_on'):__('tables.status_off') }}
             </div>
         </div>
      </div>

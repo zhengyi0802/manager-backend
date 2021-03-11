@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
@@ -14,7 +16,9 @@ class MemberController extends Controller
      */
     public function index()
     {
-       $members = Member::latest()->paginate(5);
+       //$members = Member::latest()->paginate(5);
+       $members = DB::table('members')->leftJoin('users', 'user_id', '=', 'users.id')
+                   ->select('members.*', 'users.email as account')->paginate(5);
 
        return view('members.index',compact('members'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -27,7 +31,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('members.create');
     }
 
     /**
@@ -38,7 +42,20 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'     => 'required',
+            'account'  => 'required',
+            'password' => 'required',
+            'zipcode'  => 'required',
+            'address'  => 'required',
+            'phones'   => 'required',
+            'status'   => 'required',
+        ]);
+
+        //Member::create($request->all());
+
+        return redirect()->route('members.index')
+                        ->with('success','Member created successfully.');
     }
 
     /**
@@ -49,7 +66,10 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-        //
+        $user = User::where('id', $member->user_id)->first();
+
+        return view('members.show', compact('member'))
+               ->with('account', $user->email);
     }
 
     /**
@@ -60,7 +80,10 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        //
+        $user = User::where('id', $member->user_id)->first();
+
+        return view('members.edit',compact('member'))
+               ->with('account', $user->email);
     }
 
     /**
@@ -72,7 +95,20 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        //
+        $request->validate([
+            'name'     => 'required',
+            'account'  => 'required',
+            'password' => 'required',
+            'zipcode'  => 'required',
+            'address'  => 'required',
+            'phones'   => 'required',
+            'status'   => 'required',
+        ]);
+
+        //Member::create($request->all());
+
+        return redirect()->route('members.index')
+                        ->with('success','Member created successfully.');
     }
 
     /**
@@ -83,6 +119,12 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        //
+        $user = User::where('id', $member->user_id)->first();
+        $member->delete();
+        $user->delete();
+
+        return redirect()->route('members.index')
+                        ->with('success','Member deleted successfully');
+
     }
 }

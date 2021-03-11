@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', __('projects.title'))
+@section('title', __('managers.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ __('projects.header') }}</h1>
+    <h1 class="m-0 text-dark">{{ __('managers.header') }}</h1>
 @stop
 
 @section('content')
@@ -13,7 +13,7 @@
             <h1>{{ __('tables.new') }}</h1>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('projects.index') }}">{{ __('tables.back') }}</a>
+            <a class="btn btn-primary" href="{{ route('managers.index') }}">{{ __('tables.back') }}</a>
         </div>
     </div>
 </div>
@@ -29,41 +29,46 @@
     </div>
 @endif
 
-<form action="{{ route('projects.store') }}" method="POST">
+<form action="{{ route('managers.store') }}" method="POST">
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('projects.name') }} :</strong>
-                <input type="text" name="name" class="form-control" placeholder="Name">
+                <strong>{{ __('managers.name') }} :</strong>
+                <input type="text" name="name" class="form-control">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('projects.description') }} :</strong>
-                <textarea class="form-control" style="height:150px" name="descriptions" placeholder="Descriptions"></textarea>
+                <strong>{{ __('managers.account') }} :</strong>
+                <input type="text" name="account" class="form-control" placeholder="user@e-mail.com">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('projects.status') }} :</strong>
+                <strong>{{ __('managers.password') }} :</strong>
+                <input type="text" name="password" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('managers.job_title') }} :</strong>
+                <input type="text" name="job_title" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('managers.description') }} :</strong>
+                <textarea class="form-control" style="height:150px" name="descriptions"></textarea>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('managers.status') }} :</strong>
                 <input type="radio" name="status" value="1" checked>{{ __('tables.status_on') }}
                 <input type="radio" name="status" value="0">{{ __('tables.status_off') }}
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('projects.start_time') }} :</strong>
-                <input type="datetime_local" name="start_time" class="form-control" placeholder="YYYY-MM-DD hh:mm:ss">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('projects.stop_time') }} :</strong>
-                <input type="datetime_local" name="stop_time" class="form-control" placeholder="YYYY-MM-DD hh:mm:ss">
-            </div>
-        </div>
-
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
         </div>

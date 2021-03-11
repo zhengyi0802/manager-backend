@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reseller;
+use App\Models\Users;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ResellerController extends Controller
 {
@@ -14,7 +16,9 @@ class ResellerController extends Controller
      */
     public function index()
     {
-        $resellers = Reseller::latest()->paginate(5);
+        //$resellers = Reseller::latest()->paginate(5);
+        $resellers = DB::table('resellers')->leftJoin('users', 'user_id', '=', 'users.id')
+                   ->select('resellers.*', 'users.email as account')->paginate(5);
 
         return view('resellers.index',compact('resellers'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -27,7 +31,7 @@ class ResellerController extends Controller
      */
     public function create()
     {
-        //
+        return view('resellers.create');
     }
 
     /**
@@ -38,7 +42,21 @@ class ResellerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'company'  => 'required',
+            'account'  => 'required',
+            'password' => 'required',
+            'contact'  => 'required',
+            'zipcode'  => 'required',
+            'address'  => 'required',
+            'phones'   => 'required',
+            'status'   => 'required',
+        ]);
+
+        //Reseller::create($request->all());
+
+        return redirect()->route('resellers.index')
+                        ->with('success','Reseller created successfully.');
     }
 
     /**
@@ -49,7 +67,10 @@ class ResellerController extends Controller
      */
     public function show(Reseller $reseller)
     {
-        //
+        $user = User::where('id', $reseller->user_id)->first();
+
+        return view('resellers.show', compact('reseller'))
+               ->with('account', $user->email);
     }
 
     /**
@@ -60,7 +81,10 @@ class ResellerController extends Controller
      */
     public function edit(Reseller $reseller)
     {
-        //
+        $user = User::where('id', $manager->user_id)->first();
+
+        return view('resellers.edit', compact('reseller'))
+               ->with('account', $user->email);
     }
 
     /**
@@ -72,7 +96,21 @@ class ResellerController extends Controller
      */
     public function update(Request $request, Reseller $reseller)
     {
-        //
+        $request->validate([
+            'company'  => 'required',
+            'account'  => 'required',
+            'password' => 'required',
+            'contact'  => 'required',
+            'zipcode'  => 'required',
+            'address'  => 'required',
+            'phones'   => 'required',
+            'status'   => 'required',
+        ]);
+
+        //Reseller::update($request->all());
+
+        return redirect()->route('resellers.index')
+                        ->with('success','Reseller created successfully.');
     }
 
     /**
@@ -83,6 +121,11 @@ class ResellerController extends Controller
      */
     public function destroy(Reseller $reseller)
     {
-        //
+        $user = User::where('id', $reseller->user_id)->first();
+        $reseller->delete();
+        $user->delete();
+
+        return redirect()->route('resellers.index')
+                        ->with('success','Reseller deleted successfully');
     }
 }

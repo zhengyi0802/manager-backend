@@ -1,7 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use Hash;
 use App\Models\Member;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -53,6 +53,21 @@ class MemberController extends Controller
         ]);
 
         //Member::create($request->all());
+        $user           = new User;
+        $user->name     = $request->name;
+        $user->email    = $request->account;
+        $user->password = Hash::make($request->password);
+        $user->role     = 'member';
+        $user->save();
+
+        $member          = new Member;
+        $member->name    = $request->name;
+        $member->user_id = $user->is;
+        $member->zipcode = $request->zipcode;
+        $member->address = $request->address;
+        $member->phones  = $request->phones;
+        $member->status  = $request->status;
+        $member->save();
 
         return redirect()->route('members.index')
                         ->with('success','Member created successfully.');
@@ -106,6 +121,23 @@ class MemberController extends Controller
         ]);
 
         //Member::create($request->all());
+        $user = User::where('email', $request->user_id)->first();
+        if ($user == null) {
+            $user           = new User;
+            $user->name     = $request->name;
+            $user->email    = $request->account;
+            $user->password = Hash::make($request->password);
+            $user->role     = 'member';
+            $user->save();
+        }
+
+        $member->user_id    = $user->id;
+        $member->name       = $request->name;
+        $member->zipcode    = $request->zipcode;
+        $member->address    = $request->address;
+        $member->phones     = $request->phones;
+        $member->status     = $request->status;
+        $member->save();
 
         return redirect()->route('members.index')
                         ->with('success','Member created successfully.');

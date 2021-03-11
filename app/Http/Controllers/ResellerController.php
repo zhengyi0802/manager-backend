@@ -1,7 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use Hash;
 use App\Models\Reseller;
 use App\Models\Users;
 use Illuminate\Http\Request;
@@ -54,6 +54,21 @@ class ResellerController extends Controller
         ]);
 
         //Reseller::create($request->all());
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->account;
+        $user->password = Hash::make($request->password);
+        $user->role = "reseller";
+        $user->save();
+
+        $reseller = new Reseller;
+        $reseller->name = $request->name;
+        $reseller->user_id = $user->id;
+        $reseller->contact = $request->contact;
+        $reseller->zipcode = $request->zipcode;
+        $reseller->address = $request->address;
+        $reseller->status  = $request->status;
+        $reseller->phones  = $request->phones;
 
         return redirect()->route('resellers.index')
                         ->with('success','Reseller created successfully.');
@@ -108,6 +123,23 @@ class ResellerController extends Controller
         ]);
 
         //Reseller::update($request->all());
+        $user = User::where('id', $request->user_id)->first();
+        if ($user == null) {
+            $user           = new User;
+            $user->name     = $request->name;
+            $user->email    = $request->account;
+            $user->password = Hash::make($request->password);
+            $user->role     = "reseller";
+            $user->save();
+        }
+
+        $reseller->user_id  = $user->id;
+        $reseller->name     = $request->name;
+        $reseller->contact  = $request->contact;
+        $reseller->zipcode  = $request->zipcode;
+        $reseller->address  = $request->address;
+        $reseller->status   = $request->status;
+        $reseller->save();
 
         return redirect()->route('resellers.index')
                         ->with('success','Reseller created successfully.');

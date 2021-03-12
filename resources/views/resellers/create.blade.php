@@ -58,6 +58,12 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>{{ __('resellers.cotype') }} :</strong>
+                <input type="text" name="cotype" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>{{ __('resellers.zipcode') }} :</strong>
                 <input type="text" name="zipcode" class="form-control">
             </div>

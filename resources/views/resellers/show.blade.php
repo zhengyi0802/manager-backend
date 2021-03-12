@@ -28,19 +28,19 @@
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('resellers.account') }} :</strong>
-                {{ $reseller->account }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.password') }} :</strong>
-                {{ $reseller->password }}
+                {{ $account }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('resellers.contact') }} :</strong>
                 {{ $reseller->contact }}
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('resellers.cotype') }} :</strong>
+                {{ $reseller->cotype }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">

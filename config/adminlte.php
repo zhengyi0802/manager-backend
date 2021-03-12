@@ -234,6 +234,7 @@ return [
             'text'         => 'packages_manager',
             'url'          => 'packages',
             'label_color'  => 'success',
+            'can'          => 'manager-only',
         ],
         [   'text'    => 'pages_manager',
             'submenu' => [
@@ -266,16 +267,19 @@ return [
                     'text'        => 'product_catagories',
                     'url'         => 'product_catagories',
                     'label_color' => 'success',
+                    'can'         => 'admin-only',
                 ],
                 [
                     'text'        => 'product_types',
                     'url'         => 'product_types',
                     'label_color' => 'success',
+                    'can'         => 'admin-only',
                 ],
                 [
                     'text'        => 'product_statuses',
                     'url'         => 'product_statuses',
                     'label_color' => 'success',
+                    'can'         => 'admin-only',
                 ],
                 [
                     'text'        => 'products',
@@ -285,6 +289,7 @@ return [
             ],
         ],
         [   'text' => 'project_manager',
+            'can'  => 'manager-only',
             'submenu' => [
                 [
                     'text'        => 'projects',
@@ -300,7 +305,7 @@ return [
             'text' => 'managers',
             'url'  => 'managers',
             'icon' => 'fas fa-fw fa-user',
-            'can'  => 'manage-manager',
+            'can'  => 'manage-managers',
         ],
         [
             'text' => 'resellers',

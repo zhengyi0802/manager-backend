@@ -17,10 +17,13 @@ class AuthServiceProvider extends ServiceProvider
     ];
 
     public static $permissions = [
-        'manage-manager'   => ['manager'],
-        'manage-resellers' => ['manager'],
-        'manage-users'     => ['manager', 'reseller'],
+        'manager-only'       => ['manager'],
+        'manage-backends'    => ['manager', 'reseller'],
+        'manage-managers'    => ['manager'],
+        'manage-resellers'   => ['manager'],
+        'manage-members'     => ['manager', 'reseller'],
     ];
+
     /**
      * Register any authentication / authorization services.
      *
@@ -39,7 +42,7 @@ class AuthServiceProvider extends ServiceProvider
             }
         );
 
-        foreach (self::$permissions as $action=> $roles) {
+        foreach (self::$permissions as $action => $roles) {
             Gate::define(
                 $action,
                 function ($user) use($roles) {

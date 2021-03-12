@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use Hash;
 use App\Models\Reseller;
-use App\Models\Users;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -47,6 +47,7 @@ class ResellerController extends Controller
             'account'  => 'required',
             'password' => 'required',
             'contact'  => 'required',
+            'cotype'   => 'required',
             'zipcode'  => 'required',
             'address'  => 'required',
             'phones'   => 'required',
@@ -55,20 +56,22 @@ class ResellerController extends Controller
 
         //Reseller::create($request->all());
         $user = new User;
-        $user->name = $request->name;
+        $user->name = $request->contact;
         $user->email = $request->account;
         $user->password = Hash::make($request->password);
         $user->role = "reseller";
         $user->save();
 
         $reseller = new Reseller;
-        $reseller->name = $request->name;
+        $reseller->company = $request->company;
         $reseller->user_id = $user->id;
         $reseller->contact = $request->contact;
+        $reseller->cotype  = $request->cotype;
         $reseller->zipcode = $request->zipcode;
         $reseller->address = $request->address;
         $reseller->status  = $request->status;
         $reseller->phones  = $request->phones;
+        $reseller->save();
 
         return redirect()->route('resellers.index')
                         ->with('success','Reseller created successfully.');
@@ -96,7 +99,7 @@ class ResellerController extends Controller
      */
     public function edit(Reseller $reseller)
     {
-        $user = User::where('id', $manager->user_id)->first();
+        $user = User::where('id', $reseller->user_id)->first();
 
         return view('resellers.edit', compact('reseller'))
                ->with('account', $user->email);
@@ -116,6 +119,7 @@ class ResellerController extends Controller
             'account'  => 'required',
             'password' => 'required',
             'contact'  => 'required',
+            'cotype'   => 'required',
             'zipcode'  => 'required',
             'address'  => 'required',
             'phones'   => 'required',
@@ -126,7 +130,7 @@ class ResellerController extends Controller
         $user = User::where('id', $request->user_id)->first();
         if ($user == null) {
             $user           = new User;
-            $user->name     = $request->name;
+            $user->name     = $request->contact;
             $user->email    = $request->account;
             $user->password = Hash::make($request->password);
             $user->role     = "reseller";
@@ -134,8 +138,9 @@ class ResellerController extends Controller
         }
 
         $reseller->user_id  = $user->id;
-        $reseller->name     = $request->name;
+        $reseller->company  = $request->company;
         $reseller->contact  = $request->contact;
+        $reseller->cotype   = $request->cotype;
         $reseller->zipcode  = $request->zipcode;
         $reseller->address  = $request->address;
         $reseller->status   = $request->status;

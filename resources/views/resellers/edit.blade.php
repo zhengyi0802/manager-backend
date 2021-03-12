@@ -59,6 +59,12 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>{{ __('resellers.cotype') }} :</strong>
+                    <input type="text" name="cotype" value="{{ $reseller->cotype }}" class="form-control">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>{{ __('resellers.country') }} :</strong>
                     <input type="text" name="country" value="{{ $reseller->country }}" class="form-control">
                 </div>

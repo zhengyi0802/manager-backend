@@ -62,7 +62,7 @@ class MemberController extends Controller
 
         $member          = new Member;
         $member->name    = $request->name;
-        $member->user_id = $user->is;
+        $member->user_id = $user->id;
         $member->zipcode = $request->zipcode;
         $member->address = $request->address;
         $member->phones  = $request->phones;

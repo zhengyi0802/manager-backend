@@ -17,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
     ];
 
     public static $permissions = [
+        'operator-only'      => ['manager', 'reseller'],
         'manager-only'       => ['manager'],
         'manage-backends'    => ['manager', 'reseller'],
         'manage-managers'    => ['manager'],

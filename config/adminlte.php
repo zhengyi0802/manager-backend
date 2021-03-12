@@ -229,7 +229,9 @@ return [
             'search' => true,
             'topnav' => true,
         ],
-        [   'header' => 'backend_system' ],
+        [   'header' => 'backend_system',
+            'can'    => 'operator-only',
+        ],
         [
             'text'         => 'packages_manager',
             'url'          => 'packages',
@@ -237,6 +239,7 @@ return [
             'can'          => 'manager-only',
         ],
         [   'text'    => 'pages_manager',
+            'can'     => 'operator-only',
             'submenu' => [
                [
                     'text'        => 'startpage',
@@ -262,6 +265,7 @@ return [
             ],
         ],
         [   'text'    => 'product_manager',
+            'can'     => 'operator-only',
             'submenu' =>  [
                 [
                     'text'        => 'product_catagories',

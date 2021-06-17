@@ -34,10 +34,10 @@
         @method('PUT')
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div name="project_group" id="project_group" class="form-group">
+                <div name="catagory_group" id="catagory_group" class="form-group">
                     <strong>{{ __('elearnings.catagory') }} : </strong>
                     <select id="catagory_id" name="catagory_id" >
-                        @foreach($projects as $project)
+                        @foreach($elearningcatagories as $elearningcatagory)
                            <option value="{{ $elearningcatagory->id }}" {{ ($elearning->catagory_id == $elearningcatagory->id) ? "selected" : null }}>{{ $elearningcatagory->name }}>
                         @endforeach
                     </select>
@@ -52,7 +52,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>{{ __('elearnings.descriptions') }} :</strong>
-                    <textarea class="form-control" style="height:150px" name="description"></textarea>
+                    <textarea class="form-control" style="height:150px" name="description">{{ $elearning->description }}</textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -74,6 +74,22 @@
                         }
                     };
                 </script>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>{{ __('elearnings.mime_type') }} :</strong>
+                    <select id="mime_type" name="mime_type" >
+                        <option value="video">{{ __('elearnings.video') }}</option>
+                        <option value="youtube">{{ __('elearnings.youtube') }}</option>
+                        <option value="youtube_id">{{ __('elearnings.youtube_id') }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>{{ __('elearnings.url') }} :</strong>
+                    <input type="text" name="url" class="form-control" value="{{ $elearning->url }}" >
+                </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">

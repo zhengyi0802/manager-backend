@@ -128,7 +128,6 @@ class ELearningController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            //$elearning->preview = $file->file_path;
             $request->merge(['preview',  $file->file_path]);
         }
 

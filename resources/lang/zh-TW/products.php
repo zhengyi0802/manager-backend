@@ -7,6 +7,7 @@
          'type'           => '型號',
          'project'        => '專案名稱',
          'serialno'       => '序號',
-         'mac_address'    => 'MAC位址',
+         'ether_mac'      => 'Ether MAC位址',
+         'wifi_mac'       => 'Wifi MAC位址',
          'status'         => '狀態',
     ];

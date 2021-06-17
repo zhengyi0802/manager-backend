@@ -61,8 +61,14 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('products.mac_address') }}: </strong>
-                <input type="text" name="mac_address" class="form-control" placeholder="11:22:33:44:55:66">
+                <strong>{{ __('products.ether_mac') }}: </strong>
+                <input type="text" name="ether_mac" class="form-control" placeholder="11:22:33:44:55:66">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('products.wifi_mac') }}: </strong>
+                <input type="text" name="wifi_mac" class="form-control" placeholder="11:22:33:44:55:66">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

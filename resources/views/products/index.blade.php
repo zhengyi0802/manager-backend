@@ -27,7 +27,8 @@
             <th>{{ __('products.type') }}</th>
             <th>{{ __('products.serialno') }}</th>
             <th>{{ __('products.project') }}</th>
-            <th>{{ __('products.mac_address') }}</th>
+            <th>{{ __('products.ether_mac') }}</th>
+            <th>{{ __('products.wifi_mac') }}</th>
             <th>{{ __('products.status') }}</th>
             <th width="280px">{{ __('tables.action') }}</th>
         </tr>
@@ -37,7 +38,8 @@
             <td>{{ $product->type_name }}</td>
             <td>{{ $product->serialno }}</td>
             <td>{{ $product->project_name }}</td>
-            <td>{{ $product->mac_address }}</td>
+            <td>{{ $product->ether_mac }}</td>
+            <td>{{ $product->wifi_mac }}</td>
             <td>{{ $product->status_name }}</td>
             <td>
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">

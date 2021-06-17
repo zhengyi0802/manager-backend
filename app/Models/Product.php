@@ -14,7 +14,8 @@ class Product extends Model
     protected $fillable = [
        'type_id',
        'serialno',
-       'mac_address',
+       'ether_mac',
+       'wifi_mac',
        'proj_id',
        'status_id',
     ];

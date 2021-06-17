@@ -14,6 +14,10 @@ use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ResellerController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\QACatagoryController;
+use App\Http\Controllers\QAListController;
+use App\Http\Controllers\ELearningCatagoryController;
+use App\Http\Controllers\ELearningController;
 use App\Http\Controllers\ChangePasswordController;
 
 /*
@@ -92,6 +96,14 @@ Route::get('/marquees/query', [App\Http\Controllers\MarqueeController::class, 'q
        ->name('marquees.query');
 
 Route::resource('/marquees', MarqueeController::class);
+
+Route::resource('/qacatagories', QACatagoryController::class);
+
+Route::resource('/qalists', QAListController::class);
+
+Route::resource('/elearningcatagories', ELearningCatagoryController::class);
+
+Route::resource('/elearnings', ELearningController::class);
 
 Route::get('/packages/query', [App\Http\Controllers\PackageController::class, 'query'])
        ->name('packages.query');

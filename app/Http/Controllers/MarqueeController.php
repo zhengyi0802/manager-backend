@@ -35,9 +35,11 @@ class MarqueeController extends Controller
     public function create()
     {
         $projects = Project::where('status', true)->get();
+        $products = Product::get();
 
         return view('marquees.create', compact('projects'))
                ->with(compact('products'));
+        //return view('marquees.create', compact('projects'));
     }
 
     /**
@@ -136,7 +138,7 @@ class MarqueeController extends Controller
         if ($request->input('mac')) {
             $mac = str_replace(':', '', $request->input('mac'));
             $mac = strtoupper($mac);
-            $product = Product::where('mac_address', '=', $mac)->firstOrFail();
+            $product = Product::where('ether_mac', '=', $mac)->firstOrFail();
 
             if ($product) {
                 $proj_id = $product->proj_id;

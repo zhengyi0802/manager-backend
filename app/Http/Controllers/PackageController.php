@@ -136,7 +136,7 @@ class PackageController extends Controller
         if ($request->input('mac')) {
             $mac = str_replace(':', '', $request->input('mac'));
             $mac = strtoupper($mac);
-            $product = Product::where('mac_address', '=', $mac)->firstOrFail();
+            $product = Product::where('ether_mac', '=', $mac)->firstOrFail();
             //var_dump($product);
             if ($product) {
                 $proj_id = $product->proj_id;

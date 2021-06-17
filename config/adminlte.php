@@ -262,6 +262,26 @@ return [
                     'url'         => 'marquees',
                     'label_color' => 'success',
                ],
+               [
+                    'text'        => 'qacatagories',
+                    'url'         => 'qacatagories',
+                    'label_color' => 'success',
+               ],
+               [
+                    'text'        => 'qalists',
+                    'url'         => 'qalists',
+                    'label_color' => 'success',
+               ],
+               [
+                    'text'        => 'elearningcatagories',
+                    'url'         => 'elearningcatagories',
+                    'label_color' => 'success',
+               ],
+               [
+                    'text'        => 'elearnings',
+                    'url'         => 'elearnings',
+                    'label_color' => 'success',
+               ],
             ],
         ],
         [   'text'    => 'product_manager',

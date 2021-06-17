@@ -39,8 +39,14 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>MAC位址:</strong>
-                {{ $product->mac_address }}
+                <strong>Ethernet MAC位址:</strong>
+                {{ $product->ether_mac }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Wifi MAC位址:</strong>
+                {{ $product->wifi_mac }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

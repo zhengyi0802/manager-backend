@@ -27,9 +27,9 @@ class ProductController extends Controller
                           'product_statuses.name as status_name')->paginate(5);
         if ($products) {
             foreach($products as $product) {
-                $mac_array = str_split($product->mac_address, 2);
+                $mac_array = str_split($product->ether_mac, 2);
                 $macaddress = implode(':', $mac_array);
-                $product->mac_address = $macaddress;
+                $product->ether_mac = $macaddress;
             }
         }
         return view('products.index',compact('products'))
@@ -63,13 +63,13 @@ class ProductController extends Controller
         $request->validate([
             'serialno' => 'required',
             'type_id' => 'required',
-            'mac_address' => 'required',
+            'ether_mac' => 'required',
             'status_id' => 'required',
         ]);
 
-        $mac = str_replace(":", "", $request->input('mac_address'));
+        $mac = str_replace(":", "", $request->input('ether_mac'));
         $mac = strtoupper($mac);
-        $request->merge(array('mac_address' => $mac));
+        $request->merge(array('ether_mac' => $mac));
 
         Product::create($request->all());
 
@@ -89,9 +89,9 @@ class ProductController extends Controller
         $productStatus = ProductStatus::where('id', $product->status_id)->first();
         $project = Project::where('id', $product->proj_id)->first();
         $proj_name = ($project != null) ? $project->name : '--------';
-        $mac_array = str_split($product->mac_address, 2);
-        $mac_address = implode(':', $mac_array);
-        $product->mac_address = $mac_address;
+        $mac_array = str_split($product->ether_mac, 2);
+        $ether_mac = implode(':', $mac_array);
+        $product->ether_mac = $ether_mac;
 
         return view('products.show',compact('product'))
                ->with('proj_name', $proj_name)
@@ -111,9 +111,9 @@ class ProductController extends Controller
         $productTypes = DB::table('product_types')->get();
         $productStatuses = DB::table('product_statuses')->get();
         $projects = DB:: table('projects')->get();
-        $mac_array = str_split($product->mac_address, 2);
-        $mac_address = implode(':', $mac_array);
-        $product->mac_address = $mac_address;
+        $mac_array = str_split($product->ether_mac, 2);
+        $ether_mac = implode(':', $mac_array);
+        $product->ether_mac = $ether_mac;
 
         return view('products.edit', compact('product'))
                ->with(compact('productTypes'))
@@ -132,14 +132,14 @@ class ProductController extends Controller
     {
         $request->validate([
             'serialno' => 'required',
-            'mac_address' => 'required',
+            'ether_mac' => 'required',
             'type_id' => 'required',
             'status_id' => 'required',
         ]);
 
-        $mac = str_replace(":", "", $request->input('mac_address'));
+        $mac = str_replace(":", "", $request->input('ether_mac'));
         $mac = strtoupper($mac);
-        $request->merge(array('mac_address' => $mac));
+        $request->merge(array('ether_mac' => $mac));
 
         $product->update($request->all());
 

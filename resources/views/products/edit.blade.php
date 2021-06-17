@@ -62,8 +62,14 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>{{ __('products.mac_address') }} : </strong>
-                    <input type="text" name="mac_address" value="{{ $product->mac_address }}" class="form-control">
+                    <strong>{{ __('products.ether_mac') }} : </strong>
+                    <input type="text" name="ether_mac" value="{{ $product->ether_mac }}" class="form-control">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>{{ __('products.wifi_mac') }} : </strong>
+                    <input type="text" name="wifi_mac" value="{{ $product->wifi_mac }}" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

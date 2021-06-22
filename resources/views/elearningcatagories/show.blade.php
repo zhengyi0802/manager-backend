@@ -27,6 +27,18 @@
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>{{ __('elearningcatagories.parent') }} :</strong>
+                {{ $elearningcatagory->parent }}
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('elearningcatagories.type') }} :</strong>
+                {{ $elearningcatagory->type }}
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>{{ __('elearningcatagories.name') }} :</strong>
                 {{ $elearningcatagory->name }}
             </div>
@@ -39,8 +51,8 @@
          </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('elearningcatagories.preview') }} :</strong>
-                <img src="{{ $elearningcatagory->preview }}">
+                <strong>{{ __('elearningcatagories.thumbnail') }} :</strong>
+                <img src="{{ $elearningcatagory->thumbnail }}">
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">

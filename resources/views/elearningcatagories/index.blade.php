@@ -28,8 +28,9 @@
         <tr>
             <th>{{ __('elearningcatagories.id') }}</th>
             <th>{{ __('elearningcatagories.project') }}</th>
+            <th>{{ __('elearningcatagories.parent') }}</th>
             <th>{{ __('elearningcatagories.name') }}</th>
-            <th>{{ __('elearningcatagories.preview') }}</th>
+            <th>{{ __('elearningcatagories.thumbnail') }}</th>
             <th>{{ __('elearningcatagories.status') }}</th>
             <th width="280px">{{ __('tables.action') }}</th>
         </tr>
@@ -37,8 +38,9 @@
         <tr>
             <td>{{ $elearningcatagory->id }}</td>
             <td>{{ $elearningcatagory->project }}</td>
+            <td>{{ $elearningcatagory->parent }}</td>
             <td>{{ $elearningcatagory->name }}</td>
-            <td><img src="{{ $elearningcatagory->preview }}" width="320px" height="180px"></td>
+            <td><img src="{{ $elearningcatagory->thumbnail }}" width="320px" height="180px"></td>
             <td>{{ ($elearningcatagory->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
             <td>
                 <form action="{{ route('elearningcatagories.destroy',$elearningcatagory->id) }}" method="POST">

@@ -37,10 +37,30 @@
                 <div name="project_group" id="project_group" class="form-group">
                     <strong>{{ __('elearningcatagories.project') }} : </strong>
                     <select id="proj_id" name="proj_id" >
-                          <option value="0" {{ ($elearningcatagory->proj_id == 0) ? "selected" : null }}>------</o>
+                          <option value="0" {{ ($elearningcatagory->proj_id == 0) ? "selected" : null }}>------</option>
                         @foreach($projects as $project)
-                           <option value="{{ $project->id }}" {{ ($elearningcatagory->proj_id == $project->id) ? "selected" : null }}>{{ $project->name }}>
+                           <option value="{{ $project->id }}" {{ ($elearningcatagory->proj_id == $project->id) ? "selected" : null }}>{{ $project->name }}</option>
                         @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div name="project_group" id="project_group" class="form-group">
+                    <strong>{{ __('elearningcatagories.parent') }} : </strong>
+                    <select id="parent_id" name="parent_id" >
+                          <option value="0" {{ ($elearningcatagory->parent_id == 0) ? "selected" : null }}>------</option>
+                        @foreach($elearningcatagories as $catagory)
+                           <option value="{{ $catagory->id }}" {{ ($elearningcatagory->proj_id == $catagory->id) ? "selected" : null }}>{{ $catagory->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>{{ __('elearningcatagories.type') }} : </strong>
+                    <select id="type" name="type" >
+                          <option value="catagory" {{ ($elearningcatagory->type == "catagory") ? "selected" : null }}>{{ __($elearningcatagories.type_catagory) }}</option>
+                          <option value="contents" {{ ($elearningcatagory->type == "contents") ? "selected" : null }}>{{ __($elearningcatagories.type_contents) }}</option>
                     </select>
                 </div>
             </div>
@@ -58,7 +78,7 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <div id="div-url-name"><strong>{{ __('elearningcatagories.preview') }} : </strong></div>
+                    <div id="div-url-name"><strong>{{ __('elearningcatagories.thumbnail') }} : </strong></div>
                     <div id="div-image">
                         <input type="file" id="image" name="image" accept="image/*" onchange="loadImage(event)" >
                     </div>

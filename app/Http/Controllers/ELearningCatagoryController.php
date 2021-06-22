@@ -55,6 +55,8 @@ class ELearningCatagoryController extends Controller
         $elearningcatagory = new ELearningCatagory;
 
         $elearningcatagory->proj_id     = $request->proj_id;
+        $elearningcatagory->parent_id   = $request->parent_id;
+        $elearningcatagory->type        = $request->type;
         $elearningcatagory->name        = $request->name;
         $elearningcatagory->description = $request->description;
         $elearningcatagory->status      = $request->status;
@@ -64,7 +66,7 @@ class ELearningCatagoryController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $elearningcatagory->preview = $file->file_path;
+            $elearningcatagory->thumbnail = $file->file_path;
         }
 
         $elearningcatagory->save();
@@ -124,7 +126,7 @@ class ELearningCatagoryController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $request->merge(['preview',  $file->file_path]);
+            $request->merge(['thumbnail',  $file->file_path]);
         }
 
         $elearningcatagory->update($request->all());

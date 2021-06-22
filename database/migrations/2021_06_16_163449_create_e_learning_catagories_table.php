@@ -16,6 +16,7 @@ class CreateELearningCatagoriesTable extends Migration
         Schema::create('e_learning_catagories', function (Blueprint $table) {
             $table->id();
             $table->integer('proj_id');
+            $table->integer('parent_id')->default(0);
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('preview');

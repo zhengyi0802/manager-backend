@@ -33,13 +33,33 @@
      @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div name="catagory_group" id="catagory_group" class="form-group">
+            <div class="form-group">
                 <strong>{{ __('elearningcatagories.project') }} : </strong>
                 <select id="proj_id" name="proj_id" >
                     <option value="0">------</option>
                     @foreach($projects as $project)
                        <option value="{{ $project->id }}">{{ $project->name }}</option>
                     @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('elearningcatagories.parent') }} : </strong>
+                <select id="parent_id" name="parent_id" >
+                    <option value="0">------</option>
+                    @foreach($elearningcatagories as $catagory)
+                       <option value="{{ $catagory->id }}">{{ $catagory->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('elearningcatagories.type') }} : </strong>
+                <select id="type" name="type" >
+                    <option value="catagory" selected>{{ __(elearningcatagories.type_catagory) }}</option>
+                    <option value="contents">{{ __(elearningcatagories.type_contents) }}</option>
                 </select>
             </div>
         </div>
@@ -57,7 +77,7 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <div id="div-url-name"><strong>{{ __('elearningcatagories.preview') }} : </strong></div>
+                <div id="div-url-name"><strong>{{ __('elearningcatagories.thumbnail') }} : </strong></div>
                 <div id="div-image">
                     <input type="file" id="image" name="image" accept="image/*" onchange="loadImage(event)" >
                 </div>

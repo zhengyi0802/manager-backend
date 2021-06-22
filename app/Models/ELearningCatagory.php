@@ -11,9 +11,11 @@ class ELearningCatagory extends Model
 
     protected $fillable = [
         'proj_id',
+        'parent_id',
+        'type',
         'name',
         'description',
-        'preview',
+        'thumbnail',
         'status',
     ];
 

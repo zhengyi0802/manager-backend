@@ -150,4 +150,17 @@ class ELearningController extends Controller
         return redirect()->route('elearnings.index')
                         ->with('success', 'ELearning deleted successfully');
     }
+
+    public function query(Request $request)
+    {
+         $catagory_id = $request->input('catagory_id');
+         $elearnings = ELearning::where('catagory_id', $catagory_id)
+                       ->where('status', true)
+                       ->get();
+
+         if ($elearnings != null)
+            return json_encode($elearnings);
+
+    }
+
 }

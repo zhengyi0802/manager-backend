@@ -107,4 +107,14 @@ class QACatagoryController extends Controller
         return redirect()->route('qacatagories.index')
                         ->with('success', 'QACatagory deleted successfully');
     }
+
+    public function query(Request $request)
+    {
+        $qacatagories = QACatagory::where('status', true)->get();
+
+        //var_dump($qacatagories);
+        if ($qacatagories != null)
+            return json_encode($qacatagories);
+    }
+
 }

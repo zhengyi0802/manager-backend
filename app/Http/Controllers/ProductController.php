@@ -7,6 +7,7 @@ use App\Models\ProductStatus;
 use App\Models\Product;
 use App\Models\Project;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -160,4 +161,60 @@ class ProductController extends Controller
         return redirect()->route('products.index')
                         ->with('success','Product deleted successfully');
     }
+
+    public function register(Request $request)
+    {
+        $mac = $request->input('mac');
+        //$mac = str_replace(':', '', $request->input('mac'));
+        $mac = strtoupper($mac);
+
+        $product = Product::where('ether_mac', '=', $mac)->latest()->get();
+
+        if ($product->count() > 0) {
+            return json_encode($product);
+        } else {
+            $str = "https://mundifar.com/mundi/API/index_api.php?mac=".$mac."&token=Wg7DZTmTapH2Ww2sAeNfmhhfXzYqEt6Y";
+            $response = Http::get($str);
+            $obj = json_decode($response->body());
+            var_dump($response['sno']);
+            /*
+            $product = new Product;
+            $product->type_id   = 0;
+            $product->serialno  = $obj->sno;
+            $product->ether_mac = $obj->mac;
+            $product->wifi_mac  = $obj->wmac;
+            $product->proj_id   = ($obj->project_id=='') ? 0:$obj->project_id;
+            $product->expire_date = $obj->exp_date;
+            $product->status      = ($obj->status=='n') ? 1:2;
+            $product->save();
+            return $response->body();
+            */
+        }
+
+    }
+
+    public function query(Request $request)
+    {
+        if ($request->input('mac')) {
+            $mac = $request->input('mac');
+            //$mac = str_replace(':', '', $request->input('mac'));
+            $mac = strtoupper($mac);
+        } else {
+          $mac = "001A79A75F37";
+        }
+
+        $str = "https://mundifar.com/mundi/API/index_api.php?mac=".$mac."&token=Wg7DZTmTapH2Ww2sAeNfmhhfXzYqEt6Y";
+        //$str1 = "https://mundifar.com/mundi/API/index_api.php?mac=001A79A75F37&token=Wg7DZTmTapH2Ww2sAeNfmhhfXzYqEt6Y";
+
+        $response = Http::get($str);
+
+        //$str = '﻿{"sno":"1812SP003131","mac":"001A79A75F37","wmac":"001A79A75F37","sales_id":"","project_id":"","exp_date":"2021-06-01 16:53:25","status":"n","message":"ok"';
+        $a = array("sno"=>"1812SP003131", "mac"=> "001A79A75F37", "wmac"=>"001A79A75F37", "sales_id"=>"", "project_id"=>"", "exp_date" => "2021-06-01 16:53:25", "status"=> "n", "message"=>"ok");
+        $jstr=json_encode($a);
+        var_dump($jstr);
+        var_dump(trim($response->body()));
+
+        return $response->body();
+    }
+
 }

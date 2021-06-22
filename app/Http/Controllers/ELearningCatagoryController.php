@@ -146,4 +146,31 @@ class ELearningCatagoryController extends Controller
         return redirect()->route('elearningcatagories.index')
                         ->with('success', 'ELearningCatagory deleted successfully');
     }
+
+    public function query(Request $request)
+    {
+
+        if ($request->input('mac')) {
+            $mac = str_replace(':', '', $request->input('mac'));
+            $mac = strtoupper($mac);
+            $product = Product::where('ether_mac', '=', $mac)->firstOrFail();
+            //var_dump($product);
+            if ($product) {
+                $proj_id = $product->proj_id;
+            }
+        } else if ($request->input('id')) {
+            $proj_id = $request->input('id');
+        }
+
+        $elearningcatagories = ELearningCatagory::where('proj_id', $proj_id)
+                               ->where('status', true)
+                               ->get();
+
+        //var_dump($elearningcatagories);
+
+        if ($elearningcatagories != null)
+            return json_encode($elearningcatagories);
+
+    }
+
 }

@@ -63,6 +63,12 @@ Route::resource('/product_types', ProductTypeController::class);
 
 Route::resource('/product_statuses', ProductStatusController::class);
 
+Route::get('/products/query', [App\Http\Controllers\ProductController::class, 'query'])
+       ->name('products.query');
+
+Route::get('/products/register', [App\Http\Controllers\ProductController::class, 'register'])
+       ->name('products.register');
+
 Route::resource('/products', ProductController::class);
 
 Route::resource('/projects', ProjectController::class);
@@ -97,11 +103,23 @@ Route::get('/marquees/query', [App\Http\Controllers\MarqueeController::class, 'q
 
 Route::resource('/marquees', MarqueeController::class);
 
+Route::get('/qacatagories/query', [App\Http\Controllers\QACatagoryController::class, 'query'])
+       ->name('qacatagories.query');
+
 Route::resource('/qacatagories', QACatagoryController::class);
+
+Route::get('/qalists/query', [App\Http\Controllers\QAListController::class, 'query'])
+       ->name('qalists.query');
 
 Route::resource('/qalists', QAListController::class);
 
+Route::get('elearningcatagories/query', [App\Http\Controllers\ELearningCatagoryController::class, 'query'])
+       ->name('elearningcatagories.query');
+
 Route::resource('/elearningcatagories', ELearningCatagoryController::class);
+
+Route::get('elearnings/query', [App\Http\Controllers\ELearningController::class, 'query'])
+       ->name('elearnings.query');
 
 Route::resource('/elearnings', ELearningController::class);
 

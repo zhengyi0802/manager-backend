@@ -122,4 +122,17 @@ class QAListController extends Controller
         return redirect()->route('qalists.index')
                         ->with('success','QAList deleted successfully');
     }
+
+    public function query(Request $request)
+    {
+         $catagory_id = $request->input('catagory_id');
+         $qalists = QAList::where('catagory_id', $catagory_id)
+                    ->where('status', true)
+                    ->get();
+
+         //var_dump($qalists);
+         if ($qalists != null)
+             return json_encode($qalists);
+    }
+
 }

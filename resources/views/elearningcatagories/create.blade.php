@@ -58,8 +58,8 @@
             <div class="form-group">
                 <strong>{{ __('elearningcatagories.type') }} : </strong>
                 <select id="type" name="type" >
-                    <option value="catagory" selected>{{ __(elearningcatagories.type_catagory) }}</option>
-                    <option value="contents">{{ __(elearningcatagories.type_contents) }}</option>
+                    <option value="catagory" selected>{{ __('elearningcatagories.type_catagory') }}</option>
+                    <option value="contents">{{ __('elearningcatagories.type_contents') }}</option>
                 </select>
             </div>
         </div>

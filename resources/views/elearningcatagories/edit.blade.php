@@ -50,7 +50,7 @@
                     <select id="parent_id" name="parent_id" >
                           <option value="0" {{ ($elearningcatagory->parent_id == 0) ? "selected" : null }}>------</option>
                         @foreach($elearningcatagories as $catagory)
-                           <option value="{{ $catagory->id }}" {{ ($elearningcatagory->proj_id == $catagory->id) ? "selected" : null }}>{{ $catagory->name }}</option>
+                           <option value="{{ $catagory->id }}" {{ ($elearningcatagory->parent_id == $catagory->id) ? "selected" : null }}>{{ $catagory->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -59,8 +59,8 @@
                 <div class="form-group">
                     <strong>{{ __('elearningcatagories.type') }} : </strong>
                     <select id="type" name="type" >
-                          <option value="catagory" {{ ($elearningcatagory->type == "catagory") ? "selected" : null }}>{{ __($elearningcatagories.type_catagory) }}</option>
-                          <option value="contents" {{ ($elearningcatagory->type == "contents") ? "selected" : null }}>{{ __($elearningcatagories.type_contents) }}</option>
+                          <option value="catagory" {{ ($elearningcatagory->type == "catagory") ? "selected" : null }}>{{ __('elearningcatagories.type_catagory') }}</option>
+                          <option value="contents" {{ ($elearningcatagory->type == "contents") ? "selected" : null }}>{{ __('elearningcatagories.type_contents') }}</option>
                     </select>
                 </div>
             </div>

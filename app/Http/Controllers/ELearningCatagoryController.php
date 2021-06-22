@@ -34,8 +34,10 @@ class ELearningCatagoryController extends Controller
     public function create()
     {
         $projects = Project::get();
+        $elearningcatagories = ELearningCatagory::get();
 
-        return view('elearningcatagories.create', compact('projects'));
+        return view('elearningcatagories.create', compact('projects'))
+               ->with(compact('elearningcatagories'));
     }
 
     /**
@@ -88,8 +90,15 @@ class ELearningCatagoryController extends Controller
                         ->leftJoin('projects', 'proj_id', 'projects.id')
                         ->select('e_learning_catagories.*', 'projects.name as proj_name')
                         ->where('e_learning_catagories.id', $id)->first();
+        $parent = "root";
+        if ($elearningcatagory->parent_id > 0) {
+            $parentcatagory = ELearningCatagory::where('id', '=', $elearningcatagory->parent_id)->find(1);
+            if ($parentcatagory != null)
+                $parent = $parentcatagory->name;
+        }
 
-        return view('elearningcatagories.show', compact('elearningcatagory'));
+        return view('elearningcatagories.show', compact('elearningcatagory'))
+               ->with(compact('parent'));
     }
 
     /**
@@ -101,9 +110,11 @@ class ELearningCatagoryController extends Controller
     public function edit(ELearningCatagory $elearningcatagory)
     {
         $projects = Project::get();
+        $elearningcatagories = ELearningCatagory::get();
 
         return view('elearningcatagories.edit', compact('elearningcatagory'))
-               ->with(compact('projects'));
+               ->with(compact('projects'))
+               ->with(compact('elearningcatagories'));
     }
 
     /**

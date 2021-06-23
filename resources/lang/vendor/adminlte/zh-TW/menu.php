@@ -19,6 +19,7 @@ return [
     'projects'                      => '專案資料表',
     'qacatagories'                  => '常見問題類別資料表',
     'qalists'                       => '常見問題資料表',
+    'customersupports'              => '客服相關設置',
     'elearningcatagories'           => '較學子目錄資料表',
     'elearnings'                    => '教學內容資料表',
     'account_settings'              => '賬號設定',

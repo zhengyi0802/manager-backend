@@ -273,6 +273,11 @@ return [
                     'label_color' => 'success',
                ],
                [
+                    'text'        => 'customersupports',
+                    'url'         => 'customersupports',
+                    'label_color' => 'success',
+               ],
+               [
                     'text'        => 'elearningcatagories',
                     'url'         => 'elearningcatagories',
                     'label_color' => 'success',
@@ -282,6 +287,7 @@ return [
                     'url'         => 'elearnings',
                     'label_color' => 'success',
                ],
+
             ],
         ],
         [   'text'    => 'product_manager',

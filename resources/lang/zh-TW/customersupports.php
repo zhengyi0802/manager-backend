@@ -8,7 +8,7 @@
         'qrcode_type'    => 'QRCode類型',
         'type_line'      => 'Line ID',
         'type_url'       => '網址',
-        'type_none'      => '無QR碼',
+        'type_null'      => '無QR碼',
         'qrcode_content' => 'QRCode內容',
         'rcapp'          => '遠端遙控應用程式名稱',
         'rcapp_url'      => '遠端遙控應用程式下載網址',

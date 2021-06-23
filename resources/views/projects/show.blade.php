@@ -33,6 +33,18 @@
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>{{ __('projects.sales_id') }} :</strong>
+                {{ $project->sales_id }}
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('projects.rid') }} :</strong>
+                {{ $project->rid }}
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>{{ __('projects.status') }} :</strong>
                 {{ ($project->status==1) ? __('tables.status_on'):__('tables.status_off') }}
             </div>

@@ -203,6 +203,7 @@ class StartpageController extends Controller
             //var_dump($product);
             if ($product) {
                 $proj_id = $product->proj_id;
+                //var_dump($proj_id);
             }
         } else if ($request->input('id')) {
             $proj_id = $request->input('id');

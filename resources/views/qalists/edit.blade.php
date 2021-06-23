@@ -33,11 +33,29 @@
         @csrf
         @method('PUT')
          <div class="row">
-
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>{{ __('qalists.catagory') }} :</strong>
+                    <select id="catagory_id" name="catagory_id">
+                        @foreach($qacatagories as $qacatagory)
+                           <option value="{{ $qacatagory->id }}" {{ ($qacatagory->id == $qalist->catagory_id) ? "selected" : null }} >{{ $qacatagory->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>{{ __('qalists.question') }} :</strong>
                     <input type="text" name="question" value="{{ $qalist->question }}" class="form-control" placeholder="Question">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>{{ __('qalists.type') }} :</strong>
+                    <select id="type" name="type">
+                        <option value="video" {{ ($qalist->type == "video") ? "selected" : null }} >{{ __('qalists.video') }}</option>
+                        <option value="youtube" {{ ($qalist->type == "youtube") ? "selected" : null }} >{{ __('qalists.youtube_id') }}</option>
+                    </select>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

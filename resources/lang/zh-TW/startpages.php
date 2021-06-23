@@ -10,6 +10,7 @@
         'url'          => '圖片/影片連結',
         'image'        => '圖片',
         'video'        => '影片',
+        'youtube_id'   => 'YouTubeID',
         'description'  => '描述',
         'status'       => '狀態',
         'start_time'   => '起始時間',

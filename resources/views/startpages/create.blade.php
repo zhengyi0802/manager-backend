@@ -51,6 +51,7 @@
                     <select name="mime_type" id="mime_type" onchange="changeInput(this)">
                       <option value="image" selected >{{ __('startpages.image') }}</option>
                       <option value="video" >{{ __('startpages.video') }}</option>
+                      <option value="youtube" > {{ __('startpages.youtube_id') }}</option>
                     </select>
                     <script>
                       var changeInput = function(select) {

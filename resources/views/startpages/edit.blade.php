@@ -55,8 +55,9 @@
                 <div class="form-group">
                     <strong>類型:</strong>
                     <select name="mime_type" id="mime_type" onchange="changeInput(this)">
-                      <option value="image" selected >圖片</option>
-                      <option value="video" >影片</option>
+                      <option value="image" {{ ($startpage->mime_type == "image") ? "selected" : null }} >{{ __('startpages.image') }}</option>
+                      <option value="video" {{ ($startpage->mimd_type == "video") ? "selected" : null }} >{{ __('startpages.video') }}</option>
+                      <option value="youtube" {{ ($startpage->mime_type == "youtube") ? "selected" : null }} >{{ __('startpages.youtube_id') }}</option>
                     </select>
                     <script>
                       var changeInput = function(select) {

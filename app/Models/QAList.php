@@ -12,6 +12,7 @@ class QAList extends Model
     protected $fillable = [
         'catagory_id',
         'question',
+        'type',
         'answer',
         'status',
     ];

@@ -111,6 +111,9 @@ Route::resource('/qacatagories', QACatagoryController::class);
 Route::get('/qalists/query', [App\Http\Controllers\QAListController::class, 'query'])
        ->name('qalists.query');
 
+Route::get('qalists/queryall', [App\Http\Controllers\QAListController::class, 'queryall'])
+       ->name('qalists.queryall');
+
 Route::resource('/qalists', QAListController::class);
 
 Route::get('elearningcatagories/query', [App\Http\Controllers\ELearningCatagoryController::class, 'query'])

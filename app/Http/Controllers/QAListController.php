@@ -47,6 +47,7 @@ class QAListController extends Controller
     {
         $request->validate([
             'catagory_id'  => 'required',
+            'type'         => 'required',
             'question'     => 'required',
             'status'       => 'required',
         ]);
@@ -84,7 +85,7 @@ class QAListController extends Controller
     {
         $qacatagories = QACatagory::where('status', true)->get();
 
-        return view('qalists.edit', compact('qalists'))
+        return view('qalists.edit', compact('qalist'))
                ->with(compact('qacatagories'));
     }
 
@@ -99,6 +100,7 @@ class QAListController extends Controller
     {
         $request->validate([
             'catagory_id'  => 'required',
+            'type'         => 'type',
             'question'     => 'required',
             'status'       => 'required',
         ]);
@@ -133,6 +135,36 @@ class QAListController extends Controller
          //var_dump($qalists);
          if ($qalists != null)
              return json_encode($qalists);
+    }
+
+    public function queryall(Request $request)
+    {
+        $qacatagories = QACatagory::where('status', true)->get();
+        $qalists = QAList::where('status', true)->get();
+
+        $qaarray = array();
+
+        foreach ($qacatagories as $qacatagory) {
+                 $items = array();
+                 foreach ($qalists as $qalist) {
+                    if($qalist->catagory_id == $qacatagory->id) {
+                        $item = array(
+                              'label'     => $qalist->question,
+                              'type'      => $qalist->type,
+                              'content'   => $qalist->answer,
+                        );
+                        array_push($items, $item);
+                    }
+                 }
+                 $menu = array(
+                    'title' => $qacatagory->name,
+                    'items' => $items,
+                 );
+
+                 array_push($qaarray, $menu);
+        }
+
+        return json_encode($qaarray);
     }
 
 }

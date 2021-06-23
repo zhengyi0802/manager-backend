@@ -47,6 +47,18 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>{{ __('projects.sales_id') }} :</strong>
+                    <input type="text" name="sales_id" value="{{ $project->sales_id }}" class="form-control">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>{{ __('projects.rid') }} :</strong>
+                    <input type="text" name="rid" value="{{ $project->rid }}" class="form-control">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>{{ __('projects.status') }} : </strong>
                     <input type="radio" name="status" value="1" {{ ($project->status==1) ? "checked":null }} >{{ __('tables.status_on') }}
                     <input type="radio" name="status" value="0" {{ ($project->status!=1) ? "checked":null }} >{{ __('tables.status_off') }}

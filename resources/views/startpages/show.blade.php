@@ -34,7 +34,13 @@
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('startpages.mime_type') }} :</strong>
-                {{ $startpage->mime_type }}
+                @if ($startpage->mime_type == 'image')
+                  {{ __('startpages.image') }}
+                @elseif ($startpage->mime_type == 'video')
+                  {{ __('startpages.video') }}
+                @else
+                  {{ __('startpages.youtube_id') }}
+                @endif
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">

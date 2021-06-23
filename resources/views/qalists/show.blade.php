@@ -33,6 +33,16 @@
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>{{ __('qalists.type') }} :</strong>
+                @if ($qalist->type == "video")
+                    {{ __('qalists.video') }}
+                @else
+                    {{ __('qalists.youtube_id') }}
+                @endif
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>{{ __('qalists.answer') }} :</strong>
                 {{ $qalist->answer }}
             </div>

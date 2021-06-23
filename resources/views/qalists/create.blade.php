@@ -48,7 +48,16 @@
                 <input type="text" name="question" class="form-control" placeholder="Question">
             </div>
         </div>
-       <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('qalists.type') }} :</strong>
+                <select id="type" name="type">
+                    <option value="video" selected>{{ __('qalists.video') }}</option>
+                    <option value="youtube" >(( __('qalists.youtube_id') }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('qalists.answer') }} :</strong>
                 <input type="text" name="answer" class="form-control">

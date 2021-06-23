@@ -29,6 +29,7 @@
             <th>{{ __('qalists.id') }}</th>
             <th>{{ __('qalists.catagory') }}</th>
             <th>{{ __('qalists.question') }}</th>
+            <th>{{ __('qalists.type') }}</td>
             <th>{{ __('qalists.status') }}</th>
             <th width="280px">{{ __('tables.action') }}</th>
         </tr>
@@ -37,6 +38,7 @@
             <td>{{ $qalist->id }}</td>
             <td>{{ $qalist->catagory }}</td>
             <td>{{ $qalist->question }}</td>
+            <td>{{ $qalist->type }}</td>
             <td>{{ ($qalist->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
             <td>
                 <form action="{{ route('qalists.destroy',$qalist->id) }}" method="POST">

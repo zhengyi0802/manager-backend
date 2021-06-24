@@ -16,6 +16,7 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\QACatagoryController;
 use App\Http\Controllers\QAListController;
+use App\Http\Controllers\CustomerSupportController;
 use App\Http\Controllers\ELearningCatagoryController;
 use App\Http\Controllers\ELearningController;
 use App\Http\Controllers\ChangePasswordController;
@@ -111,10 +112,15 @@ Route::resource('/qacatagories', QACatagoryController::class);
 Route::get('/qalists/query', [App\Http\Controllers\QAListController::class, 'query'])
        ->name('qalists.query');
 
-Route::get('qalists/queryall', [App\Http\Controllers\QAListController::class, 'queryall'])
+Route::get('/qalists/queryall', [App\Http\Controllers\QAListController::class, 'queryall'])
        ->name('qalists.queryall');
 
 Route::resource('/qalists', QAListController::class);
+
+Route::get('/customersupports/query', [App\Http\Controllers\CustomerSupportController::class, 'query'])
+       ->name('customersupports.query');
+
+Route::resource('customersupports', CustomerSupportController::class);
 
 Route::get('elearningcatagories/query', [App\Http\Controllers\ELearningCatagoryController::class, 'query'])
        ->name('elearningcatagories.query');

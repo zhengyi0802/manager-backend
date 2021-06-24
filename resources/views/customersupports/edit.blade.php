@@ -56,7 +56,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>{{ __('customersupports.qrcode_content') }} :</strong>
-                    <input type="text" name="qrcode_content" value="{{ $customersuppoet->qrcode_content }}" class="form-control">
+                    <input type="text" name="qrcode_content" value="{{ $customersupport->qrcode_content }}" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -75,7 +75,7 @@
                 <div class="form-group">
                     <strong>{{ __('customersupports.status') }} :</strong>
                     <input type="radio" name="status" value="1" {{ ($customersupport->status==1) ? "checked":null }} >{{ __('tables.status_on') }}
-                    <input type="radio" name="status" value="0" {{ ($cutomersupport->status!=1) ? "checked":null }} >{{ __('tables.status_off') }}
+                    <input type="radio" name="status" value="0" {{ ($customersupport->status!=1) ? "checked":null }} >{{ __('tables.status_off') }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

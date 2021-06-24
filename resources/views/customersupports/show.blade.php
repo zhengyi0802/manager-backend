@@ -46,13 +46,13 @@
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('customersupports.rcapp') }} :</strong>
-                {{ $customersupports.rcapp }}
+                {{ $customersupport->rcapp }}
             </div>
          </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('customersupports.rcapp_url') }} :</strong>
-                {{ $customersupports.rcapp_url }}
+                {{ $customersupport->rcapp_url }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">

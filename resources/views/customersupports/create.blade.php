@@ -44,10 +44,10 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('customersupports.type') }} :</strong>
-                <select id="type" name="type">
+                <strong>{{ __('customersupports.qrcode_type') }} :</strong>
+                <select id="qrcode_type" name="qrcode_type">
                     <option value="line" selected>{{ __('customersupports.type_line') }}</option>
-                    <option value="url" >(( __('customersupports.type_url') }}</option>
+                    <option value="url" >{{ __('customersupports.type_url') }}</option>
                     <option value="null" >{{ __('customersupports.type_null') }}</option>
                 </select>
             </div>

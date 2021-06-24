@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\CustomerSupport;
+use App\Models\Project;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CustomerSupportController extends Controller
@@ -14,7 +16,12 @@ class CustomerSupportController extends Controller
      */
     public function index()
     {
-        //
+        $customersupports = CustomerSupport::leftJoin('projects', 'proj_id', 'projects.id')
+                           ->select('customer_supports.*', 'projects.name as project')
+                           ->latest()->paginate(5);
+
+       return view('customersupports.index', compact('customersupports'))
+               ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +31,9 @@ class CustomerSupportController extends Controller
      */
     public function create()
     {
-        //
+        $projects = Project::get();
+
+        return view('customersupports.create', compact('projects'));
     }
 
     /**
@@ -35,7 +44,17 @@ class CustomerSupportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'proj_id'      => 'required',
+            'qrcode_type'  => 'required',
+            'rcapp'        => 'required',
+            'status'       => 'required',
+        ]);
+
+        CustomerSupport::create($request->all());
+
+        return redirect()->route('customersupports.index')
+                        ->with('success','CustomerSupport created successfully');
     }
 
     /**
@@ -44,9 +63,14 @@ class CustomerSupportController extends Controller
      * @param  \App\Models\CustomerSupport  $customerSupport
      * @return \Illuminate\Http\Response
      */
-    public function show(CustomerSupport $customerSupport)
+    public function show(CustomerSupport $customersupport)
     {
-        //
+        $id = $customersupport->id;
+        $customersupport = CustomerSupport::leftJoin('projects', 'proj_id', 'projects.id')
+                           ->select('customer_supports.*', 'projects.name as project')
+                           ->where("customer_supports.id", $id)->first();
+
+        return view('customersupports.show', compact('customersupport'));
     }
 
     /**
@@ -55,9 +79,12 @@ class CustomerSupportController extends Controller
      * @param  \App\Models\CustomerSupport  $customerSupport
      * @return \Illuminate\Http\Response
      */
-    public function edit(CustomerSupport $customerSupport)
+    public function edit(CustomerSupport $customersupport)
     {
-        //
+        $projects = Project::get();
+
+        return view('customersupports.edit', compact('customersupport'))
+               ->with(compact('projects'));
     }
 
     /**
@@ -67,9 +94,20 @@ class CustomerSupportController extends Controller
      * @param  \App\Models\CustomerSupport  $customerSupport
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CustomerSupport $customerSupport)
+    public function update(Request $request, CustomerSupport $customersupport)
     {
-        //
+        $request->validate([
+            'proj_id'      => 'required',
+            'qrcode_type'  => 'required',
+            'rcapp'        => 'required',
+            'status'       => 'required',
+        ]);
+
+        $customersupport->update($request->all());
+
+        return redirect()->route('customersupports.index')
+                        ->with('success','CustomerSupport created successfully');
+
     }
 
     /**
@@ -78,8 +116,33 @@ class CustomerSupportController extends Controller
      * @param  \App\Models\CustomerSupport  $customerSupport
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CustomerSupport $customerSupport)
+    public function destroy(CustomerSupport $customersupport)
     {
-        //
+        $customersdupport->delete();
+
+        return redirect()->route('customersupports.index')
+                        ->with('success','CustomerSupport deleted successfully');
     }
+
+    public function query(Request $request)
+    {
+        if ($request->input('mac')) {
+            $mac = str_replace(':', '', $request->input('mac'));
+            $mac = strtoupper($mac);
+            $product = Product::where('ether_mac', '=', $mac)->firstOrFail();
+            //var_dump($product);
+            if ($product) {
+                $proj_id = $product->proj_id;
+                //var_dump($proj_id);
+            }
+        } else if ($request->input('id')) {
+            $proj_id = $request->input('id');
+        }
+
+        $customersupport = CustomerSupport::where('proj_id', $proj_id)->where('status', true)->first();
+        if ($customersupport)
+            return json_encode($customersupport);
+
+    }
+
 }

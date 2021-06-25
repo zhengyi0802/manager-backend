@@ -11,6 +11,7 @@ use App\Http\Controllers\StartpageController;
 use App\Http\Controllers\FrontendViewController;
 use App\Http\Controllers\AppMenuController;
 use App\Http\Controllers\BulletinController;
+use App\Http\Controllers\BulletinItemController;
 use App\Http\Controllers\MarqueeController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ResellerController;
@@ -110,6 +111,8 @@ Route::get('/bulletins/query', [App\Http\Controllers\BulletinController::class, 
        ->name('bulletins.query');
 
 Route::resource('/bulletins', BulletinController::class);
+
+Route::resource('/bulletinitems', BulletinItemController::class);
 
 Route::get('/marquees/query', [App\Http\Controllers\MarqueeController::class, 'query'])
        ->name('marquees.query');

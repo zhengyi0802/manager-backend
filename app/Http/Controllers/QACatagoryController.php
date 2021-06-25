@@ -112,7 +112,7 @@ class QACatagoryController extends Controller
     {
         $qacatagories = QACatagory::where('status', true)->get();
 
-        //var_dump($qacatagories);
+
         if ($qacatagories != null)
             return json_encode($qacatagories);
     }

@@ -253,6 +253,11 @@ return [
                     'label_color' => 'success',
                ],
                [
+                    'text'        => 'appmenus',
+                    'url'         => 'appmenus',
+                    'label_color' => 'success',
+               ],
+               [
                     'text'        => 'materials',
                     'url'         => 'materials',
                     'label_color' => 'success',

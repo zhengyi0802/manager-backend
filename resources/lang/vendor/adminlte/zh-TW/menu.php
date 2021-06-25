@@ -8,6 +8,7 @@ return [
     'pages_manager'                 => '頁面管理系統',
     'startpage'                     => '起始廣告頁面',
     'pages'                         => '首頁頁面',
+    'appmenus'                      => '預設應用程式設定',
     'materials'                     => '素材資料表',
     'marquees'                      => '跑馬燈資料表',
     'product_manager'               => '產品管理系統',

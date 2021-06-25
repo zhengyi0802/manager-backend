@@ -10,6 +10,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\StartpageController;
 use App\Http\Controllers\FrontendViewController;
 use App\Http\Controllers\AppMenuController;
+use App\Http\Controllers\BulletinController;
 use App\Http\Controllers\MarqueeController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ResellerController;
@@ -104,6 +105,11 @@ Route::get('/appmenus/query', [App\Http\Controllers\AppMenuController::class, 'q
        ->name('appmenus.query');
 
 Route::resource('/appmenus', AppMenuController::class);
+
+Route::get('/bulletins/query', [App\Http\Controllers\BulletinController::class, 'query'])
+       ->name('bulletins.query');
+
+Route::resource('/bulletins', BulletinController::class);
 
 Route::get('/marquees/query', [App\Http\Controllers\MarqueeController::class, 'query'])
        ->name('marquees.query');

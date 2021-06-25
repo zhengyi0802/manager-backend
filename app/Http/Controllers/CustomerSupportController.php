@@ -31,7 +31,7 @@ class CustomerSupportController extends Controller
      */
     public function create()
     {
-        $projects = Project::get();
+        $projects = Project::where('status', true)->get();
 
         return view('customersupports.create', compact('projects'));
     }
@@ -81,7 +81,7 @@ class CustomerSupportController extends Controller
      */
     public function edit(CustomerSupport $customersupport)
     {
-        $projects = Project::get();
+        $projects = Project::where('status', true)->get();
 
         return view('customersupports.edit', compact('customersupport'))
                ->with(compact('projects'));

@@ -32,7 +32,7 @@ class MaterialController extends Controller
      */
     public function create()
     {
-        $projects = Project::get();
+        $projects = Project::where('status', true)->get();
         $materials = Material::get();
         return view('materials.create')->with(compact('projects'))->with(compact('materials'));
     }
@@ -106,7 +106,7 @@ class MaterialController extends Controller
      */
     public function edit(Material $material)
     {
-        $projects = Project::get();
+        $projects = Project::where('status', true)->get();
         $materials = Material::get();
 
         return view('materials.edit',compact('material'))

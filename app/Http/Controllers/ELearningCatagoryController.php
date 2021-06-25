@@ -33,7 +33,7 @@ class ELearningCatagoryController extends Controller
      */
     public function create()
     {
-        $projects = Project::get();
+        $projects = Project::where('status', true)->get();
         $elearningcatagories = ELearningCatagory::get();
 
         return view('elearningcatagories.create', compact('projects'))
@@ -109,7 +109,7 @@ class ELearningCatagoryController extends Controller
      */
     public function edit(ELearningCatagory $elearningcatagory)
     {
-        $projects = Project::get();
+        $projects = Project::where('status', true)->get();
         $elearningcatagories = ELearningCatagory::get();
 
         return view('elearningcatagories.edit', compact('elearningcatagory'))

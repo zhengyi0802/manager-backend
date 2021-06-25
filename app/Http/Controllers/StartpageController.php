@@ -34,7 +34,7 @@ class StartpageController extends Controller
      */
     public function create()
     {
-        $projects = Project::get();
+        $projects = Project::where('status', true)->get();
 
         return view('startpages.create', compact('projects'));
     }

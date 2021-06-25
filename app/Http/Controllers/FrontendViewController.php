@@ -16,7 +16,7 @@ class FrontendViewController extends Controller
      */
     public function index()
     {
-        $projects = Project::get();
+        $projects = Project::where('status', true)->get();
         return view('frontend_views.index', compact('projects'));
     }
 

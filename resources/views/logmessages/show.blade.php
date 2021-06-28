@@ -40,31 +40,37 @@
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('logmessages.android') }} :</strong>
-                {{ $logmessages->android }}
+                {{ $logmessage->android }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('logmessages.mac_eth') }} :</strong>
-                {{ $logmessages->mac_eth }}
+                {{ $logmessage->mac_eth }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('logmessages.mac_wifi') }} :</strong>
-                {{ $logmessages->mac_wifi }}
+                {{ $logmessage->mac_wifi }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('logmessages.sn') }} :</strong>
-                {{ $logmessages->sn }}
+                {{ $logmessage->sn }}
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('logmessages.created_at') }} :</strong>
+                {{ $logmessage->created_at }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('logmessages.data') }} :</strong>
-                {{ $logmessages->data }}
+                {{ $logmessage->data }}
             </div>
          </div>
      </div>

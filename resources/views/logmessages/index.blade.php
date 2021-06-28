@@ -41,11 +41,9 @@
             <td>{{ $logmessage->version_name }}</td>
             <td>{{ $logmessage->mac_eth }}</td>
             <td>{{ $logmessage->mac_wifi }}</td>
-            <td>{{ $logmessage->date }}</td>
+            <td>{{ $logmessage->created_at }}</td>
             <td>
-                <form action="{{ route('appmenus.destroy',$appmenu->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('appmenus.show',$appmenu->id) }}">{{ __('tables.details') }}</a>
-                </form>
+            <a class="btn btn-info" href="{{ route('logmessages.show',$logmessage->id) }}">{{ __('tables.details') }}</a>
             </td>
         </tr>
         @endforeach

@@ -29,9 +29,15 @@
     </div>
 @endif
 
-<form action="{{ route('logmessages.store') }}" method="POST" enctype="multipart/form-data" >
+<form name="logform" action="{{ route('logmessages.store') }}" method="POST" onsubmit="addfields()" >
      @csrf
      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group" hidden>
+                <strong>{{ __('logmessages.timestamp') }} :</strong>
+                <input type="text" name="timestamp" class="form-control" >
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('logmessages.version_code') }} :</strong>
@@ -78,5 +84,11 @@
                 <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
         </div>
      </div>
+     <script>
+         function addfields() {
+             document.forms['logform']['timestamp'].value = Date.now();
+             return true;
+         }
+     </script>
 </form>
 @endsection

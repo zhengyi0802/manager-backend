@@ -17,7 +17,7 @@ class BulletinItemController extends Controller
     public function index()
     {
        $bulletinitems = BulletinItem::leftJoin('bulletins', 'bulletin_id', 'bulletins.id')
-                        ->where('bulletin_items.*', 'bulletins.title as bulletin')
+                        ->select('bulletin_items.*', 'bulletins.title as bulletin')
                         ->latest()->paginate(5);
 
        return view('bulletinitems.index', compact('bulletinitems'))
@@ -47,7 +47,6 @@ class BulletinItemController extends Controller
         $request->validate([
              'bulletin_id' => 'required',
              'type'        => 'required',
-             'url'         => 'required',
              'status'      => 'required',
         ]);
 
@@ -98,7 +97,7 @@ class BulletinItemController extends Controller
     {
         $bulletins = Bulletin::where('status', true)->get();
 
-        return view('bulletinitems.edit', compact('bulletitem'))
+        return view('bulletinitems.edit', compact('bulletinitem'))
                ->with(compact('bulletins'));
     }
 
@@ -114,7 +113,6 @@ class BulletinItemController extends Controller
         $request->validate([
              'bulletin_id' => 'required',
              'type'        => 'required',
-             'url'         => 'required',
              'status'      => 'required',
         ]);
 

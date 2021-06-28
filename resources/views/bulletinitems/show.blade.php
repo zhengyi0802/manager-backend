@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', __('bulletins.title'))
+@section('title', __('bulletinitems.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ __('bulletins.header') }}</h1>
+    <h1 class="m-0 text-dark">{{ __('bulletinitems.header') }}</h1>
 @stop
 
 @section('content')
@@ -13,7 +13,7 @@
                 <h1>{{ __('tables.details') }}</h1>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('bulletins.index') }}">{{ __('tables.back') }}</a>
+                <a class="btn btn-primary" href="{{ route('bulletinitems.index') }}">{{ __('tables.back') }}</a>
             </div>
         </div>
     </div>
@@ -21,32 +21,36 @@
     <div class="row">
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('bulletins.project') }} :</strong>
-                {{ $bulletin->project }}
+                <strong>{{ __('bulletinitems.bulletin') }} :</strong>
+                {{ $bulletinitem->bulletin }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('bulletins.title') }} :</strong>
-                {{ $bulletin->title }}
+                <strong>{{ __('bulletinitems.type') }} :</strong>
+                @if ($bulletinitem->type == "image")
+                     {{ __('bulletinitems.type_image') }}
+                @elseif ($bulletinitem->type == "video")
+                     {{ __('bulletinitems.type_video') }}
+                @elseif ($bulletinitem->type == "youtube")
+                     {{ __('bulletinitems.type_youtube') }}
+                @endif
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('bulletins.message') }} :</strong>
-                {{ $bulletin->message }}
+                <strong>{{ __('bulletinitems.url') }} :</strong>
+                @if ($bulletinitem->type == "image")
+                    <img src="{{ $bulletinitem->url }}">
+                @else
+                    {{ $bulletinitem->url }}
+                @endif
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('bulletins.status') }} :</strong>
-                {{ ($bulletin->status==1) ? __('tables.status_on'):__('tables.status_off') }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('bulletins.date') }} :</strong>
-                {{ $bulletin->date }}
+                <strong>{{ __('bulletinitems.status') }} :</strong>
+                {{ ($bulletinitem->status==1) ? __('tables.status_on'):__('tables.status_off') }}
             </div>
          </div>
      </div>

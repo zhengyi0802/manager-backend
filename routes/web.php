@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductCatagoryController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ProductStatusController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\LogMessageController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\StartpageController;
@@ -74,6 +75,11 @@ Route::get('/products/register', [App\Http\Controllers\ProductController::class,
        ->name('products.register');
 
 Route::resource('/products', ProductController::class);
+
+Route::post('/logmessages/storefromapp', [App\Http\Controllers\LogMessageController::class, 'storefromapp'])
+       ->name('logmessages.storefromapp');
+
+Route::resource('/logmessages', LogMessageController::class);
 
 Route::resource('/projects', ProjectController::class);
 

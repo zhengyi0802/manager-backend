@@ -18,6 +18,7 @@ return [
     'product_types'                 => '產品型號資料表',
     'product_statuses'              => '產品狀態資料表',
     'products'                      => '產品資料表',
+    'logmessages'                   => '機器日誌',
     'project_manager'               => '專案管理系統',
     'projects'                      => '專案資料表',
     'qacatagories'                  => '常見問題類別資料表',

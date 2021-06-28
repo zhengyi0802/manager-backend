@@ -14,7 +14,10 @@ class LogMessageController extends Controller
      */
     public function index()
     {
-        //
+        $logmessages = LogMessages::latest()->paginate(5);
+
+        return view('logmessages.index', compact('logmessages'))
+               ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +27,7 @@ class LogMessageController extends Controller
      */
     public function create()
     {
-        //
+        return view('logmessages.create');
     }
 
     /**
@@ -35,7 +38,10 @@ class LogMessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        LogMessage::create($request->all());
+
+        return redirect()->route('logmessages.index')
+                        ->with('success','Log Message created successfully');
     }
 
     /**
@@ -44,9 +50,9 @@ class LogMessageController extends Controller
      * @param  \App\Models\LogMessage  $logMessage
      * @return \Illuminate\Http\Response
      */
-    public function show(LogMessage $logMessage)
+    public function show(LogMessage $logmessage)
     {
-        //
+        return view('logmessages.show', compact('logmessage'));
     }
 
     /**
@@ -55,7 +61,7 @@ class LogMessageController extends Controller
      * @param  \App\Models\LogMessage  $logMessage
      * @return \Illuminate\Http\Response
      */
-    public function edit(LogMessage $logMessage)
+    public function edit(LogMessage $logmessage)
     {
         //
     }
@@ -67,7 +73,7 @@ class LogMessageController extends Controller
      * @param  \App\Models\LogMessage  $logMessage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LogMessage $logMessage)
+    public function update(Request $request, LogMessage $logmessage)
     {
         //
     }
@@ -78,7 +84,7 @@ class LogMessageController extends Controller
      * @param  \App\Models\LogMessage  $logMessage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LogMessage $logMessage)
+    public function destroy(LogMessage $logmessage)
     {
         //
     }

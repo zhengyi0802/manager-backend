@@ -331,6 +331,11 @@ return [
                     'url'         => 'products',
                     'label_color' => 'success',
                 ],
+                [
+                    'text'        => 'logmessages',
+                    'url'         => 'logmessages',
+                    'label_color' => 'success',
+                ],
             ],
         ],
         [   'text' => 'project_manager',

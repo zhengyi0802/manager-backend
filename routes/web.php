@@ -137,7 +137,7 @@ Route::get('/customersupports/query', [App\Http\Controllers\CustomerSupportContr
 
 Route::resource('customersupports', CustomerSupportController::class);
 
-Route::get('elearningcatagories/query', [App\Http\Controllers\ELearningCatagoryController::class, 'query'])
+Route::get('/elearningcatagories/query', [App\Http\Controllers\ELearningCatagoryController::class, 'query'])
        ->name('elearningcatagories.query');
 
 Route::resource('/elearningcatagories', ELearningCatagoryController::class);

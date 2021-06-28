@@ -263,6 +263,11 @@ return [
                     'label_color' => 'success',
                ],
                [
+                    'text'        => 'bulletinitems',
+                    'url'         => 'bulletinitems',
+                    'label_color' => 'success',
+               ],
+               [
                     'text'        => 'materials',
                     'url'         => 'materials',
                     'label_color' => 'success',

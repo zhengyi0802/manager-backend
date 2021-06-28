@@ -28,7 +28,7 @@
         <tr>
             <th>{{ __('bulletins.id') }}</th>
             <th>{{ __('bulletins.project') }}</th>
-            <th>{{ __('bulletins.title') }}</th>
+            <th>{{ __('bulletins.ftitle') }}</th>
             <th>{{ __('bulletins.status') }}</th>
             <th>{{ __('bulletins.date') }}</th>
             <th width="280px">{{ __('tables.action') }}</th>

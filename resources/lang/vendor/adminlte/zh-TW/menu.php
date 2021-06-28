@@ -10,6 +10,7 @@ return [
     'pages'                         => '首頁頁面',
     'appmenus'                      => '預設應用程式設定',
     'bulletins'                     => '公告標題設定',
+    'bulletinitems'                 => '公告內容設定',
     'materials'                     => '素材資料表',
     'marquees'                      => '跑馬燈資料表',
     'product_manager'               => '產品管理系統',

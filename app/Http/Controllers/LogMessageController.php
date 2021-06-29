@@ -14,7 +14,7 @@ class LogMessageController extends Controller
      */
     public function index()
     {
-        $logmessages = LogMessages::latest()->paginate(5);
+        $logmessages = LogMessage::latest()->paginate(5);
 
         return view('logmessages.index', compact('logmessages'))
                ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -89,8 +89,9 @@ class LogMessageController extends Controller
         //
     }
 
-    public function storefromapp(Request $request)
+    public function savelog(Request $request)
     {
+
        $postbody='';
        // Check for presence of a body in the request
        if (count($request->json()->all())) {
@@ -99,7 +100,7 @@ class LogMessageController extends Controller
 
        LogMessage::create($postbody);
 
-       $response = "ok";
+       $response = "ok\n";
 
        return $response;
     }

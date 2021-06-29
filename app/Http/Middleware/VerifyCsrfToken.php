@@ -12,6 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        "logmessages/*",   // Log Messages API from OTT App
     ];
 }

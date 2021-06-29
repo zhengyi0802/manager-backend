@@ -1,8 +1,8 @@
-?php
+<?php
 
     return [
         'header'         => '回傳訊息',
-        'title'          => '回傳巡幸資料表',
+        'title'          => '回傳訊息資料表',
         'id'             => '編號',
         'timestamp'      => '機器傳送時間',
         'version_code'   => '版本編號',
@@ -12,7 +12,7 @@
         'mac_wifi'       => 'Wifi MAC',
         'sn'             => '機器序號',
         'data'           => '訊息內容',
-        'date'           => '建立日期',
+        'created_at'     => '建立日期',
     ];
 
 

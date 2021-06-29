@@ -76,8 +76,8 @@ Route::get('/products/register', [App\Http\Controllers\ProductController::class,
 
 Route::resource('/products', ProductController::class);
 
-Route::post('/logmessages/storefromapp', [App\Http\Controllers\LogMessageController::class, 'storefromapp'])
-       ->name('logmessages.storefromapp');
+Route::post('/logmessages/savelog', [App\Http\Controllers\LogMessageController::class, 'savelog'])
+       ->name('logmessages.savelog');
 
 Route::resource('/logmessages', LogMessageController::class);
 

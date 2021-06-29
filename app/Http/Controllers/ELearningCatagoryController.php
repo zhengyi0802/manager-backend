@@ -18,8 +18,11 @@ class ELearningCatagoryController extends Controller
      */
     public function index()
     {
-        $elearningcatagories = ELearningCatagory::leftJoin('projects', 'proj_id', '=', 'projects.id')
-                       ->select('e_learning_catagories.*', 'projects.name as proj_name')->paginate(5);
+        $elearningcatagories = DB::table('e_learning_catagories as a')
+                        ->leftJoin('projects', 'a.proj_id', 'projects.id')
+                        ->leftJoin('e_learning_catagories as b', 'a.parent_id', 'b.id')
+                        ->select('a.*', 'b.name as parent', 'projects.name as project' )
+                        ->paginate(5);
 
         return view('elearningcatagories.index',compact('elearningcatagories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -86,16 +89,12 @@ class ELearningCatagoryController extends Controller
     public function show(ELearningCatagory $elearningcatagory)
     {
         $id = $elearningcatagory->id;
-        $elearningcatagory = DB::table('e_learning_catagories')
-                        ->leftJoin('projects', 'proj_id', 'projects.id')
-                        ->select('e_learning_catagories.*', 'projects.name as proj_name')
-                        ->where('e_learning_catagories.id', $id)->first();
+        $elearningcatagory = DB::table('e_learning_catagories as a')
+                        ->leftJoin('projects', 'a.proj_id', 'projects.id')
+                        ->leftJoin('e_learning_catagories as b', 'a.parent_id', 'b.id')
+                        ->select('a.*', 'b.name as parent', 'projects.name as proj_name' )
+                        ->where('a.id', $id)->first();
         $parent = "root";
-        if ($elearningcatagory->parent_id > 0) {
-            $parentcatagory = ELearningCatagory::where('id', '=', $elearningcatagory->parent_id)->find(1);
-            if ($parentcatagory != null)
-                $parent = $parentcatagory->name;
-        }
 
         return view('elearningcatagories.show', compact('elearningcatagory'))
                ->with(compact('parent'));

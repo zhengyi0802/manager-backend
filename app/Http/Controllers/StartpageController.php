@@ -209,9 +209,21 @@ class StartpageController extends Controller
             $proj_id = $request->input('id');
         }
 
-        $startpage = Startpage::where('proj_id', $proj_id)->latest()->get()->first();
-        if ($startpage)
-            return json_encode($startpage);
+        $datetime = date('y-m-d h:i:s');
+        $startpage = Startpage::where('proj_id', $proj_id)
+                               ->where('status', true)
+                               ->orderBy('id', 'desc')
+                               ->first();
+        if ($startpage) {
+            $result = array(
+                    'name'        => $startpage->name,
+                    'mime_type'   => $startpage->mime_type,
+                    'url'         => $startpage->url,
+                    'start_time'  => $startpage->start_time,
+                    'stop_time'    => $startpage->stop_time,
+            );
+            return json_encode($result);
+        }
     }
 
 }

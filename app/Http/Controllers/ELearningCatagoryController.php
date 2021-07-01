@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\ImageUpload;
 use App\Models\ELearningCatagory;
+use App\Models\ELearning;
 use App\Models\Project;
 use App\Models\Product;
 use App\Models\File;
@@ -175,6 +176,19 @@ class ELearningCatagoryController extends Controller
             $proj_id = $request->input('id');
         }
 
+        $elearnings = ELearning::where('status', true)->get();
+        $contents = array();
+        foreach ($elearnings as $elearning) {
+                $item = array(
+                        'catagory_id' => $elearning->catagory_id,
+                        'name'        => $elearning->name,
+                        'description' => $elearning->description,
+                        'type'        => $elearning->mime_type,
+                        'url'         => $elearning->url,
+                );
+                array_push($contents, $item);
+        }
+
         $elearningcatagories = ELearningCatagory::where('status', true)
                                   ->where('proj_id', $proj_id)
                                   ->orderBy('id', 'asc')
@@ -188,7 +202,7 @@ class ELearningCatagoryController extends Controller
 
         foreach ($elearningcatagories as $elearningcatagory) {
             $data[$elearningcatagory->id] = array(
-                    'id'          => $elearningcatagory->id,
+                    //'id'          => $elearningcatagory->id,
                     'parent_id'   => $elearningcatagory->parent_id,
                     'name'        => $elearningcatagory->name,
                     'type'        => $elearningcatagory->type,
@@ -196,6 +210,15 @@ class ELearningCatagoryController extends Controller
                     'thumbnail'   => $elearningcatagory->thumbnail,
                     'list'        => array(),
             );
+            if ($elearningcatagory->type == 'contents') {
+                foreach ($contents as $content) {
+                   if ($content['catagory_id'] == $elearningcatagory->id) {
+                       array_push($data[$elearningcatagory->id]['list'], $content);
+                   }
+                }
+            }
+            echo "Elearning Catagory ID : ".$elearningcatagory->id."<br>";
+            echo "JSON String : ".json_encode($data[$elearningcatagory->id])."<br>--------------------<br>";
         }
 
         $parents = ELearningCatagory::distinct()->select('parent_id')

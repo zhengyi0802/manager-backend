@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Middleware\ImageUpload;
 use App\Models\ELearningCatagory;
 use App\Models\Project;
+use App\Models\Product;
 use App\Models\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -37,7 +38,7 @@ class ELearningCatagoryController extends Controller
     public function create()
     {
         $projects = Project::where('status', true)->get();
-        $elearningcatagories = ELearningCatagory::get();
+        $elearningcatagories = ELearningCatagory::where('status', true)->where('type', 'catagory')->get();
 
         return view('elearningcatagories.create', compact('projects'))
                ->with(compact('elearningcatagories'));
@@ -109,7 +110,7 @@ class ELearningCatagoryController extends Controller
     public function edit(ELearningCatagory $elearningcatagory)
     {
         $projects = Project::where('status', true)->get();
-        $elearningcatagories = ELearningCatagory::get();
+        $elearningcatagories = ELearningCatagory::where('status', true)->where('type', 'catagory')->get();
 
         return view('elearningcatagories.edit', compact('elearningcatagory'))
                ->with(compact('projects'))
@@ -174,14 +175,48 @@ class ELearningCatagoryController extends Controller
             $proj_id = $request->input('id');
         }
 
-        $elearningcatagories = ELearningCatagory::where('proj_id', $proj_id)
-                               ->where('status', true)
-                               ->get();
+        $elearningcatagories = ELearningCatagory::where('status', true)
+                                  ->where('proj_id', $proj_id)
+                                  ->orderBy('id', 'asc')
+                                  ->get();
 
-        //var_dump($elearningcatagories);
+        $data = array();
+        $data[0] = array(
+                   'parent_id' => 'root',
+        );
 
-        if ($elearningcatagories != null)
-            return json_encode($elearningcatagories);
+        foreach ($elearningcatagories as $elearningcatagory) {
+            $data[$elearningcatagory->id] = array(
+                    'parent_id'   => $elearningcatagory->parent_id,
+                    'name'        => $elearningcatagory->name,
+                    'type'        => $elearningcatagory->type,
+                    'description' => $elearningcatagory->description,
+                    'thumbnail'   => $elearningcatagory->thumbnail,
+            );
+        }
+
+        $parents = ELearningCatagory::distinct()->select('parent_id')
+                                  ->where('status', true)
+                                  ->where('proj_id', $proj_id)
+                                  ->orderBy('parent_id', 'desc')
+                                  ->get();
+
+        foreach ($parents as $parent) {
+            //echo "parent : ". $parent->parent_id."<br>";
+            foreach($data as $list) {
+                if (isset($list['parent_id'])) {
+                    if ($parent->parent_id == $list['parent_id']) {
+                        array_push($data[$parent->parent_id], $list);
+                        //echo "data : ". json_encode($data[$parent->parent_id])."<br>";
+                    }
+                }
+            }
+        }
+
+        //echo "<br><br>";
+        //var_dump($data[0]);
+
+        return json_encode($data[0]);
 
     }
 

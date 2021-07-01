@@ -217,8 +217,8 @@ class ELearningCatagoryController extends Controller
                    }
                 }
             }
-            echo "Elearning Catagory ID : ".$elearningcatagory->id."<br>";
-            echo "JSON String : ".json_encode($data[$elearningcatagory->id])."<br>--------------------<br>";
+            //echo "Elearning Catagory ID : ".$elearningcatagory->id."<br>";
+            //echo "JSON String : ".json_encode($data[$elearningcatagory->id])."<br>--------------------<br>";
         }
 
         $parents = ELearningCatagory::distinct()->select('parent_id')

@@ -182,16 +182,19 @@ class ELearningCatagoryController extends Controller
 
         $data = array();
         $data[0] = array(
-                   'parent_id' => 'root',
+                   'name'      => 'root',
+                   'list'      => array(),
         );
 
         foreach ($elearningcatagories as $elearningcatagory) {
             $data[$elearningcatagory->id] = array(
+                    'id'          => $elearningcatagory->id,
                     'parent_id'   => $elearningcatagory->parent_id,
                     'name'        => $elearningcatagory->name,
                     'type'        => $elearningcatagory->type,
                     'description' => $elearningcatagory->description,
                     'thumbnail'   => $elearningcatagory->thumbnail,
+                    'list'        => array(),
             );
         }
 
@@ -203,21 +206,19 @@ class ELearningCatagoryController extends Controller
 
         foreach ($parents as $parent) {
             //echo "parent : ". $parent->parent_id."<br>";
-            foreach($data as $list) {
-                if (isset($list['parent_id'])) {
-                    if ($parent->parent_id == $list['parent_id']) {
-                        array_push($data[$parent->parent_id], $list);
-                        //echo "data : ". json_encode($data[$parent->parent_id])."<br>";
+            $p1 = $data[$parent->parent_id];
+            foreach ($data as $list) {
+                if ($list['name'] != 'root') {
+               	    if ($parent->parent_id == $list['parent_id']) {
+                        array_push($data[$parent->parent_id]['list'], $list);
+                        //echo "data : ". json_encode($p1)."<br>";
                     }
                 }
             }
+            //echo "string = ".json_encode($p1)."<br><br>";
         }
 
-        //echo "<br><br>";
-        //var_dump($data[0]);
-
-        return json_encode($data[0]);
-
+        return json_encode($data[0]['list']);
     }
 
 }

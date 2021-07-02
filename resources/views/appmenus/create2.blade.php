@@ -13,7 +13,7 @@
             <h1>{{ __('tables.new') }}</h1>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('appmenus.index') }}">{{ __('tables.back') }}</a>
+            <a class="btn btn-primary" href="{{ route('frontend_views.edit', $project->id) }}">{{ __('tables.back') }}</a>
         </div>
     </div>
 </div>
@@ -34,7 +34,7 @@
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group" id="proj_id" name="proj_id" value="$project->id" >
-                <strong>{{ __('appmenus.project_name') }} : {{ $project->name }}</strong>
+                <strong>{{ __('appmenus.project') }} : {{ $project->name }}</strong>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

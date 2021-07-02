@@ -38,7 +38,11 @@ class AppMenuController extends Controller
 
     public function create2(Project $project, $position)
     {
+        $appmenu = new AppMenu;
 
+        return view('appmenus.create2', compact('appmenu'))
+               ->with(compact('project'))
+               ->with('position', $position);
     }
 
     /**
@@ -77,6 +81,33 @@ class AppMenuController extends Controller
                         ->with('success','AppMenu created successfully');
     }
 
+    public function store2(Request $request, Project $project, $position, AppMenu $appmenu)
+    {
+        $request->validate([
+            'name'         => 'required',
+            'status'       => 'required',
+        ]);
+
+        if ($request->file()) {
+            $file = ImageUpload::fileUpload($request);
+            if ($file == null) {
+                return back()->with('image', $fileName);
+            }
+            $appmenu->thumbnail = $file->file_path;
+        }
+
+        if ($appmenu->id > 0) {
+            $appmenu->update($request->all());
+        } else {
+            $request->merge(['proj_id' => $project->id, 'position' => $position]);
+            AppMenu::create($request->all());
+        }
+
+        return redirect()->route('frontend_views.edit', compact('project'))
+                        ->with('success','Material created successfully.');
+
+    }
+
     /**
      * Display the specified resource.
      *
@@ -105,6 +136,20 @@ class AppMenuController extends Controller
 
         return view('appmenus.edit', compact('appmenu'))
                ->with(compact('projects'));
+    }
+
+    public function edit2(Project $project, $position)
+    {
+        $appmenus = AppMenu::where('proj_id', $project->id)->where('position', $position)->get();
+        $appmenu = $appmenus->last();
+
+        if ($appmenus == null) {
+            return $this->create2($project, $position);
+        }
+
+        return view('appmenus.edit2',compact('appmenu'))
+               ->with(compact('project'))
+               ->with('position', $position);
     }
 
     /**

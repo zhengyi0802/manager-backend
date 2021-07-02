@@ -177,9 +177,11 @@ class MaterialController extends Controller
     {
         $materials = Material::where('proj_id', $project->id)->where('position', $position)->get();
         $material = $materials->last();
+
         if ($material == null) {
            return $this->create2($project, $position);
         }
+
         return view('materials.edit2',compact('materials'))
                ->with(compact('material'))
                ->with(compact('project'))

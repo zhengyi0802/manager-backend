@@ -36,6 +36,11 @@ class AppMenuController extends Controller
         return view('appmenus.create', compact('projects'));
     }
 
+    public function create2(Project $project, $position)
+    {
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *

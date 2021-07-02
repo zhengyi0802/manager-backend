@@ -108,6 +108,15 @@ Route::get('/frontend_views/query', [App\Http\Controllers\FrontendViewController
 Route::get('/frontend_views/{project}/edit', [App\Http\Controllers\FrontendViewController::class, 'edit'])
        ->name('frontend_views.edit');
 
+Route::get('/appmenus/{project}/{position}/create2', [App\Http\Controllers\AppMenuController::class, 'create2'])
+       ->name('appmenus.create2');
+
+Route::get('/appmenus/{project}/{position}/edit2', [App\Http\Controllers\AppMenuController::class, 'edit2'])
+       ->name('appmenus.edit2');
+
+Route::post('/appmenus/{project}/{position}/store2', [App\Http\Controllers\AppMenuController::class, 'store2'])
+       ->name('appmenus.store2');
+
 Route::get('/appmenus/query', [App\Http\Controllers\AppMenuController::class, 'query'])
        ->name('appmenus.query');
 

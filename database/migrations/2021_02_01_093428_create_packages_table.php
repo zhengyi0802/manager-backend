@@ -15,6 +15,7 @@ class CreatePackagesTable extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
+            $table->integer('launcher_id')->default(-1);
             $table->string('name');
             $table->string('icon_url')->nullable();
             $table->string('app_app');

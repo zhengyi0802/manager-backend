@@ -10,6 +10,7 @@ class Package extends Model
     use HasFactory;
 
     protected $fillable = [
+        'launher_id',
         'name',
         'icon_url',
         'app_path',

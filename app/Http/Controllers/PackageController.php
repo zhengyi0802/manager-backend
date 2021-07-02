@@ -133,31 +133,52 @@ class PackageController extends Controller
 
     public function query(Request $request)
     {
-        if ($request->input('mac')) {
-            $mac = str_replace(':', '', $request->input('mac'));
-            $mac = strtoupper($mac);
-            $product = Product::where('ether_mac', '=', $mac)->firstOrFail();
-            //var_dump($product);
-            if ($product) {
+        if ($request->input('launcher')) {
+            $launcher_id = $request->input('launcher');
+            $package = Package::where('status', true)
+                       ->where('launcher_id', $launcher_id)
+                       ->orderBy('created_at', 'desc')
+                       ->first();
+            if ($package) {
+                $result = array (
+                      'name'            => $package->name,
+                      'package_version' => $package->package_version,
+                      'sdk_version'     => $package->sdk_version,
+                      'description'     => $package->description,
+                      'created_at'      => $package->created_at,
+                      'path'            => $package->app_path,
+                );
+                return json_encode($result);
+            } else {
+                return "{}";
+            }
+        } else {
+            if ($request->input('mac')) {
+                $mac = str_replace(':', '', $request->input('mac'));
+                $mac = strtoupper($mac);
+                $product = Product::where('ether_mac', '=', $mac)->firstOrFail();
+                //var_dump($product);
+                if ($product) {
+                    $proj_id = $product->proj_id;
+                    $type_id = $product->type_id;
+                }
+            } else if ($request->input('id')) {
+                $id = $request->input('id');
+                $product = Product::where('id', $id)->firstOrFail();
                 $proj_id = $product->proj_id;
                 $type_id = $product->type_id;
             }
-        } else if ($request->input('id')) {
-            $id = $request->input('id');
-            $product = Product::where('id', $id)->firstOrFail();
-            $proj_id = $product->proj_id;
-            $type_id = $product->type_id;
-        }
-        $project = Project::where('id', $proj_id)->first();
-        $type = ProductType::where('id', $type_id)->first();
-        $proj_name = $project->name;
-        $type_name = $type->name;
+            $project = Project::where('id', $proj_id)->first();
+            $type = ProductType::where('id', $type_id)->first();
+            $proj_name = $project->name;
+            $type_name = $type->name;
 
-        if ($request->input('package')) {
-            $name = $request->input('package');
-            $packages = Package::where('name', $name)->where('status', true)->get();
-        } else {
-            $packages = Package::where('status', true)->get();
+            if ($request->input('package')) {
+                $name = $request->input('package');
+                $packages = Package::where('name', $name)->where('status', true)->get();
+            } else {
+                $packages = Package::where('status', true)->get();
+            }
         }
 
         $list = array();
@@ -176,6 +197,7 @@ class PackageController extends Controller
                   }
                }
            }
+
         }
 
         return json_encode($list);
@@ -203,7 +225,5 @@ class PackageController extends Controller
 
             return $apk_data;
     }
-
-
 
 }

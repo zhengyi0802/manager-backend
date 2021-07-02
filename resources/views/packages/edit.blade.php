@@ -70,6 +70,16 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>{{ __('packages.launcher_id') }} : </strong>
+                    <select name="launcher_id" >
+                       <option value="-1" {{ ($package->launcher_id == -1) ? "selected" : null }} >{{ __('packages.launcher_false') }}</option>
+                       <option value="1" {{ ($package->launcher_id == 1) ? "selected" : null }} >{{ __('packages.launcher_magicviewer') }}</option>
+                       <option value="2" {{ ($package->launcher_id == 2) ? "selected" : null }} >{{ __('packages.launcher_mundi') }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>{{ __('packages.types') }} : </strong>
                     @foreach($types as $type)
                        <input type="checkbox" name="type[]" value="{{ $type->name }}">
@@ -92,8 +102,6 @@
                     <textarea class="form-control" style="height:150px" name="mac_addresses" ></textarea>
                 </div>
             </div>
-
-
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>{{ __('packages.status') }} :  </strong>
@@ -101,7 +109,6 @@
                     <input type="radio" name="status" value="0" {{ ($package->status!=1) ? "checked":null }} >{{ __('tables.status_off') }}
                 </div>
             </div>
-
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
             </div>

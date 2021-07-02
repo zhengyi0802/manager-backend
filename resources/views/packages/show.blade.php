@@ -54,6 +54,18 @@
                 {{ $package->sdk_version }}
             </div>
         </div>
+        <div class="col-xs-12 col-sn-12 col-nd-12">
+            <div class="form-group">
+                <strong>{{ __('packages.launcher_id') }} </strong>
+                @if ($package->launcher_id == -1)
+                     {{ __('packages.launcher_false') }}
+                @elseif ($package->launcher_id == 1)
+                     {{ __('packages.launcher_magicviewer') }}
+                @elseif ($package->launcher_id == 2)
+                     {{ __('packages.launcher_mundi') }}
+                @endif
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('packages.types') }} : </strong>

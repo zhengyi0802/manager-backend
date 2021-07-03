@@ -37,6 +37,14 @@ class BulletinController extends Controller
         return view('bulletins.create', compact('projects'));
     }
 
+    public function create2(Project $project)
+    {
+        $bulletin = new Bulletin;
+
+        return view('bulletins.create2', compact('bulletin'))
+               ->with(compact('project'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -57,6 +65,20 @@ class BulletinController extends Controller
 
         return redirect()->route('bulletins.index')
                          ->with('success','Bulletin store successfully');
+    }
+
+    public function store2(Request $request, Project $project, Bulletin $bulletin)
+    {
+        $request->merge(['proj_id', $project->id]);
+
+        if ($bulletin->id > 0) {
+            $bulletin->update($request->all());
+        } else {
+            Bulletin::create($request->all());
+        }
+
+        return redirect()->route('frontend_views.edit', compact('project'))
+                        ->with('success','Material created successfully.');
     }
 
     /**
@@ -87,6 +109,21 @@ class BulletinController extends Controller
 
         return view('bulletins.edit', compact('bulletin'))
                ->with(compact('projects'));
+    }
+
+    public function edit2(Project $project)
+    {
+        $bulletin = Bulletin::where('status', true)
+                            ->where('proj_id', $project->id)
+                            ->orderBy('updated_at', 'desc')
+                            ->first();
+
+        if ($bulletin == null) {
+            return $this->create2($project);
+        }
+
+        return view('bulletins.edit2', compact('bulletin'))
+               ->with(compact('project'));
     }
 
     /**

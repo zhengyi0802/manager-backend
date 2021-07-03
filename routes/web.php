@@ -122,6 +122,15 @@ Route::get('/appmenus/query', [App\Http\Controllers\AppMenuController::class, 'q
 
 Route::resource('/appmenus', AppMenuController::class);
 
+Route::get('/bulletins/{projec}/create2', [App\Http\Controllers\BulletinController::class, 'create2'])
+       ->name('bulletins.create2');
+
+Route::get('/bulletins/{project}/edit2', [App\Http\Controllers\BulletinController::class, 'edit2'])
+       ->name('bulletins.edit2');
+
+Route::post('/bulletins/{project}/store2', [App\Http\Controllers\BulletinController::class, 'store2'])
+       ->name('bulletins.store2');
+
 Route::get('/bulletins/query', [App\Http\Controllers\BulletinController::class, 'query'])
        ->name('bulletins.query');
 

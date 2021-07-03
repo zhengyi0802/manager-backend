@@ -219,7 +219,7 @@
           </div>
           <div id="rightside">
               <div id="block6">
-                 <img src="{{ ($frontend_view['block6'] != null) ? $frontend_view['block6']['image_url'] : '/images/block06.png' }}"></a>
+                 <a href="{{ route('bulletins.edit2', ['project' => $project]) }}" ><img src="{{ ($frontend_view['block6'] != null) ? $frontend_view['block6']['image_url'] : '/images/block06.png' }}"></a>
               </div>
               <div id="block8">
                  <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '1']) }}" ><img src="{{ ($frontend_view['block8'] != null) ? $frontend_view['block8']['image_url'] : '/images/block08.png' }}"></a>

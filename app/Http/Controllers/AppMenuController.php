@@ -140,10 +140,12 @@ class AppMenuController extends Controller
 
     public function edit2(Project $project, $position)
     {
-        $appmenus = AppMenu::where('proj_id', $project->id)->where('position', $position)->get();
-        $appmenu = $appmenus->last();
+        $appmenu = AppMenu::where('proj_id', $project->id)
+                          ->where('position', $position)
+                          ->orderBy('updated_at', 'desc')
+                          ->first();
 
-        if ($appmenus == null) {
+        if ($appmenu == null) {
             return $this->create2($project, $position);
         }
 

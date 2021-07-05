@@ -9,6 +9,7 @@ use App\Http\Controllers\LogMessageController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\AdvertisingController;
+use App\Http\Controllers\MainVideoController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\StartpageController;
 use App\Http\Controllers\FrontendViewController;
@@ -137,6 +138,20 @@ Route::post('/advertisings/{project}/store2', [App\Http\Controllers\AdvertisingC
        ->name('advertisings.store2');
 
 Route::resource('/advertisings', AdvertisingController::class);
+
+Route::get('/mainvideos/{project}/create2', [App\Http\Controllers\MainVideoController::class, 'create2'])
+       ->name('mainvideos.create2');
+
+Route::get('/mainvideos/{project}/edit2', [App\Http\Controllers\MainVideoController::class, 'edit2'])
+       ->name('mainvideos.edit2');
+
+Route::get('/mainvideos/query', [App\Http\Controllers\MainVideoController::class, 'query'])
+       ->name('mainvideos.query');
+
+Route::post('/mainvideos/store2', [App\Http\Controllers\MainVideoController::class, 'store2'])
+       ->name('mainvideos.store2');
+
+Route::resource('/mainvideos', MainVideoController::class);
 
 Route::get('/appmenus/{project}/{position}/create2', [App\Http\Controllers\AppMenuController::class, 'create2'])
        ->name('appmenus.create2');

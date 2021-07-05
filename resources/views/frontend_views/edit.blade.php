@@ -208,10 +208,10 @@
       <div id="middleside">
           <div id="leftside">
               <div id="block4">
-                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '4']) }}" ><img src="{{ ($frontend_view['block4'] != null) ? $frontend_view['block4']['image_url'] : '/images/block04.png' }}"></a>
+                 <a href="{{ route('businesses.edit2', ['project' => $project]) }}" ><img src="{{ ($frontend_view['block4'] != null) ? $frontend_view['block4']['image_url'] : '/images/block04.png' }}"></a>
              </div>
              <div id="block7">
-                 <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '7']) }}" ><img src="{{ ($frontend_view['block7'] != null) ? $frontend_view['block7']['image_url'] : '/images/block07.png' }}"></a>
+                 <a href="{{ route('advertisings.edit2', ['project' => $project]) }}" ><img src="{{ ($frontend_view['block7'] != null) ? $frontend_view['block7']['image_url'] : '/images/block07.png' }}"></a>
               </div>
           </div>
           <div id="block5" class="block5">

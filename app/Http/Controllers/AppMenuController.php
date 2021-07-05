@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\ImageUpload;
 use App\Models\AppMenu;
 use App\Models\Project;
 use App\Models\Product;

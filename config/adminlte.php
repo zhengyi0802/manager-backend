@@ -253,6 +253,16 @@ return [
                     'label_color' => 'success',
                ],
                [
+                    'text'        => 'businesses',
+                    'url'         => 'businesses',
+                    'label_color' => 'success',
+               ],
+               [
+                    'text'        => 'advertisings',
+                    'url'         => 'advertisings',
+                    'label_color' => 'success',
+               ],
+               [
                     'text'        => 'appmenus',
                     'url'         => 'appmenus',
                     'label_color' => 'success',

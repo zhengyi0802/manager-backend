@@ -7,6 +7,8 @@ use App\Http\Controllers\ProductStatusController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LogMessageController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\AdvertisingController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\StartpageController;
 use App\Http\Controllers\FrontendViewController;
@@ -107,6 +109,34 @@ Route::get('/frontend_views/query', [App\Http\Controllers\FrontendViewController
 
 Route::get('/frontend_views/{project}/edit', [App\Http\Controllers\FrontendViewController::class, 'edit'])
        ->name('frontend_views.edit');
+
+Route::get('/businesses/{project}/create2', [App\Http\Controllers\BusinessController::class, 'create2'])
+       ->name('businesses.create2');
+
+Route::get('/businesses/{project}/edit2', [App\Http\Controllers\BusinessController::class, 'edit2'])
+       ->name('businesses.edit2');
+
+Route::get('/businesses/query', [App\Http\Controllers\BusinessController::class, 'query'])
+       ->name('businesses.query');
+
+Route::post('/businesses/{project}/store2', [App\Http\Controllers\BusinessController::class, 'store2'])
+       ->name('businesses.store2');
+
+Route::resource('/businesses', BusinessController::class);
+
+Route::get('/advertisings/{project}/create2', [App\Http\Controllers\AdvertisingController::class, 'create2'])
+       ->name('advertisings.create2');
+
+Route::get('/advertisings/{project}/edit2', [App\Http\Controllers\AdvertisingController::class, 'edit2'])
+       ->name('advertisings.edit2');
+
+Route::get('/advertisings/query', [App\Http\Controllers\AdvertisingController::class, 'qurty'])
+       ->name('advertisings.qurty');
+
+Route::post('/advertisings/{project}/store2', [App\Http\Controllers\AdvertisingController::class, 'store2'])
+       ->name('advertisings.store2');
+
+Route::resource('/advertisings', AdvertisingController::class);
 
 Route::get('/appmenus/{project}/{position}/create2', [App\Http\Controllers\AppMenuController::class, 'create2'])
        ->name('appmenus.create2');

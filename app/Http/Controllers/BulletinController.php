@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Product;
 use App\Models\BulletinItem;
 use Illuminate\Http\Request;
+use App\Http\Middleware\ImageUpload;
 
 class BulletinController extends Controller
 {

@@ -82,7 +82,6 @@ class LogoController extends Controller
     public function store2(Request $request, Project $project, Logo $logo)
     {
         $request->validate([
-            'proj_id'      => 'required',
             'name'         => 'required',
             'status'       => 'required',
         ]);

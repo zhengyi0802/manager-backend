@@ -263,6 +263,11 @@ return [
                     'label_color' => 'success',
                ],
                [
+                    'text'        => 'mainvideos',
+                    'url'         => 'mainvideos',
+                    'label_color' => 'success',
+               ],
+               [
                     'text'        => 'appmenus',
                     'url'         => 'appmenus',
                     'label_color' => 'success',

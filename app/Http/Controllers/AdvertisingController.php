@@ -141,8 +141,7 @@ class AdvertisingController extends Controller
 
     public function edit2(Project $project)
     {
-        $advertising = Advertising::where('status', true)
-                            ->where('proj_id', $project->id)
+        $advertising = Advertising::where('proj_id', $project->id)
                             ->orderBy('updated_at', 'desc')
                             ->first();
 

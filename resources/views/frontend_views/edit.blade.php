@@ -215,7 +215,7 @@
               </div>
           </div>
           <div id="block5" class="block5">
-             <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '5']) }}" ><img src="{{ ($frontend_view['block5'] != null) ? $frontend_view['block5']['image_url'] : '/images/block05.png' }}"></a>
+             <a href="{{ route('mainvideos.edit2', ['project' => $project]) }}" ><img src="{{ ($frontend_view['block5'] != null) ? $frontend_view['block5']['image_url'] : '/images/block05.png' }}"></a>
           </div>
           <div id="rightside">
               <div id="block6">

@@ -16,7 +16,7 @@ class MainVideoController extends Controller
     public function index()
     {
         $mainvideos = MainVideo::leftJoin('projects', 'proj_id', 'projects.id')
-                             ->select('main_videos.*', 'project.name as project')
+                             ->select('main_videos.*', 'projects.name as project')
                              ->latest()->paginate(5);
         return view('mainvideos.index', compact('mainvideos'))
                ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -32,6 +32,14 @@ class MainVideoController extends Controller
         $projects = Project::where('status', true)->get();
 
         return view('mainvideos.create', compact('projects'));
+    }
+
+    public function create2(Project $project)
+    {
+        $mainvideo = new MainVideo;
+
+        return view('mainvideos.create2', compact('mainvideo'))
+                 ->with(compact('project'));
     }
 
     /**
@@ -54,6 +62,15 @@ class MainVideoController extends Controller
                         ->with('success','Main Video created successfully');
     }
 
+    public function store2(Request $request, Project $project, MainVideo $mainvideo)
+    {
+        if ($mainvideo > 0) {
+            return $this->update($request, $mainvideo);
+        } else {
+            return $THIS->store($request);
+        }
+    }
+
     /**
      * Display the specified resource.
      *
@@ -64,7 +81,7 @@ class MainVideoController extends Controller
     {
         $id = $mainvideo->id;
         $mainvideo = MainVideo::leftJoin('projects', 'proj_id', 'projects.id')
-                              ->select('main_videos.*', 'project.name as project')
+                              ->select('main_videos.*', 'projects.name as project')
                               ->where('main_videos.id', $id)->first();
 
         return view('mainvideos.show', compact('mainvideo'));
@@ -80,7 +97,21 @@ class MainVideoController extends Controller
     {
         $projects = Project::where('status', true)->get();
 
-        return view('mainvideos.edit', compact('projects'));
+        return view('mainvideos.edit', compact('mainvideo'))
+                 ->with(compact('projects'));
+    }
+
+    public function edit2(Project $project)
+    {
+        $mainvideo = MainVideo::where('proj_id', $project->id)
+                                ->orderBy('updated_at', 'desc')
+                                ->first();
+        if ($mainvideo == null) {
+            return $this->create2($project);
+        }
+
+        return view('mainvideos.edit2', compact('mainvideo'))
+               ->with(compact('project'));
     }
 
     /**
@@ -117,4 +148,10 @@ class MainVideoController extends Controller
         return redirect()->route('mainvideos.index')
                         ->with('success','Main Video deleted successfully');
     }
+
+    public function query(Request $request)
+    {
+
+    }
+
 }

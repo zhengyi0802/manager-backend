@@ -13,7 +13,7 @@
                 <h1>{{ __('tables.edit') }}</h1>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('mainvideos.index') }}">{{ __('tables.back') }}</a>
+                <a class="btn btn-primary" href="{{ route('frontend_views.edit', $project->id) }}">{{ __('tables.back') }}</a>
             </div>
         </div>
     </div>
@@ -29,18 +29,13 @@
         </div>
     @endif
 
-    <form action="{{ route('mainvideos.update',$mainvideo->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('mainvideos.store2', ['mainvideo' => $mainvideo, 'project' => $project]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>{{ __('mainvideos.project') }} : </strong>
-                    <select id="proj_id" name="proj_id" >
-                        @foreach($projects as $project)
-                           <option value="{{ $project->id }}" {{ ($mainvideo->proj_id == $project->id) ? "selected" : null }}>{{ $project->name }}>
-                        @endforeach
-                    </select>
+                <div class="form-group" id="proj_id" name="proj_id" value="$project->id" >
+                    <strong>{{ __('mainvideos.project') }} : {{ $project->name }} </strong>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

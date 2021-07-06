@@ -100,7 +100,7 @@ class QAListController extends Controller
     {
         $request->validate([
             'catagory_id'  => 'required',
-            'type'         => 'type',
+            'type'         => 'required',
             'question'     => 'required',
             'status'       => 'required',
         ]);

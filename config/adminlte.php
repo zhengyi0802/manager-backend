@@ -287,11 +287,13 @@ return [
                     'url'         => 'bulletinitems',
                     'label_color' => 'success',
                ],
+/*
                [
                     'text'        => 'materials',
                     'url'         => 'materials',
                     'label_color' => 'success',
                ],
+*/
                [
                     'text'        => 'marquees',
                     'url'         => 'marquees',

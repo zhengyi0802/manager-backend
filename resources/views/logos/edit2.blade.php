@@ -51,7 +51,7 @@
                         <input type="file" id="image" name="image" accept="image/*" onchange="loadImage(event)" >
                     </div>
                     <div id="div-preview">
-                        <img name="preview" id="preview" src="{{ $logo->logo_url }}">
+                        <img name="preview" id="preview" src="{{ $logo->image }}">
                     </div>
                 </div>
                 <script>

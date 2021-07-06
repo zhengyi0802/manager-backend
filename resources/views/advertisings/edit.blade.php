@@ -31,6 +31,7 @@
 
     <form action="{{ route('advertisings.update',$advertising->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div name="project_group" id="project_group" class="form-group">
@@ -56,7 +57,7 @@
                         <input type="file" id="image" name="image" accept="image/*" onchange="loadImage(event)" >
                     </div>
                     <div id="div-preview">
-                        <img name="preview" id="preview" src="{{ $advertising->logo_url }}">
+                        <img name="preview" id="preview" src="{{ $advertising->thumbnail }}">
                     </div>
                 </div>
                 <script>

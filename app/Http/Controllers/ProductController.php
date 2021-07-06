@@ -64,13 +64,17 @@ class ProductController extends Controller
         $request->validate([
             'serialno' => 'required',
             'type_id' => 'required',
-            'ether_mac' => 'required',
+            'wifi_mac' => 'required',
             'status_id' => 'required',
         ]);
 
-        $mac = str_replace(":", "", $request->input('ether_mac'));
-        $mac = strtoupper($mac);
-        $request->merge(array('ether_mac' => $mac));
+        $ether_mac = str_replace(":", "", $request->input('ether_mac'));
+        $ether_mac = strtoupper($ether_mac);
+        $request->merge(array('ether_mac' => $ether_mac));
+
+        $wifi_mac = str_replace(":", "", $request->input('wifi_mac'));
+        $wifi_mac = strtoupper($wifi_mac);
+        $request->merge(array('wifi_mac' => $wifi_mac));
 
         Product::create($request->all());
 
@@ -93,6 +97,9 @@ class ProductController extends Controller
         $mac_array = str_split($product->ether_mac, 2);
         $ether_mac = implode(':', $mac_array);
         $product->ether_mac = $ether_mac;
+        $mac_array1 = str_split($prodyct->wifi_mac, 2);
+        $wifi_mac = implode(":", $mac_array1);
+        $product->wifi_mac = $wifi_mac;
 
         return view('products.show',compact('product'))
                ->with('proj_name', $proj_name)
@@ -115,6 +122,9 @@ class ProductController extends Controller
         $mac_array = str_split($product->ether_mac, 2);
         $ether_mac = implode(':', $mac_array);
         $product->ether_mac = $ether_mac;
+        $mac_array1 = str_split($prodyct->wifi_mac, 2);
+        $wifi_mac = implode(":", $mac_array1);
+        $product->wifi_mac = $wifi_mac;
 
         return view('products.edit', compact('product'))
                ->with(compact('productTypes'))
@@ -133,14 +143,18 @@ class ProductController extends Controller
     {
         $request->validate([
             'serialno' => 'required',
-            'ether_mac' => 'required',
+            'wifi_mac' => 'required',
             'type_id' => 'required',
             'status_id' => 'required',
         ]);
 
-        $mac = str_replace(":", "", $request->input('ether_mac'));
-        $mac = strtoupper($mac);
-        $request->merge(array('ether_mac' => $mac));
+        $ether_mac = str_replace(":", "", $request->input('ether_mac'));
+        $ether_mac = strtoupper($ether_mac);
+        $request->merge(array('ether_mac' => $ether_mac));
+
+        $wifi_mac = str_replace(":", "", $request->input('wifi_mac'));
+        $wifi_mac = strtoupper($wifi_mac);
+        $request->merge(array('wifi_mac' => $wifi_mac));
 
         $product->update($request->all());
 
@@ -168,7 +182,10 @@ class ProductController extends Controller
         //$mac = str_replace(':', '', $request->input('mac'));
         $mac = strtoupper($mac);
 
-        $products = Product::where('ether_mac', '=', $mac)->latest()->get();
+        $products = Product::where('ether_mac', '=', $mac)
+                           ->orWhere('wifi_mac', '=', $mac)
+                           ->latest()
+                           ->get();
 
         $str = "https://mundifar.com/mundi/API/index_api.php?mac=".$mac."&token=Wg7DZTmTapH2Ww2sAeNfmhhfXzYqEt6Y";
         $response = Http::get($str);

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Product;
 use App\Models\Material;
+use App\Models\Logo;
+use App\Models\Business;
+use App\Models\Advertising;
 use Illuminate\Http\Request;
 
 class FrontendViewController extends Controller
@@ -130,11 +133,14 @@ class FrontendViewController extends Controller
         return $materials;
     }
 
-    public function query(Request $request) {
+    public function query2(Request $request)
+    {
         if ($request->input('mac')) {
             $mac = str_replace(':', '', $request->input('mac'));
             $mac = strtoupper($mac);
-            $product = Product::where('ether_mac', '=', $mac)->firstOrFail();
+            $product = Product::where('ether_mac', '=', $mac)
+                              ->orWhere('wifi_mac', '=', $mac)
+                              ->firstOrFail();
             //var_dump($product);
             if ($product) {
                 $proj_id = $product->proj_id;
@@ -149,5 +155,84 @@ class FrontendViewController extends Controller
 
     }
 
+
+    public function queryLogo($proj_id)
+    {
+        $logo = Logo::where('proj_id', $proj_id)
+                     ->where('status', true)
+                     ->orderBy('updated_at', 'desc')
+                     ->first();
+
+        if ($logo == null) {
+            $proj_id = 0;
+            $logo = Logo::where('proj_id', $proj_id)
+                         ->where('status', true)
+                         ->orderBy('updated_at', 'desc')
+                         ->first();
+        }
+
+        $result = array(
+                  'name'      => $logo->name,
+                  'image'     => $logo->image,
+                  'link_url'  => $logo->link_url,
+        );
+
+        return $result;
+    }
+
+    public function queryBusiness($proj_id)
+    {
+        $business = Business::where('proj_id', $proj_id)
+                            ->where('status', true)
+                            ->orderBy('updated_at', 'desc')
+                            ->first();
+
+        $result = array(
+                   'image'     => $business->logo_url,
+                   'link_url'  => $business->link_url,
+        );
+
+        return $result;
+    }
+
+    public function queryAdvertisings($proj_id)
+    {
+         $advertistings = Advertising::select('index', 'thumbnail as image', 'link_url')
+                                     ->where('proj_id', $proj_id)
+                                     ->where('status', true)
+                                     ->orderBy('index', 'asc')
+                                     ->get();
+         $result = $advertistings->toArray();
+
+         return $result;
+    }
+
+    public function query(Request $request)
+    {
+       if ($request->input('mac')) {
+            $mac = str_replace(':', '', $request->input('mac'));
+            $mac = strtoupper($mac);
+            $product = Product::where('ether_mac', '=', $mac)
+                                orWhere('wifi_mac', '=', $mac)
+                                ->firstOrFail();
+            //var_dump($product);
+            if ($product) {
+                $proj_id = $product->proj_id;
+            }
+        } else if ($request->input('id')) {
+            $proj_id = $request->input('id');
+        }
+
+        $logo       = $this->queryLogo($proj_id);
+        $customLogo = $this->queryBusiness($proj_id);
+        $ad         = $this->queryAdvertisings($proj_id);
+        $result = array(
+            'logo'        => $logo,
+            'customLogo'  => $customLogo,
+            'ad'          => $ad,
+        );
+
+        return json_encode($result);
+    }
 
 }

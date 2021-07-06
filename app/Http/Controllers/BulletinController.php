@@ -169,8 +169,10 @@ class BulletinController extends Controller
         if ($request->input('mac')) {
             $mac = str_replace(':', '', $request->input('mac'));
             $mac = strtoupper($mac);
-            $product = Product::where('ether_mac', '=', $mac)->firstOrFail();
-            //var_dump($product);
+            $product = Product::where('ether_mac', '=', $mac)
+                              ->orWhere('wifi_mac', '=', $mac)
+                              ->firstOrFail();
+
             if ($product) {
                 $proj_id = $product->proj_id;
                 //var_dump($proj_id);

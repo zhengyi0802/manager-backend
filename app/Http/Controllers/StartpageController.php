@@ -199,7 +199,9 @@ class StartpageController extends Controller
         if ($request->input('mac')) {
             $mac = str_replace(':', '', $request->input('mac'));
             $mac = strtoupper($mac);
-            $product = Product::where('ether_mac', '=', $mac)->firstOrFail();
+            $product = Product::where('ether_mac', '=', $mac)
+                              ->orWhere('wifi_mac', '=', $mac)
+                              ->firstOrFail();
             //var_dump($product);
             if ($product) {
                 $proj_id = $product->proj_id;

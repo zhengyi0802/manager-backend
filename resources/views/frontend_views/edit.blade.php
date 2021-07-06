@@ -196,7 +196,7 @@
    <div id="view" name="view">
       <div id="topside">
           <div id="block1">
-             <a href="{{ route('materials.edit2', ['project' => $project, 'position' => '1']) }}" ><img src="{{ ($frontend_view['block1'] != null) ? $frontend_view['block1']['image_url'] : '/images/block01.png' }}"></a>
+             <a href="{{ route('logos.edit2', ['project' => $project]) }}" ><img src="{{ ($frontend_view['block1'] != null) ? $frontend_view['block1']['image_url'] : '/images/block01.png' }}"></a>
           </div>
           <div id="block2">
              <img src="/images/block02.png">

@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', __('appmenus.title'))
+@section('title', __('logos.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ __('appmenus.header') }}</h1>
+    <h1 class="m-0 text-dark">{{ __('logos.header') }}</h1>
 @stop
 
 @section('content')
@@ -13,7 +13,7 @@
                 <h1>{{ __('tables.edit') }}</h1>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('frontend_views.edit', $project->id) }}">{{ __('tables.back') }}</a>
+                <a class="btn btn-primary" href="{{ route('logos.index') }}">{{ __('tables.back') }}</a>
             </div>
         </div>
     </div>
@@ -29,33 +29,35 @@
         </div>
     @endif
 
-    <form action="{{ route('appmenus.store2', ['appmenu' => $appmenu, 'project' => $project, 'position' => $position]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('logos.update',$logo->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group" id="proj_id" name="proj_id" value="$project->id" >
-                    <strong>{{ __('appmenus.project') }} : {{ $project->name }}</strong>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group" id="position" name="position" value="$position">
-                    <strong>{{ __('appmenus.position') }} : {{ $position }}</strong>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>{{ __('appmenus.name') }} :</strong>
-                    <input type="text" name="name" value="{{ $appmenu->name }}" class="form-control">
+                <div name="project_group" id="project_group" class="form-group">
+                    <strong>{{ __('logos.project') }} : </strong>
+                    <select id="proj_id" name="proj_id" >
+                          <option value="0" {{ ($logo->proj_id == 0) ? "selected" : null }}>------</option>
+                        @foreach($projects as $project)
+                           <option value="{{ $project->id }}" {{ ($logo->proj_id == $project->id) ? "selected" : null }}>{{ $project->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <div id="div-url-name"><strong>{{ __('appmenus.thumbnail') }} : </strong></div>
+                    <strong>{{ __('logos.name') }} :</strong>
+                    <input type="text" name="name" class="form-control" value="{{ $logo->name }}" >
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <div id="div-url-name"><strong>{{ __('logos.image') }} : </strong></div>
                     <div id="div-image">
                         <input type="file" id="image" name="image" accept="image/*" onchange="loadImage(event)" >
                     </div>
                     <div id="div-preview">
-                        <img name="preview" id="preview" src="{{ $appmenu->thumbnail }}">
+                        <img name="preview" id="preview" src="{{ $logo->image }}">
                     </div>
                 </div>
                 <script>
@@ -70,15 +72,15 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>{{ __('appmenus.url') }} :</strong>
-                    <input type="text" name="url" value="{{ $appmenu->url }}" class="form-control">
+                    <strong>{{ __('logos.link_url') }} :</strong>
+                    <input type="text" name="link_url" class="form-control" value="{{ $logo->link_url }}" >
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>{{ __('appmenus.status') }} :</strong>
-                    <input type="radio" name="status" value="1" {{ ($appmenu->status==1) ? "checked":null }} >{{ __('tables.status_on') }}
-                    <input type="radio" name="status" value="0" {{ ($appmenu->status!=1) ? "checked":null }} >{{ __('tables.status_off') }}
+                    <strong>{{ __('logos.status') }} :</strong>
+                    <input type="radio" name="status" value="1" {{ ($logo->status==1) ? "checked":null }} >{{ __('tables.status_on') }}
+                    <input type="radio" name="status" value="0" {{ ($logo->status!=1) ? "checked":null }} >{{ __('tables.status_off') }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

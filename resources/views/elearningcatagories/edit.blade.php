@@ -31,7 +31,6 @@
 
     <form action="{{ route('elearningcatagories.update',$elearningcatagory->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div name="project_group" id="project_group" class="form-group">

@@ -21,6 +21,7 @@ return [
     'logmessages'                   => '機器日誌',
     'project_manager'               => '專案管理系統',
     'projects'                      => '專案資料表',
+    'logos'                         => 'Logo資料表',
     'businesses'                    => '企業Logo資料表',
     'advertisings'                  => '企業靜態廣告資料表',
     'mainvideos'                    => '主畫面影片資料表',

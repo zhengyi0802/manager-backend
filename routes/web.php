@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductStatusController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LogMessageController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\LogoController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\AdvertisingController;
 use App\Http\Controllers\MainVideoController;
@@ -85,6 +86,20 @@ Route::post('/logmessages/savelog', [App\Http\Controllers\LogMessageController::
 Route::resource('/logmessages', LogMessageController::class);
 
 Route::resource('/projects', ProjectController::class);
+
+Route::get('/logos/{project}/edit2', [App\Http\Controllers\LogoController::class, 'edit2'])
+       ->name('logos.edit2');
+
+Route::get('/logos/{project}/create2', [App\Http\Controllers\LogoController::class, 'create2'])
+       ->name('logos.create2');
+
+Route::get('/logos/{project}/query', [App\Http\Controllers\LogoController::class, 'query'])
+       ->name('logos.query');
+
+Route::post('/logos/{project}/store2', [App\Http\Controllers\LogoController::class, 'store2'])
+       ->name('logos.store2');
+
+Route::resource('/logos', LogoController::class);
 
 Route::get('/materials/{project}/{position}/edit2', [App\Http\Controllers\MaterialController::class, 'edit2'])
        ->name('materials.edit2');

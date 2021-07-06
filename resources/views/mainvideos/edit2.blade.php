@@ -31,7 +31,6 @@
 
     <form action="{{ route('mainvideos.store2', ['mainvideo' => $mainvideo, 'project' => $project]) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group" id="proj_id" name="proj_id" value="$project->id" >

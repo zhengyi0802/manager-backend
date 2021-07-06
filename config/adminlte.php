@@ -253,6 +253,11 @@ return [
                     'label_color' => 'success',
                ],
                [
+                    'text'        => 'logos',
+                    'url'         => 'logos',
+                    'label_color' => 'success',
+               ],
+               [
                     'text'        => 'businesses',
                     'url'         => 'businesses',
                     'label_color' => 'success',

@@ -31,7 +31,6 @@
 
     <form action="{{ route('product_statuses.update',$productStatus->id) }}" method="POST">
         @csrf
-        @method('PUT')
          <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">

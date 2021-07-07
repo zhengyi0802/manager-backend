@@ -86,20 +86,21 @@ class LogoController extends Controller
             'status'       => 'required',
         ]);
 
+        $data = $request->all();
         if ($request->file()) {
             $file = ImageUpload::fileUpload($request);
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $request->merge(['image', $file->file_path]);
+            $data['image'] = $file->file_path;
         }
 
-        $request->merge(['proj_id', $project->id]);
+        $data['proj_id'] = $project->id;
 
         if ($logo->id > 0) {
-            $logo->update($request->all());
+            $logo->update($data);
         } else {
-            Logo::create($request->all());
+            Logo::create($data);
         }
 
         return redirect()->route('frontend_views.edit', compact('project'))
@@ -138,8 +139,11 @@ class LogoController extends Controller
 
     public function edit2(Project $project, Logo $logo)
     {
-        $logo = Logo::where('proj_id', $project->id)->orderBy('updated_at', 'desc')->first();
+        $logo = Logo::where('proj_id', $project->id)
+                    ->orderBy('updated_at', 'desc')
+                    ->first();
 
+        //echo $project->id."<br>";
         if ($logo == null) {
             return $this->create2($project);
         }

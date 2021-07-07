@@ -96,7 +96,7 @@ Route::get('/logos/{project}/create2', [App\Http\Controllers\LogoController::cla
 Route::get('/logos/{project}/query', [App\Http\Controllers\LogoController::class, 'query'])
        ->name('logos.query');
 
-Route::post('/logos/{project}/store2', [App\Http\Controllers\LogoController::class, 'store2'])
+Route::post('/logos/{project}/{logo}/store2', [App\Http\Controllers\LogoController::class, 'store2'])
        ->name('logos.store2');
 
 Route::resource('/logos', LogoController::class);
@@ -107,7 +107,7 @@ Route::get('/materials/{project}/{position}/edit2', [App\Http\Controllers\Materi
 Route::get('/marerials/{project}/{position}/creat2', [App\Http\Controllers\MaterialController::class, 'create2'])
        ->name('materials.create2');
 
-Route::post('/materials/{project}/{position}/store2', [App\Http\Controllers\MaterialController::class, 'store2'])
+Route::post('/materials/{project}/{position}/{material}/store2', [App\Http\Controllers\MaterialController::class, 'store2'])
        ->name('materials.store2');
 
 Route::resource('/materials', MaterialController::class);
@@ -135,7 +135,7 @@ Route::get('/businesses/{project}/edit2', [App\Http\Controllers\BusinessControll
 Route::get('/businesses/query', [App\Http\Controllers\BusinessController::class, 'query'])
        ->name('businesses.query');
 
-Route::post('/businesses/{project}/store2', [App\Http\Controllers\BusinessController::class, 'store2'])
+Route::post('/businesses/{project}/{business}/store2', [App\Http\Controllers\BusinessController::class, 'store2'])
        ->name('businesses.store2');
 
 Route::resource('/businesses', BusinessController::class);
@@ -149,7 +149,7 @@ Route::get('/advertisings/{project}/edit2', [App\Http\Controllers\AdvertisingCon
 Route::get('/advertisings/query', [App\Http\Controllers\AdvertisingController::class, 'qurty'])
        ->name('advertisings.qurty');
 
-Route::post('/advertisings/{project}/store2', [App\Http\Controllers\AdvertisingController::class, 'store2'])
+Route::post('/advertisings/{project}/{advertising}/store2', [App\Http\Controllers\AdvertisingController::class, 'store2'])
        ->name('advertisings.store2');
 
 Route::resource('/advertisings', AdvertisingController::class);
@@ -163,7 +163,7 @@ Route::get('/mainvideos/{project}/edit2', [App\Http\Controllers\MainVideoControl
 Route::get('/mainvideos/query', [App\Http\Controllers\MainVideoController::class, 'query'])
        ->name('mainvideos.query');
 
-Route::post('/mainvideos/store2', [App\Http\Controllers\MainVideoController::class, 'store2'])
+Route::post('/mainvideos/{project}/{mainvideo}/store2', [App\Http\Controllers\MainVideoController::class, 'store2'])
        ->name('mainvideos.store2');
 
 Route::resource('/mainvideos', MainVideoController::class);
@@ -174,7 +174,7 @@ Route::get('/appmenus/{project}/{position}/create2', [App\Http\Controllers\AppMe
 Route::get('/appmenus/{project}/{position}/edit2', [App\Http\Controllers\AppMenuController::class, 'edit2'])
        ->name('appmenus.edit2');
 
-Route::post('/appmenus/{project}/{position}/store2', [App\Http\Controllers\AppMenuController::class, 'store2'])
+Route::post('/appmenus/{project}/{position}/{appmenu}/store2', [App\Http\Controllers\AppMenuController::class, 'store2'])
        ->name('appmenus.store2');
 
 Route::get('/appmenus/query', [App\Http\Controllers\AppMenuController::class, 'query'])
@@ -188,7 +188,7 @@ Route::get('/bulletins/{projec}/create2', [App\Http\Controllers\BulletinControll
 Route::get('/bulletins/{project}/edit2', [App\Http\Controllers\BulletinController::class, 'edit2'])
        ->name('bulletins.edit2');
 
-Route::post('/bulletins/{project}/store2', [App\Http\Controllers\BulletinController::class, 'store2'])
+Route::post('/bulletins/{project}/{bulletin}/store2', [App\Http\Controllers\BulletinController::class, 'store2'])
        ->name('bulletins.store2');
 
 Route::get('/bulletins/query', [App\Http\Controllers\BulletinController::class, 'query'])

@@ -79,24 +79,24 @@ class BusinessController extends Controller
     public function store2(Request $request, Project $project, Business $business)
     {
         $request->validate([
-            'proj_id'      => 'required',
             'status'       => 'required',
         ]);
 
+        $data = $request->all();
         if ($request->file()) {
             $file = ImageUpload::fileUpload($request);
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $request->merge(['logo_url', $file->file_path]);
+            $data['logo_url'] = $file->file_path;
         }
 
-        $request->merge(['proj_id', $project->id]);
+        $data['proj_id'] = $project->id;
 
         if ($business->id > 0) {
-            $business->update($request->all());
+            $business->update($data);
         } else {
-            Business::create($request->all());
+            Business::create($data);
         }
 
         return redirect()->route('frontend_views.edit', compact('project'))

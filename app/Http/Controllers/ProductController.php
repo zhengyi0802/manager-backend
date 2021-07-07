@@ -62,7 +62,6 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'serialno' => 'required',
             'type_id' => 'required',
             'wifi_mac' => 'required',
             'status_id' => 'required',
@@ -142,7 +141,6 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
-            'serialno' => 'required',
             'wifi_mac' => 'required',
             'type_id' => 'required',
             'status_id' => 'required',

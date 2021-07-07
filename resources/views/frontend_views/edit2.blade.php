@@ -196,7 +196,7 @@
    <div id="view" name="view">
       <div id="topside">
           <div id="block1">
-             <a href="{{ route('logos.edit2', ['project' => $project]) }}" ><img src="{{ ($frontend_view['logo'] != null) ? $frontend_view['logo'] : '/images/block01.png' }}"></a>
+             <a href="{{ route('logos.edit2', ['project' => $project]) }}" ><img src="{{ ($frontend_view['block1'] != null) ? $frontend_view['block1']['image_url'] : '/images/block01.png' }}"></a>
           </div>
           <div id="block2">
              <img src="/images/block02.png">
@@ -208,45 +208,45 @@
       <div id="middleside">
           <div id="leftside">
               <div id="block4">
-                 <a href="{{ route('businesses.edit2', ['project' => $project]) }}" ><img src="{{ ($frontend_view['customLogo'] != null) ? $frontend_view['customLogo'] : '/images/block04.png' }}"></a>
+                 <a href="{{ route('businesses.edit2', ['project' => $project]) }}" ><img src="{{ ($frontend_view['block4'] != null) ? $frontend_view['block4']['image_url'] : '/images/block04.png' }}"></a>
              </div>
              <div id="block7">
-                 <a href="{{ route('advertisings.edit2', ['project' => $project]) }}" ><img src="{{ ($frontend_view['ad'] != null) ? $frontend_view['ad'] : '/images/block07.png' }}"></a>
+                 <a href="{{ route('advertisings.edit2', ['project' => $project]) }}" ><img src="{{ ($frontend_view['block7'] != null) ? $frontend_view['block7']['image_url'] : '/images/block07.png' }}"></a>
               </div>
           </div>
           <div id="block5" class="block5">
-             <a href="{{ route('mainvideos.edit2', ['project' => $project]) }}" ><img src="/images/block05.png"></a>
+             <a href="{{ route('mainvideos.edit2', ['project' => $project]) }}" ><img src="{{ ($frontend_view['block5'] != null) ? $frontend_view['block5']['image_url'] : '/images/block05.png' }}"></a>
           </div>
           <div id="rightside">
               <div id="block6">
-                 <a href="{{ route('bulletins.edit2', ['project' => $project]) }}" >{{ $frontend_view['bulletin'] }}</a>
+                 <a href="{{ route('bulletins.edit2', ['project' => $project]) }}" ><img src="{{ ($frontend_view['block6'] != null) ? $frontend_view['block6']['image_url'] : '/images/block06.png' }}"></a>
               </div>
               <div id="block8">
-                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '1']) }}" ><img src="{{ ($frontend_view['apps'][0] != null) ? $frontend_view['apps'][0] : '/images/block08.png' }}"></a>
+                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '1']) }}" ><img src="{{ ($frontend_view['block8'] != null) ? $frontend_view['block8']['image_url'] : '/images/block08.png' }}"></a>
               </div>
               <div id="block9">
-                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '2']) }}" ><img src="{{ ($frontend_view['apps'][1] != null) ? $frontend_view['apps'][1] : '/images/block09.png' }}"></a>
+                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '2']) }}" ><img src="{{ ($frontend_view['block9'] != null) ? $frontend_view['block9']['image_url'] : '/images/block09.png' }}"></a>
               </div>
               <div id="block10">
-                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '3']) }}" ><img src="{{ ($frontend_view['apps'][2] != null) ? $frontend_view['apps'][2] : '/images/block10.png' }}"></a>
+                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '3']) }}" ><img src="{{ ($frontend_view['block10'] != null) ? $frontend_view['block10']['image_url'] : '/images/block10.png' }}"></a>
               </div>
               <div id="block11">
-                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '4']) }}" ><img src="{{ ($frontend_view['apps'][3] != null) ? $frontend_view['apps'][3] : '/images/block11.png' }}"></a>
+                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '4']) }}" ><img src="{{ ($frontend_view['block11'] != null) ? $frontend_view['block11']['image_url'] : '/images/block11.png' }}"></a>
               </div>
               <div id="block12">
-                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '5']) }}" ><img src="{{ ($frontend_view['apps'][4] != null) ? $frontend_view['apps'][4] : '/images/block12.png' }}"></a>
+                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '5']) }}" ><img src="{{ ($frontend_view['block12'] != null) ? $frontend_view['block12']['image_url'] : '/images/block12.png' }}"></a>
               </div>
               <div id="block13">
-                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '6']) }}" ><img src="{{ ($frontend_view['apps'][5] != null) ? $frontend_view['apps'][5] : '/images/block13.png' }}"></a>
+                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '6']) }}" ><img src="{{ ($frontend_view['block13'] != null) ? $frontend_view['block13']['image_url'] : '/images/block13.png' }}"></a>
               </div>
               <div id="block14">
-                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '7']) }}" ><img src="{{ ($frontend_view['apps'][6] != null) ? $frontend_view['apps'][6] : '/images/block14.png' }}"></a>
+                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '7']) }}" ><img src="{{ ($frontend_view['block14'] != null) ? $frontend_view['block14']['image_url'] : '/images/block14.png' }}"></a>
               </div>
               <div id="block15">
-                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '8']) }}" ><img src="{{ ($frontend_view['apps'][7] != null) ? $frontend_view['apps'][7] : '/images/block15.png' }}"></a>
+                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '8']) }}" ><img src="{{ ($frontend_view['block15'] != null) ? $frontend_view['block15']['image_url'] : '/images/block15.png' }}"></a>
               </div>
               <div id="block16">
-                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '9']) }}" ><img src="{{ ($frontend_view['apps'][8] != null) ? $frontend_view['apps'][8] : '/images/block16.png' }}"></a>
+                 <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '9']) }}" ><img src="{{ ($frontend_view['block16'] != null) ? $frontend_view['block16']['image_url'] : '/images/block16.png' }}"></a>
               </div>
           </div>
       </div>

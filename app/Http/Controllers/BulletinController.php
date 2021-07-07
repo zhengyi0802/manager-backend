@@ -70,7 +70,8 @@ class BulletinController extends Controller
 
     public function store2(Request $request, Project $project, Bulletin $bulletin)
     {
-        $request->merge(['proj_id', $project->id]);
+        $data = $request->all();
+        $data['proj_id'] = $project->id;
 
         if ($bulletin->id > 0) {
             $bulletin->update($request->all());

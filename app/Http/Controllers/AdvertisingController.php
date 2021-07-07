@@ -82,25 +82,27 @@ class AdvertisingController extends Controller
     public function store2(Request $request, Project $project, Advertising $advertising)
     {
         $request->validate([
-            'proj_id'      => 'required',
             'index'        => 'required',
             'status'       => 'required',
         ]);
 
+        $data = $request->all();
         if ($request->file()) {
             $file = ImageUpload::fileUpload($request);
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $request->merge(['thumbnail', $file->file_path]);
+            $data['thumbnail'] = $file->file_path;
+        } else {
+            $data['thumbnail'] = $advertising->thumbnail;
         }
 
-        $request->merge(['proj_id', $project->id]);
+        $data['proj_id'] = $project->id;
 
         if ($advertising->id > 0) {
-            $advertising->update($request->all());
+            $advertising->update($data);
         } else {
-            Advertising::create($request->all());
+            Advertising::create($data);
         }
 
         return redirect()->route('frontend_views.edit', compact('project'))

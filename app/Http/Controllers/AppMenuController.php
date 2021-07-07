@@ -89,19 +89,21 @@ class AppMenuController extends Controller
             'status'       => 'required',
         ]);
 
+        $data = $request->all();
         if ($request->file()) {
             $file = ImageUpload::fileUpload($request);
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $appmenu->thumbnail = $file->file_path;
+            $data['thumbnail'] = $file->file_path;
         }
 
+        $data['proj_id']  = $project->id;
+        $data['position'] = $position;
         if ($appmenu->id > 0) {
-            $appmenu->update($request->all());
+            $appmenu->update($data);
         } else {
-            $request->merge(['proj_id' => $project->id, 'position' => $position]);
-            AppMenu::create($request->all());
+            AppMenu::create($data);
         }
 
         return redirect()->route('frontend_views.edit', compact('project'))

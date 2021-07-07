@@ -133,15 +133,17 @@ class ELearningCatagoryController extends Controller
             'status'   => 'required',
         ]);
 
+        $data = $request->all();
         if ($request->file()) {
             $file = ImageUpload::fileUpload($request);
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $request->merge(['thumbnail',  $file->file_path]);
+            //$request->merge(['thumbnail',  $file->file_path]);
+            $data['thumbnail'] = $file->file_path;
         }
 
-        $elearningcatagory->update($request->all());
+        $elearningcatagory->update($data);
 
         return redirect()->route('elearningcatagories.index')
                         ->with('success','ELearningCatagory created successfully');

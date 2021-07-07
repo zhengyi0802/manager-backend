@@ -139,7 +139,6 @@ class ELearningCatagoryController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            //$request->merge(['thumbnail',  $file->file_path]);
             $data['thumbnail'] = $file->file_path;
         }
 

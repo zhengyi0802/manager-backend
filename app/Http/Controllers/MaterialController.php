@@ -131,17 +131,18 @@ class MaterialController extends Controller
                 'mime_type' => 'required',
         ]);
 
+        $data = $request->all();
         if ($request->mime_type == 'image') {
            if ($request->file()) {
                $file = ImageUpload::fileUpload($request);
                if ($file == null) {
                    return back()->with('image', $fileName);
                }
-               $request->merge(['image_url' => $file->file_path]);
+               $data['image_url'] = $file->file_path;
            }
         }
 
-        $material->update($request->all());
+        $material->update($data);
 
         return redirect()->route('materials.index')
                         ->with('success','Material created successfully.');
@@ -196,21 +197,23 @@ class MaterialController extends Controller
                 'mime_type' => 'required',
         ]);
 
+        $data = $request->all();
         if ($request->mime_type == 'image') {
            if ($request->file()) {
                $file = ImageUpload::fileUpload($request);
                if ($file == null) {
                    return back()->with('image', $fileName);
                }
-               $request->merge(['image_url' => $file->file_path]);
+               $data['image_url'] = $file->file_path;
            }
         }
 
         if ($material->id > 0) {
-            $material->update($request->all());
+            $material->update($data);
         } else {
-            $request->merge(['proj_id' => $project->id, 'position' => $position]);
-            Material::create($request->all());
+            $data['proj_id'] = $project->id;
+            $data['position'] = $position;
+            Material::create($data);
         }
 
         return redirect()->route('frontend_views.edit', compact('project'))

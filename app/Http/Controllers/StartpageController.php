@@ -167,15 +167,16 @@ class StartpageController extends Controller
             'status' => 'required',
         ]);
 
+        $data = $request->all();
         if($request->file()) {
             $file = ImageUpload::fileUpload($request);
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $startpage->merge(['url',  $file->file_path]);
+            $data['url'] = $file->file_path;
         }
 
-        $startpage->update($request->all());
+        $startpage->update($data);
 
         return redirect()->route('startpages.index', $id)->with('success', 'Startpage created successfully.');
     }

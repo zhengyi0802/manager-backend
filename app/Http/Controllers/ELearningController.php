@@ -127,15 +127,16 @@ class ELearningController extends Controller
             'status'        => 'required',
         ]);
 
+        $data = $request->all();
         if ($request->file()) {
             $file = ImageUpload::fileUpload($request);
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $request->merge(['preview',  $file->file_path]);
+            $data['preview'] = $file->file_path;
         }
 
-        $elearning->update($request->all());
+        $elearning->update($data);
 
         return redirect()->route('elearnings.index')
                         ->with('success', 'ELearning deleted successfully');

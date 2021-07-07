@@ -39,6 +39,7 @@ class AdvertisingController extends Controller
     public function create2(Project $project)
     {
         $advertising = new Advertising;
+        $advertising->id = 0;
 
         return view('advertisings.create2', compact('advertising'))
                ->with(compact('project'));

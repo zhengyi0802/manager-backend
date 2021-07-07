@@ -39,6 +39,7 @@ class LogoController extends Controller
     public function create2(Project $project)
     {
         $logo = new Logo;
+        $logo->id = 0;
 
         return view('logos.create2', compact('logo'))
                ->with(compact('project'));

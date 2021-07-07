@@ -37,6 +37,7 @@ class MainVideoController extends Controller
     public function create2(Project $project)
     {
         $mainvideo = new MainVideo;
+        $mainvideo->id = 0;
 
         return view('mainvideos.create2', compact('mainvideo'))
                  ->with(compact('project'));

@@ -118,7 +118,7 @@ class CustomerSupportController extends Controller
      */
     public function destroy(CustomerSupport $customersupport)
     {
-        $customersdupport->delete();
+        $customersupport->delete();
 
         return redirect()->route('customersupports.index')
                         ->with('success','CustomerSupport deleted successfully');

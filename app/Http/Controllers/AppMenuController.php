@@ -40,6 +40,7 @@ class AppMenuController extends Controller
     public function create2(Project $project, $position)
     {
         $appmenu = new AppMenu;
+        $appmenu->id = 0;
 
         return view('appmenus.create2', compact('appmenu'))
                ->with(compact('project'))

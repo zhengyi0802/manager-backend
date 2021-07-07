@@ -41,6 +41,7 @@ class BulletinController extends Controller
     public function create2(Project $project)
     {
         $bulletin = new Bulletin;
+        $bulletin->id = 0;
 
         return view('bulletins.create2', compact('bulletin'))
                ->with(compact('project'));

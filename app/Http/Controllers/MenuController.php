@@ -55,7 +55,6 @@ class MenuController extends Controller
 
         $menu->proj_id  = $request->proj_id;
         $menu->name     = $request->name;
-        $menu->url      = $request->url;
         $menu->tag      = $request->tag;
         $menu->status   = $request->status;
 
@@ -121,7 +120,6 @@ class MenuController extends Controller
 
         $menu->proj_id  = $request->proj_id;
         $menu->name     = $request->name;
-        $menu->url      = $request->url;
         $menu->tag      = $request->tag;
         $menu->status   = $request->status;
 
@@ -178,7 +176,8 @@ class MenuController extends Controller
 
     public function queryMenus($proj_id)
     {
-        $menus = Menu::where('proj_id', $proj_id)
+        $menus = Menu::select('name', 'icon', 'tag')
+                     ->where('proj_id', $proj_id)
                      ->where('status', true)
                      ->orderBy('updated_at', 'asc')
                      ->get();

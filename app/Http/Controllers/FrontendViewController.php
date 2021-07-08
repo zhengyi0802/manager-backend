@@ -301,12 +301,12 @@ class FrontendViewController extends Controller
             $proj_id = $request->input('id');
         }
 
-        $logo       = $this->queryLogo($proj_id);
+        // $logo       = $this->queryLogo($proj_id);
         $customLogo = $this->queryBusiness($proj_id);
         $ad         = $this->queryAdvertisings($proj_id);
         $videos     = $this->queryMainVideo($proj_id);
         $result = array(
-            'logo'        => $logo,
+            // 'logo'        => $logo,
             'customLogo'  => $customLogo,
             'ad'          => $ad,
             'videos'      => $videos,

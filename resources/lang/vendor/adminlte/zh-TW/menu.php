@@ -31,6 +31,7 @@ return [
     'customersupports'              => '客服相關設置',
     'elearningcatagories'           => '較學子目錄資料表',
     'elearnings'                    => '教學內容資料表',
+    'appadvertisings'               => '應用頁面廣告資料表',
     'account_settings'              => '賬號設定',
     'profile'                       => '個人資料',
     'change_password'               => '修改密碼',

@@ -40,7 +40,7 @@
             <td>{{ $menu->project }}</td>
             <td>{{ $menu->name }}</td>
             <td><img src="{{ $menu->icon }}" width="320px" height="180px"></td>
-            <td>{{ $menu->icon }}</td>
+            <td>{{ $menu->tag }}</td>
             <td>{{ ($menu->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
             <td>
                 <form action="{{ route('menus.destroy',$menu->id) }}" method="POST">

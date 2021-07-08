@@ -152,15 +152,36 @@ class MarqueeController extends Controller
 
         if ($request->input('type')) {
             $type = $request->input('type');
-            $marquees = Marquee::where('product_id', $product->id)
-                        ->where('status', true)->where('type', $type)->get();
+            if ($type == 1) {
+               $marquees = Marquee::select('type', 'name', 'content', 'url')
+                                  ->where('product_id', $product->id)
+                                  ->where('status', true)
+                                  ->where('type', $type)
+                                  ->orderBy('prev_id', 'asc')
+                                  ->get();
+            } else if ($type == 2 || $type == 3) {
+               $marquees = Marquee::select('type', 'name', 'content', 'url' )
+                                  ->where('status', true)
+                                  ->where('type', $type)
+                                  ->orderBy('prev_id', 'asc')
+                                  ->get();
+            }
         } else {
-            $marquees = Marquee::where('product_id', $product->id)
-                        ->where('status', true)->get();
+            $marquees = Marquee::select('type', 'name', 'content', 'url')
+                        ->where('proj_id', $proj_id)
+                        ->where('status', true)
+                        ->orderBy('type', 'asc')
+                        ->orderBy('prev_id', 'asc')
+                        ->get();
         }
-        if ($marquees)
-            return json_encode($marquees);
+        //var_dump($marquees);
 
+        $result = null;
+        if ($marquees) {
+            $result = $marquees->toArray();
+        }
+
+        return json_encode($result);
     }
 
 }

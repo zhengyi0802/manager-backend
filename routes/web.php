@@ -11,6 +11,7 @@ use App\Http\Controllers\LogoController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\AdvertisingController;
 use App\Http\Controllers\MainVideoController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\StartpageController;
 use App\Http\Controllers\FrontendViewController;
@@ -181,6 +182,11 @@ Route::get('/appmenus/query', [App\Http\Controllers\AppMenuController::class, 'q
        ->name('appmenus.query');
 
 Route::resource('/appmenus', AppMenuController::class);
+
+Route::get('/menus/query', [App\Http\Controllers\MenuController::class, 'query'])
+       ->name('menus.query');
+
+Route::resource('/menus', MenuController::class);
 
 Route::get('/bulletins/{projec}/create2', [App\Http\Controllers\BulletinController::class, 'create2'])
        ->name('bulletins.create2');

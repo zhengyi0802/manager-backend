@@ -39,6 +39,7 @@ class BusinessController extends Controller
     public function create2(Project $project)
     {
         $business = new Business;
+        $business->id = 0;
 
         return view('businesses.create2', compact('business'))
                ->with(compact('project'));

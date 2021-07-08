@@ -219,7 +219,7 @@
           </div>
           <div id="rightside">
               <div id="block6">
-                 <a href="{{ route('bulletins.edit2', ['project' => $project]) }}" >{{ $frontend_view['bulletin'] }}</a>
+                 <a href="{{ route('bulletins.edit2', ['project' => $project]) }}" ><img src="/images/block06.png"></a>
               </div>
               <div id="block8">
                  <a href="{{ route('appmenus.edit2', ['project' => $project, 'position' => '1']) }}" ><img src="{{ ($frontend_view['apps'][0] != null) ? $frontend_view['apps'][0] : '/images/block08.png' }}"></a>

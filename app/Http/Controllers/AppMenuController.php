@@ -205,7 +205,6 @@ class AppMenuController extends Controller
 
         return redirect()->route('appmenus.index')
                         ->with('success','APP Menus deleted successfully');
-
     }
 
     public function query(Request $request)

@@ -287,6 +287,11 @@ return [
                     'url'         => 'bulletinitems',
                     'label_color' => 'success',
                ],
+               [
+                    'text'        => 'menus',
+                    'url'         => 'menus',
+                    'label_color' => 'success',
+               ],
 /*
                [
                     'text'        => 'materials',

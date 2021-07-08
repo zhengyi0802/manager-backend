@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\VoiceSetting;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class VoiceSettingController extends Controller
@@ -14,7 +15,12 @@ class VoiceSettingController extends Controller
      */
     public function index()
     {
-        //
+        $voicesettings = VoiceSetting::leftJoin('projects', 'proj_id', 'projects.id')
+                                     ->select('voice_settings.*', 'projects.name as project')
+                                     ->latest()
+                                     ->paginate(5);
+        return view('voicesettings.index', compact('voicesettings'))
+               ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +30,9 @@ class VoiceSettingController extends Controller
      */
     public function create()
     {
-        //
+        $projects = Project::where('status', true)->get();
+
+        return view('voicesettings.create', compact('projects'));
     }
 
     /**
@@ -35,7 +43,16 @@ class VoiceSettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'keywords' => 'required',
+            'package'  => 'required',
+            'status'   => 'required',
+        ]);
+
+        VoiceSetting::create($request->all());
+
+        return redirect()->route('voicesettings.index')
+                        ->with('success','Voice Setting created successfully');
     }
 
     /**
@@ -44,9 +61,14 @@ class VoiceSettingController extends Controller
      * @param  \App\Models\VoiceSetting  $voiceSetting
      * @return \Illuminate\Http\Response
      */
-    public function show(VoiceSetting $voiceSetting)
+    public function show(VoiceSetting $voicesetting)
     {
-        //
+        $id = $voicesetting->id;
+        $voicesetting = VoiceSetting::leftJoin('projects', 'proj_id', 'projects.id')
+                                    ->select('voice_settings.*', 'projects.name as projects')
+                                    ->where('voice_settings.id', $id)->first();
+
+        return view('voicesettings.show', compact('voicesetting'));
     }
 
     /**
@@ -55,9 +77,12 @@ class VoiceSettingController extends Controller
      * @param  \App\Models\VoiceSetting  $voiceSetting
      * @return \Illuminate\Http\Response
      */
-    public function edit(VoiceSetting $voiceSetting)
+    public function edit(VoiceSetting $voicesetting)
     {
-        //
+        $projects = Project::where('status', true)->get();
+
+        return view('voicesettings.edit', compact('voicesetting'))
+               ->with(compact('projects'));
     }
 
     /**
@@ -67,9 +92,18 @@ class VoiceSettingController extends Controller
      * @param  \App\Models\VoiceSetting  $voiceSetting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, VoiceSetting $voiceSetting)
+    public function update(Request $request, VoiceSetting $voicesetting)
     {
-        //
+        $request->validate([
+            'keywords' => 'required',
+            'package'  => 'required',
+            'status'   => 'required',
+        ]);
+
+        $voicesetting->update($request->all());
+
+        return redirect()->route('voicesettings.index')
+                        ->with('success','Voice Setting updated successfully');
     }
 
     /**
@@ -78,8 +112,37 @@ class VoiceSettingController extends Controller
      * @param  \App\Models\VoiceSetting  $voiceSetting
      * @return \Illuminate\Http\Response
      */
-    public function destroy(VoiceSetting $voiceSetting)
+    public function destroy(VoiceSetting $voicesetting)
     {
-        //
+        $voicesetting->delete();
+
+        return redirect()->route('voicesettings.index')
+                        ->with('success','Voice Setting deleted successfully');
     }
+
+    public function query(Request $request)
+    {
+        if ($request->input('mac')) {
+            $mac = str_replace(':', '', $request->input('mac'));
+            $mac = strtoupper($mac);
+            $product = Product::where('ether_mac', '=', $mac)
+                                ->orWhere('wifi_mac', '=', $mac)
+                                ->firstOrFail();
+            //var_dump($product);
+            if ($product) {
+                $proj_id = $product->proj_id;
+            }
+        } else if ($request->input('id')) {
+            $proj_id = $request->input('id');
+        }
+
+        $result = null;
+        $voicesettings = VoiceSetting::select('keywords', 'package', 'link_url')->where('proj_id', $proj_id)->where('status', true)->get();
+        if ($voicesettings) {
+            $result = $voicesettings->toArray();
+        }
+
+        return json_encode($result);
+    }
+
 }

@@ -16,6 +16,8 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\StartpageController;
 use App\Http\Controllers\FrontendViewController;
 use App\Http\Controllers\AppMenuController;
+use App\Http\Controllers\AppAdvertisingController;
+use App\Http\Controllers\VoiceSettingController;
 use App\Http\Controllers\BulletinController;
 use App\Http\Controllers\BulletinItemController;
 use App\Http\Controllers\MarqueeController;
@@ -155,6 +157,11 @@ Route::post('/advertisings/{project}/{advertising}/store2', [App\Http\Controller
 
 Route::resource('/advertisings', AdvertisingController::class);
 
+Route::get('/appadvertisings/query', [App\Http\Controllers\AppAdvertisingController::class, 'query'])
+       ->name('appadvertisings.query');
+
+Route::resource('/appadvertisings', AppAdvertisingController::class);
+
 Route::get('/mainvideos/{project}/create2', [App\Http\Controllers\MainVideoController::class, 'create2'])
        ->name('mainvideos.create2');
 
@@ -221,6 +228,11 @@ Route::get('/qalists/queryall', [App\Http\Controllers\QAListController::class, '
        ->name('qalists.queryall');
 
 Route::resource('/qalists', QAListController::class);
+
+Route::get('/voicesettings/query', [App\Http\Controllers\VoiceSettingController::class, 'query'])
+       ->name('voicesettings.query');
+
+Route::resource('/voicesettings', VoiceSettingController::class);
 
 Route::get('/customersupports/query', [App\Http\Controllers\CustomerSupportController::class, 'query'])
        ->name('customersupports.query');

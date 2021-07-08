@@ -14,7 +14,6 @@ class QACatagoryController extends Controller
      */
     public function index()
     {
-
        $qacatagories = QACatagory::latest()->paginate(5);
 
         return view('qacatagories.index', compact('qacatagories'))

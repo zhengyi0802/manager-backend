@@ -15,6 +15,7 @@ class CreateVoiceSettingsTable extends Migration
     {
         Schema::create('voice_settings', function (Blueprint $table) {
             $table->id();
+            $table->integer('proj_id');
             $table->string('keywords');
             $table->string('package');
             $table->string('link_url')->nullable();

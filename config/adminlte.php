@@ -292,6 +292,16 @@ return [
                     'url'         => 'menus',
                     'label_color' => 'success',
                ],
+               [
+                    'text'        => 'appadvertisings',
+                    'url'         => 'appadvertisings',
+                    'label_color' => 'success',
+               ],
+               [
+                    'text'        => 'voicesettings',
+                    'url'         => 'voicesettings',
+                    'label_color' => 'success',
+               ],
 /*
                [
                     'text'        => 'materials',

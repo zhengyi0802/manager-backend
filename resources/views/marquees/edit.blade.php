@@ -72,17 +72,6 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div name="marquee_group" id="marquee_group" class="form-group">
-                    <strong>{{ __('marquees.previous_id') }} : </strong>
-                    <select id="prev_id" name="previd_id" >
-                           <option value="0" selected>{{ __('marquees.first') }}</option>
-                        @foreach($marquees as $marquee)
-                           <option value="{{ $marquee->id }}">{{ $marquee->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>{{ __('marquees.content') }} : </strong>
                     <input type="text" name="content" class="form-control" value="{{ $marquee->content }}">

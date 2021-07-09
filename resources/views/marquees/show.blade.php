@@ -28,7 +28,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('marquees.type') }} : </strong>
-                {{ ($marquee->type == 1) ? __('marquees.type_single') : __('marquees.type_project') }}
+                @if ($marquee->type == 1)
+                    {{ __('marquees.type_single') }}
+                @elseif ($marquee->type == 2) 
+                    {{ __('marquees.type_project') }}
+                @else
+                    {{ __('marquees.type_all') }}
+                @endif
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -41,12 +47,6 @@
             <div class="form-group">
                 <strong>{{ __('marquees.serialno') }} : </strong>
                 {{ $marquee->serialno ?? __('marquees.product_none') }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('marquees.previous_id') }} : </strong>
-                {{ ($marquee->prev_id == 0) ? __('marquees.first') : $marquee->prev_id }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

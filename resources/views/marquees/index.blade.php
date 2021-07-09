@@ -34,7 +34,15 @@
         @foreach ($marquees as $marquee)
         <tr>
             <td>{{ $marquee->id }}</td>
-            <td>{{ $marquee->type }}</td>
+            <td>
+                @if ($marquee->type == 1)
+                    {{ __('marquees.type_single') }}
+                @elseif ($marquee->type == 2)
+                    {{ __('marquees.type_project') }}
+                @else
+                    {{ __('marquees.type_all') }}
+                @endif
+            </td>
             <td>{{ $marquee->project_name ?? '' }}</td>
             <td>{{ $marquee->serialno ?? '' }}</td>
             <td>{{ $marquee->content }}</td>

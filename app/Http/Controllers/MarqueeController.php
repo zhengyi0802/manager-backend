@@ -88,9 +88,11 @@ class MarqueeController extends Controller
      */
     public function edit(Marquee $marquee)
     {
-        $projects = Project::where('status', true)->get();
+        $projects = Project::where('status', true)
+                           ->get();
         $products = Product::get();
-        $marquees = Marquee::where('proj_id', $marquee->proj_id)->get();
+        $marquees = Marquee::where('proj_id', $marquee->proj_id)
+                           ->get();
 
         return view('marquees.edit', compact('marquee'))
                ->with(compact('projects'))
@@ -157,13 +159,11 @@ class MarqueeController extends Controller
                                   ->where('product_id', $product->id)
                                   ->where('status', true)
                                   ->where('type', $type)
-                                  ->orderBy('prev_id', 'asc')
                                   ->get();
             } else if ($type == 2 || $type == 3) {
                $marquees = Marquee::select('type', 'name', 'content', 'url' )
                                   ->where('status', true)
                                   ->where('type', $type)
-                                  ->orderBy('prev_id', 'asc')
                                   ->get();
             }
         } else {
@@ -171,7 +171,6 @@ class MarqueeController extends Controller
                         ->where('proj_id', $proj_id)
                         ->where('status', true)
                         ->orderBy('type', 'asc')
-                        ->orderBy('prev_id', 'asc')
                         ->get();
         }
         //var_dump($marquees);

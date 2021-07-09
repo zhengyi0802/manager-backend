@@ -260,3 +260,5 @@ Route::resource('/resellers', ResellerController::class);
 
 Route::resource('/members', MemberController::class);
 
+Route::get('/apiinterface/register', [App\Http\Controllers\ApiInterfaceController::class, 'register'])
+       ->name('apiinterface.register');

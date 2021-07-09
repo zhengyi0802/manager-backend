@@ -29,7 +29,7 @@
             <th>{{ __('voicesettings.id') }}</th>
             <th>{{ __('voicesettings.project') }}</th>
             <th>{{ __('voicesettings.keywords') }}</th>
-            <th>{{ __('voicesettings.package') }}</td>
+            <th>{{ __('voicesettings.label') }}</td>
             <th>{{ __('voicesettings.status') }}</th>
             <th width="280px">{{ __('tables.action') }}</th>
         </tr>
@@ -38,7 +38,7 @@
             <td>{{ $voicesetting->id }}</td>
             <td>{{ $voicesetting->project }}</td>
             <td>{{ $voicesetting->keywords }}</td>
-            <td>{{ $voicesetting->package }}</td>
+            <td>{{ $voicesetting->label }}</td>
             <td>{{ ($voicesetting->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
             <td>
                 <form action="{{ route('voicesettings.destroy',$voicesetting->id) }}" method="POST">

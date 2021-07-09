@@ -33,6 +33,12 @@
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>{{ __('voicesettings.label') }} :</strong>
+                {{ $voicesetting->label }}
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>{{ __('voicesettings.package') }} :</strong>
                 {{ $voicesetting->package }}
             </div>

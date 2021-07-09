@@ -6,6 +6,7 @@
         'id'             => '編號',
         'project'        => '專案名稱',
         'keywords'       => '關鍵字',
+        'label'          => '應用程式標題',
         'package'        => '應用程式名稱',
         'link_url'       => '下載連結',
         'status'         => '狀態',

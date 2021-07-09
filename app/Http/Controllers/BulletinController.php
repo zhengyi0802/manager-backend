@@ -165,23 +165,9 @@ class BulletinController extends Controller
         return redirect()->route('bulletins.index')
                          ->with('success','Bulletin deleted successfully');
     }
-
-    public function query(Request $request)
+/*
+    public function querySingle($oroj_id)
     {
-        if ($request->input('mac')) {
-            $mac = str_replace(':', '', $request->input('mac'));
-            $mac = strtoupper($mac);
-            $product = Product::where('ether_mac', '=', $mac)
-                              ->orWhere('wifi_mac', '=', $mac)
-                              ->firstOrFail();
-
-            if ($product) {
-                $proj_id = $product->proj_id;
-                //var_dump($proj_id);
-            }
-        } else if ($request->input('id')) {
-            $proj_id = $request->input('id');
-        }
 
         $datetime = date('y-m-d h:i:s');
         $bulletin = Bulletin::where('proj_id', $proj_id)
@@ -189,6 +175,10 @@ class BulletinController extends Controller
                                ->where('date', '<=', $datetime)
                                ->orderBy('date', 'desc')
                                ->first();
+
+        if ($bulletin == null) {
+            return array();
+        }
 
         $bulletinitems = BulletinItem::where('bulletin_id', $bulletin->id)->get();
 
@@ -210,6 +200,86 @@ class BulletinController extends Controller
                 'date'     => $bulletin->date,
                 'items'    => $items,
         );
+
+        return $result;
+    }
+*/
+    public function queryBulletinItems($bulletin)
+    {
+        $bulletinitems = BulletinItem::where('bulletin_id', $bulletin->id)->get();
+
+        $items = array();
+        foreach($bulletinitems as $bulletinitem) {
+                $item = array(
+                        'id'      => $bulletinitem->id,
+                        'type'    => $bulletinitem->type,
+                        'content' => $bulletinitem->url,
+                );
+                array_push($items, $item);
+        }
+
+        $result = array(
+                'id'       => $bulletin->id,
+                'title'    => $bulletin->title,
+                'message'  => $bulletin->message,
+                'status'   => $bulletin->status,
+                'date'     => $bulletin->date,
+                'items'    => $items,
+        );
+
+        return $result;
+    }
+
+    public function queryBulletins($proj_id, $start, $numbers)
+    {
+        $datetime = date('y-m-d h:i:s');
+        $bulletins = Bulletin::where('proj_id', $proj_id)
+                               ->where('status', true)
+                               ->where('date', '<=', $datetime)
+                               ->orderBy('date', 'desc')
+                               ->skip($start-1)
+                               ->take($numbers)
+                               ->get();
+
+        if ($bulletins == null) {
+            return array();
+        }
+
+        $result = array();
+        foreach($bulletins as $bulletin) {
+                array_push($result, $this->queryBulletinItems($bulletin));
+        }
+        return $result;
+    }
+
+    public function query(Request $request)
+    {
+        if ($request->input('mac')) {
+            $mac = str_replace(':', '', $request->input('mac'));
+            $mac = strtoupper($mac);
+            $product = Product::where('ether_mac', '=', $mac)
+                              ->orWhere('wifi_mac', '=', $mac)
+                              ->firstOrFail();
+
+            if ($product) {
+                $proj_id = $product->proj_id;
+                //var_dump($proj_id);
+            }
+        } else if ($request->input('id')) {
+            $proj_id = $request->input('id');
+        }
+
+        $start = 1;
+        if ($request->input('start')) {
+            $start = $request->input('start');
+        }
+
+        $numbers = 1;
+        if ($request->input('numbers')) {
+            $numbers = $request->input('numbers');
+        }
+
+        $result = $this->queryBulletins($proj_id, $start, $numbers);
 
         return json_encode($result);
     }

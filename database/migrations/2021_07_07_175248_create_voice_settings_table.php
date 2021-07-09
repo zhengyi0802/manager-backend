@@ -17,6 +17,7 @@ class CreateVoiceSettingsTable extends Migration
             $table->id();
             $table->integer('proj_id');
             $table->string('keywords');
+            $table->string('label');
             $table->string('package');
             $table->string('link_url')->nullable();
             $table->boolean('status')->default(true);

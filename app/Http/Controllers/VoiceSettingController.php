@@ -45,6 +45,7 @@ class VoiceSettingController extends Controller
     {
         $request->validate([
             'keywords' => 'required',
+            'label'    => 'required',
             'package'  => 'required',
             'status'   => 'required',
         ]);
@@ -96,6 +97,7 @@ class VoiceSettingController extends Controller
     {
         $request->validate([
             'keywords' => 'required',
+            'label'    => 'required',
             'package'  => 'required',
             'status'   => 'required',
         ]);
@@ -137,7 +139,7 @@ class VoiceSettingController extends Controller
         }
 
         $result = null;
-        $voicesettings = VoiceSetting::select('keywords', 'package', 'link_url')->where('proj_id', $proj_id)->where('status', true)->get();
+        $voicesettings = VoiceSetting::select('keywords', 'label', 'package', 'link_url')->where('proj_id', $proj_id)->where('status', true)->get();
         if ($voicesettings) {
             $result = $voicesettings->toArray();
         }

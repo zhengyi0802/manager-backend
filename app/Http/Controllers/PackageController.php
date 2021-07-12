@@ -204,7 +204,7 @@ class PackageController extends Controller
     }
 
     public function getPackageInfo($file_path, $filename) {
-            $filepath = "/storage/www/manager/public".$file_path;
+            $filepath = "/files/www/manager/public".$file_path;
             $apk = new \ApkParser\Parser($filepath);
             $manifest = $apk->getManifest();
             $apk_data['package'] = $manifest->getPackageName();

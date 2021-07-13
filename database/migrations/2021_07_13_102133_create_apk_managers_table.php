@@ -23,6 +23,7 @@ class CreateApkManagersTable extends Migration
             $table->string('sdk_version', 10);
             $table->string('icon');
             $table->string('path');
+            $table->text('description')->nullable();
             $table->boolean('status')->default(true);
             $table->json('type_id')->nullable();
             $table->json('proj_id')->nullable();

@@ -26,8 +26,8 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('apkmanagers.name') }} : </strong>
-                {{ $apkmanager->name }}
+                <strong>{{ __('apkmanagers.package_name') }} : </strong>
+                {{ $apkmanager->package_name }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -45,7 +45,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('apkmanagers.sdk_version') }} : </strong>
-                <img src="{{ $apkamager->sdk_version }}">
+                {{ $apkmanager->sdk_version }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -57,7 +57,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('apkmanagers.icon') }} : </strong>
-                {{ $apkmanager->icon }}
+                <img src="{{ $apkmanager->icon }}" >
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

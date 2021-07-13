@@ -238,6 +238,13 @@ return [
             'label_color'  => 'success',
             'can'          => 'manager-only',
         ],
+        [
+            'text'         => 'apkmanagers',
+            'url'          => 'apkmanagers',
+            'label_color'  => 'success',
+            'can'          => 'manager-only',
+        ],
+
         [   'text'    => 'pages_manager',
             'can'     => 'operator-only',
             'submenu' => [

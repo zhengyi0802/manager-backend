@@ -19,7 +19,7 @@ class ApkManagerController extends Controller
      */
     public function index()
     {
-        $apkmanagers = Package::latest()->paginate(5);
+        $apkmanagers = ApkManager::latest()->paginate(5);
 
         return view('apkmanagers.index', compact('apkmanagers'))
                ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -84,7 +84,7 @@ class ApkManagerController extends Controller
      * @param  \App\Models\ApkManager  $apkManager
      * @return \Illuminate\Http\Response
      */
-    public function show(ApkManager $apknanager)
+    public function show(ApkManager $apkmanager)
     {
         return view('apkmanagers.show', compact('apkmanager'));
     }
@@ -137,8 +137,8 @@ class ApkManagerController extends Controller
             $apk = new \ApkParser\Parser($filepath);
             $manifest = $apk->getManifest();
             $apk_data['package_name'] = $manifest->getPackageName();
-            $apk_data['version_name'] = $manifest->getVersionName();
-            $apk_data['version_code'] = $manifest->getVersionCode();
+            $apk_data['package_version_name'] = $manifest->getVersionName();
+            $apk_data['package_version_code'] = $manifest->getVersionCode();
             $apk_data['sdk_version'] = $manifest->getTargetSdk()->platform;
             $resourceId = $manifest->getApplication()->getIcon();
             $resources = $apk->getResources($resourceId);
@@ -150,7 +150,7 @@ class ApkManagerController extends Controller
             $content = stream_get_contents($apk->getStream($resources[0]));
             $icon_path = "public/uploads/images/".$iconfile;
             Storage::put($icon_path, $content);
-            $apk_data['icon_file'] = "/storage/uploads/images/".$iconfile;
+            $apk_data['icon'] = "/storage/uploads/images/".$iconfile;
 
             return $apk_data;
     }
@@ -166,7 +166,7 @@ class ApkManagerController extends Controller
                                  ->first();
             if ($package) {
                 $result = array (
-                      'label'                => $package->label
+                      'label'                => $package->label,
                       'package_name'         => $package->package_name,
                       'package_version_name' => $package->package_version_name,
                       'package_version_code' => $package->package_version_code,

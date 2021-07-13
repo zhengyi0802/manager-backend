@@ -5,6 +5,7 @@ return [
     'main_navigation'               => '主導航',
     'backend_system'                => '後台管理系統',
     'packages_manager'              => '應用程式管理',
+    'apkmanagers'                   => '應用程式管理(新)',
     'pages_manager'                 => '頁面管理系統',
     'startpage'                     => '起始廣告頁面',
     'pages'                         => '首頁頁面',

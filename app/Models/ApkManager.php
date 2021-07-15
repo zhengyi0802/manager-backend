@@ -10,7 +10,7 @@ class ApkManager extends Model
     use HasFactory;
 
     protected $fillable = [
-        'launher_id',
+        'launcher_id',
         'label',
         'package_name',
         'package_version_name',

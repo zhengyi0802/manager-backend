@@ -49,7 +49,8 @@ class PackageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-                 'app_file' => 'required',
+                 'app_file'    => 'required',
+                 'launcher_id' => 'required',
         ]);
 
         if ($request->file()) {
@@ -69,7 +70,9 @@ class PackageController extends Controller
         $projects = $request->input('project');
         $request->merge(['type_id' => json_encode($types)]);
         $request->merge(['proj_id' => json_encode($projects)]);
-
+        $launcher_id = $request->input('launcher_id');
+        $request->merge(['launcher_id' => $launcher_id]);
+        //var_dump($request->input('launcher_id'));
         Package::create($request->all());
 
         return redirect()->route('packages.index')
@@ -156,15 +159,20 @@ class PackageController extends Controller
             if ($request->input('mac')) {
                 $mac = str_replace(':', '', $request->input('mac'));
                 $mac = strtoupper($mac);
-                $product = Product::where('ether_mac', '=', $mac)->firstOrFail();
+                $product = Product::where('ether_mac', '=', $mac)->first();
                 //var_dump($product);
                 if ($product) {
                     $proj_id = $product->proj_id;
                     $type_id = $product->type_id;
+                } else {
+                    return json_encode(array());
                 }
             } else if ($request->input('id')) {
                 $id = $request->input('id');
-                $product = Product::where('id', $id)->firstOrFail();
+                $product = Product::where('id', $id)->first();
+                if ($product == null) {
+                    return json_encode(array());
+                }
                 $proj_id = $product->proj_id;
                 $type_id = $product->type_id;
             }

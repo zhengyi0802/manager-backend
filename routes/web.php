@@ -150,8 +150,8 @@ Route::get('/advertisings/{project}/create2', [App\Http\Controllers\AdvertisingC
 Route::get('/advertisings/{project}/edit2', [App\Http\Controllers\AdvertisingController::class, 'edit2'])
        ->name('advertisings.edit2');
 
-Route::get('/advertisings/query', [App\Http\Controllers\AdvertisingController::class, 'qurty'])
-       ->name('advertisings.qurty');
+Route::get('/advertisings/query', [App\Http\Controllers\AdvertisingController::class, 'query'])
+       ->name('advertisings.query');
 
 Route::post('/advertisings/{project}/{advertising}/store2', [App\Http\Controllers\AdvertisingController::class, 'store2'])
        ->name('advertisings.store2');

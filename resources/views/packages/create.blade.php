@@ -4,6 +4,28 @@
 
 @section('content_header')
     <h1 class="m-0 text-dark">{{ __('packages.header') }}</h1>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
+    <script type="text/javascript">
+     $(function () {
+            $(document).ready(function () {
+                $('#fileUploadForm').ajaxForm({
+                    beforeSend: function () {
+                        var percentage = '0';
+                    },
+                    uploadProgress: function (event, position, total, percentComplete) {
+                        var percentage = percentComplete;
+                        $('.progress .progress-bar').css("width", percentage+'%', function() {
+                          return $(this).attr("aria-valuenow", percentage) + "%";
+                        })
+                    },
+                    complete: function (xhr) {
+                        console.log('File has uploaded');
+                    }
+                });
+            });
+        });
+    </script>
 @stop
 
 @section('content')
@@ -29,7 +51,7 @@
     </div>
 @endif
 
-<form action="{{ route('packages.store') }}" method="POST" enctype="multipart/form-data" >
+<form id="fileUploadForm" action="{{ route('packages.store') }}" method="POST" enctype="multipart/form-data" >
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -47,7 +69,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('packages.launcher_id') }} : </strong>
-                <select name="launcher_id" >
+                <select id="launcher_id" name="launcher_id" >
                    <option value="-1" selected >{{ __('packages.launcher_false') }}</option>
                    <option value="1" >{{ __('packages.launcher_magicviewer') }}</option>
                    <option value="2" >{{ __('packages.launcher_mundi') }}</option>
@@ -83,6 +105,11 @@
                 <strong>{{ __('packages.status') }} : </strong>
                 <input type="radio" name="status" value="1" checked>{{ __('tables.status_on') }}
                 <input type="radio" name="status" value="0">{{ __('tables.status_off') }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

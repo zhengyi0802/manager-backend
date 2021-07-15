@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\ImageUpload;
+use App\Models\Product;
 use App\Models\Menu;
 use App\Models\Logo;
 use App\Models\Project;
@@ -197,10 +198,12 @@ class MenuController extends Controller
             $mac = strtoupper($mac);
             $product = Product::where('ether_mac', '=', $mac)
                                 ->orWhere('wifi_mac', '=', $mac)
-                                ->firstOrFail();
+                                ->first();
             //var_dump($product);
             if ($product) {
                 $proj_id = $product->proj_id;
+            } else {
+                return json_encode(array());
             }
         } else if ($request->input('id')) {
             $proj_id = $request->input('id');

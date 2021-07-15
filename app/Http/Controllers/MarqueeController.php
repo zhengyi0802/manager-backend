@@ -142,19 +142,24 @@ class MarqueeController extends Controller
             $mac = strtoupper($mac);
             $product = Product::where('ether_mac', '=', $mac)
                               ->orWhere('wifi_mac', '=', $mac)
-                              ->firstOrFail();
+                              ->first();
 
             if ($product) {
                 $proj_id = $product->proj_id;
-            }
+            } else {
+                return json_encode(array());
+           }
         } else if ($request->input('id')) {
             $proj_id = $request->input('id');
-            $product = Product::where('proj_id', $proj_id)->firstOrFail();
+            $product = Product::where('proj_id', $proj_id)->first();
         }
 
         if ($request->input('type')) {
             $type = $request->input('type');
             if ($type == 1) {
+               if ($product == null) {
+                   return json_encode(array());
+               }
                $marquees = Marquee::select('type', 'name', 'content', 'url')
                                   ->where('product_id', $product->id)
                                   ->where('status', true)

@@ -33,7 +33,7 @@ use App\Http\Controllers\ELearningCatagoryController;
 use App\Http\Controllers\ELearningController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\VideoController;
-use App\Http\Controllers\VIdeoCatagoryController;
+use App\Http\Controllers\VideoCatagoryController;
 
 /*
 |--------------------------------------------------------------------------

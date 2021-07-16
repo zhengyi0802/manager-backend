@@ -244,7 +244,21 @@ return [
             'label_color'  => 'success',
             'can'          => 'manager-only',
         ],
-
+        [   'text'    => 'videomanager',
+            'can'     => 'operator-only',
+            'submenu' => [
+               [
+                    'text'        => 'videocatagories',
+                    'url'         => 'videocatagories',
+                    'label_color' => 'success',
+               ],
+               [
+                    'text'        => 'videos',
+                    'url'         => 'videos',
+                    'label_color' => 'success',
+               ],
+            ],
+        ],
         [   'text'    => 'pages_manager',
             'can'     => 'operator-only',
             'submenu' => [

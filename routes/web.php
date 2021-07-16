@@ -32,6 +32,8 @@ use App\Http\Controllers\CustomerSupportController;
 use App\Http\Controllers\ELearningCatagoryController;
 use App\Http\Controllers\ELearningController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\VideoController;
+use App\Http\Controllers\VIdeoCatagoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -268,3 +270,8 @@ Route::resource('/members', MemberController::class);
 
 Route::get('/apiinterface/register', [App\Http\Controllers\ApiInterfaceController::class, 'register'])
        ->name('apiinterface.register');
+
+Route::resource('/videocatagories', VideoCatagoryController::class);
+
+Route::resource('/videos', VideoController::class);
+

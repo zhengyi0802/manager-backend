@@ -45,8 +45,6 @@ class VoiceSettingController extends Controller
     {
         $request->validate([
             'keywords' => 'required',
-            'label'    => 'required',
-            'package'  => 'required',
             'status'   => 'required',
         ]);
 
@@ -97,8 +95,6 @@ class VoiceSettingController extends Controller
     {
         $request->validate([
             'keywords' => 'required',
-            'label'    => 'required',
-            'package'  => 'required',
             'status'   => 'required',
         ]);
 

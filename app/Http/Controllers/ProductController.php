@@ -31,6 +31,9 @@ class ProductController extends Controller
                 $mac_array = str_split($product->ether_mac, 2);
                 $macaddress = implode(':', $mac_array);
                 $product->ether_mac = $macaddress;
+                $mac_array = str_split($product->wifi_mac, 2);
+                $macaddress = implode(':', $mac_array);
+                $product->wifi_mac = $macaddress;
             }
         }
         return view('products.index',compact('products'))
@@ -96,7 +99,7 @@ class ProductController extends Controller
         $mac_array = str_split($product->ether_mac, 2);
         $ether_mac = implode(':', $mac_array);
         $product->ether_mac = $ether_mac;
-        $mac_array1 = str_split($prodyct->wifi_mac, 2);
+        $mac_array1 = str_split($product->wifi_mac, 2);
         $wifi_mac = implode(":", $mac_array1);
         $product->wifi_mac = $wifi_mac;
 
@@ -117,11 +120,11 @@ class ProductController extends Controller
     {
         $productTypes = DB::table('product_types')->get();
         $productStatuses = DB::table('product_statuses')->get();
-        $projects = DB:: table('projects')->get();
+        $projects = DB::table('projects')->get();
         $mac_array = str_split($product->ether_mac, 2);
         $ether_mac = implode(':', $mac_array);
         $product->ether_mac = $ether_mac;
-        $mac_array1 = str_split($prodyct->wifi_mac, 2);
+        $mac_array1 = str_split($product->wifi_mac, 2);
         $wifi_mac = implode(":", $mac_array1);
         $product->wifi_mac = $wifi_mac;
 

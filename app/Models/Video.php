@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class VoiceSetting extends Model
+class Video extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'proj_id',
-        'keywords',
-        'label',
-        'package',
-        'link_url',
+        'user_id',
+        'catagory_id',
+        'title',
+        'thumbnail',
+        'video_url',
+        'description',
         'status',
     ];
 

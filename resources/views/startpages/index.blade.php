@@ -35,7 +35,15 @@
             <td>{{ $startpage->id }}</td>
             <td>{{ $startpage->name }}</td>
             <td>{{ ($startpage->proj_name) ? $startpage->proj_name : '--------'  }}</td>
-            <td><img src="{{ $startpage->url }}" width="320" height="240" ></td>
+            <td>
+                @if ($startpage->mime_type == 'image')
+                     <img src="{{ $startpage->url }}" width="320px" height="240px" >
+                @elseif (($startpage->mime_type == 'i_video') || ($startpage->mime_type == 'e_video'))
+                     <iframe src="{{ $startpage->url }}" width="320px" height="180px" ></iframe>
+                @else
+                     {{ $startpage->url }}
+                @endif
+            </td>
             <td>{{ ($startpage->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
             <td>
                 <form action="{{ route('startpages.destroy',$startpage->id) }}" method="POST">

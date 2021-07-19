@@ -1,8 +1,8 @@
 <?php
 
     return [
-       'header'       => '影片',
-       'title'        => '影片',
+       'header'       => '影片資料表',
+       'title'        => '影片資料',
        'user'         => '上傳者',
        'catagory'     => '目錄',
        'id'           => '編號',

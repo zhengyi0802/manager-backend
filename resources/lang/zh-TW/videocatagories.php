@@ -1,7 +1,7 @@
 <?php
     return [
-        'header'      => '目錄資料表',
-        'title'       => '目錄資料',
+        'header'      => '影片目錄資料表',
+        'title'       => '影片目錄資料',
         'id'          => '編號',
         'user'        => '建立者',
         'parent'      => '上層目錄',

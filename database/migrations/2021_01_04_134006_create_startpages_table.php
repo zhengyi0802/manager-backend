@@ -20,6 +20,7 @@ class CreateStartpagesTable extends Migration
             $table->string('mime_type');
             $table->string('url');
             $table->text('descriptions')->nullable();
+            $table->integer('intervals')->default(15);
             $table->boolean('status')->default(0);
             $table->datetime('start_time')->nullable();
             $table->datetime('stop_time')->nullable();

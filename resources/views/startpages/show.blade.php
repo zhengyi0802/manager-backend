@@ -36,7 +36,7 @@
                 <strong>{{ __('startpages.mime_type') }} :</strong>
                 @if ($startpage->mime_type == 'image')
                   {{ __('startpages.image') }}
-                @elseif ($startpage->mime_type == 'video')
+                @elseif (($startpage->mime_type == 'i_video') || ($startpage->mime_type == 'e_video'))
                   {{ __('startpages.video') }}
                 @else
                   {{ __('startpages.youtube_id') }}
@@ -46,7 +46,13 @@
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('startpages.url') }} :</strong>
-                <img src="{{ $startpage->url }}" width="60%" height="60%" >
+                @if ($startpage->mime_type == 'image')
+                    <img src="{{ $startpage->url }}" width="60%" height="60%" >
+                @elseif (($startpage->mime_type == 'i_video') || ($startpage->mime_type == 'e_video'))
+                    <iframe src="{{ $startpage->url }}" width="640px" height="360px" ></iframe>
+                @else
+                    {{ __('startpages.youtube_id') }} : {{ $startpage->url }}
+                @endif
             </div>
          </div>
 

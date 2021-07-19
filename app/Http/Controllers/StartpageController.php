@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\ImageUpload;
+use App\Http\Middleware\MediaUpload;
 use App\Models\Project;
 use App\Models\Product;
 use App\Models\File;
@@ -62,13 +62,14 @@ class StartpageController extends Controller
         $startpage->url = $request->url;
         $startpage->status = $request->status;
 
-        if ($request->mime_type == 'image') {
+        //var_dump($startpage);
+        if (($request->mime_type == 'image') || ($request->mime_type == 'i_video')) {
            if ($request->file()) {
-               $file = ImageUpload::fileUpload($request);
+               $file = MediaUpload::fileUpload($request);
                if ($file == null) {
                    return back()->with('image', $fileName);
                }
-               $startpage->url = $file->file_path;
+               $startpage->url = env('APP_URL').$file->file_path;
            }
         }
 
@@ -104,12 +105,11 @@ class StartpageController extends Controller
 
         if ($request->mime_type == 'image') {
             if ($insertflag || $request->file()) {
-                $file = ImageUpload::fileUpload($request);
-
+                $file = MediaUpload::fileUpload($request);
                 if ($file == null) {
                     return back()->with('image', $fileName);
                 }
-                $startpage->url = $file->file_path;
+                $startpage->url = env('APP_URL').$file->file_path;
             }
         }
 
@@ -169,16 +169,16 @@ class StartpageController extends Controller
 
         $data = $request->all();
         if($request->file()) {
-            $file = ImageUpload::fileUpload($request);
+            $file = MediaUpload::fileUpload($request);
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $data['url'] = $file->file_path;
+            $data['url'] = env('APP_URL').$file->file_path;
         }
 
         $startpage->update($data);
 
-        return redirect()->route('startpages.index', $id)->with('success', 'Startpage created successfully.');
+        return redirect()->route('startpages.index')->with('success', 'Startpage created successfully.');
     }
 
     /**
@@ -221,10 +221,11 @@ class StartpageController extends Controller
                                ->first();
         if ($startpage) {
             $result = array(
-                    'name'        => $startpage->name,
-                    'mime_type'   => $startpage->mime_type,
-                    'url'         => $startpage->url,
-                    'start_time'  => $startpage->start_time,
+                    'name'         => $startpage->name,
+                    'mime_type'    => $startpage->mime_type,
+                    'url'          => $startpage->url,
+                    'intervals'    => $startpage->intervals,
+                    'start_time'   => $startpage->start_time,
                     'stop_time'    => $startpage->stop_time,
             );
             return json_encode($result);

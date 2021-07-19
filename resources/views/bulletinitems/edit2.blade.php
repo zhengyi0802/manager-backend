@@ -71,7 +71,7 @@
                 <div class="form-group">
                     <div id="div-url-name"><strong>{{ __('bulletinitems.url') }} : </strong></div>
                     <div id="div-url" style="display:none">
-                        <input type="url" id="url" name="url" class="form-control" >
+                        <input type="url" id="url" name="url" class="form-control" value="{{ $bulletinitem->url }}">
                     </div>
                     <div id="div-image">
                         <input type="file" id="image" name="image" accept="image/*" onchange="loadImage(event)" >

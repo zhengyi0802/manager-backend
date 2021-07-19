@@ -42,7 +42,7 @@
             <td>{{ $bulletin->date }}</td>
             <td>
                 <form action="{{ route('bulletins.destroy',$bulletin->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('bulletins.show',$bulletin->id) }}">{{ __('tables.details') }}</a>
+                    <a class="btn btn-info" href="{{ route('bulletinitems.index2',$bulletin->id) }}">{{ __('tables.details') }}</a>
                     <a class="btn btn-primary" href="{{ route('bulletins.edit',$bulletin->id) }}">{{ __('tables.edit') }}</a>
                     @csrf
                     @method('DELETE')

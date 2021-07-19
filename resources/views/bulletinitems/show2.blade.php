@@ -13,7 +13,7 @@
                 <h1>{{ __('tables.details') }}</h1>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('bulletinitems.index') }}">{{ __('tables.back') }}</a>
+                <a class="btn btn-primary" href="{{ route('bulletinitems.index2', $bulletin->id) }}">{{ __('tables.back') }}</a>
             </div>
         </div>
     </div>
@@ -21,10 +21,19 @@
     <div class="row">
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('bulletinitems.bulletin') }} :</strong>
-                {{ $bulletinitem->bulletin . '-' . $bulletinitem->message }}
+                <strong>{{ __('bulletins.ftitle') }} : {{ $bulletin->title }} </strong>
             </div>
-         </div>
+        </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('bulletins.message') }} : </strong> {{ $bulletin->message }}
+            </div>
+        </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('bulletins.date') }} :  {{ $bulletin->date }} </strong>
+            </div>
+        </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('bulletinitems.type') }} :</strong>

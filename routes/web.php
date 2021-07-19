@@ -212,6 +212,24 @@ Route::get('/bulletins/query', [App\Http\Controllers\BulletinController::class, 
 
 Route::resource('/bulletins', BulletinController::class);
 
+Route::get('/bulletinitems/{bulletin}/index2', [App\Http\Controllers\BulletinItemController::class, 'index2'])
+       ->name('bulletinitems.index2');
+
+Route::get('/bulletinitems/{bulletin}/create2', [App\Http\Controllers\BulletinItemController::class, 'create2'])
+       ->name('bulletinitems.create2');
+
+Route::get('/bulletinitems/{bulletin}/{bulletinitem}/edit2', [App\Http\Controllers\BulletinItemController::class, 'edit2'])
+       ->name('bulletinitems.edit2');
+
+Route::get('/bulletinitems/{bulletin}/{bulletinitem}/show2', [App\Http\Controllers\BulletinItemController::class, 'show2'])
+       ->name('bulletinitems.show2');
+
+Route::post('/bulletinitems/{bulletin}/store2', [App\Http\Controllers\BulletinItemController::class, 'store2'])
+       ->name('bulletinitems.store2');
+
+Route::post('/bulletinitems/{bulletin}/{bulletinitem}/update2', [App\Http\Controllers\BulletinItemController::class, 'update2'])
+       ->name('bulletinitems.update2');
+
 Route::resource('/bulletinitems', BulletinItemController::class);
 
 Route::get('/marquees/query', [App\Http\Controllers\MarqueeController::class, 'query'])

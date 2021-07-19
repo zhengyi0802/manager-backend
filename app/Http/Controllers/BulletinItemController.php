@@ -17,11 +17,20 @@ class BulletinItemController extends Controller
     public function index()
     {
        $bulletinitems = BulletinItem::leftJoin('bulletins', 'bulletin_id', 'bulletins.id')
-                        ->select('bulletin_items.*', 'bulletins.title as bulletin')
+                        ->select('bulletin_items.*', 'bulletins.title as bulletin', 'bulletins.message as message')
                         ->latest()->paginate(5);
 
        return view('bulletinitems.index', compact('bulletinitems'))
                ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    public function index2(Bulletin $bulletin)
+    {
+       $bulletinitems = BulletinItem::where('bulletin_id', $bulletin->id)->latest()->paginate(5);
+
+       return view('bulletinitems.index2', compact('bulletinitems'))
+              ->with(compact('bulletin'))
+              ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -34,6 +43,11 @@ class BulletinItemController extends Controller
         $bulletins = Bulletin::where('status', true)->get();
 
         return view('bulletinitems.create', compact('bulletins'));
+    }
+
+    public function create2(Bulletin $bulletin)
+    {
+        return view('bulletinitems.create2', compact('bulletin'));
     }
 
     /**
@@ -81,10 +95,16 @@ class BulletinItemController extends Controller
     {
         $id = $bulletinitem->id;
         $bulletinitem = BulletinItem::leftJoin('bulletins', 'bulletin_id', 'bulletins.id')
-                        ->select('bulletin_items.*', 'bulletins.title as bulletin')
+                        ->select('bulletin_items.*', 'bulletins.title as bulletin', 'bulletins.message as message')
                         ->where('bulletin_items.id', $id)->first();
 
         return view('bulletinitems.show', compact('bulletinitem'));
+    }
+
+    public function show2(Bulletin $bulletin, BulletinItem $bulletinitem)
+    {
+        return view('bulletinitems.show2', compact('bulletinitem'))
+               ->with(compact('bulletin'));
     }
 
     /**
@@ -99,6 +119,12 @@ class BulletinItemController extends Controller
 
         return view('bulletinitems.edit', compact('bulletinitem'))
                ->with(compact('bulletins'));
+    }
+
+    public function edit2(Bulletin $bulletin, BulletinItem $bulletinitem)
+    {
+        return view('bulletinitems.edit2', compact('bulletinitem'))
+               ->with(compact('bulletin'));
     }
 
     /**

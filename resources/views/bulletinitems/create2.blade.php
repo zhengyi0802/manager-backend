@@ -13,7 +13,7 @@
             <h1>{{ __('tables.new') }}</h1>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('bulletinitems.index') }}">{{ __('tables.back') }}</a>
+            <a class="btn btn-primary" href="{{ route('bulletinitems.index2', $bulletin) }}">{{ __('tables.back') }}</a>
         </div>
     </div>
 </div>
@@ -29,19 +29,21 @@
     </div>
 @endif
 
-<form action="{{ route('bulletinitems.store') }}" method="POST" enctype="multipart/form-data" >
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <strong>{{ __('bulletins.ftitle') }} : {{ $bulletin->title }} </strong>
+        </div>
+        <div class="col-lg-12 margin-tb">
+            <strong>{{ __('bulletins.message') }} : </strong> {{ $bulletin->message }}
+        </div>
+        <div class="col-lg-12 margin-tb">
+            <strong>{{ __('bulletins.date') }} :  {{ $bulletin->date }} </strong>
+        </div>
+    </div>
+
+<form action="{{ route('bulletinitems.store2', $bulletin->id) }}" method="POST" enctype="multipart/form-data" >
      @csrf
      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('bulletinitems.bulletin') }} : </strong>
-                <select id="bulletin_id" name="bulletin_id" >
-                    @foreach($bulletins as $bulletin)
-                       <option value="{{ $bulletin->id }}">{{ $bulletin->title . '-' . $bulletin->message }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('bulletinitems.type') }} :</strong>

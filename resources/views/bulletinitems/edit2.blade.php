@@ -13,7 +13,7 @@
                 <h1>{{ __('tables.edit') }}</h1>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('bulletinitems.index') }}">{{ __('tables.back') }}</a>
+                <a class="btn btn-primary" href="{{ route('bulletinitems.index2', $bulletin->id) }}">{{ __('tables.back') }}</a>
             </div>
         </div>
     </div>
@@ -29,18 +29,19 @@
         </div>
     @endif
 
-    <form action="{{ route('bulletinitems.update',$bulletinitem->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('bulletinitems.update2', ['bulletin' => $bulletin, 'bulletinitem' => $bulletinitem]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div  class="form-group">
-                    <strong>{{ __('bulletinitems.bulletin') }} : </strong>
-                    <select id="bulletin_id" name="bulletin_id" >
-                        @foreach($bulletins as $bulletin)
-                           <option value="{{ $bulletin->id }}" {{ ($bulletinitem->bulletin_id == $bulletin->id) ? "selected" : null }}>{{ $bulletin->title . '-' . $bulletin->message }}</option>
-                        @endforeach
-                    </select>
+                    <strong>{{ __('bulletins.ftitle') }} : {{ $bulletin->title }}</strong>
+                </div>
+                <div  class="form-group">
+                    <strong>{{ __('bulletins.message') }} : </strong> {{ $bulletin->message }}
+                </div>
+                <div  class="form-group">
+                    <strong>{{ __('bulletins.date') }} : {{ $bulletin->date }}</strong>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

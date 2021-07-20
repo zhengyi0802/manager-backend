@@ -40,7 +40,7 @@
             <td>{{ $appmenu->project }}</td>
             <td>{{ $appmenu->position }}</td>
             <td>{{ $appmenu->name }}</td>
-            <td><img src="{{ $appmenu->thumbnail }}" width="320px" height="180px"></td>
+            <td><img src="{{ $appmenu->thumbnail }}" width="160px" height="160px"></td>
             <td>{{ ($appmenu->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
             <td>
                 <form action="{{ route('appmenus.destroy',$appmenu->id) }}" method="POST">

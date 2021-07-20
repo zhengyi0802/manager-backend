@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\ImageUpload;
+use App\Http\Middleware\PackageUpload;
 use App\Models\AppMenu;
 use App\Models\Project;
 use App\Models\Product;
+use App\Models\ApkManager;
 use Illuminate\Http\Request;
 
 class AppMenuController extends Controller
@@ -58,7 +60,6 @@ class AppMenuController extends Controller
         $request->validate([
             'proj_id'      => 'required',
             'position'     => 'required',
-            'name'         => 'required',
             'status'       => 'required',
         ]);
 
@@ -71,11 +72,36 @@ class AppMenuController extends Controller
         $appmenu->status   = $request->status;
 
         if ($request->file()) {
-            $file = ImageUpload::fileUpload($request);
-            if ($file == null) {
-                return back()->with('image', $fileName);
+            if ($request->image) {
+               $file = ImageUpload::fileUpload($request);
+                if ($file == null) {
+                    return back()->with('image', $fileName);
+                }
+                $appmenu->thumbnail = env('APP_URL').$file->file_path;
             }
-            $appmenu->thumbnail = env('APP_URL').$file->file_path;
+            if ($request->app_file) {
+                $apkmanager = new ApkManager;
+                $filename = $request->app_file->getClientOriginalName();
+                $file = PackageUpload::fileUpload($request);
+                if ($file == null) {
+                    return back()->with('apkmanager', $fileName);
+                }
+                $data = PackageUpload::getPackageInfo($file->file_path, $filename);
+                $apkmanager->launcher_id = -1;
+                $apkmanager->status = true;
+                $apkmanager->label = $data['label'];
+                $apkmanager->package_name = $data['package_name'];
+                $apkmanager->package_version_name = $data['package_version_name'];
+                $apkmanager->package_version_code = $data['package_version_code'];
+                $apkmanager->sdk_version = $data['sdk_version'];
+                $apkmanager->icon = $data['icon'];
+                $apkmanager->path = $data['package_path'];
+                $apkmanager->save();
+
+                $appmenu->name = $data['label'];
+                $appmenu->url  = $data['package_path'];
+                $appmenu->thumbnail = $data['icon'];
+            }
         }
         $appmenu->save();
 

@@ -16,7 +16,7 @@ class CreateBulletinItemsTable extends Migration
         Schema::create('bulletin_items', function (Blueprint $table) {
             $table->id();
             $table->integer('bulletin_id')->default(0);
-            $table->string('type')->default('image');
+            $table->string('mime_type')->default('image');
             $table->string('url');
             $table->timestamps();
         });

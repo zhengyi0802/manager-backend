@@ -7,7 +7,6 @@ use App\Models\Project;
 use App\Models\Product;
 use App\Models\BulletinItem;
 use Illuminate\Http\Request;
-use App\Http\Middleware\ImageUpload;
 
 class BulletinController extends Controller
 {
@@ -81,7 +80,7 @@ class BulletinController extends Controller
         }
 
         return redirect()->route('frontend_views.edit', compact('project'))
-                        ->with('success','Material created successfully.');
+                        ->with('success','Bulletin created successfully.');
     }
 
     /**

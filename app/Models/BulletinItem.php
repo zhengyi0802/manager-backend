@@ -11,7 +11,7 @@ class BulletinItem extends Model
 
     protected $fillable = [
         'bulletin_id',
-        'type',
+        'mime_type',
         'url',
         'status',
     ];

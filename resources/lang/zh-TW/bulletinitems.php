@@ -9,7 +9,8 @@
         'url'            => '媒體連結/YouTubeID',
         'status'         => '狀態',
         'type_image'     => '圖片',
-        'type_video'     => '影片',
+        'type_ivideo'    => '上傳影片',
+        'type_evideo'    => '外部影片',
         'type_youtube'   => 'YouTubeID',
     ];
 

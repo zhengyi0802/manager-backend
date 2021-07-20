@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Product;
-use App\Models\Material;
 use App\Models\Logo;
 use App\Models\Business;
 use App\Models\Advertising;
@@ -67,9 +66,8 @@ class FrontendViewController extends Controller
     public function edit(Project $project)
     {
         if ($project->id == 0) $this->index();
-        //$frontend_view = $this->getMaterials($project->id);
         $frontend_view = $this->getElements($project->id);
-        //var_dump($frontend_view);
+
 
         return view('frontend_views.edit', compact('project'))
                ->with(compact('frontend_view'));
@@ -96,47 +94,6 @@ class FrontendViewController extends Controller
     public function destroy(Project $project)
     {
         return view('frontend_views.index');
-    }
-
-    public function getQuery($id)
-    {
-        $block_name = [
-                        '1'  => 'logo',
-                        '2'  => null,
-                        '3'  => null,
-                        '4'  => 'customLogo',
-                        '5'  => 'videos',
-                        '6'  => 'bulletin',
-                        '7'  => 'Ad',
-                        '8'  => 'app1',
-                        '9'  => 'app2',
-                        '10' => 'app3',
-                        '11' => 'app4',
-                        '12' => 'app5',
-                        '13' => 'app6',
-                        '14' => 'app7',
-                        '15' => 'app8',
-                        '16' => 'app9',
-        ];
-
-        $materials = [];
-        for ($i = 1; $i < 17; $i++) {
-           $blocks = Material::where('proj_id', $id)->where('position', $i)->where('status', true)->get();
-           if ($block_name[$i] != null) $materials += [ $block_name[$i] => $blocks->toArray()];
-        }
-
-        return $materials;
-    }
-
-    public function getMaterials($id)
-    {
-        $materials = [];
-        for ($i=1; $i < 19; $i++) {
-           $block = Material::where('proj_id', $id)->where('position', $i)->where('status', true)->where('prev_id', '0')->first();
-           $materials += ['block'.$i => $block];
-        }
-
-        return $materials;
     }
 
     public function getElements($id)
@@ -199,31 +156,6 @@ class FrontendViewController extends Controller
          return $result;
     }
 
-    public function query2(Request $request)
-    {
-        if ($request->input('mac')) {
-            $mac = str_replace(':', '', $request->input('mac'));
-            $mac = strtoupper($mac);
-            $product = Product::where('ether_mac', '=', $mac)
-                              ->orWhere('wifi_mac', '=', $mac)
-                              ->first();
-            //var_dump($product);
-            if ($product) {
-                $proj_id = $product->proj_id;
-            } else {
-                return json_encode(array());
-            }
-        } else if ($request->input('id')) {
-            $proj_id = $request->input('id');
-        }
-
-        $data = $this->getQuery($proj_id);
-        if ($data)
-            return json_encode($data);
-
-    }
-
-
     public function queryLogo($proj_id)
     {
         $logo = Logo::where('proj_id', $proj_id)
@@ -243,6 +175,7 @@ class FrontendViewController extends Controller
                   'name'      => $logo->name,
                   'image'     => $logo->image,
                   'link_url'  => $logo->link_url,
+                  'status'    => $logo->status,
         );
 
         return $result;

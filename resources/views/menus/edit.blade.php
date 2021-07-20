@@ -78,6 +78,14 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>{{ __('menus.type') }} :</strong>
+                    <select name="type">
+                       <option value="video" selected >video</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>{{ __('menus.status') }} :</strong>
                     <input type="radio" name="status" value="1" {{ ($menu->status==1) ? "checked":null }} >{{ __('tables.status_on') }}
                     <input type="radio" name="status" value="0" {{ ($menu->status!=1) ? "checked":null }} >{{ __('tables.status_off') }}

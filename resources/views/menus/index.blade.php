@@ -31,6 +31,7 @@
             <th>{{ __('menus.name') }}</th>
             <th>{{ __('menus.icon') }}</th>
             <th>{{ __('menus.tag') }}</th>
+            <th>{{ __('menus.type') }}</th>
             <th>{{ __('menus.status') }}</th>
             <th width="280px">{{ __('tables.action') }}</th>
         </tr>
@@ -39,8 +40,9 @@
             <td>{{ $menu->id }}</td>
             <td>{{ $menu->project }}</td>
             <td>{{ $menu->name }}</td>
-            <td><img src="{{ $menu->icon }}" width="320px" height="180px"></td>
+            <td><img src="{{ $menu->icon }}" width="120px" height="120px"></td>
             <td>{{ $menu->tag }}</td>
+            <td>{{ $menu->type }}</td>
             <td>{{ ($menu->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
             <td>
                 <form action="{{ route('menus.destroy',$menu->id) }}" method="POST">

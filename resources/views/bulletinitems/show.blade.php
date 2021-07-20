@@ -28,11 +28,13 @@
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('bulletinitems.type') }} :</strong>
-                @if ($bulletinitem->type == "image")
+                @if ($bulletinitem->mime_type == "image")
                      {{ __('bulletinitems.type_image') }}
-                @elseif ($bulletinitem->type == "video")
-                     {{ __('bulletinitems.type_video') }}
-                @elseif ($bulletinitem->type == "youtube")
+                @elseif ($bulletinitem->mime_type == "i_video")
+                     {{ __('bulletinitems.type_ivideo') }}
+                @elseif ($bulletinitem->mime_type == "e_video")
+                     {{ __('bulletinitems.type_evideo') }}
+                @elseif ($bulletinitem->mime_type == "youtube")
                      {{ __('bulletinitems.type_youtube') }}
                 @endif
             </div>
@@ -40,10 +42,12 @@
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('bulletinitems.url') }} :</strong>
-                @if ($bulletinitem->type == "image")
+                @if ($bulletinitem->mime_type == "image")
                     <img src="{{ $bulletinitem->url }}">
+                @elseif (($bulletinitem->mime_type == "i_video") || ($bulletinitem->mime_type == "e_video"))
+                    <iframe src="{{ $bulletinitem->url }}" width="640" height="360" ></iframe>
                 @else
-                    {{ $bulletinitem->url }}
+                    <iframe src="{{ $bulletinitem->url }}" width="640" height="360" ></iframe>
                 @endif
             </div>
          </div>

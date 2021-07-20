@@ -69,7 +69,7 @@ class BusinessController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $business->logo_url = $file->file_path;
+            $business->logo_url = env('APP_URL').$file->file_path;
         }
         $business->save();
 
@@ -89,7 +89,7 @@ class BusinessController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $data['logo_url'] = $file->file_path;
+            $data['logo_url'] = env('APP_URL').$file->file_path;
         }
 
         $data['proj_id'] = $project->id;
@@ -101,7 +101,7 @@ class BusinessController extends Controller
         }
 
         return redirect()->route('frontend_views.edit', compact('project'))
-                        ->with('success','Material created successfully.');
+                        ->with('success','Business created successfully.');
     }
 
     /**
@@ -172,7 +172,7 @@ class BusinessController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $business->logo_url = $file->file_path;
+            $business->logo_url = env('APP_URL').$file->file_path;
         }
         $business->save();
 

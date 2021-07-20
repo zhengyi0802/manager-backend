@@ -21,7 +21,7 @@ class MediaUpload
 
         $user = auth()->user()->id;
         $filename = 'u'.$user.'-'.time().'.'.$request->file->getClientOriginalExtension();
-        echo $request->mime_type;
+        //echo $request->mime_type;
 
         $file = new File();
         if ($request->file()) {

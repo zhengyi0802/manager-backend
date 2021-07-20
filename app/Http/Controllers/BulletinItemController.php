@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bulletin;
 use App\Models\BulletinItem;
-use App\Http\Middleware\ImageUpload;
+use App\Http\Middleware\MediaUpload;
 use Illuminate\Http\Request;
 
 class BulletinItemController extends Controller
@@ -60,29 +60,57 @@ class BulletinItemController extends Controller
     {
         $request->validate([
              'bulletin_id' => 'required',
-             'type'        => 'required',
+             'mime_type'   => 'required',
              'status'      => 'required',
         ]);
 
         $bulletinitem = new BulletinItem;
         $bulletinitem->bulletin_id = $request->bulletin_id;
-        $bulletinitem->type        = $request->type;
+        $bulletinitem->mime_type   = $request->mime_type;
         $bulletinitem->url         = $request->url;
         $bulletinitem->status      = $request->status;
 
         if ($request->file()) {
-            $file = ImageUpload::fileUpload($request);
+            $file = MediaUpload::fileUpload($request);
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $bulletinitem->url = $file->file_path;
+            $bulletinitem->url = env('APP_URL').$file->file_path;
         }
 
         $bulletinitem->save();
 
         return redirect()->route('bulletinitems.index')
                ->with('success','Bulletin Item created successfully');
+    }
 
+    public function store2(Bulletin $bulletin, Request $request)
+    {
+        $request->validate([
+             'bulletin_id' => 'required',
+             'mime_type'   => 'required',
+             'status'      => 'required',
+        ]);
+
+        $bulletinitem = new BulletinItem;
+        $bulletinitem->bulletin_id = $request->bulletin_id;
+        $bulletinitem->mime_type   = $request->mime_type;
+        $bulletinitem->url         = $request->url;
+        $bulletinitem->status      = $request->status;
+
+        if ($request->file()) {
+            $file = MediaUpload::fileUpload($request);
+            if ($file == null) {
+                return back()->with('image', $fileName);
+            }
+            $bulletinitem->url = env('APP_URL').$file->file_path;
+        }
+
+        $bulletinitem->save();
+
+        return redirect()->route('bulletinitems.index2')
+               ->with(compact('bulletin'))
+               ->with('success','Bulletin Item created successfully');
     }
 
     /**
@@ -138,26 +166,55 @@ class BulletinItemController extends Controller
     {
         $request->validate([
              'bulletin_id' => 'required',
-             'type'        => 'required',
+             'mime_type'   => 'required',
              'status'      => 'required',
         ]);
 
         $bulletinitem->bulletin_id = $request->bulletin_id;
-        $bulletinitem->type        = $request->type;
+        $bulletinitem->mime_type   = $request->mime_type;
         $bulletinitem->url         = $request->url;
         $bulletinitem->status      = $request->status;
+        var_dump(json_encode($bulletinitem));
 
         if ($request->file()) {
-            $file = ImageUpload::fileUpload($request);
+            $file = MediaUpload::fileUpload($request);
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $bulletinitem->url = $file->file_path;
+            $bulletinitem->url = env('APP_URL').$file->file_path;
         }
 
         $bulletinitem->save();
 
         return redirect()->route('bulletinitems.index')
+               ->with('success','Bulletin Item updated successfully');
+    }
+
+    public function update2(Request $request, Bulletin $bulletin, BulletinItem $bulletinitem)
+    {
+        $request->validate([
+             'bulletin_id' => 'required',
+             'mime_type'   => 'required',
+             'status'      => 'required',
+        ]);
+
+        $bulletinitem->bulletin_id = $request->bulletin_id;
+        $bulletinitem->mime_type   = $request->mime_type;
+        $bulletinitem->url         = $request->url;
+        $bulletinitem->status      = $request->status;
+
+        if ($request->file()) {
+            $file = MediaUpload::fileUpload($request);
+            if ($file == null) {
+                return back()->with('image', $fileName);
+            }
+            $bulletinitem->url = env('APP_URL').$file->file_path;
+        }
+
+        $bulletinitem->save();
+
+        return redirect()->route('bulletinitems.index')
+               ->with(compact('bulletin'))
                ->with('success','Bulletin Item updated successfully');
     }
 

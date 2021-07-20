@@ -57,7 +57,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('apkmanagers.icon') }} : </strong>
-                <img src="{{ $apkmanager->icon }}" >
+                <img src="{{ $apkmanager->icon }}" width="160" height="160">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

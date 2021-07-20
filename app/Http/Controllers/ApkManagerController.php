@@ -58,14 +58,14 @@ class ApkManagerController extends Controller
            if ($file == null) {
                return back()->with('apkmanager', $fileName);
            }
-           $request->merge(['path' => $file->file_path]);
-           $data = $this->getPackageInfo($file->file_path, $filename);
+           $data = PackageUpload::getPackageInfo($file->file_path, $filename);
            $request->merge(['label' => $data['label']]);
            $request->merge(['package_name' => $data['package_name']]);
            $request->merge(['package_version_name' => $data['package_version_name']]);
            $request->merge(['package_version_code' => $data['package_version_code']]);
            $request->merge(['sdk_version' => $data['sdk_version']]);
            $request->merge(['icon' => $data['icon']]);
+           $request->merge(['path' => $data['package_path']]);
         }
         $types = $request->input('type');
         $projects = $request->input('project');
@@ -130,29 +130,6 @@ class ApkManagerController extends Controller
 
         return redirect()->route('apkmanagers.index')
                         ->with('success', 'APK Package deleted successfully');
-    }
-
-    public function getPackageInfo($file_path, $filename) {
-            $filepath = "/files/www/manager/public".$file_path;
-            $apk = new \ApkParser\Parser($filepath);
-            $manifest = $apk->getManifest();
-            $apk_data['package_name'] = $manifest->getPackageName();
-            $apk_data['package_version_name'] = $manifest->getVersionName();
-            $apk_data['package_version_code'] = $manifest->getVersionCode();
-            $apk_data['sdk_version'] = $manifest->getTargetSdk()->platform;
-            $resourceId = $manifest->getApplication()->getIcon();
-            $resources = $apk->getResources($resourceId);
-            $apk_data['icon'] = $resources[0];
-            $labelResourceId = $manifest->getApplication()->getLabel();
-            $appLabel = $apk->getResources($labelResourceId);
-            $apk_data['label'] = $appLabel[0];
-            $iconfile = str_replace(".apk", ".png", $filename);
-            $content = stream_get_contents($apk->getStream($resources[0]));
-            $icon_path = "public/uploads/images/".$iconfile;
-            Storage::put($icon_path, $content);
-            $apk_data['icon'] = "/storage/uploads/images/".$iconfile;
-
-            return $apk_data;
     }
 
     public function checkLauncher(Request $request)

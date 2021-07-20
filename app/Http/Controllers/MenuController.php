@@ -57,6 +57,7 @@ class MenuController extends Controller
         $menu->proj_id  = $request->proj_id;
         $menu->name     = $request->name;
         $menu->tag      = $request->tag;
+        $menu->type     = $request->type;
         $menu->status   = $request->status;
 
         if ($request->file()) {
@@ -64,7 +65,7 @@ class MenuController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $menu->icon = $file->file_path;
+            $menu->icon = env('APP_URL').$file->file_path;
         }
         $menu->save();
 
@@ -122,6 +123,7 @@ class MenuController extends Controller
         $menu->proj_id  = $request->proj_id;
         $menu->name     = $request->name;
         $menu->tag      = $request->tag;
+        $menu->type     = $request->type;
         $menu->status   = $request->status;
 
         if ($request->file()) {
@@ -129,7 +131,7 @@ class MenuController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $menu->icon = $file->file_path;
+            $menu->icon = env('APP_URL').$file->file_path;
         }
         $menu->save();
 
@@ -154,30 +156,25 @@ class MenuController extends Controller
     public function queryLogo($proj_id)
     {
         $logo = Logo::where('proj_id', $proj_id)
-                     ->where('status', true)
                      ->orderBy('updated_at', 'desc')
                      ->first();
+        $result = null;
 
-        if ($logo == null) {
-            $proj_id = 0;
-            $logo = Logo::where('proj_id', $proj_id)
-                         ->where('status', true)
-                         ->orderBy('updated_at', 'desc')
-                         ->first();
-        }
-
-        $result = array(
+        if ($logo) {
+            $result = array(
                   'name'      => $logo->name,
                   'image'     => $logo->image,
                   'link_url'  => $logo->link_url,
-        );
+                  'status'    => $logo->status,
+            );
+        }
 
         return $result;
     }
 
     public function queryMenus($proj_id)
     {
-        $menus = Menu::select('name', 'icon', 'tag')
+        $menus = Menu::select('name', 'icon', 'tag', 'type')
                      ->where('proj_id', $proj_id)
                      ->where('status', true)
                      ->orderBy('updated_at', 'asc')

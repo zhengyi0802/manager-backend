@@ -19,6 +19,7 @@ class CreateMenusTable extends Migration
             $table->string('name', 50);
             $table->string('icon');
             $table->string('tag', 50)->nullable();
+            $table->string('type', 50)->default('video');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

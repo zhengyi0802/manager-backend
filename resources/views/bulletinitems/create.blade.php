@@ -7,6 +7,13 @@
 @stop
 
 @section('content')
+    <style>
+      img { width: 60%; height: 60%; }
+      .progress { position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px; }
+      .bar { background-color: #B4F5B4; width:0%; height:25px; border-radius: 3px; }
+      .percent { position:absolute; display:inline-block; top:3px; left:48%; color: #7F98B2;}
+    </style>
+
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
@@ -45,9 +52,10 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('bulletinitems.type') }} :</strong>
-                <select id="type" name="type" onchange="changeInput(this)" >
-                    <option value="image" select >{{ __('bulletinitems.type_image') }}</option>
-                    <option value="video" >{{ __('bulletinitems.type_video') }}</option>
+                <select id="mime_type" name="mime_type" onchange="changeInput(this)" >
+                    <option value="image" selected >{{ __('bulletinitems.type_image') }}</option>
+                    <option value="i_video" >{{ __('bulletinitems.type_ivideo') }}</option>
+                    <option value="e_video" >{{ __('bulletinitems.type_evideo') }}</option>
                     <option value="youtube" >{{ __('bulletinitems.type_youtube') }}</option>
                 </select>
             </div>
@@ -57,6 +65,10 @@
                       document.getElementById('div-url').style.display='none';
                       document.getElementById('div-image').style.display='';
                       document.getElementById('div-preview').style.display='';
+                  } else if (select.value == 'i_video') {
+                      document.getElementById('div-url').style.display='none';
+                      document.getElementById('div-image').style.display='';
+                      document.getElementById('div-preview').style.display='none';
                   } else {
                       document.getElementById('div-url').style.display='';
                       document.getElementById('div-image').style.display='none';
@@ -72,7 +84,7 @@
                     <input type="url" id="url" name="url" class="form-control">
                 </div>
                 <div id="div-image">
-                    <input type="file" id="image" name="image" accept="image/*" onchange="loadImage(event)" >
+                    <input type="file" id="file" name="file" onchange="loadImage(event)" >
                 </div>
                 <div id="div-preview">
                     <img name="preview" id="preview" >
@@ -89,6 +101,12 @@
             </script>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="progress">
+                <div class="bar"></div>
+                <div class="percent">0%</div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('bulletinitems.status') }} :</strong>
                 <input type="radio" name="status" value="1" checked>{{ __('tables.status_on') }}
@@ -100,4 +118,31 @@
         </div>
      </div>
 </form>
+@endsection
+
+@section('adminlte_js')
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script> 
+           <script type="text/javascript">
+                     $(document).ready(function() {
+                          var bar = $('.bar');
+                          var percent = $('.percent');
+                          $('form').ajaxForm({
+                                beforeSend: function() {
+                                    var percentVal = '0%';
+                                    bar.width(percentVal)
+                                    percent.html(percentVal);
+                                },
+                                uploadProgress: function(event, position, total, percentComplete) {
+                                    var percentVal = percentComplete + '%';
+                                    bar.width(percentVal)
+                                    percent.html(percentVal);
+                                },
+                                complete: function(xhr) {
+                                    //alert('File Has Been Uploaded Successfully');
+                                    console.log("uploaded");
+                                    window.location.href="/bulletinitems";
+                                }
+                          });
+                     });
+            </script>
 @endsection

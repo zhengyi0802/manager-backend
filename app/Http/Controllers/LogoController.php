@@ -72,7 +72,7 @@ class LogoController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $logo->image = $file->file_path;
+            $logo->image = env('APP_URL').$file->file_path;
         }
         $logo->save();
 
@@ -93,7 +93,7 @@ class LogoController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $data['image'] = $file->file_path;
+            $data['image'] = env('APP_URL').$file->file_path;
         }
 
         $data['proj_id'] = $project->id;
@@ -178,7 +178,7 @@ class LogoController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $logo->image = $file->file_path;
+            $logo->image = env('APP_URL').$file->file_path;
         }
         $logo->save();
 

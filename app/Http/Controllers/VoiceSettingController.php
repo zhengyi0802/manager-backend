@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\VoiceSetting;
 use App\Models\Project;
+use App\Models\ApkManager;
+use App\Http\Middleware\PackageUpload;
 use Illuminate\Http\Request;
 
 class VoiceSettingController extends Controller
@@ -47,6 +49,30 @@ class VoiceSettingController extends Controller
             'keywords' => 'required',
             'status'   => 'required',
         ]);
+
+        if ($request->file()) {
+            $apkmanager = new ApkManager;
+            $filename = $request->app_file->getClientOriginalName();
+            $file = PackageUpload::fileUpload($request);
+            if ($file == null) {
+                return back()->with('apkmanager', $fileName);
+            }
+            $data = PackageUpload::getPackageInfo($file->file_path, $filename);
+            $apkmanager->launcher_id = -1;
+            $apkmanager->status = true;
+            $apkmanager->label = $data['label'];
+            $apkmanager->package_name = $data['package_name'];
+            $apkmanager->package_version_name = $data['package_version_name'];
+            $apkmanager->package_version_code = $data['package_version_code'];
+            $apkmanager->sdk_version = $data['sdk_version'];
+            $apkmanager->icon = $data['icon'];
+            $apkmanager->path = $data['package_path'];
+            $apkmanager->save();
+
+            $request->merge(['label' => $apkmanager->label]);
+            $request->merge(['package' => $apkmanager->package_name]);
+            $request->merge(['link_url' => $apkmanager->path]);
+        }
 
         VoiceSetting::create($request->all());
 

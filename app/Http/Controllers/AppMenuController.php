@@ -75,7 +75,7 @@ class AppMenuController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $appmenu->thumbnail = $file->file_path;
+            $appmenu->thumbnail = env('APP_URL').$file->file_path;
         }
         $appmenu->save();
 
@@ -96,7 +96,7 @@ class AppMenuController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $data['thumbnail'] = $file->file_path;
+            $data['thumbnail'] = env('APP_URL').$file->file_path;
         }
 
         $data['proj_id']  = $project->id;
@@ -108,7 +108,7 @@ class AppMenuController extends Controller
         }
 
         return redirect()->route('frontend_views.edit', compact('project'))
-                        ->with('success','Material created successfully.');
+                        ->with('success','AppMenu created successfully.');
 
     }
 
@@ -185,7 +185,7 @@ class AppMenuController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $appmenu->thumbnail = $file->file_path;
+            $appmenu->thumbnail = env('APP_URL').$file->file_path;
         }
         $appmenu->save();
 

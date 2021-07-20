@@ -12,7 +12,6 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\AdvertisingController;
 use App\Http\Controllers\MainVideoController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\StartpageController;
 use App\Http\Controllers\FrontendViewController;
 use App\Http\Controllers\AppMenuController;
@@ -106,17 +105,6 @@ Route::post('/logos/{project}/{logo}/store2', [App\Http\Controllers\LogoControll
        ->name('logos.store2');
 
 Route::resource('/logos', LogoController::class);
-
-Route::get('/materials/{project}/{position}/edit2', [App\Http\Controllers\MaterialController::class, 'edit2'])
-       ->name('materials.edit2');
-
-Route::get('/marerials/{project}/{position}/creat2', [App\Http\Controllers\MaterialController::class, 'create2'])
-       ->name('materials.create2');
-
-Route::post('/materials/{project}/{position}/{material}/store2', [App\Http\Controllers\MaterialController::class, 'store2'])
-       ->name('materials.store2');
-
-Route::resource('/materials', MaterialController::class);
 
 Route::get('/startpages/query', [App\Http\Controllers\StartpageController::class, 'query'])
        ->name('startpages.query');

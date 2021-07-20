@@ -28,7 +28,7 @@
         <tr>
             <th>{{ __('bulletinitems.id') }}</th>
             <th>{{ __('bulletinitems.bulletin') }}</th>
-            <th>{{ __('bulletinitems.type') }}</th>
+            <th>{{ __('bulletinitems.url') }}</th>
             <th>{{ __('bulletins.status') }}</th>
             <th width="280px">{{ __('tables.action') }}</th>
         </tr>
@@ -37,12 +37,12 @@
             <td>{{ $bulletinitem->id }}</td>
             <td>{{ $bulletinitem->bulletin . '-' . $bulletinitem->message }}</td>
             <td>
-              @if ($bulletinitem->type == "image")
-                  {{ __('bulletinitems.type_image') }}
-              @elseif ($bulletinitem->type == "video")
-                  {{ __('bulletinitems.type_video') }}
-              @elseif ($bulletinitem->type == "youtube")
-                  {{ __('bulletinitems.type_youtube') }}
+              @if ($bulletinitem->mime_type == "image")
+                  <img src="{{ $bulletinitem->url }}" width="320" height="180">
+              @elseif ($bulletinitem->mime_type == "i_video" || $bulletinitem->mime_type == "e_video")
+                  <iframe src="{{ $bulletinitem->url }}" width="320" height="180"></iframe>
+              @elseif ($bulletinitem->mime_type == "youtube")
+                  <iframe src="{{ $bulletinitem->url }}" width="320" height="180"></iframe>
               @endif
             </td>
             <td>{{ ($bulletinitem->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>

@@ -72,7 +72,7 @@ class AppAdvertisingController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $appadvertising->thumbnail = $file->file_path;
+            $appadvertising->thumbnail = env('APP_URL').$file->file_path;
         }
         $appadvertising->save();
 
@@ -94,7 +94,7 @@ class AppAdvertisingController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $data['thumbnail'] = $file->file_path;
+            $data['thumbnail'] = env('APP_URL').$file->file_path;
         } else {
             $data['thumbnail'] = $advertising->thumbnail;
         }
@@ -181,7 +181,7 @@ class AppAdvertisingController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $appadvertising->thumbnail = $file->file_path;
+            $appadvertising->thumbnail = env('APP_URL').$file->file_path;
         }
         $appadvertising->save();
 

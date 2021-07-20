@@ -73,7 +73,7 @@ class ELearningCatagoryController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $elearningcatagory->thumbnail = $file->file_path;
+            $elearningcatagory->thumbnail = env('APP_URL').$file->file_path;
         }
 
         $elearningcatagory->save();
@@ -139,7 +139,7 @@ class ELearningCatagoryController extends Controller
             if ($file == null) {
                 return back()->with('image', $fileName);
             }
-            $data['thumbnail'] = $file->file_path;
+            $data['thumbnail'] = env('APP_URL').$file->file_path;
         }
 
         $elearningcatagory->update($data);

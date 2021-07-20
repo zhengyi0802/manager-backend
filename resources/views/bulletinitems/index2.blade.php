@@ -48,15 +48,25 @@
         <tr>
             <td>{{ $bulletinitem->id }}</td>
             <td>
-              @if ($bulletinitem->type == "image")
+              @if ($bulletinitem->mime_type == "image")
                   {{ __('bulletinitems.type_image') }}
-              @elseif ($bulletinitem->type == "video")
-                  {{ __('bulletinitems.type_video') }}
-              @elseif ($bulletinitem->type == "youtube")
+              @elseif ($bulletinitem->mime_type == "i_video")
+                  {{ __('bulletinitems.type_ivideo') }}
+              @elseif ($bulletinitem->mime_type == "e_video")
+                  {{ __('bulletinitems.type_evideo') }}
+              @elseif ($bulletinitem->mime_type == "youtube")
                   {{ __('bulletinitems.type_youtube') }}
               @endif
             </td>
-            <td>{{ $bulletinitem->url }}</td>
+            <td>
+              @if ($bulletinitem->mime_type == "image")
+                  <img src="{{ $bulletinitem->url }}" width="320" height="180" >
+              @elseif (($bulletinitem->mime_type == "i_video") || ($bulletinitem->mime_type == "e_video"))
+                  <iframe src="{{ $bulletinitem->url }}" width="320" height="180"></iframe>
+              @elseif ($bulletinitem->mime_type == "youtube")
+                  <a href="{{ $bulletinitem->url }}">{{ $bulletinitem->url }}</a>
+              @endif
+            </td>
             <td>{{ ($bulletinitem->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
             <td>
                 <form action="{{ route('bulletinitems.destroy', $bulletinitem->id) }}" method="POST">

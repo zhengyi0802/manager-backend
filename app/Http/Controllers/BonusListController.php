@@ -100,7 +100,9 @@ class BonusListController extends Controller
     public function check()
     {
         $final = now()->subDays(2);
-        $members = BonusList::select('member_id')->where('created_at', '<=', $final)->get();
+        $members = BonusList::where('process_status', BonusStatus::Unchecked)
+                            ->where('created_at', '<=', $final)
+                            ->get();
         $member_ids = $members->pluck('member_id')->unique();
         if (count($members) == 0) {
             return redirect()->route('bonuslists.index');
@@ -108,7 +110,7 @@ class BonusListController extends Controller
         foreach($member_ids as $member_id) {
             //$member_id = $member->member_id;
             $bonuslists = BonusList::where('member_id', $member_id)
-                                   ->where('process_status', 1)
+                                   ->where('process_status', BonusStatus::Unchecked)
                                    ->where('created_at', '<=', $final)
                                    ->orderBy('created_at', 'asc')
                                    ->get();
@@ -127,7 +129,7 @@ class BonusListController extends Controller
                 $blist->save();
             }
         }
-        return redirect()->route('bonus.index');
+        return redirect()->route('bonuses.index');
     }
 
 }

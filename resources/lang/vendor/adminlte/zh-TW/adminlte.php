@@ -3,7 +3,7 @@
 return [
 
     'full_name'                   => '姓名',
-    'email'                       => '邮箱',
+    'email'                       => 'Line ID',
     'password'                    => '密码',
     'retype_password'             => '重输密码',
     'remember_me'                 => '记住我',

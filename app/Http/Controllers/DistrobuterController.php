@@ -47,11 +47,22 @@ class DistrobuterController extends Controller
             'status'     => true,
         ];
         $user = User::create($user);
+
+        $pid_image_1 = null;
+        $pid_image_2 = null;
+        if ($request->file()) {
+            $upload1 = new FileUpload();
+            $pid_image_1 = $upload1->fileUpload($request, 'pid_image_1');
+            $upload2 = new FileUpload();
+            $pid_image_2 = $upload2->fileUpload($request, 'pid_image_2');
+        }
         $member = [
             'user_id'        => $user->id,
             'introducer_id'  => $introducer->id,
             'address'        => $data['address'],
             'pid'            => $data['pid'],
+            'pid_image_1'    => $pid_image_1,
+            'pid_image_2'    => $pid_image_2,
             'bank'           => $data['bank'],
             'bank_name'      => $data['bank_name'],
             'account'        => $data['account'],
@@ -81,9 +92,20 @@ class DistrobuterController extends Controller
             $userdata['password'] = bcrypt($data['newpassword']);
         }
         $user->update($userdata);
+
+        $pid_image_1 = null;
+        $pid_image_2 = null;
+        if ($request->file()) {
+            $upload1 = new FileUpload();
+            $pid_image_1 = $upload1->fileUpload($request, 'pid_image_1');
+            $upload2 = new FileUpload();
+            $pid_image_2 = $upload2->fileUpload($request, 'pid_image_2');
+        }
         $member = [
             'address'        => $data['address'],
             'pid'            => $data['pid'],
+            'pid_image_1'    => $pid_image_1,
+            'pid_image_2'    => $pid_image_2,
             'bank'           => $data['bank'],
             'bank_name'      => $data['bank_name'],
             'account'        => $data['account'],

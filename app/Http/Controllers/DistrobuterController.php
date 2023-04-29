@@ -13,10 +13,12 @@ class DistrobuterController extends Controller
         $user = auth()->user();
         if ($user->role <= UserRole::Accounter) {
             $distrobuters = Member::leftJoin('users', 'users.id', 'members.user_id')
+                           ->select('members.*')
                            ->where('users.role', UserRole::Distrobuter)
                            ->get();
         } else if($user->role == UserRole::Reseller) {
             $distrobuters = Member::leftJoin('users', 'users.id', 'members.user_id')
+                                  ->select('members.*')
                                   ->where('users.role', UserRole::Distrobuter)
                                   ->where('introducer_id', $user->id)
                                   ->get();
@@ -109,14 +111,15 @@ class DistrobuterController extends Controller
             'bank'           => $data['bank'],
             'bank_name'      => $data['bank_name'],
             'account'        => $data['account'],
+            'status'         => $data['status'],
         ];
         $distrobuter->update($member);
 
         return redirect()->route('distrobuters.index');
     }
 
-    public function destory(Member $distrobuter) {
-        $distrobuter->status == false;
+    public function destroy(Member $distrobuter) {
+        $distrobuter->status = false;
         $distrobuter->save();
         return redirect()->route('distrobuters.index');
     }

@@ -24,6 +24,7 @@ class Member extends Model
         'pid_image_2',
         'memo',
         'created_by',
+        'status',
     ];
 
     public function user() {

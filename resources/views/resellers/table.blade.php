@@ -27,16 +27,12 @@ $config = [
           <form name="reseller-delete-form" action="{{ route('resellers.destroy', $reseller->id); }}" method="POST">
             @csrf
             @method('DELETE')
-            @if (auth()->user()->role <= App\Enums\UserRole::Reseller)
               <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
                 onClick="window.location='{{ route('resellers.edit', $reseller->id); }}'" >
               </x-adminlte-button>
-            @endif
-            @if (auth()->user()->role <= App\Enums\UserRole::Manager)
               <x-adminlte-button theme="danger" title="{{ __('tables.delete') }}" icon="fa fa-lg fa-fw fa-trash"
                 type="submit" >
               </x-adminlte-button>
-             @endif
               <x-adminlte-button theme="info" title="{{ __('tables.detail') }}" icon="fa fa-lg fa-fw fa-eye"
                 onClick="window.location='{{ route('resellers.show', $reseller->id); }}'" >
               </x-adminlte-button>

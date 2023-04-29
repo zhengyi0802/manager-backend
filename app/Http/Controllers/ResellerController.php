@@ -14,10 +14,12 @@ class ResellerController extends Controller
         $user = auth()->user();
         if ($user->role < UserRole::Reseller) {
             $resellers = Member::leftJoin('users', 'users.id', 'members.user_id')
+                           ->select('members.*')
                            ->where('users.role', UserRole::Reseller)
                            ->get();
         } else if ($user->role == UserRole::Reseller) {
             $resellers = Member::leftJoin('users', 'users.id', 'members.user_id')
+                           ->select('members.*')
                            ->where('users.id', $user->id)
                            ->get();
         }
@@ -104,13 +106,14 @@ class ResellerController extends Controller
             'bank'           => $data['bank'],
             'bank_name'      => $data['bank_name'],
             'account'        => $data['account'],
+            'status'         => $data['status'],
         ];
         $reseller->update($member);
 
         return redirect()->route('resellers.index');
     }
 
-    public function destory(Member $reseller) {
+    public function destroy(Member $reseller) {
         $reseller->status = false;
         $reseller->save();
         return redirect()->route('resellers.index');

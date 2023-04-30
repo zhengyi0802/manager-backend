@@ -38,6 +38,12 @@ Route::resource('/managers', ManagerController::class);
 
 Route::resource('/accounters', AccounterController::class);
 
+Route::get('/members/{member}/upgradeR', [App\Http\Controllers\MemberController::class, 'upgradeR'])
+     ->name('members.upgradeR');
+
+Route::get('/members/{member}/upgradeD', [App\Http\Controllers\MemberController::class, 'upgradeD'])
+     ->name('members.upgradeD');
+
 Route::resource('/members', MemberController::class);
 
 Route::resource('/resellers', ResellerController::class);

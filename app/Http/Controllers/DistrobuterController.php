@@ -83,7 +83,7 @@ class DistrobuterController extends Controller
         if (count($check_user) == 0) {
             Member::create($member);
         } else {
-            $check = $check_user->first()
+            $check = $check_user->first();
             $distrobuter = Member::where('user_id', $check->id)->get()->first();
             $distrobuter->update($member);
         }

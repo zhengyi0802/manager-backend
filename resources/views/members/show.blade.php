@@ -13,6 +13,10 @@
                 <h1>{{ __('tables.details') }}</h1>
             </div>
             @include('layouts.back')
+            <div>
+                <a class="btn btn-success" href="{{ route('members.upgradeR', $member->id) }}">{{ __('members.be_reseller') }}</a>
+                <a class="btn btn-success" href="{{ route('members.upgradeD', $member->id) }}">{{ __('members.be_distrobuter') }}</a>
+            </div>
         </div>
     </div>
 

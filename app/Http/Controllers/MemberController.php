@@ -192,18 +192,23 @@ class MemberController extends Controller
         return redirect()->route('members.index');
     }
 
-    public function upgrade(Member $member, Request $request) {
+    public function upgradeR(Member $member) {
+        //dd($member);
         $user = $member->user;
-        if ($request->upgrade == 'reseller') {
-            $user->role = UserRole::Reseller;
-            $user->save();
-            return redirect()->route('resellers.index');
-        } else if ($request->upgrade == 'distrobuter') {
-            $user->role = UserRole::Distrobuter;
-            $user->save();
-            return redirect()->route('distrobuters.index');
-        }
-        return redirect()->route('members.index');
+        $user->role = UserRole::Reseller;
+        $user->save();
+
+        return redirect()->route('resellers.index');
     }
+
+    public function upgradeD(Member $member) {
+        //dd($member);
+        $user = $member->user;
+        $user->role = UserRole::Distrobuter;
+        $user->save();
+
+        return redirect()->route('distrobuters.index');
+    }
+
 }
 

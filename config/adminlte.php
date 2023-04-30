@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => '電視訂單管理系統',
     'title_prefix' => '',
     'title_postfix' => '',
 

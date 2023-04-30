@@ -5,6 +5,7 @@ $heads = [
     __('distrobuters.name'),
     __('distrobuters.phone'),
     __('distrobuters.line_id'),
+    __('distrobuters.created_at'),
     __('distrobuters.status'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
 ];
@@ -22,6 +23,7 @@ $config = [
       <td>{{ $distrobuter->user->name }}</td>
       <td>{{ $distrobuter->user->phone }}</td>
       <td>{{ $distrobuter->user->line_id }}</td>
+      <td>{{ $distrobuter->created_at->toDateString() }}</td>
       <td>{{ ($distrobuter->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
       <td><nobr>
           <form name="distrobuter-delete-form" action="{{ route('distrobuters.destroy', $distrobuter->id); }}" method="POST">

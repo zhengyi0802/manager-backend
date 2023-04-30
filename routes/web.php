@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\AccounterController;
 use App\Http\Controllers\MemberController;
@@ -30,6 +31,8 @@ Auth::routes();
 Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
+
+Route::resource('/admins', AdminController::class);
 
 Route::resource('/managers', ManagerController::class);
 

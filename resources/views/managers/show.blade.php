@@ -20,19 +20,19 @@
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('managers.name') }} :</strong>
-                {{ $manager->user->name }}
+                {{ $manager->user ? $manager->user->name : null }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('managers.phone') }} :</strong>
-                {{ $manager->user->phone }}
+                {{ $manager->user ? $manager->user->phone : null }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('managers.line_id') }} :</strong>
-                {{ $manager->user->line_id }}
+                {{ $manager->user ? $manager->user->line_id : null }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
@@ -62,7 +62,7 @@
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('managers.created_by') }} :</strong>
-                {{ $manager->creator->name }}
+                {{ $manager->creator ? $manager->creator->name : null }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">

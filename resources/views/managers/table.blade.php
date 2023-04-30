@@ -25,7 +25,7 @@ $config = [
       <td>{{ $manager->company }}</td>
       <td>{{ $manager->cid }}</td>
       <td>{{ $manager->pid }}</td>
-      <td>{{ $manager->creator->name }}</td>
+      <td>{{ $manager->creator->name  }}</td>
       <td>{{ ($manager->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
       <td><nobr>
           <form name="manager-delete-form" action="{{ route('managers.destroy', $manager->id); }}" method="POST">

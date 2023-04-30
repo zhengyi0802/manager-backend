@@ -1,8 +1,8 @@
 <?php
 
     return [
-        'header'      => '系統管理員列表',
-        'title'       => '系統管理員管理',
+        'header'      => '業務群列表',
+        'title'       => '業務群管理',
         'id'          => '編號',
         'phone'       => '電話',
         'line_id'     => 'Line ID',

@@ -121,5 +121,11 @@
                 {{ $distrobuter->created_at->toDateString() }}
             </div>
          </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <p><strong>{{ __('distrobuters.order_ap') }} :</strong></p>
+                <p>{{ __('tables.order_application_url' ).$distrobuter->user->line_id }}</p>
+            </div>
+         </div>
      </div>
 @endsection

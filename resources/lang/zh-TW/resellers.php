@@ -3,6 +3,7 @@
     return [
         'header'         => '經銷商列表',
         'title'          => '經銷商管理',
+        'introducer'     => '所屬業務群',
         'id'             => '編號',
         'phone'          => '電話',
         'line_id'        => 'Line ID',
@@ -27,4 +28,6 @@
         'created_by'     => '建檔人',
         'bonus'          => '單筆獎金',
         'created_at'     => '加入日期',
+        'distrobuter_ap' => '分銷商申請書',
+        'order_ap'       => '電視申領書',
     ];

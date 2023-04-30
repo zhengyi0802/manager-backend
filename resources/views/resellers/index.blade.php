@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+    @if (auth()->user()->role <= App\Enums\UserRole::Manager)
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
@@ -14,7 +15,7 @@
             </div>
         </div>
     </div>
-
+    @endif
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>

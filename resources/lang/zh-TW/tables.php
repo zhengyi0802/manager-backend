@@ -18,4 +18,8 @@
            'must'        => '(必填*)',
            'yes'         => '是',
            'no'          => '否',
+           'backend_url'                   => 'https://backend.mdo.tw/',
+           'reseller_application_url'      => 'https://sales.mdo.tw/resellers/create?introducer=',
+           'distrobuter_application_url'   => 'https://sales.mdo.tw/distrobuters/create?introducer=',
+           'order_application_url'         => 'https://sales.mdo.tw/members/create?introducer=',
     ];

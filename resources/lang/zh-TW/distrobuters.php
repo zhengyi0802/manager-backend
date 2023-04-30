@@ -26,4 +26,5 @@
         'created_by'     => '建檔人',
         'bonus'          => '單筆獎金',
         'created_at'     => '加入日期',
+        'order_ap'       => '電視申領書',
     ];

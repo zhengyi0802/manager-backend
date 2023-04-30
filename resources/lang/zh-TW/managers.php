@@ -16,4 +16,8 @@
         'role'        => '管理權限',
         'memo'        => '備註',
         'created_by'  => '建檔人',
+        'created_at'  => '建立日期',
+        'reseller_ap'    => '經銷商申請書',
+        'distrobuter_ap' => '分銷商申請書',
+        'order_ap'       => '電視申領書',
     ];

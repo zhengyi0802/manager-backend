@@ -4,7 +4,7 @@ $heads = [
     __('resellers.name'),
     __('resellers.phone'),
     __('resellers.line_id'),
-    __('resellers.created_by'),
+    __('resellers.introducer'),
     __('resellers.created_at'),
     __('resellers.status'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
@@ -22,7 +22,7 @@ $config = [
       <td>{{ $reseller->user->name }}</td>
       <td>{{ $reseller->user->phone }}</td>
       <td>{{ $reseller->user->line_id }}</td>
-      <td>{{ $reseller->creator->name }}</td>
+      <td>{{ $reseller->introducer->name }}</td>
       <td>{{ $reseller->created_at->toDateString() }}</td>
       <td>{{ ($reseller->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
       <td><nobr>

@@ -28,7 +28,7 @@ class ManagerController extends Controller
      */
     public function create()
     {
-        return view('managers.create');
+        return view('managers.create')->with('message', '');
     }
 
     /**
@@ -40,6 +40,13 @@ class ManagerController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $check_user = User::where('line_id', $data['line_id'])
+                          ->orWhere('phone', $data['phone'])
+                          ->get();
+        if ($check_user != null && count($check_user)) {
+            return view('managers.create')->with('message','error');
+        }
+
         $creator = auth()->user();
         $data['created_by'] = $creator->id;
         $user = [

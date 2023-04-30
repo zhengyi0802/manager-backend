@@ -38,6 +38,9 @@ class DistrobuterController extends Controller
     public function store(Request $request) {
         $creator = auth()->user();
         $data = $request->all();
+        $check_user = User::where('line_id', $data['line_id'])
+                          ->orWhere('phone', $data['phone'])
+                          ->get();
         $introducer = User::where('line_id', $data['introducer'])->get()->first();
         $user = [
             'name'       => $data['name'],
@@ -48,7 +51,12 @@ class DistrobuterController extends Controller
             'created_by' => $creator->id,
             'status'     => true,
         ];
-        $user = User::create($user);
+        if (count($check_user) == 0) {
+            $user = User::create($user);
+        } else {
+            $check = $check_user->first();
+            $check->update($user);
+        }
 
         $pid_image_1 = null;
         $pid_image_2 = null;
@@ -71,7 +79,14 @@ class DistrobuterController extends Controller
             'bonus'          => $data['bonus'],
             'created_by'     => $creator->id,
         ];
-        Member::create($member);
+
+        if (count($check_user) == 0) {
+            Member::create($member);
+        } else {
+            $check = $check_user->first()
+            $distrobuter = Member::where('user_id', $check->id)->get()->first();
+            $distrobuter->update($member);
+        }
 
         return redirect()->route('distrobuters.index');
     }

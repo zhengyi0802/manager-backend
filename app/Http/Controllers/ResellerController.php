@@ -33,6 +33,9 @@ class ResellerController extends Controller
     public function store(Request $request) {
         $creator = auth()->user();
         $data = $request->all();
+        $check_user = User::where('line_id', $data['line_id'])
+                          ->orWhere('phone', $data['phone'])
+                          ->get();
         $introducer = $creator;
         $user = [
             'name'       => $data['name'],
@@ -43,7 +46,13 @@ class ResellerController extends Controller
             'created_by' => $creator->id,
             'status'     => true,
         ];
-        $user = User::create($user);
+
+        if (count($check_user) == 0) {
+            $user = User::create($user);
+        } else {
+            $check = $check_user->first();
+            $check->update($user);
+        }
 
         $pid_image_1 = null;
         $pid_image_2 = null;
@@ -53,6 +62,7 @@ class ResellerController extends Controller
             $upload2 = new FileUpload();
             $pid_image_2 = $upload2->fileUpload($request, 'pid_image_2');
         }
+
         $member = [
             'user_id'        => $user->id,
             'introducer_id'  => $introducer->id,
@@ -67,7 +77,13 @@ class ResellerController extends Controller
             'share'          => $data['share'],
             'created_by'     => $creator->id,
         ];
-        Member::create($member);
+        if (count($check_user) == 0) {
+            Member::create($member);
+        } else {
+            $check = $check_user->first();
+            $reseller = Member::where('user_id', $check->id)->get()->first();
+            $reseller->update($member);
+        }
 
         return redirect()->route('resellers.index');
     }

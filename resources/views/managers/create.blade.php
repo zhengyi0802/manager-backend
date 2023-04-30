@@ -7,6 +7,11 @@
 @stop
 
 @section('content')
+<div class="roe">
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+</div>
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">

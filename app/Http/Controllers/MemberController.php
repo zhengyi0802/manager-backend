@@ -54,39 +54,43 @@ class MemberController extends Controller
     {
         $creator = auth()->user();
         $data = $request->all();
-        $introducer = User::where('line_id', $data['introducer'])->get()->first();
-        $user = [
-            'name'       => $data['name'],
-            'phone'      => $data['phone'],
-            'line_id'    => $data['line_id'],
-            'password'   => bcrypt($data['password']),
-            'role'       => UserRole::Member,
-            'created_by' => $creator->id,
-            'status'     => true,
-        ];
-        $user = User::create($user);
+        $check_user = User::where('line_id', $data['line_id'])
+                          ->orWhere('phone', $data['phone'])
+                          ->get();
+        if (count($check_user) == 0) {
+            $introducer = User::where('line_id', $data['introducer'])->get()->first();
+            $user = [
+                'name'       => $data['name'],
+                'phone'      => $data['phone'],
+                'line_id'    => $data['line_id'],
+                'password'   => bcrypt($data['password']),
+                'role'       => UserRole::Member,
+                'created_by' => $creator->id,
+                'status'     => true,
+            ];
+            $user = User::create($user);
 
-        $pid_image_1 = null;
-        $pid_image_2 = null;
-        if ($request->file()) {
-            $upload1 = new FileUpload();
-            $pid_image_1 = $upload1->fileUpload($request, 'pid_image_1');
-            $upload2 = new FileUpload();
-            $pid_image_2 = $upload2->fileUpload($request, 'pid_image_2');
+            $pid_image_1 = null;
+            $pid_image_2 = null;
+            if ($request->file()) {
+                $upload1 = new FileUpload();
+                $pid_image_1 = $upload1->fileUpload($request, 'pid_image_1');
+                $upload2 = new FileUpload();
+                $pid_image_2 = $upload2->fileUpload($request, 'pid_image_2');
+            }
+            $member = [
+                'user_id'        => $user->id,
+                'introducer_id'  => $introducer->id,
+                'address'        => $data['address'],
+                'pid'            => $data['pid'],
+                'pid_image_1'    => $pid_image_1,
+                'pid_image_2'    => $pid_image_2,
+                'creadit_card'   => $data['creadit_card'],
+                'creadit_expire' => $data['creadit_expire'],
+                'created_by'     => $creator->id,
+            ];
+            $member = Member::create($member);
         }
-        $member = [
-            'user_id'        => $user->id,
-            'introducer_id'  => $introducer->id,
-            'address'        => $data['address'],
-            'pid'            => $data['pid'],
-            'pid_image_1'    => $pid_image_1,
-            'pid_image_2'    => $pid_image_2,
-            'creadit_card'   => $data['creadit_card'],
-            'creadit_expire' => $data['creadit_expire'],
-            'created_by'     => $creator->id,
-        ];
-        $member = Member::create($member);
-
         $order_latest = Order::orderBy('id', 'desc')->get()->first();
         if ($order_latest == null) {
             $orderlatest = 0;
@@ -146,7 +150,6 @@ class MemberController extends Controller
         $userdata = [
             'phone'      => $data['phone'],
             'line_id'    => $data['line_id'],
-            'role'       => UserRole::Member,
             'status'     => true,
         ];
         if ($data['newpassword'] != null) {

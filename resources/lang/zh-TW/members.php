@@ -26,4 +26,5 @@
         'be_reseller'    => '成為經銷商',
         'be_distrobuter' => '成為分銷商',
         'created_by'     => '建檔人',
+        'created_at'     => '訂購日期',
     ];

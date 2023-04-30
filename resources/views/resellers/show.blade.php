@@ -117,5 +117,11 @@
                 {{ ($reseller->status==1) ? __('tables.status_on'):__('tables.status_off') }}
             </div>
         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('resellers.created_at') }} :</strong>
+                {{ $reseller->created_at->toDateString() }}
+            </div>
+         </div>
      </div>
 @endsection

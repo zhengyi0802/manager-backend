@@ -77,5 +77,11 @@
                 {{ ($manager->status==1) ? __('tables.status_on'):__('tables.status_off') }}
             </div>
         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('managers.created_at') }} :</strong>
+                {{ $manager->created_at }}
+            </div>
+         </div>
      </div>
 @endsection

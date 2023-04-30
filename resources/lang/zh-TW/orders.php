@@ -10,6 +10,7 @@
         'status'         => '狀態',
         'memo'           => '備註',
         'created_by'     => '建檔人',
+        'created_at'     => '訂購日期',
         'prepaid_paid'   => '已付訂金',
         'prepaid_unpaid' => '訂金餘款',
         'paid_date'      => '到帳日期',

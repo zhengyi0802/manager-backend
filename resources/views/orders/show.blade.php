@@ -94,7 +94,7 @@
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('orders.completed') }} :</strong>
-                {{ $order->completed ? __('tables.yes') : __('tables.off') }}
+                {{ $order->completed ? __('tables.yes') : __('tables.no') }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
@@ -107,6 +107,12 @@
             <div class="form-group">
                 <strong>{{ __('orders.memo') }} :</strong>
                 {{ $order->memo }}
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('orders.created_at') }} :</strong>
+                {{ $order->created_at->toDateString() }}
             </div>
          </div>
      </div>

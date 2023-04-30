@@ -3,6 +3,7 @@ $heads = [
     ['label' =>__('orders.id'), 'width' => 10],
     __('orders.name'),
     __('orders.phone'),
+    __('orders.created_at'),
     __('orders.flow_status'),
     __('orders.prepaid_paid'),
     __('orders.paid_date'),
@@ -11,7 +12,7 @@ $heads = [
 ];
 $config = [
     'order' => [[0, 'desc']],
-    'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
+    'columns' => [null, null, null, null, null, null, null, null, ['orderable' => false]],
     'language' => [ 'url' => '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Chinese.json' ],
 ];
 @endphp
@@ -21,6 +22,7 @@ $config = [
       <td>{{ $order->id }}</td>
       <td>{{ $order->member->user->name }}</td>
       <td>{{ $order->member->user->phone }}</td>
+      <td>{{ $order->created_at->toDateString() }}</td>
       <td>{{ trans_choice('orders.flow_statuses', $order->flow_status) }}</td>
       <td>{{ $order->prepaid_paid }}</td>
       <td>{{ $order->paid_date }}</td>

@@ -301,6 +301,11 @@ return [
             'topnav_right' => true,
         ],
         [
+            'text' => 'admin',
+            'url'  => 'admins',
+            'can'  => 'admin',
+        ],
+        [
             'text' => 'manager',
             'url'  => 'managers',
             'can'  => 'manager',

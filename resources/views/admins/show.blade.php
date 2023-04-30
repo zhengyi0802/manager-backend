@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', __('managers.title'))
+@section('title', __('admins.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ __('managers.header') }}</h1>
+    <h1 class="m-0 text-dark">{{ __('admins.header') }}</h1>
 @stop
 
 @section('content')
@@ -19,68 +19,38 @@
     <div class="row">
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('managers.name') }} :</strong>
-                {{ $manager->user ? $manager->user->name : null }}
+                <strong>{{ __('admins.name') }} :</strong>
+                {{ $admin->name }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('managers.phone') }} :</strong>
-                {{ $manager->user ? $manager->user->phone : null }}
+                <strong>{{ __('admins.phone') }} :</strong>
+                {{ $admin->phone }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('managers.line_id') }} :</strong>
-                {{ $manager->user ? $manager->user->line_id : null }}
+                <strong>{{ __('admins.line_id') }} :</strong>
+                {{ $admin->line_id }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('managers.company') }} :</strong>
-                {{ $manager->company }}
+                <strong>{{ __('admins.created_by') }} :</strong>
+                {{ $admin->creator ? $admin->creator->name : null }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('managers.address') }} :</strong>
-                {{ $manager->address }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('managers.cid') }} :</strong>
-                {{ $manager->cid }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('managers.pid') }} :</strong>
-                {{ $manager->pid }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('managers.created_by') }} :</strong>
-                {{ $manager->creator ? $manager->creator->name : null }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('managers.memo') }} :</strong>
-                {{ $manager->memo }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('managers.status') }} :</strong>
-                {{ ($manager->status==1) ? __('tables.status_on'):__('tables.status_off') }}
+                <strong>{{ __('admins.status') }} :</strong>
+                {{ ($admin->status==1) ? __('tables.status_on'):__('tables.status_off') }}
             </div>
         </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('managers.created_at') }} :</strong>
-                {{ $manager->created_at }}
+                <strong>{{ __('admins.created_at') }} :</strong>
+                {{ $admin->created_at }}
             </div>
          </div>
      </div>

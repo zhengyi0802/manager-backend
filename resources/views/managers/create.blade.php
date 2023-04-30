@@ -45,7 +45,7 @@
             </div>
             <div class="form-group col-md-4">
                 <strong>{{ __('managers.password') }} : {{ __('tables.must') }}</strong>
-                <input type="text" name="password" class="form-control">
+                <input type="password" name="password" class="form-control">
             </div>
             <div class="form-group col-md-4">
                 <strong>{{ __('managers.company') }} :</strong>

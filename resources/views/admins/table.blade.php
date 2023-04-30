@@ -1,9 +1,9 @@
-y@php
+@php
 $heads = [
     ['label' =>__('admins.id'), 'width' => 10],
     __('admins.name'),
     __('admins.phone'),
-    __('admins.company'),
+    __('admins.line_id'),
     __('admins.created_by'),
     __('admins.status'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
@@ -18,9 +18,9 @@ $config = [
   @foreach($admins as $admin)
     <tr>
       <td>{{ $admin->id }}</td>
-      <td>{{ $admin->user->name }}</td>
-      <td>{{ $admin->user->phone }}</td>
-      <td>{{ $admin->company }}</td>
+      <td>{{ $admin->name }}</td>
+      <td>{{ $admin->phone }}</td>
+      <td>{{ $admin->line_id }}</td>
       <td>{{ $admin->creator->name  }}</td>
       <td>{{ ($admin->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
       <td><nobr>

@@ -2,6 +2,7 @@
 
 return [
     'main_navigation'               => '導覽',
+    'admin'                         => '系統管理員',
     'manager'                       => '業務群管理',
     'accounter'                     => '會計人員',
     'reseller'                      => '經銷商',

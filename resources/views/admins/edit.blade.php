@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', __('managers.title'))
+@section('title', __('admins.title'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{ __('managers.header') }}</h1>
+    <h1 class="m-0 text-dark">{{ __('admins.header') }}</h1>
 @stop
 
 @section('content')
@@ -27,55 +27,33 @@
         </div>
     @endif
 
-    <form action="{{ route('managers.update',$manager->id) }}" method="POST">
+    <form action="{{ route('admins.update',$admin->id) }}" method="POST">
         @method('PUT')
         @csrf
          <div class="row">
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('managers.name') }} :</strong>
-                    {{ $manager->user->name }}
+                    <strong>{{ __('admins.name') }} :</strong>
+                    {{ $admin->name }}
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('managers.phone') }} : {{ __('tables.must') }}</strong>
-                    <input type="text" name="phone" value="{{ $manager->user->phone }}" class="form-control">
+                    <strong>{{ __('admins.phone') }} : {{ __('tables.must') }}</strong>
+                    <input type="text" name="phone" value="{{ $admin->phone }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('managers.line_id') }} : {{ __('tables.must') }}</strong>
-                    <input type="text" name="line_id" value="{{ $manager->user->line_id }}" class="form-control">
+                    <strong>{{ __('admins.line_id') }} : {{ __('tables.must') }}</strong>
+                    <input type="text" name="line_id" value="{{ $admin->line_id }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('managers.company') }} :</strong>
-                    <input type="text" name="company" value="{{ $manager->company }}" class="form-control">
-                </div>
-                <div class="form-group col-md-4">
-                    <strong>{{ __('managers.password') }} :</strong>
-                    <input type="text" name="password" class="form-control">
-                </div>
-                <div class="form-group col-md-4">
-                    <strong>{{ __('managers.address') }} : {{ __('tables.must') }}</strong>
-                    <input type="text" name="address" value="{{ $manager->address }}" class="form-control">
-                </div>
-                <div class="form-group col-md-4">
-                    <strong>{{ __('managers.cid') }} :</strong>
-                    <input type="text" name="cid" value="{{ $manager->cid }}" class="form-control">
-                </div>
-                <div class="form-group col-md-4">
-                    <strong>{{ __('managers.pid') }} : {{ __('tables.must') }}</strong>
-                    <input type="text" name="pid" value="{{ $manager->pid }}" class="form-control">
+                    <strong>{{ __('admins.password') }} :</strong>
+                    <input type="password" name="password" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>{{ __('managers.memo') }}:</strong>
-                    <textarea class="form-control" style="height:150px" name="memo" >{{ $manager->memo }}</textarea>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>{{ __('managers.status') }} : </strong>
-                    <input type="radio" name="status" value="1" {{ ($manager->status==1) ? "checked":null }} >{{ __('tables.status_on') }}
-                    <input type="radio" name="status" value="0" {{ ($manager->status!=1) ? "checked":null }} >{{ __('tables.status_off') }}
+                    <strong>{{ __('admins.status') }} : </strong>
+                    <input type="radio" name="status" value="1" {{ ($admin->status==1) ? "checked":null }} >{{ __('tables.status_on') }}
+                    <input type="radio" name="status" value="0" {{ ($admin->status!=1) ? "checked":null }} >{{ __('tables.status_off') }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

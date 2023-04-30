@@ -87,12 +87,16 @@ class MemberController extends Controller
         ];
         $member = Member::create($member);
 
-        $year = (now()->year)-2000;
-        $orderlatest = Order::orderBy('id', 'desc')->first();
+        $order_latest = Order::orderBy('id', 'desc')->get()->first();
+        if ($order_latest == null) {
+            $orderlatest = 0;
+        } else {
+            $orderlatest = $order_latest->id;
+        }
 
         $idinit = ((now()->year-2000)*100+(now()->month))*10000+1;
 
-        if ($idinit < $orderlatest) {
+        if ($idinit <= $orderlatest) {
             $id = $orderlatest+1;
         } else {
             $id = $idinit;

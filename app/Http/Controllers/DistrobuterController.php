@@ -68,6 +68,7 @@ class DistrobuterController extends Controller
             'bank'           => $data['bank'],
             'bank_name'      => $data['bank_name'],
             'account'        => $data['account'],
+            'bonus'          => $data['bonus'],
             'created_by'     => $creator->id,
         ];
         Member::create($member);
@@ -111,6 +112,7 @@ class DistrobuterController extends Controller
             'bank'           => $data['bank'],
             'bank_name'      => $data['bank_name'],
             'account'        => $data['account'],
+            'bonus'          => $data['bonus'],
             'status'         => $data['status'],
         ];
         $distrobuter->update($member);

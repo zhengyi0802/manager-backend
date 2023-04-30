@@ -63,6 +63,8 @@ class ResellerController extends Controller
             'bank'           => $data['bank'],
             'bank_name'      => $data['bank_name'],
             'account'        => $data['account'],
+            'bonus'          => $data['bonus'],
+            'share'          => $data['share'],
             'created_by'     => $creator->id,
         ];
         Member::create($member);
@@ -106,6 +108,8 @@ class ResellerController extends Controller
             'bank'           => $data['bank'],
             'bank_name'      => $data['bank_name'],
             'account'        => $data['account'],
+            'bonus'          => $data['bonus'],
+            'share'          => $data['share'],
             'status'         => $data['status'],
         ];
         $reseller->update($member);

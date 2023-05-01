@@ -20,8 +20,12 @@ class BonusListController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if ($user->role <= UserRole::Accounter) {
+        if ($user->role == UserRole::Accounter) {
             $bonuslists = BonusList::where('process_status', '<' , BonusStatus::Transfered)
+                                   ->get();
+        } else if ($user->role == UserRole::Manager) {
+            $bonuslists = BonusList::where('process_status', '<' , BonusStatus::Transfered)
+                                   ->where('member_id', $user->manager->id)
                                    ->get();
         } else {
             $bonuslists = BonusList::where('process_status', '<' , BonusStatus::Transfered)
@@ -104,20 +108,21 @@ class BonusListController extends Controller
                             ->where('created_at', '<=', $final)
                             ->get();
         $member_ids = $members->pluck('member_id')->unique();
-        if (count($members) == 0) {
+        if (count($lists) == 0) {
             return redirect()->route('bonuslists.index');
         }
         foreach($member_ids as $member_id) {
-            //$member_id = $member->member_id;
             $bonuslists = BonusList::where('member_id', $member_id)
                                    ->where('process_status', BonusStatus::Unchecked)
                                    ->where('created_at', '<=', $final)
                                    ->orderBy('created_at', 'asc')
                                    ->get();
             $start = $bonuslists->first()->created_at;
+            $manager_used = $bonuslists->first()->manager_used;
             $amount = $bonuslists->sum('amount');
             $data = [
                 'member_id'      => $member_id,
+                'manager_used'   => $manager_used,
                 'amount'         => $amount,
                 'date_since'     => $start,
                 'date_finish'    => $final,

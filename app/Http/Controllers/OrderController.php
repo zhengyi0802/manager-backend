@@ -126,13 +126,30 @@ class OrderController extends Controller
     {
         $data = $request->all();
         $order->update($data);
-        if ($data['flow_status'] >= OrderFlow::Completed) {
+
+        if ($data['flow_status'] == OrderFlow::Completed) {
             $distrobuter = $order->member->introducer;
             $member = $distrobuter->member;
-            if ($distrobuter->role == UserRole::Reseller) {
-                $amount = $member->bonus + $member->share;
-            } else if ($distrobuter->role == UserRole::Distrobuter) {
-                $amount = $member->bonus;
+            if ($distrobuer->role == UserRole::Manager) {
+                $manager = $distrobuter->manager;
+                $amount  = $manager->bonus;
+            } else {
+                if ($distrobuter->role == UserRole::Reseller) {
+                    $amount = $member->bonus + $member->share;
+                    $manager = $member->introducer->manager;
+                } else if ($distrobuter->role == UserRole::Distrobuter) {
+                    $amount = $member->bonus;
+                    $bonusitem = [
+                        'member_id'       => $member->id,
+                        'order_id'        => $order->id,
+                        'amount'          => $amount,
+                        'process_status'  => BonusStatus::Unchecked,
+                    ];
+                    BonusList::create($bonusitem);
+                    $member = $member->introducer->member;
+                    $amount = $member->share;
+                    $manager = $member->introducer->manager;
+                }
                 $bonusitem = [
                     'member_id'       => $member->id,
                     'order_id'        => $order->id,
@@ -140,11 +157,11 @@ class OrderController extends Controller
                     'process_status'  => BonusStatus::Unchecked,
                 ];
                 BonusList::create($bonusitem);
-                $member = $member->introducer->member;
-                $amount = $member->share;
+                $amount = $manager->share;
             }
             $bonusitem = [
-                'member_id'       => $member->id,
+                'member_id'       => $manager->id,
+                'manager_used'    => true;
                 'order_id'        => $order->id,
                 'amount'          => $amount,
                 'process_status'  => BonusStatus::Unchecked,

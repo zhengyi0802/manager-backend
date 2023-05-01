@@ -16,6 +16,7 @@ class CreateBonusListsTable extends Migration
         Schema::create('bonus_lists', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('member_id')->unsigned();
+            $table->boolean('manager_used')->default(false);
             $table->bigInteger('order_id')->unsigned();
             $table->integer('amount');
             $table->tinyInteger('process_status')->unsigned();

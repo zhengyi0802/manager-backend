@@ -80,6 +80,10 @@
                     <strong>{{ __('distrobuters.account') }} : {{ __('tables.must') }}</strong>
                     <input type="text" name="account" value="{{ $distrobuter->account }}" class="form-control">
                 </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('distrobuters.bonus') }} : {{ __('tables.must') }}</strong>
+                    <input type="number" name="bonus" value="{{ $distrobuter->bonus }}" class="form-control">
+                </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">

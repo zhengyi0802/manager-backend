@@ -23,6 +23,10 @@ class Order extends Model
         return $this->belongsTo(Member::class, 'member_id');
     }
 
+   public function manager() {
+        return $this->belongsTo(Manager::class, 'member_id');
+    }
+
     public function creator() {
         return $this->belongsTo(User::class, 'created_by');
     }

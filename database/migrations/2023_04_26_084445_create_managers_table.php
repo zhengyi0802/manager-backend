@@ -20,6 +20,8 @@ class CreateManagersTable extends Migration
             $table->string('address')->nullable();
             $table->string('cid', 20)->nullable();
             $table->string('pid', 12)->nullable();
+            $table->integer('share')->unsigned()->default(1000);
+            $table->integer('bonus')->unsigned()->default(3000);
             $table->text('memo')->nullable();
             $table->bigInteger('created_by')->unsigned();
             $table->boolean('status')->default(true);

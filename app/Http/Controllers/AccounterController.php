@@ -46,7 +46,7 @@ class AccounterController extends Controller
         $data['status'] = true;
         try {
             User::create($data);
-        } exception(Throwable $th) {
+        } catch(\Throwable $th) {
             return back()->with('error', 'user_create_error');
         }
         return redirect()->route('accounters.index');

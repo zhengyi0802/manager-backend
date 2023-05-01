@@ -76,7 +76,7 @@
                     <strong>{{ __('resellers.account') }} : {{ __('tables.must') }}</strong>
                     <input type="text" name="account" value="{{ $reseller->account }}" class="form-control">
                 </div>
-                @if (auth()->user()->role == App\Enums\UserRole::Manager)
+                @if (auth()->user()->role <= App\Enums\UserRole::Manager)
                 <div class="form-group col-md-4">
                     <strong>{{ __('resellers.bonus') }} : {{ __('tables.must') }}</strong>
                     <input type="text" name="bonus" value="{{ $reseller->bonus }}" class="form-control">

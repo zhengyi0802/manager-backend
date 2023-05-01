@@ -161,7 +161,7 @@ class OrderController extends Controller
             }
             $bonusitem = [
                 'member_id'       => $manager->id,
-                'manager_used'    => true;
+                'manager_used'    => true,
                 'order_id'        => $order->id,
                 'amount'          => $amount,
                 'process_status'  => BonusStatus::Unchecked,

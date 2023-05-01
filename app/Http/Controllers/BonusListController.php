@@ -20,7 +20,7 @@ class BonusListController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if ($user->role == UserRole::Accounter) {
+        if ($user->role == UserRole::Accounter || $user->role == UserRole::Administrator) {
             $bonuslists = BonusList::where('process_status', '<' , BonusStatus::Transfered)
                                    ->get();
         } else if ($user->role == UserRole::Manager) {

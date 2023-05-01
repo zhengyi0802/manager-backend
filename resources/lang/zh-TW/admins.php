@@ -17,4 +17,5 @@
         'memo'        => '備註',
         'created_by'  => '建檔人',
         'created_at'  => '建立日期',
+        'user_create_error' => '資料重複, 無法新增',
     ];

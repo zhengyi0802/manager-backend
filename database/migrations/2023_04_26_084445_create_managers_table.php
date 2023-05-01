@@ -19,7 +19,7 @@ class CreateManagersTable extends Migration
             $table->string('company',80)->nullable();
             $table->string('address')->nullable();
             $table->string('cid', 20)->nullable();
-            $table->string('pid', 12);
+            $table->string('pid', 12)->nullable();
             $table->text('memo')->nullable();
             $table->bigInteger('created_by')->unsigned();
             $table->boolean('status')->default(true);

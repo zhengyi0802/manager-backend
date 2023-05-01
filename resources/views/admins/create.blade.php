@@ -16,15 +16,10 @@
     </div>
 </div>
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+@if ($message = Session::get('error'))
+<div class="alert alert-danger col-md-4">
+    <p>{{ __('admins.user_create_error') }}</p>
+</div>
 @endif
 
 <form action="{{ route('admins.store') }}" method="POST">

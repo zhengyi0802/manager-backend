@@ -20,4 +20,5 @@
         'reseller_ap'    => '經銷商申請書',
         'distrobuter_ap' => '分銷商申請書',
         'order_ap'       => '電視申領書',
+        'user_create_error' => '資料重複, 無法新增',
     ];

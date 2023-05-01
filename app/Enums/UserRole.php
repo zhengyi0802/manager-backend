@@ -11,6 +11,7 @@ use BenSampo\Enum\Enum;
  */
 final class UserRole extends Enum
 {
+    const System        =   0;  //系統
     const Administrator =   1;  //超級管理者
     const Manager       =   2;  //管理者
     const Accounter     =   3;  //操作員

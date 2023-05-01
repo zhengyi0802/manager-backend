@@ -16,8 +16,12 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        $managers = Manager::get();
-
+        $user = auth()->user();
+        if ($user->role == UserRole::Manager) {
+           $managers = Manager::where('user_id', $user->id)->get();
+        } else {
+            $managers = Manager::get();
+        }
         return view('managers.index', compact('managers'));
     }
 
@@ -28,7 +32,7 @@ class ManagerController extends Controller
      */
     public function create()
     {
-        return view('managers.create')->with('message', '');
+        return view('managers.create');
     }
 
     /**
@@ -42,9 +46,9 @@ class ManagerController extends Controller
         $data = $request->all();
         $check_user = User::where('line_id', $data['line_id'])
                           ->orWhere('phone', $data['phone'])
-                          ->get();
-        if ($check_user != null && count($check_user)) {
-            return view('managers.create')->with('message','error');
+                          ->first();
+        if ($check_user != null) {
+            return view('managers.create')->with('error', 'user_exists');
         }
 
         $creator = auth()->user();
@@ -60,8 +64,11 @@ class ManagerController extends Controller
         ];
         $user = User::create($user);
         $data['user_id'] = $user->id;
-
-        Manager::create($data);
+        try {
+            Manager::create($data);
+        } catch(\Throwable $th) {
+            return back()->with('error', 'manager_create_error');
+        }
         return redirect()->route('managers.index');
     }
 

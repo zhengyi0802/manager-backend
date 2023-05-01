@@ -61,7 +61,7 @@
                     <input type="text" name="cid" value="{{ $manager->cid }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('managers.pid') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('managers.pid') }} :</strong>
                     <input type="text" name="pid" value="{{ $manager->pid }}" class="form-control">
                 </div>
             </div>

@@ -27,7 +27,7 @@ $config = [
           <form name="admin-delete-form" action="{{ route('admins.destroy', $admin->id); }}" method="POST">
             @csrf
             @method('DELETE')
-            @if (auth()->user()->id == 1)
+            @if (auth()->user()->name == 'Admin' || auth()->user()->id == $admin->id)
               <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
                 onClick="window.location='{{ route('admins.edit', $admin->id); }}'" >
               </x-adminlte-button>

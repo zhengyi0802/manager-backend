@@ -7,11 +7,6 @@
 @stop
 
 @section('content')
-<div class="roe">
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-</div>
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
@@ -21,15 +16,10 @@
     </div>
 </div>
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+@if ($message = Session::get('error'))
+<div class="alert alert-danger col-md-4">
+    <p>{{ __('managers.user_create_error') }}</p>
+</div>
 @endif
 
 <form action="{{ route('managers.store') }}" method="POST">
@@ -61,7 +51,7 @@
                 <input type="text" name="cid" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('managers.pid') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('managers.pid') }} :</strong>
                 <input type="text" name="pid" class="form-control">
             </div>
         </div>

@@ -14,8 +14,10 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->Integer('id')->unsigned();
+            $table->Integer('id')->unsigned()->unique();
             $table->bigInteger('member_id')->unsigned();
+            $table->string('phone', 20)->nullable();
+            $table->string('address')->nullable();
             $table->integer('prepaid_paid')->unsigned()->default(0);
             $table->date('paid_date')->nullable();
             $table->mediumInteger('prepaid_unpaid')->unsigned()->default(3500);

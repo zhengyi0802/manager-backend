@@ -50,8 +50,11 @@ class AdminController extends Controller
             'created_by' => $creator->id,
             'status'     => true,
         ];
-        $user = User::create($user);
-
+        try {
+            $user = User::create($user);
+        } catch (\Throwable $th) {
+            return back()->with('error', 'user_create_error');
+        }
         return redirect()->route('managers.index');
     }
 

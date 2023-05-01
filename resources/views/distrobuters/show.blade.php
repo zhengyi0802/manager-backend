@@ -125,6 +125,7 @@
             <div class="form-group">
                 <p><strong>{{ __('distrobuters.order_ap') }} :</strong></p>
                 <p>{{ __('tables.order_application_url' ).$distrobuter->user->line_id }}</p>
+                <p>{{ QrCode::size(300)->generate(__('tables.order_application_url' ).$distrobuter->user->line_id) }}</p>
             </div>
          </div>
      </div>

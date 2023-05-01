@@ -127,12 +127,14 @@
             <div class="form-group">
                 <p><strong>{{ __('resellers.distrobuter_ap') }} :</strong></p>
                 <p>{{ __('tables.distrobuter_application_url' ).$reseller->user->line_id }}</p>
+                <p>{{ QrCode::size(300)->generate(__('tables.distrobuter_application_url' ).$reseller->user->line_id) }}</p>
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <p><strong>{{ __('resellers.order_ap') }} :</strong></p>
                 <p>{{ __('tables.order_application_url' ).$reseller->user->line_id }}</p>
+                <p>{{ QrCode::size(300)->generate(__('tables.order_application_url' ).$reseller->user->line_id) }}</p>
             </div>
          </div>
      </div>

@@ -61,6 +61,18 @@
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>{{ __('managers.share') }} :</strong>
+                {{ $manager->share }}
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('managers.bonus') }} :</strong>
+                {{ $manager->bonus }}
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>{{ __('managers.created_by') }} :</strong>
                 {{ $manager->creator ? $manager->creator->name : null }}
             </div>

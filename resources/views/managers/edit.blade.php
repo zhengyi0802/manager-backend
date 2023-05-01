@@ -64,6 +64,16 @@
                     <strong>{{ __('managers.pid') }} :</strong>
                     <input type="text" name="pid" value="{{ $manager->pid }}" class="form-control">
                 </div>
+                @if (auth()->user()->role == Aoo\Enums\UserRole::Administrator)
+                <div class="form-group col-md-4">
+                    <strong>{{ __('managers.share') }} :</strong>
+                    <input type="number" name="share" value="{{ $manager->share }}" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('managers.bonus') }} :</strong>
+                    <input type="text" name="bonus" value="{{ $manager->bonus }}" class="form-control">
+               </div>
+               @endif
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">

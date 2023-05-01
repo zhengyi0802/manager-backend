@@ -38,6 +38,15 @@ class OrderController extends Controller
                     }
                 }
             }
+            $distrobuters = $this->distrobuters($user->id);
+            foreach ($distrobuters as $distrobuter) {
+                $user_id = $distrobuter->user->id;
+                $orders->push($distrobuter->orders);
+                $members = $this->customers($user_id);
+                foreach($members as $member) {
+                    $orders->push($member->orders);
+                }
+            }
         } else if ($user->role == UserRole::Reseller) {
             $orders = $user->member->orders;
             $distrobuters = $this->distrobuters($user->id);

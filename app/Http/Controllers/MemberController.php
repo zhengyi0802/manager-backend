@@ -30,9 +30,15 @@ class MemberController extends Controller
               $distrobuters = $this->distrobuters($user_id);
               foreach ($distrobuters as $distrobuter) {
                       $user_id = $distrobuter->user->id;
-                      $customers = $this->customers($user->id);
+                      $customers = $this->customers($user_id);
                       $members->push($customers);
               }
+           }
+           $distrobuters = $this->distrobuters($user->id);
+           foreach ($distrobuters as $distrobuter) {
+               $user_id = $distrobuter->user->id;
+               $customers = $this->customers($user_id);
+               $members->push($customers);
            }
         } else if ($user->role == UserRole::Reseller) {
            $mnembers = $this->customers($user->id);

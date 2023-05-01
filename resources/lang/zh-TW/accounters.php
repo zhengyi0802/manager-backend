@@ -11,4 +11,5 @@
         'status'      => '狀態',
         'memo'        => '備註',
         'created_by'   => '建檔人',
+        'user_create_error' => '資料重複, 無法新增',
     ];

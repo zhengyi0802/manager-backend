@@ -44,8 +44,11 @@ class AccounterController extends Controller
         $data['role'] = UserRole::Accounter;
         $data['password'] = bcrypt($data['password']);
         $data['status'] = true;
-        User::create($data);
-
+        try {
+            User::create($data);
+        } exception(Throwable $th) {
+            return back()->with('error', 'user_create_error');
+        }
         return redirect()->route('accounters.index');
     }
 

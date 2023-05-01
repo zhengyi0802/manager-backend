@@ -38,4 +38,12 @@ class Member extends Model
     public function creator() {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    public function customers() {
+        return $this->hasMany(Member::class, 'introducer_id');
+    }
+
+    public function orders() {
+        return $this->hasMany(Order::class, 'member_id');
+    }
 }

@@ -22,15 +22,13 @@ use App\Http\Controllers\BonusController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->middleware('auth');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])
+     ->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+     ->name('home')->middleware('auth');
 
 Route::resource('/admins', AdminController::class);
 

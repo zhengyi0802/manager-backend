@@ -24,6 +24,7 @@ class DistrobuterController extends Controller
                                   ->get();
         } else if($user->role == UserRole::Distrobuter) {
             $distrobuters = Member::leftJoin('users', 'users.id', 'members.user_id')
+                                  ->select('members.*')
                                   ->where('user_id', $user->id)
                                   ->get();
         }

@@ -41,7 +41,12 @@ class User extends Authenticatable
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    public function manager() {
+         return $this->hasOne(Manager::class, 'user_id');
+    }
+
     public function member() {
         return $this->hasOne(Member::class, 'user_id');
     }
+
 }

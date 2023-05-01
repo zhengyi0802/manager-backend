@@ -22,11 +22,41 @@ class OrderController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if ($user->role >= UserRole::Reseller) {
-            $orders = Order::leftJoin('members', 'members.id', 'orders.member_id')
-                           ->select('members.*', 'orders.*')
-                           ->where('members.introducer_id', $user->id)
-                           ->get();
+        if ($user->role == UserRole::Manager) {
+            $orders = $user->member->orders;
+            $resellers = $this->resellers($user->id);
+            foreach ($resellers as $reseller) {
+                $user_id = $reseller->user->id;
+                $orders->push($reseller->orders);
+                $distrobuters = $this->distrobuters($user_id);
+                foreach ($distrobuters as $distrobuter) {
+                    $orders->push($distrobuter->orders);
+                    $user_id = $distrobuter->user->id;
+                    $members = $this->customers($user_id);
+                    foreach ($members as $member) {
+                        $orders->push($member->orders);
+                    }
+                }
+            }
+        } else if ($user->role == UserRole::Reseller) {
+            $orders = $user->member->orders;
+            $distrobuters = $this->distrobuters($user->id);
+            foreach ($distrobuters as $distrobuter) {
+                $user_id = $distrobuter->user->id;
+                $orders->push($distrobuter->orders);
+                $members = $this->customers($user_id);
+                foreach($members as $member) {
+                    $orders->push($member->orders);
+                }
+            }
+        } else if ($user->role == UserRole::Distrobuter) {
+            $orders  = $user->member->orders;
+            $members = $this->customers($user->id);
+            foreach($members as $member) {
+                $orders->push($member->orders);
+            }
+        } else if ($user->role == UserRole::Member) {
+            $orders = $user->member->orders;
         } else {
             $orders = Order::get();
         }
@@ -126,4 +156,32 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function resellers($user_id) {
+        $resellers = Member::leftJoin('users', 'members.user_id', 'users.id')
+                              ->select('members.*')
+                              ->where('users.role', UserRole::Reseller)
+                              ->where('members.introducer_id', $user_id)
+                              ->get();
+       return $resellers;
+    }
+
+    public function distrobuters($user_id) {
+        $distrobuters = Member::leftJoin('users', 'members.user_id', 'users.id')
+                              ->select('members.*')
+                              ->where('users.role', UserRole::Distrobuter)
+                              ->where('members.introducer_id', $user_id)
+                              ->get();
+       return $distrobuters;
+    }
+
+    public function customers($user_id) {
+        $customers = Member::leftJoin('users', 'members.user_id', 'users.id')
+                           ->select('members.*')
+                           ->where('users.role', UserRole::Member)
+                           ->where('members.introducer_id', $user_id)
+                           ->get();
+       return $customers;
+    }
+
 }

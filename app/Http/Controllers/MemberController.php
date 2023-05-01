@@ -19,12 +19,31 @@ class MemberController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if ($user->role >= UserRole::Reseller) {
-            $members = Member::leftJoin('users', 'members.user_id', 'users.id')
-                             ->select('members.*')
-                             ->where('users.role', UserRole::Member)
-                             ->where('members.introducer_id', $user->id)
-                             ->get();
+
+        if ($user->role == UserRole::Manager) {
+           $members = $this->customers($user->id);
+           $resellers = $this->resellers($user->id);
+           foreach ($resellers as $reseller) {
+              $user_id = $reseller->user->id;
+              $customers = $this->customers($user_id);
+              $members->push($customers);
+              $distrobuters = $this->distrobuters($user_id);
+              foreach ($distrobuters as $distrobuter) {
+                      $user_id = $distrobuter->user->id;
+                      $customers = $this->customers($user->id);
+                      $members->push($customers);
+              }
+           }
+        } else if ($user->role == UserRole::Reseller) {
+           $mnembers = $this->customers($user->id);
+           $distrobuters = $this->distrobuters($user->id);
+           foreach ($distrobuters as $distrobuter) {
+                   $user_id = $distrobuter->user->id;
+                   $customers = $this->customers($user_id);
+                   $members->push($customers);
+           }
+        } else if ($user->role == UserRole::Distrobuter) {
+            $members = $this->customers($user->id);
         } else {
             $members = Member::leftJoin('users', 'members.user_id', 'users.id')
                              ->select('members.*')
@@ -58,7 +77,7 @@ class MemberController extends Controller
                           ->orWhere('phone', $data['phone'])
                           ->get();
         if (count($check_user) == 0) {
-            $introducer = User::where('line_id', $data['introducer'])->get()->first();
+            $introducer = User::where('line_id', $data['introducer'])->first();
             $user = [
                 'name'       => $data['name'],
                 'phone'      => $data['phone'],
@@ -208,6 +227,33 @@ class MemberController extends Controller
         $user->save();
 
         return redirect()->route('distrobuters.index');
+    }
+
+    public function customers($user_id) {
+        $customers = Member::leftJoin('users', 'members.user_id', 'users.id')
+                           ->select('members.*')
+                           ->where('users.role', UserRole::Member)
+                           ->where('members.introducer_id', $user_id)
+                           ->get();
+       return $customers;
+    }
+
+    public function resellers($user_id) {
+        $resellers = Member::leftJoin('users', 'members.user_id', 'users.id')
+                              ->select('members.*')
+                              ->where('users.role', UserRole::Reseller)
+                              ->where('members.introducer_id', $user_id)
+                              ->get();
+       return $resellers;
+    }
+
+    public function distrobuters($user_id) {
+        $distrobuters = Member::leftJoin('users', 'members.user_id', 'users.id')
+                              ->select('members.*')
+                              ->where('users.role', UserRole::Distrobuter)
+                              ->where('members.introducer_id', $user_id)
+                              ->get();
+       return $distrobuters;
     }
 
 }

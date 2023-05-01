@@ -80,10 +80,12 @@
                     <strong>{{ __('distrobuters.account') }} : {{ __('tables.must') }}</strong>
                     <input type="text" name="account" value="{{ $distrobuter->account }}" class="form-control">
                 </div>
+                @if (auth()->user()->role == App\Enums\UserRole::Manager)
                 <div class="form-group col-md-4">
                     <strong>{{ __('distrobuters.bonus') }} : {{ __('tables.must') }}</strong>
                     <input type="number" name="bonus" value="{{ $distrobuter->bonus }}" class="form-control">
                 </div>
+                @endif
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">

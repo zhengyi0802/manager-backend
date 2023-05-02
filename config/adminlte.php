@@ -313,7 +313,7 @@ return [
         [
             'text' => 'accounter',
             'url'  => 'accounters',
-            'can'  => ['manager', 'accounter'],
+            'can'  => ['accounter'],
         ],
         [
             'text' => 'reseller',

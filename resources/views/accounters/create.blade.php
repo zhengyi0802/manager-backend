@@ -22,25 +22,31 @@
 </div>
 @endif
 
+<style>
+   span.must {
+      color     : red;
+      font-size : 12px;
+   }
+</style>
 <form action="{{ route('accounters.store') }}" method="POST">
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group col-md-4">
-                <strong>{{ __('accounters.name') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('accounters.name') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="name" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('accounters.phone') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('accounters.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="phone" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('accounters.line_id') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('accounters.line_id') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="line_id" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('accounters.password') }} : {{ __('tables.must') }}</strong>
-                <input type="text" name="password" class="form-control">
+                <strong>{{ __('accounters.password') }} :<span class="must">{{ __('tables.password') }}</span></strong>
+                <input type="password" name="password" class="form-control">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

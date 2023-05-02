@@ -16,6 +16,7 @@
            'clear'       => '清除',
            'creator'     => '建立者',
            'must'        => '(必填*)',
+           'password'    => '(至少8個字元*)',
            'yes'         => '是',
            'no'          => '否',
            'backend_url'                   => 'https://backend.mdo.tw/',

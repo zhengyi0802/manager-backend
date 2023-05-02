@@ -22,24 +22,30 @@
 </div>
 @endif
 
+<style>
+   span.must {
+      color     : red;
+      font-size : 12px;
+   }
+</style>
 <form action="{{ route('managers.store') }}" method="POST">
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group col-md-4">
-                <strong>{{ __('managers.name') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('managers.name') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="name" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('managers.phone') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('managers.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="phone" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('managers.line_id') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('managers.line_id') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="line_id" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('managers.password') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('managers.password') }} :<span class="must">{{ __('tables.password') }}</span></strong>
                 <input type="password" name="password" class="form-control">
             </div>
             <div class="form-group col-md-4">
@@ -57,7 +63,7 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('managers.address') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('managers.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="address" class="form-control">
             </div>
         </div>

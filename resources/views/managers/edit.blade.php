@@ -26,7 +26,12 @@
             </ul>
         </div>
     @endif
-
+    <style>
+       span.must {
+          color     : red;
+          font-size : 12px;
+       }
+    </style>
     <form action="{{ route('managers.update',$manager->id) }}" method="POST">
         @method('PUT')
         @csrf
@@ -37,11 +42,11 @@
                     {{ $manager->user->name }}
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('managers.phone') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('managers.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <input type="text" name="phone" value="{{ $manager->user->phone }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('managers.line_id') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('managers.line_id') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <input type="text" name="line_id" value="{{ $manager->user->line_id }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
@@ -49,11 +54,11 @@
                     <input type="text" name="company" value="{{ $manager->company }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('managers.password') }} :</strong>
-                    <input type="text" name="password" class="form-control">
+                    <strong>{{ __('managers.password') }} :<span class="must">{{ __('tables.password') }}</span></strong>
+                    <input type="password" name="password" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('managers.address') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('managers.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <input type="text" name="address" value="{{ $manager->address }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">

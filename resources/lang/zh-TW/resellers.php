@@ -4,6 +4,7 @@
         'header'         => '經銷商列表',
         'title'          => '經銷商管理',
         'introducer'     => '所屬業務群',
+        'manager'        => '所屬業務群(Line ID)',
         'id'             => '編號',
         'phone'          => '電話',
         'line_id'        => 'Line ID',

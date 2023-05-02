@@ -26,7 +26,12 @@
             </ul>
         </div>
     @endif
-
+    <style>
+       span.must {
+          color     : red;
+          font-size : 12px;
+       }
+    </style>
     <form action="{{ route('distrobuters.update',$distrobuter->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
@@ -34,50 +39,52 @@
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
                     <strong>{{ __('distrobuters.name') }} :</strong>
-                    {{ $distrobuter->user->name }}
+                    <input type="text" name="name" value="{{ $distrobuter->user->name }}" class="form-control" disabled>
                 </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('distrobuters.reseller') }} :</strong>
-                    {{ $distrobuter->introducer->name }}
+                    <input type="text" name="introducer" value="{{ $distrobuter->introducer->name }}" class="form-control" disabled>
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('distrobuters.phone') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('distrobuters.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <input type="text" name="phone" value="{{ $distrobuter->user->phone }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('distrobuters.line_id') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('distrobuters.line_id') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <input type="text" name="line_id" value="{{ $distrobuter->user->line_id }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('distrobuters.password') }} :</strong>
-                    <input type="text" name="newpassword" class="form-control">
+                    <strong>{{ __('distrobuters.password') }} :<span class="must">{{ __('tables.password') }}</span></strong>
+                    <input type="password" name="newpassword" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('distrobuters.address') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('distrobuters.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <input type="text" name="address" value="{{ $distrobuter->user->line_id }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('distrobuters.pidnumbers') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('distrobuters.pidnumbers') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <input type="text" name="pid" value="{{ $distrobuter->pid }}" class="form-control">
                 </div>
+                @if (auth()->user()->role == App\Enums\UserRole::Administrator)
                 <div class="form-group col-md-4">
-                    <strong>{{ __('distrobuters.pid_image_1') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('distrobuters.pid_image_1') }} :</strong>
                     <input type="file" name="pid_image_1" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('distrobuters.pid_image_2') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('distrobuters.pid_image_2') }} :</strong>
                     <input type="file" name="pid_image_2" class="form-control">
                 </div>
+                @endif
                 <div class="form-group col-md-4">
-                    <strong>{{ __('distrobuters.bank') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('distrobuters.bank') }} :</strong>
                     <input type="text" name="bank" value="{{ $distrobuter->bank }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('distrobuters.bank') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('distrobuters.bank') }} :</strong>
                     <input type="text" name="bank_name" value="{{ $distrobuter->bank_name }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('distrobuters.account') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('distrobuters.account') }} :</strong>
                     <input type="text" name="account" value="{{ $distrobuter->account }}" class="form-control">
                 </div>
                 @if (auth()->user()->role <= App\Enums\UserRole::Manager)

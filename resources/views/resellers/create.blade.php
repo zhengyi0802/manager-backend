@@ -26,62 +26,55 @@
         </ul>
     </div>
 @endif
-
+<style>
+   span.must {
+      color     : red;
+      font-size : 12px;
+   }
+</style>
 <form action="{{ route('resellers.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group col-md-4">
-                <strong>{{ __('resellers.name') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('resellers.manager') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                @if (auth()->user()->role == App\Enums\UserRole::Manager)
+                    <input type="text" name="introducer" value="{{ auth()->user()->line_id }}" class="form-control" disabled>
+                @else
+                    <input type="text" name="introducer" class="form-control">
+                @endif
+            </div>
+            <div class="form-group col-md-4">
+                <strong>{{ __('resellers.name') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="name" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('resellers.line_id') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('resellers.line_id') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="line_id" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('resellers.phone') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('resellers.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="phone" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('resellers.address') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('resellers.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="address" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('resellers.password') }} : {{ __('tables.must') }}</strong>
-                <input type="text" name="password" class="form-control">
+                <strong>{{ __('resellers.password') }} :<span class="must">{{ __('tables.password') }}</span></strong>
+                <input type="password" name="password" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('resellers.pidnumbers') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('resellers.pidnumbers') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="pid" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('resellers.pid_image_1') }} : {{ __('tables.must') }}</strong>
-                <input type="file" name="pid_image_1" class="form-control">
+                <strong>{{ __('resellers.bonus') }} :</strong>
+                <input type="numbers" name="bonus" value="2500" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('resellers.pid_image_2') }} : {{ __('tables.must') }}</strong>
-                <input type="file" name="pid_image_2" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('resellers.bank') }} : {{ __('tables.must') }}</strong>
-                <input type="text" name="bank" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('resellers.bank_name') }} : {{ __('tables.must') }}</strong>
-                <input type="text" name="bank_name" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('resellers.account') }} : {{ __('tables.must') }}</strong>
-                <input type="text" name="account" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('resellers.bonus') }} : {{ __('tables.must') }}</strong>
-                <input type="text" name="bonus" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('resellers.share') }} : {{ __('tables.must') }}</strong>
-                <input type="text" name="share" class="form-control">
+                <strong>{{ __('resellers.share') }} :</strong>
+                <input type="numbers" name="share" value="2500" class="form-control">
             </div>
             <div class="form-group">
                 <strong>{{ __('managers.memo') }}:</strong>

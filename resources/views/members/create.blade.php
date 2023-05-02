@@ -26,54 +26,43 @@
         </ul>
     </div>
 @endif
-
+<style>
+   span.must {
+      color     : red;
+      font-size : 12px;
+   }
+</style>
 <form action="{{ route('members.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group col-md-4">
-                <strong>{{ __('members.introducer') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('members.introducer') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                @if (auth()->user()->role > App\Enums\UserRole::Administrator && auth()->user()->role != App\Enums\UserRole::Accounter)
+                <input type="text" name="introducer" class="form-control" value="{{ auth()->user()->line_id }}" disabled>
+                @else
                 <input type="text" name="introducer" class="form-control">
+                @endif
             </div>
              <div class="form-group col-md-4">
-                <strong>{{ __('members.name') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('members.name') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="name" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('members.line_id') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('members.line_id') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="line_id" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('members.phone') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('members.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="phone" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('members.address') }} : {{ __('tables.must') }}</strong>
+                <strong>{{ __('members.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="address" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('members.password') }} : {{ __('tables.must') }}</strong>
-                <input type="text" name="password" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('members.pidnumbers') }} : {{ __('tables.must') }}</strong>
-                <input type="text" name="pid" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('members.pid_image_1') }} : {{ __('tables.must') }}</strong>
-                <input type="file" name="pid_image_1" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('members.pid_image_2') }} : {{ __('tables.must') }}</strong>
-                <input type="file" name="pid_image_2" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('members.creadit_card') }} : {{ __('tables.must') }}</strong>
-                <input type="text" name="creadit_card" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
-                <strong>{{ __('members.creadit_expire') }} : {{ __('tables.must') }}</strong>
-                <input type="date" name="creadit_expire" class="form-control">
+                <strong>{{ __('members.password') }} :<span class="must">{{ __('tables.password') }}</span></strong>
+                <input type="password" name="password" class="form-control">
             </div>
             <div class="form-group">
                 <strong>{{ __('managers.memo') }}:</strong>

@@ -26,7 +26,12 @@
             </ul>
         </div>
     @endif
-
+    <style>
+       span.must {
+          color     : red;
+          font-size : 12px;
+       }
+    </style>
     <form action="{{ route('resellers.update',$reseller->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
@@ -37,25 +42,26 @@
                     {{ $reseller->user->name }}
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('resellers.phone') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('resellers.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <input type="text" name="phone" value="{{ $reseller->user->phone }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('resellers.line_id') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('resellers.line_id') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <input type="text" name="line_id" value="{{ $reseller->user->line_id }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('resellers.password') }} :</strong>
-                    <input type="text" name="newpassword" class="form-control">
+                    <strong>{{ __('resellers.password') }} :<span class="must">{{ __('tables.password') }}</span></strong>
+                    <input type="password" name="newpassword" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('resellers.address') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('resellers.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <input type="text" name="address" value="{{ $reseller->address }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('resellers.pidnumbers') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('resellers.pidnumbers') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <input type="text" name="pid" value="{{ $reseller->pid }}" class="form-control">
                 </div>
+                @if (auth()->user()->role == App\Enums\UserRole::Administrator)
                 <div class="form-group col-md-4">
                     <strong>{{ __('resellers.pid_image_1') }} : {{ __('tables.must') }}</strong>
                     <input type="file" name="pid_image_1" class="form-control">
@@ -64,26 +70,27 @@
                     <strong>{{ __('resellers.pid_image_2') }} : {{ __('tables.must') }}</strong>
                     <input type="file" name="pid_image_2" class="form-control">
                 </div>
+                @endif
                 <div class="form-group col-md-4">
-                    <strong>{{ __('resellers.bank') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('resellers.bank') }} :</strong>
                     <input type="text" name="bank" value="{{ $reseller->bank }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('resellers.bank_name') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('resellers.bank_name') }} :</strong>
                     <input type="text" name="bank_name" value="{{ $reseller->bank_name }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('resellers.account') }} : {{ __('tables.must') }}</strong>
+                    <strong>{{ __('resellers.account') }} :</strong>
                     <input type="text" name="account" value="{{ $reseller->account }}" class="form-control">
                 </div>
                 @if (auth()->user()->role <= App\Enums\UserRole::Manager)
                 <div class="form-group col-md-4">
-                    <strong>{{ __('resellers.bonus') }} : {{ __('tables.must') }}</strong>
-                    <input type="text" name="bonus" value="{{ $reseller->bonus }}" class="form-control">
+                    <strong>{{ __('resellers.bonus') }} :</strong>
+                    <input type="number" name="bonus" value="{{ $reseller->bonus }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('resellers.share') }} : {{ __('tables.must') }}</strong>
-                    <input type="text" name="share" value="{{ $reseller->share }}" class="form-control">
+                    <strong>{{ __('resellers.share') }} :</strong>
+                    <input type="number" name="share" value="{{ $reseller->share }}" class="form-control">
                 </div>
                 @endif
             </div>
@@ -106,4 +113,3 @@
         </div>
     </form>
 @endsection
-

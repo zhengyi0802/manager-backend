@@ -25,26 +25,20 @@
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('members.phone') }} :</strong>
-                {{ $order->member->user->phone }}
+                <strong>{{ __('orders.phone') }} :</strong>
+                {{ $order->phone }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('members.line_id') }} :</strong>
+                <strong>{{ __('orders.line_id') }} :</strong>
                 {{ $order->member->user->line_id }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('members.address') }} :</strong>
-                {{ $order->member->address }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.pid') }} :</strong>
-                {{ $order->member->pid }}
+                <strong>{{ __('orders.address') }} :</strong>
+                {{ $order->address }}
             </div>
          </div>
          @if (auth()->user()->role <= App\Enums\UserRole::Accounter)

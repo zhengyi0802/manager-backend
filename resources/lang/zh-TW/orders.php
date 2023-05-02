@@ -7,6 +7,8 @@
         'phone'          => '電話',
         'line_id'        => 'Line ID',
         'name'           => '姓名',
+        'phone'          => '電話',
+        'address'        => '送貨地址',
         'status'         => '狀態',
         'memo'           => '備註',
         'created_by'     => '建檔人',

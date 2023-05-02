@@ -21,7 +21,7 @@ $config = [
     <tr>
       <td>{{ $order->id }}</td>
       <td>{{ $order->member->user->name }}</td>
-      <td>{{ $order->member->user->phone }}</td>
+      <td>{{ $order->phone }}</td>
       <td>{{ $order->created_at->toDateString() }}</td>
       <td>{{ trans_choice('orders.flow_statuses', $order->flow_status) }}</td>
       <td>{{ $order->prepaid_paid }}</td>
@@ -31,7 +31,9 @@ $config = [
           <form name="order-delete-form" action="{{ route('orders.destroy', $order->id); }}" method="POST">
             @csrf
             @method('DELETE')
-            @if (auth()->user()->role != App\Enums\UserRole::Member)
+            @if (auth()->user()->id == $order->member->user->id
+                 || auth()->user()->role == App\Enums\UserRole::Accounter
+                 || auth()->user()->role == App\Enums\UserRole::Administrator)
               <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
                 onClick="window.location='{{ route('orders.edit', $order->id); }}'" >
               </x-adminlte-button>

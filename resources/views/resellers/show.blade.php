@@ -35,7 +35,9 @@
             <x-adminlte-card title="{{ __('resellers.pid') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->pid }}
             </x-adminlte-card>
-            @if (auth()->user()->role == App\Enums\UserRole::Accounter || auth()->user()->role == App\Enums\UserRole::Administrator)
+            @if (auth()->user()->id == $reseller->user->id
+                 || auth()->user()->role == App\Enums\UserRole::Accounter
+                 || auth()->user()->role == App\Enums\UserRole::Administrator)
             <x-adminlte-card title="{{ __('resellers.pid_image_1') }}" theme="info" icon="fas fa-lg">
                 <img src="{{ '../'.$reseller->pid_image_1 }}">
             </x-adminlte-card>

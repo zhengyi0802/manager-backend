@@ -82,6 +82,7 @@ class MemberController extends Controller
         $check_user = User::where('line_id', $data['line_id'])
                           ->orWhere('phone', $data['phone'])
                           ->get();
+
         if (count($check_user) == 0) {
             $introducer = User::where('line_id', $data['introducer'])->first();
             $user = [
@@ -107,11 +108,6 @@ class MemberController extends Controller
                 'user_id'        => $user->id,
                 'introducer_id'  => $introducer->id,
                 'address'        => $data['address'],
-                'pid'            => $data['pid'],
-                'pid_image_1'    => $pid_image_1,
-                'pid_image_2'    => $pid_image_2,
-                'creadit_card'   => $data['creadit_card'],
-                'creadit_expire' => $data['creadit_expire'],
                 'created_by'     => $creator->id,
             ];
             $member = Member::create($member);
@@ -133,6 +129,8 @@ class MemberController extends Controller
         $order = [
             'id'             => $id,
             'member_id'      => $member->id,
+            'phone'          => $data['phone'],
+            'address'        => $data['address'],
         ];
         Order::create($order);
 
@@ -192,11 +190,6 @@ class MemberController extends Controller
         }
         $memberdata = [
             'address'        => $data['address'],
-            'pid'            => $data['pid'],
-            'pid_image_1'    => $pid_image_1,
-            'pid_image_2'    => $pid_image_2,
-            'creadit_card'   => $data['creadit_card'],
-            'creadit_expire' => $data['creadit_expire'],
         ];
         $member->update($memberdata);
 

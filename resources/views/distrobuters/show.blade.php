@@ -36,7 +36,9 @@
             <x-adminlte-card title="{{ __('distrobuters.pidnumbers') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->pid }}
             </x-adminlte-card>
-         @if (auth()->user()->role == App\Enums\UserRole::Accounter || auth()->user()->role == App\Enums\UserRole::Administrator)
+         @if (auth()->user()->id == $distrobuter->user->id
+              || auth()->user()->role == App\Enums\UserRole::Accounter
+              || auth()->user()->role == App\Enums\UserRole::Administrator)
             <x-adminlte-card title="{{ __('distrobuters.pid_image_1') }}" theme="info" icon="fas fa-lg">
                 <img src="{{ '../'.$distrobuter->pid_image_1 }}">
             </x-adminlte-card>

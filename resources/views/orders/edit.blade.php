@@ -31,13 +31,27 @@
         @method('PUT')
         @csrf
          <div class="row">
-           <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('orders.phone') }} :</strong>
+                    <input type="text" name="phone" value="{{ $order->phone }}" class="form-control">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('orders.address') }} :</strong>
+                    <input type="text" name="address" value="{{ $order->address }}" class="form-control">
+                </div>
+            </div>
+            @if (auth()->user()->role == App\Enums\UserRole::Accounter
+                 || auth()->user()->role == App\Enums\UserRole::Administrator)
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
                     <strong>{{ __('orders.prepaid_paid') }} :</strong>
                     <input type="number" name="prepaid_paid" value="{{ $order->prepaid_paid }}" class="form-control">
                 </div>
             </div>
-           <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
                     <strong>{{ __('orders.paid_date') }} :</strong>
                     <input type="date" name="paid_date" value="{{ $order->paid_date }}" class="form-control">
@@ -57,6 +71,9 @@
                     <input type="radio" name="flow_status" value="8" {{ ($order->flow_status==8) ? "checked":null }} >{{ __('orders.bonustransfered') }}
                 </div>
             </div>
+            @else
+                <input type="hidden" name="flow_status" value="{{ $order->flow_status }}">
+            @endif
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
             </div>

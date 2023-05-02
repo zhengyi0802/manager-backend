@@ -11,6 +11,8 @@ class Manager extends Model
     protected $fillable = [
         'user_id',
         'company',
+        'share',
+        'bonus',
         'cid',
         'pid',
         'address',

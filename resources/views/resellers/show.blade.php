@@ -18,124 +18,66 @@
 
     <div class="row">
          <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.name') }} :</strong>
+            <x-adminlte-card title="{{ __('resellers.name') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->user->name }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.phone') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('resellers.phone') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->user->phone }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.line_id') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('resellers.line_id') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->user->line_id }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.address') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('resellers.address') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->address }}
             </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.pid') }} :</strong>
+            <x-adminlte-card title="{{ __('resellers.pid') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->pid }}
-            </div>
-            <div class="form-group">
-                <strong>{{ __('resellers.pid_image_1') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('resellers.pid_image_1') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->pid_image_1 }}
-            </div>
-            <div class="form-group">
-                <strong>{{ __('resellers.pid_image_2') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('resellers.pid_image_2') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->pid_image_2 }}
-            </div>
-         </div>
+            </x-adminlte-card>
          @if (auth()->user()->role <= App\Enums\UserRole::Accounter)
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.bank') }} :</strong>
+            <x-adminlte-card title="{{ __('resellers.bank') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->bank }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.bank_name') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('resellers.bank_name') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->bank_name }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.account') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('resellers.account') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->account }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.bonus') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('resellers.bonus') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->bonus }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.share') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('resellers.share') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->share }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.creadit_card') }} :</strong>
-                {{ $reseller->creadit_card }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.creadit_expire') }} :</strong>
-                {{ $reseller->creadit_expire }}
-            </div>
-         </div>
+            </x-adminlte-card>
          @endif
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.created_by') }} :</strong>
+            <x-adminlte-card title="{{ __('resellers.created_by') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->creator->name }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.memo') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('resellers.memo') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->memo }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('resellers.status') }}" theme="info" icon="fas fa-lg">
                 <strong>{{ __('resellers.status') }} :</strong>
                 {{ ($reseller->status==1) ? __('tables.status_on'):__('tables.status_off') }}
-            </div>
-        </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('resellers.created_at') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('resellers.created_by') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->created_at->toDateString() }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <p><strong>{{ __('resellers.distrobuter_ap') }} :</strong></p>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('resellers.distrobuter_up') }}" theme="info" icon="fas fa-lg">
                 <p>{{ __('tables.distrobuter_application_url' ).$reseller->user->line_id }}</p>
                 <p>{{ QrCode::size(300)->generate(__('tables.distrobuter_application_url' ).$reseller->user->line_id) }}</p>
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('resellers.order_up') }}" theme="info" icon="fas fa-lg">
                 <p><strong>{{ __('resellers.order_ap') }} :</strong></p>
                 <p>{{ __('tables.order_application_url' ).$reseller->user->line_id }}</p>
                 <p>{{ QrCode::size(300)->generate(__('tables.order_application_url' ).$reseller->user->line_id) }}</p>
-            </div>
+            </x-adminlte-card>
          </div>
      </div>
 @endsection

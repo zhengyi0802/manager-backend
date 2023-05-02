@@ -18,115 +18,61 @@
 
     <div class="row">
          <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('distrobuters.reseller') }} :</strong>
+            <x-adminlte-card title="{{ __('distrobuters.reseller') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->introducer->name }}
-            </div>
-            <div class="form-group">
-                <strong>{{ __('distrobuters.name') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('distrobuters.name') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->user->name }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('distrobuters.phone') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('distrobuters.phone') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->user->phone }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('distrobuters.line_id') }} :</strong>
+            </x-adminlte>
+            <x-adminlte-card title="{{ __('distrobuters.line_id') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->user->line_id }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('distrobuters.address') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('distrobuters.address') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->address }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('distrobuters.pid') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('distrobuters.pidnumbers') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->pid }}
-            </div>
-            <div class="form-group">
-                <strong>{{ __('distrobuters.pid_image_1') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('distrobuters.pid_image_1') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->pid_image_1 }}
-            </div>
-            <div class="form-group">
-                <strong>{{ __('distrobuters.pid_image_2') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('distrobuters.pid_image_2') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->pid_image_2 }}
-            </div>
-         </div>
+            </x-adminlte-card>
          @if (auth()->user()->role <= App\Enums\UserRole::Accounter)
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('distrobuters.bank') }} :</strong>
+            <x-adminlte-card title="{{ __('distrobuters.bank') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->bank }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('distrobuters.bank_name') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('distrobuters.bank_name') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->bank_name }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('distrobuters.account') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('distrobuters.account') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->account }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('distrobuters.bonus') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('distrobuters.bonus') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->bonus }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('distrobuters.creadit_card') }} :</strong>
-                {{ $distrobuter->creadit_card }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('distrobuters.creadit_expire') }} :</strong>
-                {{ $distrobuter->creadit_expire }}
-            </div>
-         </div>
+            </x-adminlte-card>
          @endif
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('distrobuters.created_by') }} :</strong>
+            <x-adminlte-card title="{{ __('distrobuters.created_by') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->creator->name }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('distrobuters.memo') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('distrobuters.memo') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->memo }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('distrobuters.status') }}" theme="info" icon="fas fa-lg">
                 <strong>{{ __('distrobuters.status') }} :</strong>
                 {{ ($distrobuter->status==1) ? __('tables.status_on'):__('tables.status_off') }}
-            </div>
-        </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('distrobuters.created_at') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('distrobuters.created_at') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->created_at->toDateString() }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <p><strong>{{ __('distrobuters.order_ap') }} :</strong></p>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('distrobuters.order_ap') }}" theme="info" icon="fas fa-lg">
                 <p>{{ __('tables.order_application_url' ).$distrobuter->user->line_id }}</p>
                 <p>{{ QrCode::size(300)->generate(__('tables.order_application_url' ).$distrobuter->user->line_id) }}</p>
-            </div>
+            </x-adminlte-card>
          </div>
      </div>
 @endsection

@@ -18,34 +18,22 @@
 
     <div class="row">
          <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('accounters.name') }} :</strong>
+            <x-adminlte-card title="{{ __('accounters.name') }}" theme="info" icon="fas fa-lg">
                 {{ $accounter->name }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('accounters.phone') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('accounters.phone') }}" theme="info" icon="fas fa-lg">
                 {{ $accounter->phone }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('accounters.line_id') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('accounters.line_id') }}" theme="info" icon="fas fa-lg">
                 {{ $accounter->line_id }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('accounters.created_by') }} :</strong>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('accounters.created_by') }}" theme="info" icon="fas fa-lg">
                 {{ $accounter->creator->name }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('accounters.status') }}" theme="info" icon="fas fa-lg">
                 <strong>{{ __('accounters.status') }} :</strong>
                 {{ ($accounter->status==1) ? __('tables.status_on'):__('tables.status_off') }}
-            </div>
-        </div>
-     </div>
+            </x-adminlte-card>
+         </div>
+    </div>
 @endsection

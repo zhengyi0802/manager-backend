@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('distrobuters.reseller') }} :</strong>
-                    <input type="text" name="introducer" value="{{ $distrobuter->introducer->name }}" class="form-control" disabled>
+                    <input type="text" name="introducer" value="{{ $distrobuter->introducer->line_id }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('distrobuters.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>

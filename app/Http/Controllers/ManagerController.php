@@ -105,14 +105,12 @@ class ManagerController extends Controller
     {
         $data = $request->all();
         $creator = auth()->user();
-        $data['created_by'] = $creator->id;
         $manager->update($data);
         $user = User::find($manager->user_id);
         $user->phone = $data['phone'];
         $user->line_id = $data['line_id'];
         if ($data['password'] != null) {
             $user->password = bcrypt($data['password']);
-            $user->role = UserRole::Manager;
         }
         $user->save();
 

@@ -21,105 +21,48 @@
     </div>
 
     <div class="row">
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.introducer') }} :</strong>
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <x-adminlte-card title="{{ __('members.introducer') }}" theme="info" icon="fas fa-lg">
                 {{ $member->introducer->name }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.name') }} :</strong>
+        </x-adminlte>
+        <x-adminlte-card title="{{ __('members.name') }}" theme="info" icon="fas fa-lg">
                 {{ $member->user->name }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.phone') }} :</strong>
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('members.phone') }}" theme="info" icon="fas fa-lg">
                 {{ $member->user->phone }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.line_id') }} :</strong>
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('members.line_id') }}" theme="info" icon="fas fa-lg">
                 {{ $member->user->line_id }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.address') }} :</strong>
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('members.address') }}" theme="info" icon="fas fa-lg">
                 {{ $member->address }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.pid') }} :</strong>
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('members.pidnumbers') }}" theme="info" icon="fas fa-lg">
                 {{ $member->pid }}
-            </div>
-            <div class="form-group">
-                <strong>{{ __('members.pid_image_1') }} :</strong>
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('members.pid_image_1') }}" theme="info" icon="fas fa-lg">
                 {{ $member->pid_image_1 }}
-            </div>
-            <div class="form-group">
-                <strong>{{ __('members.pid_image_2') }} :</strong>
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('members.pid_image_2') }}" theme="info" icon="fas fa-lg">
                 {{ $member->pid_image_2 }}
-            </div>
-         </div>
-         @if (auth()->user()->role <= App\Enums\UserRole::Accounter)
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.bank') }} :</strong>
-                {{ $member->bank }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.bank_name') }} :</strong>
-                {{ $member->bank_name }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.account') }} :</strong>
-                {{ $member->account }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.creadit_card') }} :</strong>
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('members.creadit_card') }}" theme="info" icon="fas fa-lg">
                 {{ $member->creadit_card }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.creadit_expire') }} :</strong>
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('members.creadit_expire') }}" theme="info" icon="fas fa-lg">
                 {{ $member->creadit_expire }}
-            </div>
-         </div>
-         @endif
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.created_by') }} :</strong>
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('members.created_by') }}" theme="info" icon="fas fa-lg">
                 {{ $member->creator->name }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.memo') }} :</strong>
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('members.memo') }}" theme="info" icon="fas fa-lg">
                 {{ $member->memo }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.status') }} :</strong>
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('members.status') }}" theme="info" icon="fas fa-lg">
                 {{ ($member->status==1) ? __('tables.status_on'):__('tables.status_off') }}
-            </div>
-        </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('orders.created_at') }} :</strong>
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('members.created_at') }}" theme="info" icon="fas fa-lg">
                 {{ $member->created_at->toDateString() }}
-            </div>
-         </div>
+        </x-adminlte-card>
      </div>
 @endsection

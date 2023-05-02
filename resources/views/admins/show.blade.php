@@ -17,41 +17,25 @@
     </div>
 
     <div class="row">
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('admins.name') }} :</strong>
-                {{ $admin->name }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('admins.phone') }} :</strong>
-                {{ $admin->phone }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('admins.line_id') }} :</strong>
-                {{ $admin->line_id }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('admins.created_by') }} :</strong>
-                {{ $admin->creator ? $admin->creator->name : null }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('admins.status') }} :</strong>
-                {{ ($admin->status==1) ? __('tables.status_on'):__('tables.status_off') }}
-            </div>
-        </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('admins.created_at') }} :</strong>
-                {{ $admin->created_at }}
-            </div>
-         </div>
-     </div>
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <x-adminlte-card title="{{ __('admins.name') }}" theme="info" icon="fas fa-lg">
+          {{ $admin->name }}
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('admins.phone') }}" theme="info" icon="fas fa-lg">
+          {{ $admin->phone }}
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('admins.line_id') }}" theme="info" icon="fas fa-lg">
+          {{ $admin->line_id }}
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('admins.created_by') }}" theme="info" icon="fas fa-lg">
+          {{ $admin->creator ? $admin->creator->name : null }}
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('admins.status') }}" theme="info" icon="fas fa-lg">
+          {{ ($admin->status==1) ? __('tables.status_on'):__('tables.status_off') }}
+        </x-adminlte-card>
+        <x-adminlte-card title="{{ __('admins.created_by') }}" theme="info" icon="fas fa-lg">
+          {{ $admin->created_at }}
+        </x-adminlte-card>
+      </div>
+    </div>
 @endsection

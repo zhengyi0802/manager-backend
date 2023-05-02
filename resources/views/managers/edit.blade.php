@@ -76,7 +76,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('managers.bonus') }} :</strong>
-                    <input type="text" name="bonus" value="{{ $manager->bonus }}" class="form-control">
+                    <input type="number" name="bonus" value="{{ $manager->bonus }}" class="form-control">
                </div>
                @endif
             </div>

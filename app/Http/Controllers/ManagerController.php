@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Manager;
 use App\Models\User;
 use App\Enums\UserRole;
+use App\Uploads\FileUpload;
 use Illuminate\Http\Request;
 
 class ManagerController extends Controller
@@ -105,6 +106,14 @@ class ManagerController extends Controller
     {
         $data = $request->all();
         $creator = auth()->user();
+        $pid_image_1 = null;
+        $pid_image_2 = null;
+        if ($request->file()) {
+            $upload1 = new FileUpload();
+            $data['pid_image_1'] = $upload1->fileUpload($request, 'pid_image_1');
+            $upload2 = new FileUpload();
+            $data['pid_image_2'] = $upload2->fileUpload($request, 'pid_image_2');
+        }
         $manager->update($data);
         $user = User::find($manager->user_id);
         $user->phone = $data['phone'];

@@ -15,9 +15,11 @@
             @include('layouts.back')
         </div>
     </div>
-
     <div class="row">
          <div class="col-xs-12 col-sm-12 col-md-12">
+            <x-adminlte-card title="{{ __('resellers.introducer') }}" theme="info" icon="fas fa-lg">
+                {{ $reseller->introducer->name }}
+            </x-adminlte-card>
             <x-adminlte-card title="{{ __('resellers.name') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->user->name }}
             </x-adminlte-card>
@@ -29,17 +31,17 @@
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('resellers.address') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->address }}
-            </div>
+            </x-adminlte-card>
             <x-adminlte-card title="{{ __('resellers.pid') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->pid }}
             </x-adminlte-card>
+            @if (auth()->user()->role == App\Enums\UserRole::Accounter || auth()->user()->role == App\Enums\UserRole::Administrator)
             <x-adminlte-card title="{{ __('resellers.pid_image_1') }}" theme="info" icon="fas fa-lg">
-                {{ $reseller->pid_image_1 }}
+                <img src="{{ '../'.$reseller->pid_image_1 }}">
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('resellers.pid_image_2') }}" theme="info" icon="fas fa-lg">
-                {{ $reseller->pid_image_2 }}
+                <img src="{{ '../'.$reseller->pid_image_2 }}">
             </x-adminlte-card>
-         @if (auth()->user()->role <= App\Enums\UserRole::Accounter)
             <x-adminlte-card title="{{ __('resellers.bank') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->bank }}
             </x-adminlte-card>
@@ -49,13 +51,13 @@
             <x-adminlte-card title="{{ __('resellers.account') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->account }}
             </x-adminlte-card>
+            @endif
             <x-adminlte-card title="{{ __('resellers.bonus') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->bonus }}
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('resellers.share') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->share }}
             </x-adminlte-card>
-         @endif
             <x-adminlte-card title="{{ __('resellers.created_by') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->creator->name }}
             </x-adminlte-card>

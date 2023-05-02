@@ -32,7 +32,7 @@
           font-size : 12px;
        }
     </style>
-    <form action="{{ route('managers.update',$manager->id) }}" method="POST">
+    <form action="{{ route('managers.update',$manager->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
          <div class="row">
@@ -68,6 +68,48 @@
                 <div class="form-group col-md-4">
                     <strong>{{ __('managers.pid') }} :</strong>
                     <input type="text" name="pid" value="{{ $manager->pid }}" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('managers.pid_image_1') }} : {{ __('tables.must') }}</strong>
+                    <input type="file" name="pid_image_1" class="form-control" onchange="loadImage1(event)" >
+                </div>
+                <div class="form-group col-md-4">
+                    <img id="preview1" name="preview1">
+                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('managers.pid_image_2') }} : {{ __('tables.must') }}</strong>
+                    <input type="file" name="pid_image_2" class="form-control" onchange="loadImage2(event)">
+                </div>
+                <div class="form-group col-md-4">
+                   <img id="preview2" name="preview2">
+                </div>
+                <script>
+                    var loadImage1 = function(event) {
+                        var output = document.getElementById('preview1');
+                        output.src = URL.createObjectURL(event.target.files[0]);
+                        output.onload = function() {
+                           URL.revokeObjectURL(output.src) // free memory
+                        }
+                   };
+                    var loadImage2 = function(event) {
+                        var output = document.getElementById('preview2');
+                        output.src = URL.createObjectURL(event.target.files[0]);
+                        output.onload = function() {
+                           URL.revokeObjectURL(output.src) // free memory
+                        }
+                   };
+                </script>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('managers.bank') }} :</strong>
+                    <input type="text" name="bank" value="{{ $manager->bank }}" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('managers.bank_name') }} :</strong>
+                    <input type="text" name="bank_name" value="{{ $manager->bank_name }}" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('managers.account') }} :</strong>
+                    <input type="text" name="account" value="{{ $manager->account }}" class="form-control">
                 </div>
                 @if (auth()->user()->role == App\Enums\UserRole::Administrator)
                 <div class="form-group col-md-4">

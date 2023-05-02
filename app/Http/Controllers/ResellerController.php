@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Member;
 use App\Models\User;
 use App\Enums\UserRole;
+use App\Uploads\FileUpload;
 
 class ResellerController extends Controller
 {
@@ -70,9 +71,6 @@ class ResellerController extends Controller
             'pid'            => $data['pid'],
             'pid_image_1'    => $pid_image_1,
             'pid_image_2'    => $pid_image_2,
-            'bank'           => $data['bank'],
-            'bank_name'      => $data['bank_name'],
-            'account'        => $data['account'],
             'bonus'          => $data['bonus'],
             'share'          => $data['share'],
             'created_by'     => $creator->id,

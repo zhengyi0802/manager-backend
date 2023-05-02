@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Member;
 use App\Models\User;
 use App\Enums\UserRole;
+use App\Uploads\FileUpload;
 
 class DistrobuterController extends Controller
 {

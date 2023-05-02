@@ -65,16 +65,36 @@
                     <strong>{{ __('distrobuters.pidnumbers') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <input type="text" name="pid" value="{{ $distrobuter->pid }}" class="form-control">
                 </div>
-                @if (auth()->user()->role == App\Enums\UserRole::Administrator)
                 <div class="form-group col-md-4">
                     <strong>{{ __('distrobuters.pid_image_1') }} :</strong>
                     <input type="file" name="pid_image_1" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
+                    <img id="preview1" name="preview1">
+                </div>
+                <div class="form-group col-md-4">
                     <strong>{{ __('distrobuters.pid_image_2') }} :</strong>
                     <input type="file" name="pid_image_2" class="form-control">
                 </div>
-                @endif
+                <div class="form-group col-md-4">
+                    <img id="preview2" name="preview2">
+                </div>
+                <script>
+                    var loadImage1 = function(event) {
+                        var output = document.getElementById('preview1');
+                        output.src = URL.createObjectURL(event.target.files[0]);
+                        output.onload = function() {
+                           URL.revokeObjectURL(output.src) // free memory
+                        }
+                   };
+                    var loadImage2 = function(event) {
+                        var output = document.getElementById('preview2');
+                        output.src = URL.createObjectURL(event.target.files[0]);
+                        output.onload = function() {
+                           URL.revokeObjectURL(output.src) // free memory
+                        }
+                   };
+                </script>
                 <div class="form-group col-md-4">
                     <strong>{{ __('distrobuters.bank') }} :</strong>
                     <input type="text" name="bank" value="{{ $distrobuter->bank }}" class="form-control">

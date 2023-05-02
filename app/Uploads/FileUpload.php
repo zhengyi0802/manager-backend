@@ -14,9 +14,9 @@ class FileUpload {
   public static function fileUpload(Request $req, $field) {
         if($req->file()) {
             $fileName = time().'_'.$req->$field->getClientOriginalName();
-            $filePath = $req->file($field)->storeAs('uploads', $fileName, 'public');
+            $filePath = $req->file($field)->storeAs('images', $fileName, 'public');
 
-            $filepath = '/storage/images/' . $filePath;
+            $filepath = 'storage/'.$filePath;
             return $filepath;
         }
    }

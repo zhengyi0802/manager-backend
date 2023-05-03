@@ -27,6 +27,7 @@ class CreateManagersTable extends Migration
             $table->string('account', 16)->nullable();
             $table->integer('share')->unsigned()->default(500);
             $table->integer('bonus')->unsigned()->default(3500);
+            $table->boolean('share_status')->default(true);
             $table->text('memo')->nullable();
             $table->bigInteger('created_by')->unsigned();
             $table->boolean('status')->default(true);

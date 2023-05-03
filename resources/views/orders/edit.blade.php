@@ -47,14 +47,26 @@
                  || auth()->user()->role == App\Enums\UserRole::Administrator)
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('orders.prepaid_paid') }} :</strong>
-                    <input type="number" name="prepaid_paid" value="{{ $order->prepaid_paid }}" class="form-control">
+                    <strong>{{ __('orders.paid_1') }} :</strong>
+                    <input type="number" name="paid_1" value="{{ $order->paid_1 }}" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
-                    <strong>{{ __('orders.paid_date') }} :</strong>
-                    <input type="date" name="paid_date" value="{{ $order->paid_date }}" class="form-control">
+                    <strong>{{ __('orders.paid_date_1') }} :</strong>
+                    <input type="date" name="paid_date_1" value="{{ $order->paid_date_1 }}" class="form-control">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('orders.paid_2') }} :</strong>
+                    <input type="number" name="paid_2" value="{{ $order->paid_2 }}" class="form-control">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('orders.paid_date_2') }} :</strong>
+                    <input type="date" name="paid_date_2" value="{{ $order->paid_date_2 }}" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -63,7 +75,7 @@
                     <input type="radio" name="flow_status" value="0" {{ ($order->flow_status==0) ? "checked":null }} >{{ __('orders.cancel') }}
                     <input type="radio" name="flow_status" value="1" {{ ($order->flow_status==1) ? "checked":null }} >{{ __('orders.unchecked') }}
                     <input type="radio" name="flow_status" value="2" {{ ($order->flow_status==2) ? "checked":null }} >{{ __('orders.checked') }}
-                    <input type="radio" name="flow_status" value="3" {{ ($order->flow_status==3) ? "checked":null }} >{{ __('orders.prepaid_paid') }}
+                    <input type="radio" name="flow_status" value="3" {{ ($order->flow_status==3) ? "checked":null }} >{{ __('orders.prepaid_paided') }}
                     <input type="radio" name="flow_status" value="4" {{ ($order->flow_status==4) ? "checked":null }} >{{ __('orders.transfering') }}
                     <input type="radio" name="flow_status" value="5" {{ ($order->flow_status==5) ? "checked":null }} >{{ __('orders.installed') }}
                     <input type="radio" name="flow_status" value="6" {{ ($order->flow_status==6) ? "checked":null }} >{{ __('orders.completed') }}

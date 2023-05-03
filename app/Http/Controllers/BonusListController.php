@@ -30,6 +30,7 @@ class BonusListController extends Controller
         } else {
             $bonuslists = BonusList::where('process_status', '<' , BonusStatus::Transfered)
                                    ->where('member_id', $user->member->id)
+                                   ->where('amount', '>', 0)
                                    ->get();
         }
         return view('bonuslists.index', compact('bonuslists'));

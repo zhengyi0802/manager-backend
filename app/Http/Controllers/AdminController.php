@@ -45,6 +45,7 @@ class AdminController extends Controller
             'name'       => $data['name'],
             'phone'      => $data['phone'],
             'line_id'    => $data['line_id'],
+            'email'      => $data['email'],
             'password'   => bcrypt($data['password']),
             'role'       => UserRole::Administrator,
             'created_by' => $creator->id,
@@ -90,11 +91,12 @@ class AdminController extends Controller
     public function update(Request $request, User $admin)
     {
         $data = $request->all();
-        if ($data['password'] != null) {
-            $admin->password = bcrypt($data['password']);
-            $admin->role = UserRole::Administrator;
+        $data['role'] = UserRole::Administrator;
+
+        if ($data['newpassword'] != null) {
+            $data['password'] = bcrypt($data['newpassword']);
         }
-        $admin->save();
+        $admin->update($data);
 
         return redirect()->route('admins.index');
     }

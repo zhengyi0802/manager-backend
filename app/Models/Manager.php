@@ -21,6 +21,7 @@ class Manager extends Model
         'bank_name',
         'account',
         'address',
+        'share_status',
         'memo',
         'created_by',
         'status',

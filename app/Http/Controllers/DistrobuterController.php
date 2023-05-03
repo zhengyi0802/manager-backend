@@ -44,6 +44,11 @@ class DistrobuterController extends Controller
                           ->orWhere('phone', $data['phone'])
                           ->get();
         $introducer = User::where('line_id', $data['introducer'])->get()->first();
+        if ($introducer->role == UserRole::Manager) {
+            $share_status = $introducer->manager->share_status;
+        } else {
+            $share_status = $introducer->member->share_status;
+        }
         $user = [
             'name'       => $data['name'],
             'phone'      => $data['phone'],
@@ -79,6 +84,7 @@ class DistrobuterController extends Controller
             'bank_name'      => $data['bank_name'],
             'account'        => $data['account'],
             'bonus'          => $data['bonus'],
+            'share_status'   => $share_status,
             'created_by'     => $creator->id,
         ];
 

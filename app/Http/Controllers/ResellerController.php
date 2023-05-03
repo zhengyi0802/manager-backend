@@ -38,6 +38,11 @@ class ResellerController extends Controller
                           ->orWhere('phone', $data['phone'])
                           ->get();
         $introducer = $creator;
+        if ($introducer->role == UserRole::Manager) {
+            $share_status = $introducer->manager->share_status;
+        } else {
+            $share_status = $introducer->member->share_status;
+        }
         $user = [
             'name'       => $data['name'],
             'phone'      => $data['phone'],
@@ -73,6 +78,7 @@ class ResellerController extends Controller
             'pid_image_2'    => $pid_image_2,
             'bonus'          => $data['bonus'],
             'share'          => $data['share'],
+            'share_status'   => $share_status,
             'created_by'     => $creator->id,
         ];
         if (count($check_user) == 0) {

@@ -27,6 +27,9 @@
         <x-adminlte-card title="{{ __('admins.line_id') }}" theme="info" icon="fas fa-lg">
           {{ $admin->line_id }}
         </x-adminlte-card>
+        <x-adminlte-card title="{{ __('admins.email') }}" theme="info" icon="fas fa-lg">
+          {{ $admin->email }}
+        </x-adminlte-card>
         <x-adminlte-card title="{{ __('admins.created_by') }}" theme="info" icon="fas fa-lg">
           {{ $admin->creator ? $admin->creator->name : null }}
         </x-adminlte-card>

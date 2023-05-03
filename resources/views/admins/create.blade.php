@@ -45,6 +45,10 @@
                 <input type="text" name="line_id" class="form-control">
             </div>
             <div class="form-group col-md-4">
+                <strong>{{ __('admins.email') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <input type="text" name="email" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
                 <strong>{{ __('admins.password') }} :<span class="must">{{ __('tables.password') }}</span></strong>
                 <input type="password" name="password" class="form-control">
             </div>

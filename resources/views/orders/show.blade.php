@@ -57,20 +57,26 @@
          @endif
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('orders.prepaid_paid') }} :</strong>
-                {{ $order->prepaid_paid }}
+                <strong>{{ __('orders.paid_1') }} :</strong>
+                {{ $order->paid_1 }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('orders.paid_date') }} :</strong>
-                {{ $order->paid_date }}
+                <strong>{{ __('orders.paid_date_1') }} :</strong>
+                {{ $order->paid_date_1 }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>{{ __('orders.prepaid_unpaid') }} :</strong>
-                {{ $order->prepaid_unpaid }}
+                <strong>{{ __('orders.paid_2') }} :</strong>
+                {{ $order->paid_2 }}
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('orders.paid_date_2') }} :</strong>
+                {{ $order->paid_date_2 }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">

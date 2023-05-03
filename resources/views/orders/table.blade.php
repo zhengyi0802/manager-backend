@@ -5,8 +5,8 @@ $heads = [
     __('orders.phone'),
     __('orders.created_at'),
     __('orders.flow_status'),
-    __('orders.prepaid_paid'),
-    __('orders.paid_date'),
+    __('orders.paid_1_check'),
+    __('orders.paid_date_1'),
     __('orders.completed'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
 ];
@@ -24,8 +24,8 @@ $config = [
       <td>{{ $order->phone }}</td>
       <td>{{ $order->created_at->toDateString() }}</td>
       <td>{{ trans_choice('orders.flow_statuses', $order->flow_status) }}</td>
-      <td>{{ $order->prepaid_paid }}</td>
-      <td>{{ $order->paid_date }}</td>
+      <td>{{ ($order->paid_1 == 3500) ? __('orders.paid_completed') : __('orders.paid_unpaid') }}</td>
+      <td>{{ $order->paid_date_1 }}</td>
       <td>{{ ($order->completed==1) ? __('tables.yes'):__('tables.no') }}</td>
       <td><nobr>
           <form name="order-delete-form" action="{{ route('orders.destroy', $order->id); }}" method="POST">

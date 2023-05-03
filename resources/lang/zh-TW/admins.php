@@ -6,6 +6,7 @@
         'id'          => '編號',
         'phone'       => '電話',
         'line_id'     => 'Line ID',
+        'email'       => '電子信箱',
         'password'    => '密碼',
         'name'        => '姓名',
         'company'     => '公司',

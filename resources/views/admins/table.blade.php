@@ -4,13 +4,14 @@ $heads = [
     __('admins.name'),
     __('admins.phone'),
     __('admins.line_id'),
+    __('admins.email'),
     __('admins.created_by'),
     __('admins.status'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
 ];
 $config = [
     'order' => [[0, 'desc']],
-    'columns' => [null, null, null, null, null, null, ['orderable' => false]],
+    'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
     'language' => [ 'url' => '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Chinese.json' ],
 ];
 @endphp
@@ -21,6 +22,7 @@ $config = [
       <td>{{ $admin->name }}</td>
       <td>{{ $admin->phone }}</td>
       <td>{{ $admin->line_id }}</td>
+      <td>{{ $admin->email }}</td>
       <td>{{ $admin->creator->name  }}</td>
       <td>{{ ($admin->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
       <td><nobr>

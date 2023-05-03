@@ -28,6 +28,7 @@ class CreateMembersTable extends Migration
             $table->date('creadit_expire')->nullable();
             $table->string('pid_image_1')->nullable();
             $table->string('pid_image_2')->nullable();
+            $table->boolean('share_status')->default(true);
             $table->text('memo')->nullable();
             $table->bigInteger('created_by')->unsigned();
             $table->boolean('status')->default(true);

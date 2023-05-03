@@ -120,6 +120,11 @@
                     <strong>{{ __('managers.bonus') }} :</strong>
                     <input type="number" name="bonus" value="{{ $manager->bonus }}" class="form-control">
                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('managers.share_status') }} : </strong>
+                    <input type="checkbox" id="share_status" name="share_status" value="1" {{ ($manager->share_status) ? null : 'checked'  }}>
+                    <label for="share_status">{{ __('managers.share_status') }}</label>
+               </div>
                @endif
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

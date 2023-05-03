@@ -64,6 +64,11 @@
                 <strong>{{ __('members.password') }} :<span class="must">{{ __('tables.password') }}</span></strong>
                 <input type="password" name="password" class="form-control">
             </div>
+            <div class="form-group col-md-4">
+                <strong>{{ __('members.model') }} : <span class="must">{{ __('tables.must') }}</span></strong>
+                <input type="radio" name="model" value="1" class="form-control">{{ __('members.model_75') }}
+                <input type="radio" name="model" value="2" class="form-control">{{ __('members.model_65') }}
+            </div>
             <div class="form-group">
                 <strong>{{ __('managers.memo') }}:</strong>
                 <textarea class="form-control" style="height:150px" name="memo" ></textarea>

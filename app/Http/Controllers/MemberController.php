@@ -131,6 +131,7 @@ class MemberController extends Controller
             'member_id'      => $member->id,
             'phone'          => $data['phone'],
             'address'        => $data['address'],
+            'model'          => $data['model'],
         ];
         Order::create($order);
 
@@ -256,4 +257,3 @@ class MemberController extends Controller
     }
 
 }
-

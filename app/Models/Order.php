@@ -13,6 +13,7 @@ class Order extends Model
         'member_id',
         'phone',
         'address',
+        'model',
         'prepaid_paid',
         'paid_date',
         'prepaid_unpaid',

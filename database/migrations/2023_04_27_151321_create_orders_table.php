@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('member_id')->unsigned();
             $table->string('phone', 20)->nullable();
             $table->string('address')->nullable();
+            $table->tinyInteger('model')->unsigned()->default(1);
             $table->integer('prepaid_paid')->unsigned()->default(0);
             $table->date('paid_date')->nullable();
             $table->mediumInteger('prepaid_unpaid')->unsigned()->default(3500);

@@ -19,7 +19,7 @@ $config = [
   @foreach($distrobuters as $distrobuter)
     <tr>
       <td>{{ $distrobuter->id }}</td>
-      <td>{{ $distrobuter->introducer->line_id }}</td>
+      <td>{{ $distrobuter->introducer->name }}</td>
       <td>{{ $distrobuter->user->name }}</td>
       <td>{{ $distrobuter->user->phone }}</td>
       <td>{{ $distrobuter->user->line_id }}</td>

@@ -3,7 +3,7 @@
     return [
         'header'         => '分銷商列表',
         'title'          => '分銷商管理',
-        'reseller'       => '所屬經銷商(Line ID)',
+        'reseller'       => '所屬經銷商',
         'id'             => '編號',
         'phone'          => '電話',
         'line_id'        => 'Line ID',

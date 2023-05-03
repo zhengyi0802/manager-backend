@@ -48,6 +48,9 @@ Route::resource('/resellers', ResellerController::class);
 
 Route::resource('/distrobuters', DistrobuterController::class);
 
+Route::get('/orders/{order}/smssend', [App\Http\Controllers\OrderController::class, 'smssend'])
+     ->name('orders.smssend');
+
 Route::resource('/orders', OrderController::class);
 
 Route::get('/bonuslists/check', [App\Http\Controllers\BonusListController::class, 'check'])

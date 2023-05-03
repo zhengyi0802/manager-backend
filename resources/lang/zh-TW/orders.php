@@ -24,6 +24,7 @@
         'paid_completed' => '已繳清',
         'paid_unpaid'    => '未繳款',
         'flow_status'    => '訂單狀態',
+        'sms_send'       => '傳送簡訊',
         'completed'      => '已完成',
         'cancel'         => '已取消訂單',
         'unchecked'      => '訂單審核中',

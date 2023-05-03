@@ -19,7 +19,7 @@ class ManagerController extends Controller
     {
         $user = auth()->user();
         if ($user->role == UserRole::Manager) {
-           $managers = Manager::where('user_id', $user->id)->get();
+            $managers = Manager::where('user_id', $user->id)->get();
         } else {
             $managers = Manager::get();
         }

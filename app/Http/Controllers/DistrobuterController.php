@@ -110,6 +110,13 @@ class DistrobuterController extends Controller
     public function update(Request $request, Member $distrobuter) {
         $data = $request->all();
         $user = $distrobuter->user;
+
+        $introducer = User::where('line_id', $data['introducer'])->first();
+        if ($introducer->role == UserRole::Manager) {
+            $share_status = $introducer->manager->share_status;
+        } else {
+            $share_status = $introducer->member->share_status;
+        }
         $userdata = [
             'phone'      => $data['phone'],
             'line_id'    => $data['line_id'],
@@ -128,6 +135,7 @@ class DistrobuterController extends Controller
             $pid_image_2 = $upload2->fileUpload($request, 'pid_image_2');
         }
         $member = [
+            'introducer_id'  => $introducer->id,
             'address'        => $data['address'],
             'pid'            => $data['pid'],
             'pid_image_1'    => $pid_image_1,
@@ -135,7 +143,8 @@ class DistrobuterController extends Controller
             'bank'           => $data['bank'],
             'bank_name'      => $data['bank_name'],
             'account'        => $data['account'],
-            'bonus'          => $data['bonus'],
+            'bonus'          => ($share_status ? $data['bonus'] : 0),
+            'share_status'   => $share_status,
             'status'         => $data['status'],
         ];
         $distrobuter->update($member);

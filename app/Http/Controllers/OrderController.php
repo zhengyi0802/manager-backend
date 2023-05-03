@@ -10,6 +10,7 @@ use App\Models\BonusList;
 use App\Enums\UserRole;
 use App\Enums\OrderFlow;
 use App\Enums\BonusStatus;
+use App\SMS\SmsSend;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -210,4 +211,12 @@ class OrderController extends Controller
        return $customers;
     }
 
+    public function smssend(Order $order) {
+       $sms = new SmsSend();
+       $phone = $order->phone;
+       $msg = '大電視申領之訂單編號 : '.$order->id.'通知繳款';
+       $sms = $sms->send($phone, $msg);
+       //var_dump($sms);
+       return view('orders.show', compact('order'))->with(compact('sms'));
+    }
 }

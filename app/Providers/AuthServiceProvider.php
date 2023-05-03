@@ -17,11 +17,13 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];
     public static $permissions = [
-       'manager'      => [ UserRole::Manager ],
-       'accounter'    => [ UserRole::Accounter ],
-       'reseller'     => [ UserRole::Reseller ],
-       'distrobuter'  => [ UserRole::Distrobuter ],
-       'member'       => [ UserRole::Member],
+       'manager'           => [ UserRole::Manager ],
+       'accounter'         => [ UserRole::Accounter ],
+       'reseller'          => [ UserRole::Reseller ],
+       'distrobuter'       => [ UserRole::Distrobuter ],
+       'member'            => [ UserRole::Member],
+       'reseller-limit'    => [ UserRole::Reseller ],
+       'distrobuter-limit' => [ UserRole::Distrobuter ],
     ];
     /**
      * Register any authentication / authorization services.
@@ -44,8 +46,13 @@ class AuthServiceProvider extends ServiceProvider
         foreach (self::$permissions as $action => $roles) {
             Gate::define(
                 $action,
-                function ($user) use($roles) {
+                function ($user) use($action, $roles) {
                     if (in_array($user->role, $roles)) {
+                        if ($action == 'reseller-limit' || $action == 'distrobuter-limit') {
+                            if ($user->role == UserRole::Reseller || $user->role == UserRole::Distrobuter) {
+                                return ($user->member->share_status);
+                            }
+                        }
                         return true;
                     }
                 }

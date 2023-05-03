@@ -13,10 +13,19 @@
                 <h1>{{ __('tables.details') }}</h1>
             </div>
             @include('layouts.back')
+            <div class="pull-left">
+              {{ $sms ?? '' }}
+            </div>
         </div>
     </div>
 
     <div class="row">
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>{{ __('orders.sms_send') }} :</strong>
+                <a class="btn btn-info" href="{{ route('orders.smssend',$order->id) }}">傳送通知</a>
+            </div>
+         </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('orders.name') }} :</strong>

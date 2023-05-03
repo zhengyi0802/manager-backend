@@ -338,12 +338,12 @@ return [
         [
             'text' => 'bonuslist',
             'url'  => 'bonuslists',
-            'can'  => ['manager', 'accounter', 'reseller', 'distrobuter'],
+            'can'  => ['manager', 'accounter', 'reseller-limit', 'distrobuter-limit'],
         ],
         [
             'text' => 'bonus',
             'url'  => 'bonuses',
-            'can'  => ['manager', 'accounter', 'reseller', 'distrobuter'],
+            'can'  => ['manager', 'accounter', 'reseller-limit', 'distrobuter-limit'],
         ],
     ],
 

@@ -19,9 +19,10 @@ class CreateOrdersTable extends Migration
             $table->string('phone', 20)->nullable();
             $table->string('address')->nullable();
             $table->tinyInteger('model')->unsigned()->default(1);
-            $table->integer('prepaid_paid')->unsigned()->default(0);
-            $table->date('paid_date')->nullable();
-            $table->mediumInteger('prepaid_unpaid')->unsigned()->default(3500);
+            $table->integer('paid_1')->unsigned()->default(0);
+            $table->mediumInteger('paid_2')->unsigned()->default(0);
+            $table->date('paid_date_1')->nullable();
+            $table->date('paid_date_2')->nullable();
             $table->tinyInteger('flow_status')->unsigned()->default(1);
             $table->text('memo')->nullable();
             $table->boolean('completed')->default(false);

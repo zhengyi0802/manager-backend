@@ -18,8 +18,11 @@ class BonusController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->role <= UserRole::Accounter) {
+        $user = auth()->user();
+        if ($user->role == UserRole::Administrator || $user->role == UserRole::Accounter) {
             $bonuses = Bonus::get();
+        } else {
+            $bonuses = Bonus::where('id', 1)->get();
         }
         return view('bonuses.index', compact('bonuses'));
     }

@@ -12,10 +12,22 @@ class DistrobuterController extends Controller
 {
     public function index() {
         $user = auth()->user();
-        if ($user->role <= UserRole::Accounter) {
+        if ($user->role == UserRole::Administrator || $user->role == UserRole::Accounter) {
             $distrobuters = Member::leftJoin('users', 'users.id', 'members.user_id')
                            ->select('members.*')
                            ->where('users.role', UserRole::Distrobuter)
+                           ->get();
+        } else if($user->role == UserRole::Manager) {
+            $resellers = Member::leftJoin('users', 'users.id', 'members.user_id')
+                               ->select('members.*')
+                               ->where('users.role', UserRole::Distrobuter)
+                               ->where('introducer_id', $user->id)
+                               ->get()
+                               ->pluck('user_id') ;
+            $distrobuters = Member::leftJoin('users', 'users.id', 'members.user_id')
+                           ->select('members.*')
+                           ->where('users.role', UserRole::Distrobuter)
+                           ->whereIn('introducer_id', $resellers)
                            ->get();
         } else if($user->role == UserRole::Reseller) {
             $distrobuters = Member::leftJoin('users', 'users.id', 'members.user_id')

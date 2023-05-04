@@ -13,15 +13,21 @@ class ResellerController extends Controller
 
     public function index() {
         $user = auth()->user();
-        if ($user->role < UserRole::Reseller) {
+        if ($user->role == UserRole::Manager) {
             $resellers = Member::leftJoin('users', 'users.id', 'members.user_id')
                            ->select('members.*')
                            ->where('users.role', UserRole::Reseller)
+                           ->where('members.introducer_id', $user->id)
                            ->get();
         } else if ($user->role == UserRole::Reseller) {
             $resellers = Member::leftJoin('users', 'users.id', 'members.user_id')
                            ->select('members.*')
                            ->where('users.id', $user->id)
+                           ->get();
+        } else if ($user->role == UserRole::Administrator || $user->role == UserRole::Accounter) {
+            $resellers = Member::leftJoin('users', 'users.id', 'members.user_id')
+                           ->select('members.*')
+                           ->where('users.role', UserRole::Reseller)
                            ->get();
         }
         return view('resellers.index', compact('resellers'));

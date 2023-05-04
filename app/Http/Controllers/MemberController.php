@@ -19,37 +19,27 @@ class MemberController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $members = collect();
         if ($user->role == UserRole::Manager) {
-           $customers = $this->customerList($user->id);
-           $members->push($customers);
+           $member_ids = $this->customerList($user->id)->pluck('user_id');
            $resellers = $this->resellers($user->id);
            foreach ($resellers as $reseller) {
-              $user_id = $reseller->user->id;
-              $customers = $this->customerList($user_id);
-              $members->push($customers);
+              $user_id = $reseller;
+              $customer_ids = $this->customerList($user_id)->pluck('user_id');
+              $member_ids->merge($customer_ids);
               $distrobuters = $this->distrobuters($user_id);
-              foreach ($distrobuters as $distrobuter) {
-                      $user_id = $distrobuter->user->id;
-                      $customers = $this->customerList($user_id);
-                      $members->push($customers);
-              }
+              $member_ids1 = Member::whereIn('introducer_id', $distrobuters)
+                                   ->get()
+                                   ->pluck('user_id');
+              $member_ids->merge($member_ids1);
            }
            $distrobuters = $this->distrobuters($user->id);
-           foreach ($distrobuters as $distrobuter) {
-               $user_id = $distrobuter->user->id;
-               $customers = $this->customerList($user_id);
-               $members->push($customers);
-           }
-           var_dump($members);
+           $members = Member::WhereIn('user_id', $member_ids)->get();
         } else if ($user->role == UserRole::Reseller) {
-           $mnembers = $this->customerList($user->id);
+           $member_ids = $this->customerList($user->id)->pluck('user_id');
            $distrobuters = $this->distrobuters($user->id);
-           foreach ($distrobuters as $distrobuter) {
-                   $user_id = $distrobuter->user->id;
-                   $customers = $this->customerList($user_id);
-                   $members->push($customers);
-           }
+           $members = Member::whereIn('introducer_id', $distrobuters)
+                            ->orWhereIn('user_id', $member_ids)
+                            ->get();
         } else if ($user->role == UserRole::Distrobuter) {
             $members = $this->customerList($user->id);
         } else {
@@ -246,16 +236,18 @@ class MemberController extends Controller
                               ->select('members.*')
                               ->where('users.role', UserRole::Reseller)
                               ->where('members.introducer_id', $user_id)
-                              ->get();
+                              ->get()
+                              ->pluck('user_id');
        return $resellers;
     }
 
     public function distrobuters($user_id) {
         $distrobuters = Member::leftJoin('users', 'members.user_id', 'users.id')
-                              ->select('members.*')
+                              ->select('members.user_id')
                               ->where('users.role', UserRole::Distrobuter)
                               ->where('members.introducer_id', $user_id)
-                              ->get();
+                              ->get()
+                              ->pluck('user_id');
        return $distrobuters;
     }
 

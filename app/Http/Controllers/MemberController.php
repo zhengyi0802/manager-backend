@@ -19,43 +19,46 @@ class MemberController extends Controller
     public function index()
     {
         $user = auth()->user();
-
+        $members = collect();
         if ($user->role == UserRole::Manager) {
-           $members = $this->customers($user->id);
+           $customers = $this->customerList($user->id);
+           $members->push($customers);
            $resellers = $this->resellers($user->id);
            foreach ($resellers as $reseller) {
               $user_id = $reseller->user->id;
-              $customers = $this->customers($user_id);
+              $customers = $this->customerList($user_id);
               $members->push($customers);
               $distrobuters = $this->distrobuters($user_id);
               foreach ($distrobuters as $distrobuter) {
                       $user_id = $distrobuter->user->id;
-                      $customers = $this->customers($user_id);
+                      $customers = $this->customerList($user_id);
                       $members->push($customers);
               }
            }
            $distrobuters = $this->distrobuters($user->id);
            foreach ($distrobuters as $distrobuter) {
                $user_id = $distrobuter->user->id;
-               $customers = $this->customers($user_id);
+               $customers = $this->customerList($user_id);
                $members->push($customers);
            }
+           var_dump($members);
         } else if ($user->role == UserRole::Reseller) {
-           $mnembers = $this->customers($user->id);
+           $mnembers = $this->customerList($user->id);
            $distrobuters = $this->distrobuters($user->id);
            foreach ($distrobuters as $distrobuter) {
                    $user_id = $distrobuter->user->id;
-                   $customers = $this->customers($user_id);
+                   $customers = $this->customerList($user_id);
                    $members->push($customers);
            }
         } else if ($user->role == UserRole::Distrobuter) {
-            $members = $this->customers($user->id);
+            $members = $this->customerList($user->id);
         } else {
             $members = Member::leftJoin('users', 'members.user_id', 'users.id')
                              ->select('members.*')
                              ->where('users.role', UserRole::Member)
                              ->get();
         }
+
         return view('members.index', compact('members'));
     }
 
@@ -229,7 +232,7 @@ class MemberController extends Controller
         return redirect()->route('distrobuters.index');
     }
 
-    public function customers($user_id) {
+    public function customerList($user_id) {
         $customers = Member::leftJoin('users', 'members.user_id', 'users.id')
                            ->select('members.*')
                            ->where('users.role', UserRole::Member)

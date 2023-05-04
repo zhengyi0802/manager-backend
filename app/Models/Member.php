@@ -41,7 +41,7 @@ class Member extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function customers() {
+    public function customsers() {
         return $this->hasMany(Member::class, 'introducer_id');
     }
 

@@ -23,8 +23,10 @@ class OrderController extends Controller
     public function index()
     {
         $user = auth()->user();
+        $orders = collect();
         if ($user->role == UserRole::Manager) {
-            $orders = $user->member->orders;
+            $orders1 = $user->manager->orders;
+            $orders->push($orders1);
             $resellers = $this->resellers($user->id);
             foreach ($resellers as $reseller) {
                 $user_id = $reseller->user->id;

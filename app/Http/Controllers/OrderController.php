@@ -23,52 +23,11 @@ class OrderController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $orders = collect();
-        if ($user->role == UserRole::Manager) {
-            $orders1 = $user->manager->orders;
-            $orders->push($orders1);
-            $resellers = $this->resellers($user->id);
-            foreach ($resellers as $reseller) {
-                $user_id = $reseller->user->id;
-                $orders->push($reseller->orders);
-                $distrobuters = $this->distrobuters($user_id);
-                foreach ($distrobuters as $distrobuter) {
-                    $orders->push($distrobuter->orders);
-                    $user_id = $distrobuter->user->id;
-                    $members = $this->customers($user_id);
-                    foreach ($members as $member) {
-                        $orders->push($member->orders);
-                    }
-                }
-            }
-            $distrobuters = $this->distrobuters($user->id);
-            foreach ($distrobuters as $distrobuter) {
-                $user_id = $distrobuter->user->id;
-                $orders->push($distrobuter->orders);
-                $members = $this->customers($user_id);
-                foreach($members as $member) {
-                    $orders->push($member->orders);
-                }
-            }
-        } else if ($user->role == UserRole::Reseller) {
-            $orders = $user->member->orders;
-            $distrobuters = $this->distrobuters($user->id);
-            foreach ($distrobuters as $distrobuter) {
-                $user_id = $distrobuter->user->id;
-                $orders->push($distrobuter->orders);
-                $members = $this->customers($user_id);
-                foreach($members as $member) {
-                    $orders->push($member->orders);
-                }
-            }
+        if ($user->role == UserRole::Administrator || $user->role == UserRole::Accounter) {
+            $orders = Order::get();
         } else if ($user->role == UserRole::Distrobuter) {
-            $orders  = $user->member->orders;
-            $members = $this->customers($user->id);
-            foreach($members as $member) {
-                $orders->push($member->orders);
-            }
-        } else if ($user->role == UserRole::Member) {
-            $orders = $user->member->orders;
+            $customers = $this->customers($user->id)->pluck('id');
+            $orders = Order::whereIn('member_id', $customers)->get();
         } else {
             $orders = Order::get();
         }

@@ -20,10 +20,10 @@ class DistrobuterController extends Controller
         } else if($user->role == UserRole::Manager) {
             $resellers = Member::leftJoin('users', 'users.id', 'members.user_id')
                                ->select('members.*')
-                               ->where('users.role', UserRole::Distrobuter)
+                               ->where('users.role', UserRole::Reseller)
                                ->where('introducer_id', $user->id)
                                ->get()
-                               ->pluck('user_id') ;
+                               ->pluck('user_id');
             $distrobuters = Member::leftJoin('users', 'users.id', 'members.user_id')
                                   ->select('members.*')
                                   ->where('users.role', UserRole::Distrobuter)

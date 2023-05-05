@@ -43,7 +43,9 @@ class ResellerController extends Controller
         $check_user = User::where('line_id', $data['line_id'])
                           ->orWhere('phone', $data['phone'])
                           ->get();
-        $introducer = $creator;
+        $introducer_id = $data['introducer_id'];
+        $introducer = User::where('line_id', $introducer_id)->first();
+
         if ($introducer->role == UserRole::Manager) {
             $share_status = $introducer->manager->share_status;
         } else {

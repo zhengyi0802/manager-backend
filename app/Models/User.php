@@ -70,4 +70,9 @@ class User extends Authenticatable
     public function memberLists($query) {
         return $query->where('role', UserRole::Member);
     }
+
+    public function directcustomers($query) {
+
+    }
+
 }

@@ -25,10 +25,10 @@ class DistrobuterController extends Controller
                                ->get()
                                ->pluck('user_id') ;
             $distrobuters = Member::leftJoin('users', 'users.id', 'members.user_id')
-                           ->select('members.*')
-                           ->where('users.role', UserRole::Distrobuter)
-                           ->whereIn('introducer_id', $resellers)
-                           ->get();
+                                  ->select('members.*')
+                                  ->where('users.role', UserRole::Distrobuter)
+                                  ->whereIn('introducer_id', $resellers)
+                                  ->get();
         } else if($user->role == UserRole::Reseller) {
             $distrobuters = Member::leftJoin('users', 'users.id', 'members.user_id')
                                   ->select('members.*')
@@ -55,7 +55,7 @@ class DistrobuterController extends Controller
         $check_user = User::where('line_id', $data['line_id'])
                           ->orWhere('phone', $data['phone'])
                           ->get();
-        $introducer = User::where('line_id', $data['introducer'])->get()->first();
+        $introducer = User::where('line_id', $data['introducer'])->first();
         if ($introducer->role == UserRole::Manager) {
             $share_status = $introducer->manager->share_status;
         } else {
@@ -104,7 +104,7 @@ class DistrobuterController extends Controller
             Member::create($member);
         } else {
             $check = $check_user->first();
-            $distrobuter = Member::where('user_id', $check->id)->get()->first();
+            $distrobuter = Member::where('user_id', $check->id)->first();
             $distrobuter->update($member);
         }
 

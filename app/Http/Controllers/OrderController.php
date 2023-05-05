@@ -25,6 +25,14 @@ class OrderController extends Controller
         $user = auth()->user();
         if ($user->role == UserRole::Administrator || $user->role == UserRole::Accounter) {
             $orders = Order::get();
+        } else if ($user->role == UserRole::Reseller) {
+            $customers = $this->customers($user->id)->pluck('id');
+            $distrobuters = $this->distrobuters($user->id)->pluck('user_id');
+            foreach($distrobuters as $distrobuter) {
+                $dcustomers = $this->customers($distrobuter)->pluck('id');
+                $customers = $customers->merge($dcustomers);
+            }
+            $orders = Order::whereIn('member_id', $customers)->get();
         } else if ($user->role == UserRole::Distrobuter) {
             $customers = $this->customers($user->id)->pluck('id');
             $orders = Order::whereIn('member_id', $customers)->get();

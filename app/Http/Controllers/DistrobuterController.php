@@ -14,9 +14,9 @@ class DistrobuterController extends Controller
         $user = auth()->user();
         if ($user->role == UserRole::Administrator || $user->role == UserRole::Accounter) {
             $distrobuters = Member::leftJoin('users', 'users.id', 'members.user_id')
-                           ->select('members.*')
-                           ->where('users.role', UserRole::Distrobuter)
-                           ->get();
+                                  ->select('members.*')
+                                  ->where('users.role', UserRole::Distrobuter)
+                                  ->get();
         } else if($user->role == UserRole::Manager) {
             $resellers = Member::leftJoin('users', 'users.id', 'members.user_id')
                                ->select('members.*')
@@ -24,6 +24,7 @@ class DistrobuterController extends Controller
                                ->where('introducer_id', $user->id)
                                ->get()
                                ->pluck('user_id');
+            $resellers->push($user->id);
             $distrobuters = Member::leftJoin('users', 'users.id', 'members.user_id')
                                   ->select('members.*')
                                   ->where('users.role', UserRole::Distrobuter)
@@ -92,9 +93,6 @@ class DistrobuterController extends Controller
             'pid'            => $data['pid'],
             'pid_image_1'    => $pid_image_1,
             'pid_image_2'    => $pid_image_2,
-            'bank'           => $data['bank'],
-            'bank_name'      => $data['bank_name'],
-            'account'        => $data['account'],
             'bonus'          => $data['bonus'],
             'share_status'   => $share_status,
             'created_by'     => $creator->id,

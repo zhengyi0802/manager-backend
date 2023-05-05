@@ -25,19 +25,39 @@ class OrderController extends Controller
         $user = auth()->user();
         if ($user->role == UserRole::Administrator || $user->role == UserRole::Accounter) {
             $orders = Order::get();
+        } else if ($user->role == UserRole::Manager) {
+            $customers = $this->customers($user->id)->pluck('id');
+            $distrobuterIds = $this->distrobuterIds($user->id);
+            foreach ($distrobuterIds as $distrobuterId) {
+                $customs = $this->customers($distrobuterId)->pluck('id');
+                $customers->push($customs);
+            }
+            $resellerIds = $this->resellerIds($user->id);
+            foreach ($resellerIds as $resellerId) {
+                $customs = $this->customers($resellerId)->pluck('id');
+                $customers->push($customs);
+                $distrobuterIds = $this->distrobuterIds($resellerId);
+                foreach ($distrobuterIds as $distrobuterId) {
+                    $customs = $this->customers($distrobuterId)->pluck('id');
+                    $customers->push($customs);
+                }
+            }
+            $customers = $customers->collapse();
+            $orders = Order::whereIn('member_id', $customers)->get();
         } else if ($user->role == UserRole::Reseller) {
             $customers = $this->customers($user->id)->pluck('id');
-            $distrobuters = $this->distrobuters($user->id)->pluck('user_id');
-            foreach($distrobuters as $distrobuter) {
-                $dcustomers = $this->customers($distrobuter)->pluck('id');
-                $customers = $customers->merge($dcustomers);
+            $distrobuterIds = $this->distrobuterIds($user->id);
+            foreach ($distrobuterIds as $distrobuterId) {
+                $customs = $this->customers($distrobuterId)->pluck('id');
+                $customers->push($customs);
             }
+            $customerIds = $customers->collapse();
             $orders = Order::whereIn('member_id', $customers)->get();
         } else if ($user->role == UserRole::Distrobuter) {
             $customers = $this->customers($user->id)->pluck('id');
             $orders = Order::whereIn('member_id', $customers)->get();
         } else {
-            $orders = Order::get();
+            $orders = Order::where('member_id', $user->member->id)->get();
         }
         return view('orders.index', compact('orders'));
     }
@@ -171,6 +191,15 @@ class OrderController extends Controller
        return $distrobuters;
     }
 
+    public function smssend(Order $order) {
+       $sms = new SmsSend();
+       $phone = $order->phone;
+       $msg = '大電視申領之訂單編號 : '.$order->id.'通知繳款';
+       $sms = $sms->send($phone, $msg);
+       //var_dump($sms);
+       return view('orders.show', compact('order'))->with(compact('sms'));
+    }
+
     public function customers($user_id) {
         $customers = Member::leftJoin('users', 'members.user_id', 'users.id')
                            ->select('members.*')
@@ -180,12 +209,24 @@ class OrderController extends Controller
        return $customers;
     }
 
-    public function smssend(Order $order) {
-       $sms = new SmsSend();
-       $phone = $order->phone;
-       $msg = '大電視申領之訂單編號 : '.$order->id.'通知繳款';
-       $sms = $sms->send($phone, $msg);
-       //var_dump($sms);
-       return view('orders.show', compact('order'))->with(compact('sms'));
+    public function distrobuterIds($user_id) {
+        $distrobuterIds = Member::leftJoin('users', 'members.user_id', 'users.id')
+                           ->select('members.*')
+                           ->where('users.role', UserRole::Distrobuter)
+                           ->where('members.introducer_id', $user_id)
+                           ->get()
+                           ->pluck('user_id');
+        return $distrobuterIds;
     }
+
+    public function resellerIds($user_id) {
+        $distrobuterIds = Member::leftJoin('users', 'members.user_id', 'users.id')
+                           ->select('members.*')
+                           ->where('users.role', UserRole::Reseller)
+                           ->where('members.introducer_id', $user_id)
+                           ->get()
+                           ->pluck('user_id');
+        return $distrobuterIds;
+    }
+
 }

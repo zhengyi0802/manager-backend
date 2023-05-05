@@ -7,6 +7,21 @@
 @stop
 
 @section('content')
+
+<style>
+  .error {
+     color       : red;
+     margin-left : 5px;
+  }
+  label.error {
+     display     : inline;
+  }
+  span.must {
+      color     : red;
+      font-size : 12px;
+  }
+</style>
+
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
@@ -21,14 +36,7 @@
     <p>{{ __('accounters.user_create_error') }}</p>
 </div>
 @endif
-
-<style>
-   span.must {
-      color     : red;
-      font-size : 12px;
-   }
-</style>
-<form id="accounter-form" action="{{ route('accounters.store') }}" method="POST">
+<form action="{{ route('accounters.store') }}" method="POST" id="form1">
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -50,8 +58,54 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
+                <button id="submit" type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
         </div>
     </div>
 </form>
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#form1').validate({
+           onkeyup: function(element, event) {
+               var value = this.elementValue(element).replace(/^\s+/g, "");
+               $(element).val(value);
+           },
+           rules: {
+               name: {
+                  required: true
+               },
+               phone: {
+                  required: true
+               },
+               line_id: {
+                  required: true
+               },
+               password: {
+                  required: true,
+                  minilength: 8
+               },
+           },
+           messages: {
+               name: {
+                  required: '姓名必填'
+               },
+               phone: {
+                  required: '電話必填'
+               },
+               line_id: {
+                  required: 'Line ID必填'
+               },
+               password: {
+                  required: '密碼必須填寫',
+                  minilength: '密碼設置至少8個字元'
+               },
+           },
+           submitHandler: function(form) {
+                form.submit();
+           }
+        });
+    });
+</script>
+
 @endsection

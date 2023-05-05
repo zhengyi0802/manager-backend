@@ -74,7 +74,7 @@
             </div>
             <div class="form-group col-md-4">
                 <strong>{{ __('resellers.share') }} :</strong>
-                <input type="numbers" name="share" value="2500" class="form-control">
+                <input type="numbers" name="share" value="1000" class="form-control">
             </div>
             <div class="form-group">
                 <strong>{{ __('managers.memo') }}:</strong>

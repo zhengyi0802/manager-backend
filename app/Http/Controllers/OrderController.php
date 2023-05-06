@@ -42,8 +42,8 @@ class OrderController extends Controller
                     $customers->push($customs);
                 }
             }
-            $customers = $customers->collapse();
-            $orders = Order::whereIn('member_id', $customers)->get();
+            $customerIds = $customers->collapse();
+            $orders = Order::whereIn('member_id', $customerIds)->get();
         } else if ($user->role == UserRole::Reseller) {
             $customers = $this->customers($user->id)->pluck('id');
             $distrobuterIds = $this->distrobuterIds($user->id);
@@ -52,10 +52,10 @@ class OrderController extends Controller
                 $customers->push($customs);
             }
             $customerIds = $customers->collapse();
-            $orders = Order::whereIn('member_id', $customers)->get();
+            $orders = Order::whereIn('member_id', $customerIds)->get();
         } else if ($user->role == UserRole::Distrobuter) {
-            $customers = $this->customers($user->id)->pluck('id');
-            $orders = Order::whereIn('member_id', $customers)->get();
+            $customerIds = $this->customers($user->id)->pluck('id');
+            $orders = Order::whereIn('member_id', $customerIds)->get();
         } else {
             $orders = Order::where('member_id', $user->member->id)->get();
         }

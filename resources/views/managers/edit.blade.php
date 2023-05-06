@@ -27,12 +27,20 @@
         </div>
     @endif
     <style>
+       .error {
+          color       : red;
+          margin-left : 5px;
+          font-size   : 14px;
+       }
+       label.error {
+          display     : inline;
+       }
        span.must {
           color     : red;
           font-size : 12px;
        }
     </style>
-    <form action="{{ route('managers.update',$manager->id) }}" method="POST" enctype="multipart/form-data">
+    <form id="manager-form" action="{{ route('managers.update',$manager->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
          <div class="row">
@@ -145,4 +153,51 @@
             </div>
         </div>
     </form>
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#manager-form').validate({
+           onkeyup: function(element, event) {
+               var value = this.elementValue(element).replace(/^\s+/g, "");
+               $(element).val(value);
+           },
+           rules: {
+               name: {
+                  required: true
+               },
+               phone: {
+                  required: true
+               },
+               line_id: {
+                  required: true
+               },
+               address: {
+                  required: true,
+                  minlength: 20
+               },
+           },
+           messages: {
+               name: {
+                  required: '姓名必填'
+               },
+               phone: {
+                  required: '電話必填'
+               },
+               line_id: {
+                  required: 'Line ID必填'
+               },
+               address: {
+                  required: '地址必須填寫',
+                  minlength: '請詳細填寫地址',
+               },
+           },
+           submitHandler: function(form) {
+                form.submit();
+           }
+        });
+    });
+</script>
+@section('plugins.jqueryValidation', true)
+
 @endsection

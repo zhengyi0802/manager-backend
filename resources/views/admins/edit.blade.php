@@ -65,4 +65,55 @@
             </div>
         </div>
     </form>
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#admin-form').validate({
+           onkeyup: function(element, event) {
+               var value = this.elementValue(element).replace(/^\s+/g, "");
+               $(element).val(value);
+           },
+           rules: {
+               name: {
+                  required: true
+               },
+               phone: {
+                  required: true
+               },
+               line_id: {
+                  required: true
+               },
+               email: {
+                  required: true
+               },
+               status: {
+                  required: true,
+               },
+           },
+           messages: {
+               name: {
+                  required: '姓名必填'
+               },
+               phone: {
+                  required: '電話必填'
+               },
+               line_id: {
+                  required: 'Line ID必填'
+               },
+               email: {
+                  required: '電子信箱必填',
+               },
+               status: {
+                  required:  ''
+               },
+           },
+           submitHandler: function(form) {
+                form.submit();
+           }
+        });
+    });
+</script>
+@section('plugins.jqueryValidation', true)
+
 @endsection

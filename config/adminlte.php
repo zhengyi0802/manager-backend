@@ -402,13 +402,13 @@ return [
                 ],
             ],
         ],
-        'Validation' => [
-            'active' => true,
+        'jqueryValidation' => [
+            'active' => false,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '../vendor/jquery-validation/jquery.validate.min.js',
+                    'asset' => true,
+                    'location' => 'vendor/jquery-validation/jquery.validate.min.js',
                 ],
             ],
         ],

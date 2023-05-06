@@ -27,12 +27,20 @@
         </div>
     @endif
     <style>
+       .error {
+          color       : red;
+          margin-left : 5px;
+          font-size   : 12px;
+       }
+       label.error {
+          display     : inline;
+       }
        span.must {
           color     : red;
           font-size : 12px;
        }
     </style>
-    <form action="{{ route('members.update',$member->id) }}" method="POST" enctype="multipart/form-data">
+    <form id="member-form" action="{{ route('members.update',$member->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
          <div class="row">
@@ -54,9 +62,18 @@
                     <input type="text" name="line_id" value="{{ $member->user->line_id }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
+                    <strong>{{ __('members.email') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                    <input type="text" name="email" value="{{ $member->user->phone }}" class="form-control" 
+                     placeholder="user@email.com">
+                </div>
+           </div>
+           <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>{{ __('members.address') }} :</strong>
                     <input type="text" name="address" value="{{ $member->user->line_id }}" class="form-control">
                 </div>
+           </div>
+           <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
                     <strong>{{ __('members.password') }} :<span class="must">{{ __('tables.password') }}</span></strong>
                     <input type="password" name="newpassword" class="form-control">
@@ -102,5 +119,52 @@
             </div>
         </div>
     </form>
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#member-form').validate({
+           onkeyup: function(element, event) {
+               var value = this.elementValue(element).replace(/^\s+/g, "");
+               $(element).val(value);
+           },
+           rules: {
+               name: {
+                  required: true
+               },
+               phone: {
+                  required: true
+               },
+               line_id: {
+                  required: true
+               },
+               email: {
+                  required: true,
+                  email: true
+               },
+           },
+           messages: {
+               name: {
+                  required: '姓名必填'
+               },
+               phone: {
+                  required: '電話必填'
+               },
+               line_id: {
+                  required: 'Line ID必填'
+               },
+               email: {
+                  required: '電子信箱必填',
+                  email: '電子信箱格式錯誤'
+               },
+           },
+           submitHandler: function(form) {
+                form.submit();
+           }
+        });
+    });
+</script>
+@section('plugins.jqueryValidation', true)
+
 @endsection
 

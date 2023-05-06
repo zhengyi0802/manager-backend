@@ -36,7 +36,8 @@
     <p>{{ __('accounters.user_create_error') }}</p>
 </div>
 @endif
-<form action="{{ route('accounters.store') }}" method="POST" id="form1">
+
+<form action="{{ route('accounters.store') }}" method="POST" id="accounter-form">
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -66,7 +67,7 @@
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
     $(document).ready(function(){
-        $('#form1').validate({
+        $('#accounter-form').validate({
            onkeyup: function(element, event) {
                var value = this.elementValue(element).replace(/^\s+/g, "");
                $(element).val(value);
@@ -83,7 +84,7 @@
                },
                password: {
                   required: true,
-                  minilength: 8
+                  minlength: 8
                },
            },
            messages: {
@@ -98,7 +99,7 @@
                },
                password: {
                   required: '密碼必須填寫',
-                  minilength: '密碼設置至少8個字元'
+                  minlength: '密碼設置至少8個字元'
                },
            },
            submitHandler: function(form) {
@@ -107,5 +108,6 @@
         });
     });
 </script>
+@section('plugins.jqueryValidation', true)
 
 @endsection

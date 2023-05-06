@@ -23,12 +23,20 @@
 @endif
 
 <style>
-   span.must {
-      color     : red;
-      font-size : 12px;
-   }
+  .error {
+     color       : red;
+     margin-left : 5px;
+     font-size   : 14px;
+  }
+  label.error {
+     display     : inline;
+  }
+  span.must {
+     color     : red;
+     font-size : 12px;
+  }
 </style>
-<form action="{{ route('managers.store') }}" method="POST">
+<form action="{{ route('managers.store') }}" method="POST" id="manager-form">
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -78,4 +86,59 @@
         </div>
     </div>
 </form>
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#manager-form').validate({
+           onkeyup: function(element, event) {
+               var value = this.elementValue(element).replace(/^\s+/g, "");
+               $(element).val(value);
+           },
+           rules: {
+               name: {
+                  required: true
+               },
+               phone: {
+                  required: true
+               },
+               line_id: {
+                  required: true
+               },
+               password: {
+                  required: true,
+                  minlength: 8
+               },
+               address: {
+                  required: true,
+                  minlength: 20
+               },
+           },
+           messages: {
+               name: {
+                  required: '姓名必填'
+               },
+               phone: {
+                  required: '電話必填'
+               },
+               line_id: {
+                  required: 'Line ID必填'
+               },
+               password: {
+                  required: '密碼必須填寫',
+                  minlength: '密碼設置至少8個字元'
+               },
+               address: {
+                  required: '地址必須填寫',
+                  minlength: '請詳細填寫地址',
+               },
+           },
+           submitHandler: function(form) {
+                form.submit();
+           }
+        });
+    });
+</script>
+@section('plugins.jqueryValidation', true)
+
 @endsection

@@ -27,12 +27,20 @@
         </div>
     @endif
     <style>
+       .error {
+          color       : red;
+          margin-left : 5px;
+          font-size   : 12px;
+       }
+       label.error {
+          display     : inline;
+       }
        span.must {
           color     : red;
           font-size : 12px;
        }
     </style>
-    <form action="{{ route('distrobuters.update',$distrobuter->id) }}" method="POST" enctype="multipart/form-data">
+    <form id="distrobuter-form" action="{{ route('distrobuters.update',$distrobuter->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
          <div class="row">
@@ -52,6 +60,11 @@
                 <div class="form-group col-md-4">
                     <strong>{{ __('distrobuters.line_id') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <input type="text" name="line_id" value="{{ $distrobuter->user->line_id }}" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ __('distrobuters.email') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                    <input type="text" name="email" value="{{ $distrobuter->user->email }}"
+                     class="form-control" placeholder="user@email.com">
                 </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('distrobuters.password') }} :<span class="must">{{ __('tables.password') }}</span></strong>
@@ -132,5 +145,51 @@
             </div>
         </div>
     </form>
-@endsection
 
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#distrobuter-form').validate({
+           onkeyup: function(element, event) {
+               var value = this.elementValue(element).replace(/^\s+/g, "");
+               $(element).val(value);
+           },
+           rules: {
+               name: {
+                  required: true
+               },
+               phone: {
+                  required: true
+               },
+               line_id: {
+                  required: true
+               },
+               email: {
+                  required: true,
+                  email: true
+               },
+           },
+           messages: {
+               name: {
+                  required: '姓名必填'
+               },
+               phone: {
+                  required: '電話必填'
+               },
+               line_id: {
+                  required: 'Line ID必填'
+               },
+               email: {
+                  required: '電子信箱必填',
+                  email: '電子信箱格式錯誤'
+               },
+           },
+           submitHandler: function(form) {
+                form.submit();
+           }
+        });
+    });
+</script>
+@section('plugins.jqueryValidation', true)
+
+@endsection

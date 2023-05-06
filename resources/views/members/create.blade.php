@@ -27,12 +27,20 @@
     </div>
 @endif
 <style>
+   .error {
+      color       : red;
+      margin-left : 5px;
+      font-size   : 12px;
+   }
+   label.error {
+      display     : inline;
+   }
    span.must {
       color     : red;
       font-size : 12px;
    }
 </style>
-<form action="{{ route('members.store') }}" method="POST" enctype="multipart/form-data">
+<form id="member-form" action="{{ route('members.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -79,4 +87,57 @@
         </div>
     </div>
 </form>
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#member-form').validate({
+           onkeyup: function(element, event) {
+               var value = this.elementValue(element).replace(/^\s+/g, "");
+               $(element).val(value);
+           },
+           rules: {
+               name: {
+                  required: true
+               },
+               phone: {
+                  required: true
+               },
+               line_id: {
+                  required: true
+               },
+               email: {
+                  required: true
+               },
+               password: {
+                  required: true,
+                  minlength: 8
+               },
+           },
+           messages: {
+               name: {
+                  required: '姓名必填'
+               },
+               phone: {
+                  required: '電話必填'
+               },
+               line_id: {
+                  required: 'Line ID必填'
+               },
+               email: {
+                  required: '電子信箱必填',
+               },
+               password: {
+                  required: '密碼必須填寫',
+                  minlength: '密碼設置至少8個字元'
+               },
+           },
+           submitHandler: function(form) {
+                form.submit();
+           }
+        });
+    });
+</script>
+@section('plugins.jqueryValidation', true)
+
 @endsection

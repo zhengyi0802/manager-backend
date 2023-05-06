@@ -23,12 +23,20 @@
 @endif
 
 <style>
-   span.must {
+  .error {
+     color       : red;
+     margin-left : 5px;
+     font-size   : 12px;
+  }
+  label.error {
+     display     : inline;
+  }
+  span.must {
       color     : red;
       font-size : 12px;
    }
 </style>
-<form action="{{ route('admins.store') }}" method="POST">
+<form action="{{ route('admins.store') }}" method="POST" id="admin-form">
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -46,7 +54,7 @@
             </div>
             <div class="form-group col-md-4">
                 <strong>{{ __('admins.email') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                <input type="text" name="email" class="form-control">
+                <input type="text" name="email" class="form-control" placeholder="user@email.com">
             </div>
             <div class="form-group col-md-4">
                 <strong>{{ __('admins.password') }} :<span class="must">{{ __('tables.password') }}</span></strong>
@@ -58,4 +66,57 @@
         </div>
     </div>
 </form>
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#admin-form').validate({
+           onkeyup: function(element, event) {
+               var value = this.elementValue(element).replace(/^\s+/g, "");
+               $(element).val(value);
+           },
+           rules: {
+               name: {
+                  required: true
+               },
+               phone: {
+                  required: true
+               },
+               line_id: {
+                  required: true
+               },
+               email: {
+                  required: true
+               },
+               password: {
+                  required: true,
+                  minlength: 8
+               },
+           },
+           messages: {
+               name: {
+                  required: '姓名必填'
+               },
+               phone: {
+                  required: '電話必填'
+               },
+               line_id: {
+                  required: 'Line ID必填'
+               },
+               email: {
+                  required: '電子信箱必填',
+               },
+               password: {
+                  required: '密碼必須填寫',
+                  minlength: '密碼設置至少8個字元'
+               },
+           },
+           submitHandler: function(form) {
+                form.submit();
+           }
+        });
+    });
+</script>
+@section('plugins.jqueryValidation', true)
+
 @endsection

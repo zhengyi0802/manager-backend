@@ -64,18 +64,22 @@
                 <strong>{{ __('members.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="phone" class="form-control">
             </div>
-            <div class="form-group col-md-4">
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>{{ __('members.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="address" class="form-control">
             </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group col-md-4">
                 <strong>{{ __('members.password') }} :<span class="must">{{ __('tables.password') }}</span></strong>
                 <input type="password" name="password" class="form-control">
             </div>
             <div class="form-group col-md-4">
                 <strong>{{ __('members.model') }} : <span class="must">{{ __('tables.must') }}</span></strong>
-                <input type="radio" name="model" value="1" class="form-control">{{ __('members.model_75') }}
-                <input type="radio" name="model" value="2" class="form-control">{{ __('members.model_65') }}
+                <input type="radio" name="model" value="1" >{{ __('members.model_75') }}
+                <input type="radio" name="model" value="2" >{{ __('members.model_65') }}
             </div>
             <div class="form-group">
                 <strong>{{ __('managers.memo') }}:</strong>
@@ -113,6 +117,10 @@
                   required: true,
                   minlength: 8
                },
+               address: {
+                  required: true,
+                  minlength: 20
+               },
            },
            messages: {
                name: {
@@ -130,6 +138,10 @@
                password: {
                   required: '密碼必須填寫',
                   minlength: '密碼設置至少8個字元'
+               },
+               address: {
+                  required: '地址必須填寫',
+                  minlength: '地址必須正確填寫'
                },
            },
            submitHandler: function(form) {

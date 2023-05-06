@@ -28,4 +28,7 @@
         'be_distrobuter' => '成為分銷商',
         'created_by'     => '建檔人',
         'created_at'     => '訂購日期',
+        'model'          => '機型/方案',
+        'model_75'       => '75吋大電視',
+        'model_65'       => '65吋大電視',
     ];

@@ -63,13 +63,13 @@
                 </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('members.email') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                    <input type="text" name="email" value="{{ $member->user->phone }}" class="form-control" 
+                    <input type="text" name="email" value="{{ $member->user->phone }}" class="form-control"
                      placeholder="user@email.com">
                 </div>
            </div>
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>{{ __('members.address') }} :</strong>
+                    <strong>{{ __('members.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                     <input type="text" name="address" value="{{ $member->user->line_id }}" class="form-control">
                 </div>
            </div>
@@ -77,10 +77,6 @@
                 <div class="form-group col-md-4">
                     <strong>{{ __('members.password') }} :<span class="must">{{ __('tables.password') }}</span></strong>
                     <input type="password" name="newpassword" class="form-control">
-                </div>
-                <div class="form-group col-md-4">
-                    <strong>{{ __('members.pidnumbers') }} :</strong>
-                    <input type="text" name="pid" value="{{ $member->pid }}" class="form-control">
                 </div>
                 @if (auth()->user()->role == App\Enums\UserRole::Accounter)
                 <div class="form-group col-md-4">
@@ -142,6 +138,10 @@
                   required: true,
                   email: true
                },
+               address: {
+                  required: true,
+                  minlength: 20
+                },
            },
            messages: {
                name: {
@@ -156,6 +156,10 @@
                email: {
                   required: '電子信箱必填',
                   email: '電子信箱格式錯誤'
+               },
+               address: {
+                  required: '地址必填',
+                  minlength: '地址格式錯誤'
                },
            },
            submitHandler: function(form) {

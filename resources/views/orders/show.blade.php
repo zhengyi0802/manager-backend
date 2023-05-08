@@ -40,6 +40,12 @@
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>{{ __('orders.model') }} :</strong>
+                {{ ($order->model == 1) ? __('orders.model_75') : __('orders.model_65') }}
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>{{ __('orders.line_id') }} :</strong>
                 {{ $order->member->user->line_id }}
             </div>

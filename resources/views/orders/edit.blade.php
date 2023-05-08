@@ -39,6 +39,24 @@
          <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
+                    <strong>{{ __('orders.id') }} :</strong>
+                    {{ $order->id }}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('orders.name') }} :</strong>
+                    {{ $order->member->user->name }}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
+                    <strong>{{ __('orders.model') }} :</strong>
+                    {{ ($order->model == 1) ? __('orders.model_75') : __('orders.model_65') }}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group col-md-4">
                     <strong>{{ __('orders.phone') }} :</strong>
                     <input type="text" name="phone" value="{{ $order->phone }}" class="form-control">
                 </div>

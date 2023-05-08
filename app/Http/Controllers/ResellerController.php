@@ -148,9 +148,20 @@ class ResellerController extends Controller
         return redirect()->route('resellers.index');
     }
 
-    public function destroy(Member $reseller) {
-        $reseller->status = false;
-        $reseller->save();
+    public function destroy(Member $reseller)
+    {
+        $user = auth()->user();
+        if (($user->id == 2)
+           || ($user->id == $reseller->introducer->id)
+           || ($user->id == $reseller->created_by)) {
+            $userR = $reseller->user;
+            $userR->delete();
+            $reseller->delete();
+        } else {
+            $reseller->status = false;
+            $reseller->save();
+        }
+
         return redirect()->route('resellers.index');
     }
 }

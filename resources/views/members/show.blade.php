@@ -5,7 +5,11 @@
 @section('content_header')
     <h1 class="m-0 text-dark">{{ __('members.header') }}</h1>
 @stop
-
+<style>
+    div.upgrade {
+        margin-bottom : 20px;
+    }
+</style>
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -13,10 +17,14 @@
                 <h1>{{ __('tables.details') }}</h1>
             </div>
             @include('layouts.back')
-            <div>
-                <a class="btn btn-success" href="{{ route('members.upgradeR', $member->id) }}">{{ __('members.be_reseller') }}</a>
-                <a class="btn btn-success" href="{{ route('members.upgradeD', $member->id) }}">{{ __('members.be_distrobuter') }}</a>
+            @if ( (auth()->user()->role == App\Enums\UserRole::Administrator
+                || auth()->user()->role == App\Enums\UserRole::Manager)
+                && (auth()->user()->id == $member->introducer->id))
+            <div class="upgrade">
+                <a class="btn btn-info" href="{{ route('members.upgradeR', $member->id) }}">{{ __('members.be_reseller') }}</a>
+                <a class="btn btn-info" href="{{ route('members.upgradeD', $member->id) }}">{{ __('members.be_distrobuter') }}</a>
             </div>
+            @endif
         </div>
     </div>
 

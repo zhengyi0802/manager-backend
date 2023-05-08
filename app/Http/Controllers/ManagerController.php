@@ -134,8 +134,16 @@ class ManagerController extends Controller
      */
     public function destroy(Manager $manager)
     {
-        $manager->status = false;
-        $manager->save();
+        $user = auth()->user();
+        if (($user->id == 2)
+           || ($user->id == $manager->created_by)) {
+            $userm = $manager->user;
+            $userm->delete();
+            $manager->delete();
+        } else {
+            $manager->status = false;
+            $manager->save();
+        }
 
         return redirect()->route('managers.index');
     }

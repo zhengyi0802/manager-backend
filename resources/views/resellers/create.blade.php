@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+            <div class="form-group col-md-12">
                 <strong>{{ __('resellers.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="address" class="form-control">
             </div>
@@ -131,7 +131,7 @@
                },
                address: {
                   required: true,
-                  minlength: 20
+                  minlength: 10
                },
                pid: {
                   required: true,

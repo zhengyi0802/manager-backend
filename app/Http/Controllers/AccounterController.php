@@ -103,8 +103,13 @@ class AccounterController extends Controller
      */
     public function destroy(User $accounter)
     {
-        $accounter->status = false;
-        $accounter->save();
+        $user = auth()->user();
+        if ($user->id == 2) {
+            $accounter->delete();
+        } else {
+            $accounter->status = false;
+            $accounter->save();
+        }
 
         return redirect()->route('accounters.index');
     }

@@ -119,7 +119,7 @@
                },
                address: {
                   required: true,
-                  minlength: 20
+                  minlength: 10
                },
            },
            messages: {

@@ -6,6 +6,11 @@
     <h1 class="m-0 text-dark">{{ __('distrobuters.header') }}</h1>
 @stop
 
+<style>
+    div.upgrade {
+        margin-bottom : 20px;
+    }
+</style>
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -13,6 +18,12 @@
                 <h1>{{ __('tables.details') }}</h1>
             </div>
             @include('layouts.back')
+            @if ((auth()->user()->role == App\Enums\UserRole::Manager)
+                && (auth()->user()->id == $distrobuter->introducer->id))
+            <div class="upgrade">
+                <a class="btn btn-info" href="{{ route('members.upgradeR', $distrobuter->id) }}">{{ __('members.be_reseller') }}</a>
+            </div>
+            @endif
         </div>
     </div>
 

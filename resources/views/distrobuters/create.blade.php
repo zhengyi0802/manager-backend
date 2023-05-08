@@ -68,10 +68,14 @@
                 <strong>{{ __('distrobuters.email') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="email" class="form-control" placeholder="user@email.com">
             </div>
-            <div class="form-group col-md-4">
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group col-md-12">
                 <strong>{{ __('distrobuters.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="address" class="form-control">
             </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group col-md-4">
                 <strong>{{ __('distrobuters.password') }} :<span class="must">{{ __('tables.password') }}</span></strong>
                 <input type="password" name="password" class="form-control">

@@ -7,6 +7,7 @@ use App\Models\Member;
 use App\Models\User;
 use App\Models\Order;
 use App\Enums\UserRole;
+use App\Enums\OrderFlow;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -219,8 +220,30 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        $member->status = false;
-        $member->save();
+        $user = auth()->user();
+
+        if (($user->id == 2)
+           || ($user->id == $reseller->introducer->id)
+           || ($user->id == $reseller->created_by)) {
+            $orders = $member->orders;
+            foreach ($orders as $order) {
+                $order->delete();
+            }
+            $userm = $member->user;
+            $userm->delete();
+            $member->delete();
+        } else {
+            $orders = $member->orders;
+            foreach ($orders as $order) {
+                $order->OrderFlow::Cancelled;
+                $order->save();
+            }
+            $userm = $member->user;
+            $user->status = false;
+            $user->save();
+            $member->status = false;
+            $member->save();
+        }
 
         return redirect()->route('members.index');
     }

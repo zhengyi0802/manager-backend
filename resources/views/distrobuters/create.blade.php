@@ -118,8 +118,7 @@
                   required: true
                },
                email: {
-                  required: true,
-                  email: true
+                  required: true
                },
                password: {
                   required: true,
@@ -137,8 +136,7 @@
                   required: 'Line ID必填'
                },
                email: {
-                  required: '電子信箱必填',
-                  email: '電子信箱格式錯誤'
+                  required: '電子信箱必填'
                },
                password: {
                   required: '密碼必須填寫',

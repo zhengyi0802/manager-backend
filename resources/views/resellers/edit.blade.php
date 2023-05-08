@@ -173,8 +173,7 @@
                   required: true
                },
                email: {
-                  required: true,
-                  email: true
+                  required: true
                },
                address: {
                   required: true,
@@ -196,8 +195,7 @@
                   required: 'Line ID必填'
                },
                email: {
-                  required: '電子信箱必須填寫',
-                  email: '電子信箱格式錯誤'
+                  required: '電子信箱必須填寫'
                },
                address: {
                   required: '地址必須填寫',

@@ -126,8 +126,7 @@
                   minlength: 8
                },
                email: {
-                  required: true,
-                  email: true
+                  required: true
                },
                address: {
                   required: true,
@@ -153,8 +152,7 @@
                   minlength: '密碼設置至少8個字元'
                },
                email: {
-                  required: '電子信箱必須填寫',
-                  email: '電子信箱格式錯誤',
+                  required: '電子信箱必須填寫'
                },
                address: {
                   required: '地址必須填寫',

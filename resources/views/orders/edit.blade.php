@@ -26,7 +26,13 @@
             </ul>
         </div>
     @endif
-
+    <style>
+        div.cancel {
+           margin-top   : 5px;
+           color        : blue;
+           font-weight  ; bold;
+        }
+    </style>
     <form action="{{ route('orders.update',$order->id) }}" method="POST">
         @method('PUT')
         @csrf
@@ -43,8 +49,7 @@
                     <input type="text" name="address" value="{{ $order->address }}" class="form-control">
                 </div>
             </div>
-            @if (auth()->user()->role == App\Enums\UserRole::Accounter
-                 || auth()->user()->role == App\Enums\UserRole::Administrator)
+            @if (auth()->user()->role == App\Enums\UserRole::Accounter)
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
                     <strong>{{ __('orders.paid_1') }} :</strong>
@@ -72,19 +77,48 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>{{ __('orders.flow_status') }} : </strong>
-                    <input type="radio" name="flow_status" value="0" {{ ($order->flow_status==0) ? "checked":null }} >{{ __('orders.cancel') }}
-                    <input type="radio" name="flow_status" value="1" {{ ($order->flow_status==1) ? "checked":null }} >{{ __('orders.unchecked') }}
-                    <input type="radio" name="flow_status" value="2" {{ ($order->flow_status==2) ? "checked":null }} >{{ __('orders.checked') }}
-                    <input type="radio" name="flow_status" value="3" {{ ($order->flow_status==3) ? "checked":null }} >{{ __('orders.prepaid_paided') }}
-                    <input type="radio" name="flow_status" value="4" {{ ($order->flow_status==4) ? "checked":null }} >{{ __('orders.transfering') }}
-                    <input type="radio" name="flow_status" value="5" {{ ($order->flow_status==5) ? "checked":null }} >{{ __('orders.installed') }}
-                    <input type="radio" name="flow_status" value="6" {{ ($order->flow_status==6) ? "checked":null }} >{{ __('orders.completed') }}
-                    <input type="radio" name="flow_status" value="7" {{ ($order->flow_status==7) ? "checked":null }} >{{ __('orders.bonuschecked') }}
-                    <input type="radio" name="flow_status" value="8" {{ ($order->flow_status==8) ? "checked":null }} >{{ __('orders.bonustransfered') }}
+                    <div>
+                       <input type="radio" name="flow_status" value="0" {{ ($order->flow_status==0) ? "checked":null }} >{{ __('orders.cancel') }}
+                    </div>
+                    <div>
+                      <input type="radio" name="flow_status" value="1" {{ ($order->flow_status==1) ? "checked":null }} >{{ __('orders.unchecked') }}
+                    </div>
+                    <div>
+                      <input type="radio" name="flow_status" value="2" {{ ($order->flow_status==2) ? "checked":null }} >{{ __('orders.checked') }}
+                    </div>
+                    <div>
+                      <input type="radio" name="flow_status" value="3" {{ ($order->flow_status==3) ? "checked":null }} >{{ __('orders.prepaid_paided') }}
+                    </div>
+                    <div>
+                      <input type="radio" name="flow_status" value="4" {{ ($order->flow_status==4) ? "checked":null }} >{{ __('orders.transfering') }}
+                    </div>
+                    <div>
+                      <input type="radio" name="flow_status" value="5" {{ ($order->flow_status==5) ? "checked":null }} >{{ __('orders.installed') }}
+                    </div>
+                    <div>
+                      <input type="radio" name="flow_status" value="6" {{ ($order->flow_status==6) ? "checked":null }} >{{ __('orders.completed') }}
+                    </div>
+                    <div>
+                      <input type="radio" name="flow_status" value="7" {{ ($order->flow_status==7) ? "checked":null }} >{{ __('orders.bonuschecked') }}
+                    </div>
+                    <div>
+                      <input type="radio" name="flow_status" value="8" {{ ($order->flow_status==8) ? "checked":null }} >{{ __('orders.bonustransfered') }}
+                    </div>
                 </div>
             </div>
             @else
-                <input type="hidden" name="flow_status" value="{{ $order->flow_status }}">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>{{ __('orders.flow_status') }} : </strong>
+                    <div>
+                       {{ trans_choice('orders.flow_statuses', $order->flow_status) }}
+                    </div>
+                    <div class="cancel">
+                       {{ __('orders.cancel') }}<input type="checkbox" name="cancel_flag" value="1">
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="flow_status" value="{{ $order->flow_status }}">
             @endif
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>

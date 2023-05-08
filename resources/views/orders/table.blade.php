@@ -3,9 +3,9 @@ $heads = [
     ['label' =>__('orders.id'), 'width' => 10],
     __('orders.name'),
     __('orders.phone'),
+    __('orders.model'),
     __('orders.created_at'),
     __('orders.flow_status'),
-    __('orders.paid_1_check'),
     __('orders.paid_date_1'),
     __('orders.completed'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
@@ -22,9 +22,9 @@ $config = [
       <td>{{ $order->id }}</td>
       <td>{{ $order->member->user->name }}</td>
       <td>{{ $order->phone }}</td>
+      <td>{{ ($order->model == 1) ? __('orders.model_75') : __('orders.model_65') }}</td>
       <td>{{ $order->created_at->toDateString() }}</td>
       <td>{{ trans_choice('orders.flow_statuses', $order->flow_status) }}</td>
-      <td>{{ ($order->paid_1 == 3500) ? __('orders.paid_completed') : __('orders.paid_unpaid') }}</td>
       <td>{{ $order->paid_date_1 }}</td>
       <td>{{ ($order->completed==1) ? __('tables.yes'):__('tables.no') }}</td>
       <td><nobr>

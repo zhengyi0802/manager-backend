@@ -22,39 +22,51 @@ class MemberController extends Controller
         $user = auth()->user();
         if ($user->role == UserRole::Manager) {
             $customerIds = $this->customerList($user->id)->pluck('user_id');
+            $customer_array = $customerIds->toArray();
             $distrobuterIds = $this->distrobuterIds($user->id);
             foreach ($distrobuterIds as $distrobuterId) {
                 $customIds1 = $this->customerList($distrobuterId)->pluck('user_id');
-                $customerIds->push($customIds1);
+                if (count($customIds1) > 0) {
+                    $custom_array = $customIds1->toArray();
+                    array_push($customer_array, $custom_array);
+                }
             }
             $resellerIds = $this->resellerIds($user->id);
             foreach ($resellerIds as $resellerId) {
                 $customIds1 = $this->customerList($resellerId)->pluck('user_id');
-                $customerIds->push($customIds1);
+                if (count($customIds1) > 0) {
+                    $custom_array = $customIds1->toArray();
+                    array_push($customer_array, $custom_array);
+                }
                 $distrobuterIds = $this->distrobuterIds($resellerId);
                 foreach ($distrobuterIds as $distrobuterId) {
                     $customIds1 = $this->customerList($distrobuterId)->pluck('user_id');
-                    $customerIds->push($customIds1);
+                    if (count($customIds1) > 0) {
+                        $custom_array = $customIds1->toArray();
+                        array_push($customer_array, $custom_array);
+                    }
                 }
             }
-            $customerIds = $customerIds->collapse();
             $members = Member::leftJoin('users', 'members.user_id', 'users.id')
                              ->select('members.*')
                              ->where('users.role', UserRole::Member)
-                             ->whereIn('user_id', $customerIds)
+                             ->whereIn('user_id', $customer_array)
                              ->get();
          } else if ($user->role == UserRole::Reseller) {
             $customerIds = $this->customerList($user->id)->pluck('user_id');
+            $customer_array = $customerIds->toArray();
             $distrobuterIds = $this->distrobuterIds($user->id);
             foreach ($distrobuterIds as $distrobuterId) {
                 $customIds1 = $this->customerList($distrobuterId)->pluck('user_id');
-                $customerIds->push($customIds1);
+                if (count($customIds1) > 0) {
+                    $custom_array = $customIds1->toArray();
+                    array_push($customer_array, $custom_array);
+                }
             }
-            $customerIds = $customerIds->collapse();
             $members = Member::leftJoin('users', 'members.user_id', 'users.id')
                              ->select('members.*')
                              ->where('users.role', UserRole::Member)
-                             ->whereIn('user_id', $customerIds)
+                             ->whereIn('user_id', $customer_array)
                              ->get();
         } else if ($user->role == UserRole::Distrobuter) {
             $members = $this->customerList($user->id);

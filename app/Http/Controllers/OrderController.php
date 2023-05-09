@@ -27,38 +27,52 @@ class OrderController extends Controller
             $orders = Order::get();
         } else if ($user->role == UserRole::Manager) {
             $customers = $this->customers($user->id)->pluck('id');
+            $customer_array = $customers->toArray();
             $distrobuterIds = $this->distrobuterIds($user->id);
             foreach ($distrobuterIds as $distrobuterId) {
                 $customs = $this->customers($distrobuterId)->pluck('id');
-                $customers->push($customs);
+                if (count($customs) > 0) {
+                    $custom_array = $customs->toArray();
+                    array_push($customer_array, $custom_array);
+                }
             }
             $resellerIds = $this->resellerIds($user->id);
             foreach ($resellerIds as $resellerId) {
                 $customs = $this->customers($resellerId)->pluck('id');
-                $customers->push($customs);
+                if (count($customs) > 0) {
+                    $custom_array = $customs->toArray();
+                    array_push($customer_array, $custom_array);
+                }
                 $distrobuterIds = $this->distrobuterIds($resellerId);
                 foreach ($distrobuterIds as $distrobuterId) {
                     $customs = $this->customers($distrobuterId)->pluck('id');
-                    $customers->push($customs);
+                    if (count($customs) > 0) {
+                        $custom_array = $customs->toArray();
+                        array_push($customer_array, $custom_array);
+                    }
                 }
             }
-            $customerIds = $customers->collapse();
-            $orders = Order::whereIn('member_id', $customerIds)->get();
+            $orders = Order::whereIn('member_id', $customer_array)->get();
         } else if ($user->role == UserRole::Reseller) {
             $customers = $this->customers($user->id)->pluck('id');
+            $customer_array = $customers->toArray();
             $distrobuterIds = $this->distrobuterIds($user->id);
             foreach ($distrobuterIds as $distrobuterId) {
                 $customs = $this->customers($distrobuterId)->pluck('id');
-                $customers->push($customs);
+                if (count($customs) > 0) {
+                    $custom_array = $customs->toArray();
+                    array_push($customer_array, $custom_array);
+                }
             }
-            $customerIds = $customers->collapse();
-            $orders = Order::whereIn('member_id', $customerIds)->get();
+            $orders = Order::whereIn('member_id', $customer_array)->get();
         } else if ($user->role == UserRole::Distrobuter) {
             $customerIds = $this->customers($user->id)->pluck('id');
-            $orders = Order::whereIn('member_id', $customerIds)->get();
+            $customer_array = $customerIds->toArray();
+            $orders = Order::whereIn('member_id', $customer_array)->get();
         } else {
             $orders = Order::where('member_id', $user->member->id)->get();
         }
+
         return view('orders.index', compact('orders'));
     }
 

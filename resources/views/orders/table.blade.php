@@ -20,7 +20,7 @@ $config = [
   @foreach($orders as $order)
     <tr>
       <td>{{ $order->id }}</td>
-      <td>{{ $order->member->user->name }}</td>
+      <td>{{ ($order->member) ? $order->member->user->name : "" }}</td>
       <td>{{ $order->phone }}</td>
       <td>{{ ($order->model == 1) ? __('orders.model_75') : __('orders.model_65') }}</td>
       <td>{{ $order->created_at->toDateString() }}</td>

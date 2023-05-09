@@ -22,5 +22,5 @@
            'backend_url'                   => 'https://backend.mdo.tw/',
            'reseller_application_url'      => 'https://sales.mdo.tw/resellers/create?introducer=',
            'distrobuter_application_url'   => 'https://sales.mdo.tw/distrobuters/create?introducer=',
-           'order_application_url'         => 'https://sales.mdo.tw/members/create?introducer=',
+           'order_application_url'         => 'https://sales.mdo.tw?introducer=',
     ];

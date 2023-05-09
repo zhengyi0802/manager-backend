@@ -165,9 +165,14 @@ class ResellerController extends Controller
         if (($user->id == 2)
            || ($user->id == $reseller->introducer->id)
            || ($user->id == $reseller->created_by)) {
-            $userR = $reseller->user;
-            $userR->delete();
-            $reseller->delete();
+            if (false) {
+                $userR = $reseller->user;
+                $userR->delete();
+                $reseller->delete();
+            } else {
+                $reseller->status = false;
+                $reseller->save();
+            }
         } else {
             $reseller->status = false;
             $reseller->save();

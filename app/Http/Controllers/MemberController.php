@@ -236,9 +236,9 @@ class MemberController extends Controller
     {
         $user = auth()->user();
 
-        if (($user->id == 2)
-           || ($user->id == $reseller->introducer->id)
-           || ($user->id == $reseller->created_by)) {
+        if (false && ($user->id == 2
+           || $user->id == $reseller->introducer->id
+           || $user->id == $reseller->created_by)) {
             $orders = $member->orders;
             foreach ($orders as $order) {
                 $order->delete();

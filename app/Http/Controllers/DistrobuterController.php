@@ -176,9 +176,14 @@ class DistrobuterController extends Controller
         if (($user->id == 2)
            || ($user->id == $distrobuter->introducer->id)
            || ($user->id == $distrobuter->created_by)) {
-            $userR = $distrobuter->user;
-            $userR->delete();
-            $distrobuter->delete();
+            if (false) {
+                $userR = $distrobuter->user;
+                $userR->delete();
+                $distrobuter->delete();
+            } else {
+                $distrobuter->status = false;
+                $distrobuter->save();
+            }
         } else {
             $distrobuter->status = false;
             $distrobuter->save();

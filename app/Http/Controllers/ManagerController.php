@@ -137,9 +137,14 @@ class ManagerController extends Controller
         $user = auth()->user();
         if (($user->id == 2)
            || ($user->id == $manager->created_by)) {
-            $userm = $manager->user;
-            $userm->delete();
-            $manager->delete();
+            if (false) {
+                $userm = $manager->user;
+                $userm->delete();
+                $manager->delete();
+            } else {
+                $manager->status = false;
+                $manager->save();
+            }
         } else {
             $manager->status = false;
             $manager->save();

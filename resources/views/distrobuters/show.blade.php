@@ -41,6 +41,9 @@
             <x-adminlte-card title="{{ __('distrobuters.line_id') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->user->line_id }}
             </x-adminlte-card>
+            <x-adminlte-card title="{{ __('distrobuters.email') }}" theme="info" icon="fas fa-lg">
+                {{ $distrobuter->user->email }}
+            </x-adminlte-card>
             <x-adminlte-card title="{{ __('distrobuters.address') }}" theme="info" icon="fas fa-lg">
                 {{ $distrobuter->address }}
             </x-adminlte-card>

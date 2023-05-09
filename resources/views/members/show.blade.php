@@ -42,6 +42,9 @@
         <x-adminlte-card title="{{ __('members.line_id') }}" theme="info" icon="fas fa-lg">
                 {{ $member->user->line_id }}
         </x-adminlte-card>
+        <x-adminlte-card title="{{ __('members.email') }}" theme="info" icon="fas fa-lg">
+                {{ $member->user->email }}
+        </x-adminlte-card>
         <x-adminlte-card title="{{ __('members.address') }}" theme="info" icon="fas fa-lg">
                 {{ $member->address }}
         </x-adminlte-card>

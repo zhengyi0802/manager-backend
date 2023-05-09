@@ -29,6 +29,9 @@
             <x-adminlte-card title="{{ __('resellers.line_id') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->user->line_id }}
             </x-adminlte-card>
+            <x-adminlte-card title="{{ __('resellers.email') }}" theme="info" icon="fas fa-lg">
+                {{ $reseller->user->email }}
+            </x-adminlte-card>
             <x-adminlte-card title="{{ __('resellers.address') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->address }}
             </x-adminlte-card>

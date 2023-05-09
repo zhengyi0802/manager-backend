@@ -151,8 +151,6 @@ class DistrobuterController extends Controller
             'introducer_id'  => $introducer->id,
             'address'        => $data['address'],
             'pid'            => $data['pid'],
-            'pid_image_1'    => $pid_image_1,
-            'pid_image_2'    => $pid_image_2,
             'bank'           => $data['bank'],
             'bank_name'      => $data['bank_name'],
             'account'        => $data['account'],

@@ -156,10 +156,18 @@ class DistrobuterController extends Controller
             'bank'           => $data['bank'],
             'bank_name'      => $data['bank_name'],
             'account'        => $data['account'],
-            'bonus'          => ($share_status ? $data['bonus'] : 0),
             'share_status'   => $share_status,
             'status'         => $data['status'],
         ];
+        if (!is_null($pid_image_1)) {
+            $member['pid_image_1'] = $pid_image_1;
+        }
+        if (!is_null($pid_image_2)) {
+            $member['pid_image_2'] = $pid_image_2;
+        }
+        if (array_key_exists('bonus', $data)) {
+            $member['bonus'] = ($share_status ? $data['bonus'] : 0);
+        }
         $distrobuter->update($member);
 
         return redirect()->route('distrobuters.index');

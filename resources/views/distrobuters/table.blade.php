@@ -29,7 +29,7 @@ $config = [
           <form name="distrobuter-delete-form" action="{{ route('distrobuters.destroy', $distrobuter->id); }}" method="POST">
             @csrf
             @method('DELETE')
-            @if (auth()->user()->role <= App\Enums\UserRole::Reseller)
+            @if (auth()->user()->role <= App\Enums\UserRole::Distrobuter)
               <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
                 onClick="window.location='{{ route('distrobuters.edit', $distrobuter->id); }}'" >
               </x-adminlte-button>

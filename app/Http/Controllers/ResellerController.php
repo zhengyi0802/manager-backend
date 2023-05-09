@@ -136,14 +136,17 @@ class ResellerController extends Controller
         $member = [
             'address'        => $data['address'],
             'pid'            => $data['pid'],
-            'pid_image_1'    => $pid_image_1,
-            'pid_image_2'    => $pid_image_2,
             'bank'           => $data['bank'],
             'bank_name'      => $data['bank_name'],
             'account'        => $data['account'],
             'status'         => $data['status'],
         ];
-
+        if (!is_null($pid_image_1)) {
+            $member['pid_image_1'] = $pid_image_1;
+        }
+        if (!is_null($pid_image_2)) {
+            $member['pid_image_2'] = $pid_image_2;
+        }
         if (array_key_exists('bonus', $data)) {
             $member['bonus'] = $data['bonus'];
         }

@@ -104,6 +104,7 @@ class MemberController extends Controller
                 'name'       => $data['name'],
                 'phone'      => $data['phone'],
                 'line_id'    => $data['line_id'],
+                'email'      => $data['email'],
                 'password'   => bcrypt($data['password']),
                 'role'       => UserRole::Member,
                 'created_by' => $creator->id,
@@ -189,6 +190,7 @@ class MemberController extends Controller
         $userdata = [
             'phone'      => $data['phone'],
             'line_id'    => $data['line_id'],
+            'email'      => $data['email'],
             'status'     => true,
         ];
         if ($data['newpassword'] != null) {

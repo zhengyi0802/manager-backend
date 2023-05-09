@@ -55,6 +55,7 @@ class ResellerController extends Controller
             'name'       => $data['name'],
             'phone'      => $data['phone'],
             'line_id'    => $data['line_id'],
+            'email'      => $data['email'],
             'password'   => bcrypt($data['password']),
             'role'       => UserRole::Reseller,
             'created_by' => $creator->id,
@@ -117,6 +118,7 @@ class ResellerController extends Controller
         $userdata = [
             'phone'      => $data['phone'],
             'line_id'    => $data['line_id'],
+            'email'      => $data['email'],
         ];
         if ($data['newpassword'] != null) {
             $userdata['password'] = bcrypt($data['newpassword']);

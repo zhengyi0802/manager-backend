@@ -66,6 +66,7 @@ class DistrobuterController extends Controller
             'name'       => $data['name'],
             'phone'      => $data['phone'],
             'line_id'    => $data['line_id'],
+            'email'      => $data['email'],
             'password'   => bcrypt($data['password']),
             'role'       => UserRole::Distrobuter,
             'created_by' => $creator->id,
@@ -130,6 +131,7 @@ class DistrobuterController extends Controller
         $userdata = [
             'phone'      => $data['phone'],
             'line_id'    => $data['line_id'],
+            'email'      => $data['email'],
         ];
         if ($data['newpassword'] != null) {
             $userdata['password'] = bcrypt($data['newpassword']);

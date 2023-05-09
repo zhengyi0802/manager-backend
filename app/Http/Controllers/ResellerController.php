@@ -141,10 +141,16 @@ class ResellerController extends Controller
             'bank'           => $data['bank'],
             'bank_name'      => $data['bank_name'],
             'account'        => $data['account'],
-            'bonus'          => $data['bonus'],
-            'share'          => $data['share'],
             'status'         => $data['status'],
         ];
+
+        if (array_key_exists('bonus', $data)) {
+            $member['bonus'] = $data['bonus'];
+        }
+
+        if (array_key_exists('share', $data)) {
+            $member['share'] = $data['share'];
+        }
         $reseller->update($member);
 
         return redirect()->route('resellers.index');

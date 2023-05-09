@@ -94,11 +94,12 @@ class DistrobuterController extends Controller
             'pid'            => $data['pid'],
             'pid_image_1'    => $pid_image_1,
             'pid_image_2'    => $pid_image_2,
-            'bonus'          => $data['bonus'],
             'share_status'   => $share_status,
             'created_by'     => $creator->id,
         ];
-
+        if (array_key_exists('bonus', $data)) {
+            $member['bonus'] = $data['bonus'];
+        }
         if (count($check_user) == 0) {
             Member::create($member);
         } else {

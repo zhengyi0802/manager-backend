@@ -47,7 +47,7 @@
             <div class="form-group col-md-4">
                 <strong>{{ __('resellers.manager') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 @if (auth()->user()->role == App\Enums\UserRole::Manager)
-                    <input type="text" name="introducer" value="{{ auth()->user()->line_id }}" class="form-control" disabled>
+                    <input type="text" name="introducer" value="{{ auth()->user()->line_id }}" class="form-control">
                 @else
                     <input type="text" name="introducer" class="form-control">
                 @endif

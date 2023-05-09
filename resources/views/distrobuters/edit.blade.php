@@ -72,7 +72,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('distrobuters.address') }} :<span class="must">{{ __('tables.must') }}</span></strong>
-                    <input type="text" name="address" value="{{ $distrobuter->user->line_id }}" class="form-control">
+                    <input type="text" name="address" value="{{ $distrobuter->address }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
                     <strong>{{ __('distrobuters.pidnumbers') }} :<span class="must">{{ __('tables.must') }}</span></strong>

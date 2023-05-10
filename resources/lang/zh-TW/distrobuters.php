@@ -28,4 +28,5 @@
         'bonus'          => '單筆獎金',
         'created_at'     => '加入日期',
         'order_ap'       => '電視申領書',
+        'customers'      => '直屬客戶列表',
     ];

@@ -41,11 +41,9 @@
             @if (auth()->user()->id == $reseller->user->id
                  || auth()->user()->role == App\Enums\UserRole::Accounter
                  || auth()->user()->role == App\Enums\UserRole::Administrator)
-            <x-adminlte-card title="{{ __('resellers.pid_image_1') }}" theme="info" icon="fas fa-lg">
-                <img src="{{ '../'.$reseller->pid_image_1 }}">
-            </x-adminlte-card>
-            <x-adminlte-card title="{{ __('resellers.pid_image_2') }}" theme="info" icon="fas fa-lg">
-                <img src="{{ '../'.$reseller->pid_image_2 }}">
+            <x-adminlte-card title="{{ __('resellers.pid') }}" theme="info" icon="fas fa-lg">
+                <img src="{{ '../'.$reseller->pid_image_1 }}" width="40%">
+                <img src="{{ '../'.$reseller->pid_image_2 }}" width="40%">
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('resellers.bank') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->bank }}
@@ -87,4 +85,13 @@
             </x-adminlte-card>
          </div>
      </div>
+
+    <div class="row">
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <x-adminlte-card title="{{ __('resellers.customers') }}" theme="info" icon="fas fa-lg">
+              @include('resellers.customers')
+            </x-adminlte-card>
+         </div>
+     </div>
+
 @endsection

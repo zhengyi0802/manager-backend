@@ -39,11 +39,9 @@
             <x-adminlte-card title="{{ __('managers.pid') }}" theme="info" icon="fas fa-lg">
                 {{ $manager->pid }}
             </x-adminlte-card>
-            <x-adminlte-card title="{{ __('managers.pid_image_1') }}" theme="info" icon="fas fa-lg">
-                <img src="../{{ $manager->pid_image_1 }}">
-            </x-adminlte-card>
-            <x-adminlte-card title="{{ __('managers.pid_image_2') }}" theme="info" icon="fas fa-lg">
-                <img src="../{{ $manager->pid_image_2 }}">
+            <x-adminlte-card title="{{ __('managers.pid') }}" theme="info" icon="fas fa-lg">
+                <img src="../{{ $manager->pid_image_1 }}" width="40%">
+                <img src="../{{ $manager->pid_image_2 }}" width="40%">
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('managers.share') }}" theme="info" icon="fas fa-lg">
                 {{ $manager->share }}
@@ -77,4 +75,13 @@
             </x-adminlte-card>
          </div>
      </div>
+
+    <div class="row">
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <x-adminlte-card title="{{ __('managers.customers') }}" theme="info" icon="fas fa-lg">
+              @include('managers.customers')
+            </x-adminlte-card>
+         </div>
+     </div>
+
 @endsection

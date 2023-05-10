@@ -45,4 +45,9 @@ class Member extends Model
         return $this->hasMany(Order::class, 'member_id');
     }
 
+    public function customers() {
+        $id = $this->user_id;
+        $customers = Member::where('introducer_id', $id)->get();
+        return $customers;
+    }
 }

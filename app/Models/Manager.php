@@ -35,4 +35,10 @@ class Manager extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    public function customers() {
+        $id = $this->user_id;
+        $customers = Member::where('introducer_id', $id)->get();
+        return $customers;
+    }
+
 }

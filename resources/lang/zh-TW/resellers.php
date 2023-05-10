@@ -33,4 +33,5 @@
         'created_at'     => '加入日期',
         'distrobuter_ap' => '分銷商申請書',
         'order_ap'       => '電視申領書',
+        'customers'      => '直屬客戶列表',
     ];

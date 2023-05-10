@@ -48,21 +48,6 @@
         <x-adminlte-card title="{{ __('members.address') }}" theme="info" icon="fas fa-lg">
                 {{ $member->address }}
         </x-adminlte-card>
-        <x-adminlte-card title="{{ __('members.pidnumbers') }}" theme="info" icon="fas fa-lg">
-                {{ $member->pid }}
-        </x-adminlte-card>
-        <x-adminlte-card title="{{ __('members.pid_image_1') }}" theme="info" icon="fas fa-lg">
-                {{ $member->pid_image_1 }}
-        </x-adminlte-card>
-        <x-adminlte-card title="{{ __('members.pid_image_2') }}" theme="info" icon="fas fa-lg">
-                {{ $member->pid_image_2 }}
-        </x-adminlte-card>
-        <x-adminlte-card title="{{ __('members.creadit_card') }}" theme="info" icon="fas fa-lg">
-                {{ $member->creadit_card }}
-        </x-adminlte-card>
-        <x-adminlte-card title="{{ __('members.creadit_expire') }}" theme="info" icon="fas fa-lg">
-                {{ $member->creadit_expire }}
-        </x-adminlte-card>
         <x-adminlte-card title="{{ __('members.created_by') }}" theme="info" icon="fas fa-lg">
                 {{ $member->creator->name }}
         </x-adminlte-card>
@@ -76,4 +61,12 @@
                 {{ $member->created_at->toDateString() }}
         </x-adminlte-card>
      </div>
+   </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <x-adminlte-card title="{{ __('members.orders') }}" theme="info" icon="fas fa-lg">
+          @include('members.orders')
+        </x-adminlte-card>
+      </div>
+    </div>
 @endsection

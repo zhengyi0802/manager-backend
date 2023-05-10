@@ -46,6 +46,9 @@ Route::resource('/members', MemberController::class);
 
 Route::resource('/resellers', ResellerController::class);
 
+Route::get('/distrobuters/{member}/upgradeR', [App\Http\Controllers\DistrobuterController::class, 'upgradeR'])
+     ->name('distrobuters.upgradeR');
+
 Route::resource('/distrobuters', DistrobuterController::class);
 
 Route::get('/orders/{order}/smssend', [App\Http\Controllers\OrderController::class, 'smssend'])

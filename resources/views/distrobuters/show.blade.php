@@ -18,10 +18,10 @@
                 <h1>{{ __('tables.details') }}</h1>
             </div>
             @include('layouts.back')
-            @if ((auth()->user()->role == App\Enums\UserRole::Manager)
-                && (auth()->user()->id == $distrobuter->introducer->id))
+            @if ((auth()->user()->role == App\Enums\UserRole::Administrator) || ((auth()->user()->role == App\Enums\UserRole::Manager)
+                && (auth()->user()->id == $distrobuter->introducer->id)))
             <div class="upgrade">
-                <a class="btn btn-info" href="{{ route('members.upgradeR', $distrobuter->id) }}">{{ __('members.be_reseller') }}</a>
+                <a class="btn btn-info" href="{{ route('distrobuters.upgradeR', $distrobuter->id) }}">{{ __('members.be_reseller') }}</a>
             </div>
             @endif
         </div>

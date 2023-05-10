@@ -192,4 +192,12 @@ class DistrobuterController extends Controller
         return redirect()->route('distrobuters.index');
     }
 
+    public function upgradeR(Member $distrobuter) {
+        $user = $distrobuter->user;
+        $user->role = UserRole::Reseller;
+        $user->save();
+
+        return redirect()->route('resellers.index');
+    }
+
 }

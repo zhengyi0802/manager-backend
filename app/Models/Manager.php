@@ -66,7 +66,7 @@ class Manager extends Model
         $array = $introduced_m->pluck('user_id')->toArray();
         $introduceds = User::where('role', UserRole::Distrobuter)->whereIn('id', $array)->get();
         $array_u = $introduceds->pluck('id')->toArray();
-        $resellers = Member::whereIn('user_id', $array_u)->get();
+        $distrobuters = Member::whereIn('user_id', $array_u)->get();
         return $distrobuters;
     }
 

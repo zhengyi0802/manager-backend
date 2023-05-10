@@ -78,6 +78,12 @@
 
     <div class="row">
          <div class="col-xs-12 col-sm-12 col-md-12">
+            <x-adminlte-card title="{{ __('managers.resellers') }}" theme="info" icon="fas fa-lg">
+              @include('managers.resellers')
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('managers.distrobuters') }}" theme="info" icon="fas fa-lg">
+              @include('managers.distrobuters')
+            </x-adminlte-card>
             <x-adminlte-card title="{{ __('managers.customers') }}" theme="info" icon="fas fa-lg">
               @include('managers.customers')
             </x-adminlte-card>

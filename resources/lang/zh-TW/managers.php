@@ -31,4 +31,6 @@
         'order_ap'       => '電視申領書',
         'user_create_error' => '資料重複, 無法新增',
         'customers'      => '直屬客戶列表',
+        'resellers'      => '直屬經銷商列表',
+        'distrobuters'   => '直屬分銷商列表',
     ];

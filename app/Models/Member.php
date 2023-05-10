@@ -47,7 +47,13 @@ class Member extends Model
 
     public function customers() {
         $id = $this->user_id;
-        $customers = Member::where('introducer_id', $id)->get();
+        $introduced_m = Member::where('introducer_id', $id)
+                            ->get();
+        $array = $introduced_m->pluck('user_id')->toArray();
+        $introduceds = User::where('role', UserRole::Member)->whereIn('id', $array)->get();
+        $array_u = $introduceds->pluck('id')->toArray();
+        $customers = Member::whereIn('user_id', $array_u)->get();
+
         return $customers;
     }
 }

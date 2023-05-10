@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\UserRole;
 
 class Manager extends Model
 {
@@ -37,8 +38,36 @@ class Manager extends Model
 
     public function customers() {
         $id = $this->user_id;
-        $customers = Member::where('introducer_id', $id)->get();
+        $introduced_m = Member::where('introducer_id', $id)
+                            ->get();
+        $array = $introduced_m->pluck('user_id')->toArray();
+        $introduceds = User::where('role', UserRole::Member)->whereIn('id', $array)->get();
+        $array_u = $introduceds->pluck('id')->toArray();
+        $customers = Member::whereIn('user_id', $array_u)->get();
+
         return $customers;
+    }
+
+    public function resellers() {
+        $id = $this->user_id;
+        $introduced_m = Member::where('introducer_id', $id)
+                            ->get();
+        $array = $introduced_m->pluck('user_id')->toArray();
+        $introduceds = User::where('role', UserRole::Reseller)->whereIn('id', $array)->get();
+        $array_u = $introduceds->pluck('id')->toArray();
+        $resellers = Member::whereIn('user_id', $array_u)->get();
+        return $resellers;
+    }
+
+    public function distrobuters() {
+        $id = $this->user_id;
+        $introduced_m = Member::where('introducer_id', $id)
+                            ->get();
+        $array = $introduced_m->pluck('user_id')->toArray();
+        $introduceds = User::where('role', UserRole::Distrobuter)->whereIn('id', $array)->get();
+        $array_u = $introduceds->pluck('id')->toArray();
+        $resellers = Member::whereIn('user_id', $array_u)->get();
+        return $distrobuters;
     }
 
 }

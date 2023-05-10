@@ -39,7 +39,7 @@ class Manager extends Model
     public function customers() {
         $id = $this->user_id;
         $introduced_m = Member::where('introducer_id', $id)
-                            ->get();
+                              ->get();
         $array = $introduced_m->pluck('user_id')->toArray();
         $introduceds = User::where('role', UserRole::Member)->whereIn('id', $array)->get();
         $array_u = $introduceds->pluck('id')->toArray();
@@ -51,7 +51,7 @@ class Manager extends Model
     public function resellers() {
         $id = $this->user_id;
         $introduced_m = Member::where('introducer_id', $id)
-                            ->get();
+                              ->get();
         $array = $introduced_m->pluck('user_id')->toArray();
         $introduceds = User::where('role', UserRole::Reseller)->whereIn('id', $array)->get();
         $array_u = $introduceds->pluck('id')->toArray();
@@ -62,7 +62,7 @@ class Manager extends Model
     public function distrobuters() {
         $id = $this->user_id;
         $introduced_m = Member::where('introducer_id', $id)
-                            ->get();
+                              ->get();
         $array = $introduced_m->pluck('user_id')->toArray();
         $introduceds = User::where('role', UserRole::Distrobuter)->whereIn('id', $array)->get();
         $array_u = $introduceds->pluck('id')->toArray();

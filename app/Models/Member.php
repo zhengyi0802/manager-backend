@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\UserRole;
 
 class Member extends Model
 {
@@ -45,10 +46,21 @@ class Member extends Model
         return $this->hasMany(Order::class, 'member_id');
     }
 
+    public function distrobuters() {
+        $id = $this->user_id;
+        $introduced_m = Member::where('introducer_id', $id)
+                              ->get();
+        $array = $introduced_m->pluck('user_id')->toArray();
+        $introduceds = User::where('role', UserRole::Distrobuter)->whereIn('id', $array)->get();
+        $array_u = $introduceds->pluck('id')->toArray();
+        $distrobuters = Member::whereIn('user_id', $array_u)->get();
+        return $distrobuters;
+    }
+
     public function customers() {
         $id = $this->user_id;
         $introduced_m = Member::where('introducer_id', $id)
-                            ->get();
+                              ->get();
         $array = $introduced_m->pluck('user_id')->toArray();
         $introduceds = User::where('role', UserRole::Member)->whereIn('id', $array)->get();
         $array_u = $introduceds->pluck('id')->toArray();

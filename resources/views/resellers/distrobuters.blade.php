@@ -1,10 +1,10 @@
 @php
 $heads = [
     ['label' =>__('distrobuters.id'), 'width' => 10],
-    __('distrobuters.reseller'),
     __('distrobuters.name'),
     __('distrobuters.phone'),
     __('distrobuters.line_id'),
+    __('distrobuters.email'),
     __('distrobuters.created_at'),
     __('distrobuters.status'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
@@ -19,10 +19,10 @@ $config = [
   @foreach($reseller->distrobuters() as $distrobuter)
     <tr>
       <td>{{ $distrobuter->id }}</td>
-      <td>{{ $distrobuter->introducer->name }}</td>
       <td>{{ $distrobuter->user->name }}</td>
       <td>{{ $distrobuter->user->phone }}</td>
       <td>{{ $distrobuter->user->line_id }}</td>
+      <td>{{ $distrobuter->user->email }}</td>
       <td>{{ $distrobuter->created_at->toDateString() }}</td>
       <td>{{ ($distrobuter->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
       <td><nobr>

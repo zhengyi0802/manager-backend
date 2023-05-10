@@ -1,10 +1,10 @@
 @php
 $heads = [
     ['label' =>__('members.id'), 'width' => 10],
-    __('members.introducer'),
     __('members.name'),
     __('members.phone'),
     __('members.line_id'),
+    __('members.email'),
     __('members.created_by'),
     __('members.status'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
@@ -19,10 +19,10 @@ $config = [
   @foreach($reseller->customers() as $member)
     <tr>
       <td>{{ $member->id }}</td>
-      <td>{{ $member->introducer->name }}</td>
       <td>{{ $member->user->name }}</td>
       <td>{{ $member->user->phone }}</td>
       <td>{{ $member->user->line_id }}</td>
+      <td>{{ $member->user->email }}</td>
       <td>{{ $member->creator->name }}</td>
       <td>{{ ($member->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
       <td><nobr>

@@ -29,7 +29,7 @@
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('orders.name') }} :</strong>
-                {{ $order->member->user->name }}
+                {{ ($order->is_manager) ? $order->manager->user->name : $order->member->user->name }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
@@ -47,7 +47,7 @@
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('orders.line_id') }} :</strong>
-                {{ $order->member->user->line_id }}
+                {{ ($order->is_manager) ? $order->manager->user->line_id : $order->member->user->line_id }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
@@ -56,20 +56,6 @@
                 {{ $order->address }}
             </div>
          </div>
-         @if (auth()->user()->role <= App\Enums\UserRole::Accounter)
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.creadit_card') }} :</strong>
-                {{ $order->member->creadit_card }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('members.creadit_expire') }} :</strong>
-                {{ $order->member->creadit_expire }}
-            </div>
-         </div>
-         @endif
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('orders.paid_1') }} :</strong>
@@ -110,12 +96,6 @@
             <div class="form-group">
                 <strong>{{ __('orders.completed') }} :</strong>
                 {{ $order->completed ? __('tables.yes') : __('tables.no') }}
-            </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>{{ __('orders.created_by') }} :</strong>
-                {{ $order->member->creator->name }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">

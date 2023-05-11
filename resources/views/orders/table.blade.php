@@ -20,7 +20,7 @@ $config = [
   @foreach($orders as $order)
     <tr>
       <td>{{ $order->id }}</td>
-      <td>{{ ($order->member) ? $order->member->user->name : "" }}</td>
+      <td>{{ ($order->is_manager) ? $order->manager->user->name : $order->member->user->name }}</td>
       <td>{{ $order->phone }}</td>
       <td>{{ ($order->model == 1) ? __('orders.model_75') : __('orders.model_65') }}</td>
       <td>{{ $order->created_at->toDateString() }}</td>
@@ -31,8 +31,7 @@ $config = [
           <form name="order-delete-form" action="{{ route('orders.destroy', $order->id); }}" method="POST">
             @csrf
             @method('DELETE')
-            @if (auth()->user()->id == $order->member->user->id
-                 || auth()->user()->role == App\Enums\UserRole::Accounter
+             @if (auth()->user()->role == App\Enums\UserRole::Accounter
                  || auth()->user()->role == App\Enums\UserRole::Administrator)
               <x-adminlte-button theme="primary" title="{{ __('tables.edit') }}" icon="fa fa-lg fa-fw fa-pen"
                 onClick="window.location='{{ route('orders.edit', $order->id); }}'" >

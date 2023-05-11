@@ -46,7 +46,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group col-md-4">
                     <strong>{{ __('orders.name') }} :</strong>
-                    {{ $order->member->user->name }}
+                    {{ ($order->is_manager) ? $order->manager->user->name :  $order->member->user->name }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

@@ -11,7 +11,7 @@ $heads = [
 $config = [
     'order' => [[0, 'desc']],
     'columns' => [null, null, null, null, null, null, ['orderable' => false]],
-    'language' => [ 'url' => '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Chinese.json' ],
+    'language' => [ 'url' => '//cdn.datatables.net/plug-ins/1.13.4/i18n/zh-HANT.json' ],
 ];
 @endphp
 <x-adminlte-datatable id="accounter-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>

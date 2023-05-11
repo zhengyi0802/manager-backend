@@ -129,6 +129,12 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $data = $request->all();
+
+        if (array_key_exists('cancel_flag', $data)) {
+            if ($data['cancel_flag']) {
+                $data['flow_status'] = OrderFlow::Cancelled;
+            }
+        }
         $order->update($data);
 
         if ($data['flow_status'] == OrderFlow::Completed) {

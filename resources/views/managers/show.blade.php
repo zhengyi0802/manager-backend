@@ -73,6 +73,10 @@
                 <p>{{ __('tables.order_application_url' ).$manager->user->line_id }}</p>
                 <p>{{ QrCode::size(300)->generate(__('tables.order_application_url' ).$manager->user->line_id) }}</p>
             </x-adminlte-card>
+            <x-adminlte-card title="{{ __('managers.customservice') }}" theme="info" icon="fas fa-lg">
+                <p>{{ __('managers.customserviceurl' ) }}</p>
+                <p>{{ QrCode::size(300)->generate(__('managers.customerserviceurl' )) }}</p>
+            </x-adminlte-card>
          </div>
      </div>
 

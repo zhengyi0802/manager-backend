@@ -308,7 +308,7 @@ return [
         [
             'text' => 'manager',
             'url'  => 'managers',
-            'can'  => 'manager',
+            'can'  => ['manager', 'accounter'],
         ],
         [
             'text' => 'accounter',

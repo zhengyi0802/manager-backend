@@ -33,4 +33,6 @@
         'customers'      => '直屬客戶列表',
         'resellers'      => '直屬經銷商列表',
         'distrobuters'   => '直屬分銷商列表',
+        'customservice'  => '客服連結',
+        'customserviceurl' => 'https://lin.ee/on0rOe1',
     ];

@@ -74,14 +74,17 @@
             <x-adminlte-card title="{{ __('resellers.created_by') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->created_at->toDateString() }}
             </x-adminlte-card>
-            <x-adminlte-card title="{{ __('resellers.distrobuter_up') }}" theme="info" icon="fas fa-lg">
+            <x-adminlte-card title="{{ __('resellers.distrobuter_ap') }}" theme="info" icon="fas fa-lg">
                 <p>{{ __('tables.distrobuter_application_url' ).$reseller->user->line_id }}</p>
                 <p>{{ QrCode::size(300)->generate(__('tables.distrobuter_application_url' ).$reseller->user->line_id) }}</p>
             </x-adminlte-card>
-            <x-adminlte-card title="{{ __('resellers.order_up') }}" theme="info" icon="fas fa-lg">
-                <p><strong>{{ __('resellers.order_ap') }} :</strong></p>
+            <x-adminlte-card title="{{ __('resellers.order_ap') }}" theme="info" icon="fas fa-lg">
                 <p>{{ __('tables.order_application_url' ).$reseller->user->line_id }}</p>
                 <p>{{ QrCode::size(300)->generate(__('tables.order_application_url' ).$reseller->user->line_id) }}</p>
+            </x-adminlte-card>
+            <x-adminlte-card title="{{ __('managers.customservice') }}" theme="info" icon="fas fa-lg">
+                <p>{{ __('managers.customserviceurl' ) }}</p>
+                <p>{{ QrCode::size(300)->generate(__('managers.customerserviceurl' )) }}</p>
             </x-adminlte-card>
          </div>
      </div>

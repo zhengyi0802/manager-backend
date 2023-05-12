@@ -71,7 +71,7 @@
                 <strong>{{ __('resellers.status') }} :</strong>
                 {{ ($reseller->status==1) ? __('tables.status_on'):__('tables.status_off') }}
             </x-adminlte-card>
-            <x-adminlte-card title="{{ __('resellers.created_by') }}" theme="info" icon="fas fa-lg">
+            <x-adminlte-card title="{{ __('resellers.created_at') }}" theme="info" icon="fas fa-lg">
                 {{ $reseller->created_at->toDateString() }}
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('resellers.distrobuter_ap') }}" theme="info" icon="fas fa-lg">

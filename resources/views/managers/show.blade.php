@@ -59,7 +59,7 @@
                 {{ ($manager->status==1) ? __('tables.status_on'):__('tables.status_off') }}
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('managers.created_at') }}" theme="info" icon="fas fa-lg">
-                {{ $manager->created_at }}
+                {{ $manager->created_at->toDateString() }}
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('managers.reseller_ap') }}" theme="info" icon="fas fa-lg">
                 <p>{{ __('tables.reseller_application_url' ).$manager->user->line_id }}</p>

@@ -140,14 +140,15 @@ class OrderController extends Controller
         if ($data['flow_status'] == OrderFlow::Completed) {
             if ($order->is_manager) {
                 //return redirect()->route('orders.index');
-                $distrobuter = $order->manager;
+                $distrobuter = $order->manager->user;
             } else {
                 $distrobuter = $order->member->introducer;
                 $member = $distrobuter->member;
             }
-            if ($distrobuer->role == UserRole::Manager) {
+
+            if ($distrobuter->role == UserRole::Manager) {
                 $manager = $distrobuter->manager;
-                $amount  = $manager->bonus;
+                $amount  = $manager->bonus + $manager->share;
             } else {
                 if ($distrobuter->role == UserRole::Reseller) {
                     $amount = $member->bonus + $member->share;

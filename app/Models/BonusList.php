@@ -10,6 +10,7 @@ class BonusList extends Model
     use HasFactory;
     protected $fillable = [
         'member_id',
+        'manager_used',
         'order_id',
         'amount',
         'process_status',

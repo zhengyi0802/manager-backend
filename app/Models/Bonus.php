@@ -10,6 +10,7 @@ class Bonus extends Model
     use HasFactory;
     protected $fillable = [
         'member_id',
+        'manager_used',
         'amount',
         'date_since',
         'date_finish',
@@ -18,5 +19,9 @@ class Bonus extends Model
 
     public function member() {
         return $this->belongsTo(Member::class, 'member_id');
+    }
+
+    public function manager() {
+        return $this->belongsTo(Manager::class, 'member_id');
     }
 }

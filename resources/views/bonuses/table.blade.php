@@ -17,7 +17,7 @@ $config = [
   @foreach($bonuses as $bonus)
     <tr>
       <td>{{ $bonus->id }}</td>
-      <td>{{ $bonus->member->user->name }}</td>
+      <td>{{ ($bonus->manager_used) ? $bonus->manager->user->name : $bonus->member->user->name }}</td>
       <td>{{ $bonus->amount }}</td>
       <td>{{ $bonus->created_at }}</td>
       <td>{{ trans_choice('bonuses.bonus_statuses', $bonus->process_status) }}</td>

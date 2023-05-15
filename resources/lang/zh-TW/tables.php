@@ -19,6 +19,8 @@
            'password'    => '(至少8個字元*)',
            'yes'         => '是',
            'no'          => '否',
+           'copylink'    => '複製鏈結',
+           'copylink_line' => '複製Linke專屬鏈結',
            'backend_url'                   => 'https://backend.mdo.tw/',
            'reseller_application_url'      => 'https://sales.mdo.tw/resellers/create?introducer=',
            'distrobuter_application_url'   => 'https://sales.mdo.tw/distrobuters/create?introducer=',

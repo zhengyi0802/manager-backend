@@ -84,12 +84,18 @@
                 {{ $distrobuter->created_at->toDateString() }}
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('distrobuters.order_ap') }}" theme="info" icon="fas fa-lg">
-                <p>{{ __('tables.order_application_url' ).$distrobuter->user->line_id }}</p>
+                <p>
+                  <span id="order_url">{{ __('tables.order_application_url' ).$distrobuter->user->line_id }}</span>
+                  <a href="#" onclick="CopyToClipboard('order_url');return false;">{{ __('tables.copylink') }}</a>
+                </p>
                 <p>{{ QrCode::size(300)->generate(__('tables.order_application_url' ).$distrobuter->user->line_id) }}</p>
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('managers.customservice') }}" theme="info" icon="fas fa-lg">
-                <p>{{ __('managers.customserviceurl' ) }}</p>
-                <p>{{ QrCode::size(300)->generate(__('managers.customerserviceurl' )) }}</p>
+                <p>
+                  <span id="custServ_url">{{ __('managers.customserviceurl' ) }}</span>
+                  <a href="#" onclick="CopyToClipboard('custServ_url');return false;">{{ __('tables.copylink_line') }}</a>
+                </p>
+                <p><img src="https://backend.mdo.tw/storage/images/CusServ.png"></p>
             </x-adminlte-card>
          </div>
      </div>

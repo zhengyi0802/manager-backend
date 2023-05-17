@@ -65,7 +65,7 @@
                 <input type="text" name="phone" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('distrobuters.email') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <strong>{{ __('distrobuters.email') }} :</strong>
                 <input type="text" name="email" class="form-control" placeholder="user@email.com">
             </div>
         </div>
@@ -117,9 +117,6 @@
                line_id: {
                   required: true
                },
-               email: {
-                  required: true
-               },
                password: {
                   required: true,
                   minlength: 8
@@ -134,9 +131,6 @@
                },
                line_id: {
                   required: 'Line ID必填'
-               },
-               email: {
-                  required: '電子信箱必填'
                },
                password: {
                   required: '密碼必須填寫',

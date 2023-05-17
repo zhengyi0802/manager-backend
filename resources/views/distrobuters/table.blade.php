@@ -18,7 +18,7 @@ $config = [
 <x-adminlte-datatable id="distrobuter-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
   @foreach($distrobuters as $distrobuter)
     <tr>
-      <td>{{ $distrobuter->id }}</td>
+      <td>{{ 'D'.sprintf('%05d',$distrobuter->id) }}</td>
       <td>{{ $distrobuter->introducer->name }}</td>
       <td>{{ $distrobuter->user->name }}</td>
       <td>{{ $distrobuter->user->phone }}</td>

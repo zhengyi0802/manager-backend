@@ -4,14 +4,13 @@ $heads = [
     __('members.name'),
     __('members.phone'),
     __('members.line_id'),
-    __('members.email'),
     __('members.created_by'),
     __('members.status'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
 ];
 $config = [
     'order' => [[0, 'desc']],
-    'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
+    'columns' => [null, null, null, null, null, null, ['orderable' => false]],
     'language' => [ 'url' => '//cdn.datatables.net/plug-ins/1.13.4/i18n/zh-HANT.json' ],
 ];
 @endphp
@@ -22,7 +21,6 @@ $config = [
       <td>{{ $member->user->name }}</td>
       <td>{{ $member->user->phone }}</td>
       <td>{{ $member->user->line_id }}</td>
-      <td>{{ $member->user->email }}</td>
       <td>{{ $member->creator->name }}</td>
       <td>{{ ($member->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
       <td><nobr>

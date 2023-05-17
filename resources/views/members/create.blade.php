@@ -64,6 +64,10 @@
                 <strong>{{ __('members.phone') }} :<span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="text" name="phone" class="form-control">
             </div>
+            <div class="form-group col-md-4">
+                <strong>{{ __('members.email') }} :</strong>
+                <input type="text" name="email" class="form-control" placeholder="user@email.com">
+            </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -110,9 +114,6 @@
                line_id: {
                   required: true
                },
-               email: {
-                  required: true
-               },
                password: {
                   required: true,
                   minlength: 8
@@ -131,9 +132,6 @@
                },
                line_id: {
                   required: 'Line ID必填'
-               },
-               email: {
-                  required: '電子信箱必填',
                },
                password: {
                   required: '密碼必須填寫',

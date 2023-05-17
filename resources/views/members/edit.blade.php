@@ -62,7 +62,7 @@
                     <input type="text" name="line_id" value="{{ $member->user->line_id }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('members.email') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                    <strong>{{ __('members.email') }} :</strong>
                     <input type="text" name="email" value="{{ $member->user->phone }}" class="form-control"
                      placeholder="user@email.com">
                 </div>
@@ -134,10 +134,6 @@
                line_id: {
                   required: true
                },
-               email: {
-                  required: true,
-                  email: true
-               },
                address: {
                   required: true,
                   minlength: 10
@@ -152,10 +148,6 @@
                },
                line_id: {
                   required: 'Line ID必填'
-               },
-               email: {
-                  required: '電子信箱必填',
-                  email: '電子信箱格式錯誤'
                },
                address: {
                   required: '地址必填',

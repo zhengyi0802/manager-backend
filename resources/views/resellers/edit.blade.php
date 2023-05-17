@@ -62,7 +62,7 @@
                     <input type="text" name="line_id" value="{{ $reseller->user->line_id }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('resellers.email') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                    <strong>{{ __('resellers.email') }} :</strong>
                     <input type="text" name="email" value="{{ $reseller->user->email }}"
                      class="form-control" placeholder="user@email.com">
                 </div>
@@ -172,9 +172,6 @@
                line_id: {
                   required: true
                },
-               email: {
-                  required: true
-               },
                address: {
                   required: true,
                   minlength: 10
@@ -193,9 +190,6 @@
                },
                line_id: {
                   required: 'Line ID必填'
-               },
-               email: {
-                  required: '電子信箱必須填寫'
                },
                address: {
                   required: '地址必須填寫',

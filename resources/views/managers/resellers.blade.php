@@ -4,14 +4,13 @@ $heads = [
     __('resellers.name'),
     __('resellers.phone'),
     __('resellers.line_id'),
-    __('resellers.email'),
     __('resellers.created_at'),
     __('resellers.status'),
     ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
 ];
 $config = [
     'order' => [[0, 'desc']],
-    'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
+    'columns' => [null, null, null, null, null, null, ['orderable' => false]],
     'language' => [ 'url' => '//cdn.datatables.net/plug-ins/1.13.4/i18n/zh-HANT.json' ],
 ];
 @endphp
@@ -22,7 +21,6 @@ $config = [
       <td>{{ $reseller->user->name }}</td>
       <td>{{ $reseller->user->phone }}</td>
       <td>{{ $reseller->user->line_id }}</td>
-      <td>{{ $reseller->user->email }}</td>
       <td>{{ $reseller->created_at->toDateString() }}</td>
       <td>{{ ($reseller->status==1) ? __('tables.status_on'):__('tables.status_off') }}</td>
       <td><nobr>

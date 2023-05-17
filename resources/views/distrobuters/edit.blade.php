@@ -62,7 +62,7 @@
                     <input type="text" name="line_id" value="{{ $distrobuter->user->line_id }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('distrobuters.email') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                    <strong>{{ __('distrobuters.email') }} :</strong>
                     <input type="text" name="email" value="{{ $distrobuter->user->email }}"
                      class="form-control" placeholder="user@email.com">
                 </div>
@@ -164,9 +164,6 @@
                line_id: {
                   required: true
                },
-               email: {
-                  required: true
-               },
            },
            messages: {
                name: {
@@ -177,9 +174,6 @@
                },
                line_id: {
                   required: 'Line ID必填'
-               },
-               email: {
-                  required: '電子信箱必填'
                },
            },
            submitHandler: function(form) {

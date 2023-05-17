@@ -15,6 +15,7 @@ class CreateManagersTable extends Migration
     {
         Schema::create('managers', function (Blueprint $table) {
             $table->id();
+            $table->string('business_id', 6)->unique();
             $table->bigInteger('user_id')->unsigned();
             $table->string('company',80)->nullable();
             $table->string('address')->nullable();

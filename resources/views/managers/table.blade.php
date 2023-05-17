@@ -18,7 +18,7 @@ $config = [
 <x-adminlte-datatable id="manager-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
   @foreach($managers as $manager)
     <tr>
-      <td>{{ $manager->id }}</td>
+      <td>{{ 'B235'.sprintf('%02d',$manager->id) }}</td>
       <td>{{ $manager->company }}</td>
       <td>{{ $manager->user->name }}</td>
       <td>{{ $manager->user->line_id }}</td>

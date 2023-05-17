@@ -10,6 +10,7 @@ class Manager extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'business_id',
         'user_id',
         'company',
         'share',

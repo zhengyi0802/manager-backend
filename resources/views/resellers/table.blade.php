@@ -18,7 +18,7 @@ $config = [
 <x-adminlte-datatable id="reseller-table" :heads="$heads" :config="$config" theme="info" head-theme="dark" striped hoverable bordered>
   @foreach($resellers as $reseller)
     <tr>
-      <td>{{ $reseller->id }}</td>
+      <td>{{ 'R'.sprintf('%05d',$reseller->id) }}</td>
       <td>{{ $reseller->user->name }}</td>
       <td>{{ $reseller->user->phone }}</td>
       <td>{{ $reseller->user->line_id }}</td>

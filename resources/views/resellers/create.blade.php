@@ -65,7 +65,7 @@
                 <input type="text" name="phone" class="form-control">
             </div>
             <div class="form-group col-md-4">
-                <strong>{{ __('resellers.email') }} :<span class="must">{{ __('tables.must') }}</span></strong>
+                <strong>{{ __('resellers.email') }} :</strong>
                 <input type="text" name="email" class="form-control" placeholder="user@email.com">
             </div>
         </div>
@@ -125,9 +125,6 @@
                   required: true,
                   minlength: 8
                },
-               email: {
-                  required: true
-               },
                address: {
                   required: true,
                   minlength: 10
@@ -150,9 +147,6 @@
                password: {
                   required: '密碼必須填寫',
                   minlength: '密碼設置至少8個字元'
-               },
-               email: {
-                  required: '電子信箱必須填寫'
                },
                address: {
                   required: '地址必須填寫',

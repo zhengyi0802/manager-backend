@@ -139,6 +139,9 @@ class MemberController extends Controller
                 'created_by'     => $creator->id,
             ];
             $member = Member::create($member);
+        } else {
+            $user = $check_user->first();
+            $member = $user->member;
         }
         $order_latest = Order::orderBy('id', 'desc')->get()->first();
         if ($order_latest == null) {

@@ -6,6 +6,7 @@
         'id'             => '編號',
         'phone'          => '電話',
         'line_id'        => 'Line ID',
+        'introducer'     => '經辦人',
         'name'           => '姓名',
         'phone'          => '電話',
         'address'        => '送貨地址',

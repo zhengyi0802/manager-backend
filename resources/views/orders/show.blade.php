@@ -28,6 +28,12 @@
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>{{ __('orders.introducer') }} :</strong>
+                {{ ($order->is_manager) ? $order->manager->user->name : $order->member->introducer->name }}
+            </div>
+         </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>{{ __('orders.name') }} :</strong>
                 {{ ($order->is_manager) ? $order->manager->user->name : $order->member->user->name }}
             </div>

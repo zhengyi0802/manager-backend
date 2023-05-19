@@ -88,6 +88,7 @@ class ResellerController extends Controller
             'bonus'          => $data['bonus'],
             'share'          => $data['share'],
             'share_status'   => $share_status,
+            'memo'           => $data['memo'],
             'created_by'     => $creator->id,
         ];
         if (is_null($check_user)) {
@@ -140,6 +141,7 @@ class ResellerController extends Controller
             'bank_name'      => $data['bank_name'],
             'account'        => $data['account'],
             'status'         => $data['status'],
+            'memo'           => $data['memo'],
         ];
         if (!is_null($pid_image_1)) {
             $member['pid_image_1'] = $pid_image_1;

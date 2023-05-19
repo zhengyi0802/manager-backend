@@ -53,7 +53,7 @@
                 {{ $manager->creator ? $manager->creator->name : null }}
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('managers.memo') }}" theme="info" icon="fas fa-lg">
-                {{ $manager->memo }}
+                <pre>{{ $manager->memo }}</pre>
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('managers.status') }}" theme="info" icon="fas fa-lg">
                 {{ ($manager->status==1) ? __('tables.status_on'):__('tables.status_off') }}

@@ -136,6 +136,7 @@ class MemberController extends Controller
                 'user_id'        => $user->id,
                 'introducer_id'  => $introducer->id,
                 'address'        => $data['address'],
+                'memo'           => $data['memo'],
                 'created_by'     => $creator->id,
             ];
             $member = Member::create($member);
@@ -223,6 +224,7 @@ class MemberController extends Controller
         }
         $memberdata = [
             'address'        => $data['address'],
+            'memo'           => $data['memo'],
         ];
         $member->update($memberdata);
 

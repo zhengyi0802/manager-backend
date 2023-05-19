@@ -95,6 +95,7 @@ class DistrobuterController extends Controller
             'pid_image_1'    => $pid_image_1,
             'pid_image_2'    => $pid_image_2,
             'share_status'   => $share_status,
+            'memo'           => $data['memo'],
             'created_by'     => $creator->id,
         ];
         if (array_key_exists('bonus', $data)) {
@@ -156,6 +157,7 @@ class DistrobuterController extends Controller
             'account'        => $data['account'],
             'share_status'   => $share_status,
             'status'         => $data['status'],
+            'memo'           => $Data['memo'],
         ];
         if (!is_null($pid_image_1)) {
             $member['pid_image_1'] = $pid_image_1;

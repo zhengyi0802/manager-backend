@@ -65,7 +65,7 @@
                 {{ $reseller->creator->name }}
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('resellers.memo') }}" theme="info" icon="fas fa-lg">
-                {{ $reseller->memo }}
+                <pre>{{ $reseller->memo }}</pre>
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('resellers.status') }}" theme="info" icon="fas fa-lg">
                 <strong>{{ __('resellers.status') }} :</strong>

@@ -74,7 +74,7 @@
                 {{ $distrobuter->creator->name }}
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('distrobuters.memo') }}" theme="info" icon="fas fa-lg">
-                {{ $distrobuter->memo }}
+                <pre>{{ $distrobuter->memo }}</pre>
             </x-adminlte-card>
             <x-adminlte-card title="{{ __('distrobuters.status') }}" theme="info" icon="fas fa-lg">
                 <strong>{{ __('distrobuters.status') }} :</strong>

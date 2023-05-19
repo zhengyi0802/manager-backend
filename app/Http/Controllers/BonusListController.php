@@ -63,7 +63,7 @@ class BonusListController extends Controller
      * @param  \App\Models\BonusList  $bonusList
      * @return \Illuminate\Http\Response
      */
-    public function show(BonusList $bonusList)
+    public function show(BonusList $bonuslist)
     {
         //
     }
@@ -74,7 +74,7 @@ class BonusListController extends Controller
      * @param  \App\Models\BonusList  $bonusList
      * @return \Illuminate\Http\Response
      */
-    public function edit(BonusList $bonusList)
+    public function edit(BonusList $bonuslist)
     {
         //
     }
@@ -86,7 +86,7 @@ class BonusListController extends Controller
      * @param  \App\Models\BonusList  $bonusList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BonusList $bonusList)
+    public function update(Request $request, BonusList $bonuslist)
     {
         //
     }
@@ -97,9 +97,17 @@ class BonusListController extends Controller
      * @param  \App\Models\BonusList  $bonusList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BonusList $bonusList)
+    public function destroy(BonusList $bonuslist)
     {
         //
+    }
+
+    public function funded(BonusList $bonuslist)
+    {
+        $bonuslist->process_status = BonusStatus::Transfered;
+        $bonuslist->save();
+
+        return redirect()->route('bonuslists.index');
     }
 
     public function check()

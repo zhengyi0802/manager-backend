@@ -7,10 +7,11 @@ $heads = [
     __('bonuslists.amount'),
     __('bonuslists.date'),
     __('bonuslists.status'),
+    ['label' => __('tables.action'), 'no-export' => true, 'width' => 10],
 ];
 $config = [
     'order' => [[0, 'desc']],
-    'columns' => [null, null, null, null, null, null, null],
+    'columns' => [null, null, null, null, null, null, null, ['orderable' => false]],
     'language' => [ 'url' => '//cdn.datatables.net/plug-ins/1.13.4/i18n/zh-HANT.json' ],
 ];
 @endphp
@@ -24,6 +25,14 @@ $config = [
       <td>{{ $bonuslist->amount }}</td>
       <td>{{ $bonuslist->created_at }}</td>
       <td>{{ trans_choice('bonuslists.bonus_statuses', $bonuslist->process_status) }}</td>
+      <td><nobr>
+             @if (auth()->user()->role == App\Enums\UserRole::Accounter
+                 || auth()->user()->role == App\Enums\UserRole::Administrator)
+              <x-adminlte-button theme="primary" title="{{ __('tables.funded') }}" icon="fa fa-lg fa-fw fa-pen"
+                onClick="window.location='{{ route('bonuslists.funded', $bonuslist->id); }}'" >
+              </x-adminlte-button>
+             @endif
+      </nobr></td>
     </tr>
   @endforeach
 </x-adminlte-datatable>

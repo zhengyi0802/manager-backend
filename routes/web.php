@@ -59,6 +59,9 @@ Route::resource('/orders', OrderController::class);
 Route::get('/bonuslists/check', [App\Http\Controllers\BonusListController::class, 'check'])
      ->name('bonuslists.check');
 
+Route::get('/bonuslists/{bonuslist}/check', [App\Http\Controllers\BonusListController::class, 'funded'])
+     ->name('bonuslists.funded');
+
 Route::resource('/bonuslists', BonusListController::class);
 
 Route::get('/bonuses/{bonus}/transfered', [App\Http\Controllers\BonusController::class, 'transfered'])

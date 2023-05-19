@@ -19,6 +19,7 @@
            'password'    => '(至少8個字元*)',
            'yes'         => '是',
            'no'          => '否',
+           'funded'      => '已匯款',
            'copylink'    => '複製鏈結',
            'copylink_line' => '複製Line專屬鏈結',
            'backend_url'                   => 'https://backend.mdo.tw/',

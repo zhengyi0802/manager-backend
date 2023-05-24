@@ -157,7 +157,7 @@ class DistrobuterController extends Controller
             'account'        => $data['account'],
             'share_status'   => $share_status,
             'status'         => $data['status'],
-            'memo'           => $Data['memo'],
+            'memo'           => $data['memo'],
         ];
         if (!is_null($pid_image_1)) {
             $member['pid_image_1'] = $pid_image_1;

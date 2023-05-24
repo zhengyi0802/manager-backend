@@ -113,7 +113,7 @@
                     <input type="text" name="bank" value="{{ $distrobuter->bank }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <strong>{{ __('distrobuters.bank') }} :</strong>
+                    <strong>{{ __('distrobuters.bank_name') }} :</strong>
                     <input type="text" name="bank_name" value="{{ $distrobuter->bank_name }}" class="form-control">
                 </div>
                 <div class="form-group col-md-4">

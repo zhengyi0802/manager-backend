@@ -66,7 +66,7 @@
                     <select id="proj_id" name="proj_id" >
                         <option value="0" style="background-color: blue">{{ __('projectsettings.project_none') }}</option>
                         @foreach($projects as $project)
-                           <option value="{{ $project->id }}">{{ $project->name }}</option>
+                           <option value="{{ $project->id }}" {{ ($project->id == $manager->proj_id) ? "selected" : null }}>{{ $project->name }}</option>
                         @endforeach
                     </select>
                 </div>

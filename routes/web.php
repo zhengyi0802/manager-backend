@@ -10,6 +10,7 @@ use App\Http\Controllers\DistrobuterController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BonusListController;
 use App\Http\Controllers\BonusController;
+use App\Http\Controllers\ProjectSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,3 +69,12 @@ Route::get('/bonuses/{bonus}/transfered', [App\Http\Controllers\BonusController:
      ->name('bonuses.transfered');
 
 Route::resource('/bonuses', BonusController::class);
+
+Route::get('/projectsettings', [App\Http\Controllers\ProjectSettingController::class, 'index'])
+     ->name('projectsettings.index');
+
+Route::get('/projectsettings/{manager}/edit', [App\Http\Controllers\ProjectSettingController::class, 'edit'])
+     ->name('projectsettings.edit');
+
+Route::post('/projectsettings/{manager}/update', [App\Http\Controllers\ProjectSettingController::class, 'update'])
+     ->name('projectsettings.update');

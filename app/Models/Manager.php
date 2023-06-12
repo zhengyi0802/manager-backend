@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use App\Enums\UserRole;
 
 class Manager extends Model
@@ -12,6 +13,7 @@ class Manager extends Model
     protected $fillable = [
         'business_id',
         'user_id',
+        'proj_id',
         'company',
         'share',
         'bonus',
@@ -71,4 +73,8 @@ class Manager extends Model
         return $distrobuters;
     }
 
+    public function project() {
+        $project = DB::table('major.projects')->find($this->proj_id);
+        return $project;
+    }
 }

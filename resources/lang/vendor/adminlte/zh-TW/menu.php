@@ -11,4 +11,5 @@ return [
     'order'                         => '訂單管理',
     'bonuslist'                     => '獎金明細',
     'bonus'                         => '獎金結算',
+    'projectsettings'               => '專案設置',
 ];

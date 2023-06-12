@@ -345,6 +345,11 @@ return [
             'url'  => 'bonuses',
             'can'  => ['manager', 'accounter', 'reseller-limit', 'distrobuter-limit'],
         ],
+        [
+            'text' => 'projectsettings',
+            'url'  => 'projectsettings',
+            'can'  => ['manager'],
+        ],
     ],
 
     /*

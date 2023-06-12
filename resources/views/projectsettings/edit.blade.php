@@ -41,7 +41,7 @@
        }
     </style>
     <form id="projectsetting-form" action="{{ route('projectsettings.update',$manager->id) }}" method="POST" enctype="multipart/form-data">
-        @method('PUT')
+        @method('POST')
         @csrf
         <div class="row">
            <div class="col-xs-12 col-sm-12 col-md-12">
@@ -71,6 +71,11 @@
                     </select>
                 </div>
            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+              <button type="submit" class="btn btn-primary">{{ __('tables.submit') }}</button>
+            </div>
         </div>
     </form>
 @stop

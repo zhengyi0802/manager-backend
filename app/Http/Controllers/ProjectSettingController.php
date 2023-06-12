@@ -28,7 +28,7 @@ class ProjectSettingController extends Controller
 
     public function update(Manager $manager, Request $request)
     {
-        $data = request->all();
+        $data = $request->all();
         $manager->proj_id = $data['proj_id'];
         $manager->save();
 

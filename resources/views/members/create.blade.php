@@ -84,6 +84,7 @@
                 <strong>{{ __('members.model') }} : <span class="must">{{ __('tables.must') }}</span></strong>
                 <input type="radio" name="model" value="1" >{{ __('members.model_75') }}
                 <input type="radio" name="model" value="2" >{{ __('members.model_65') }}
+                <input type="radio" name="model" value="3" >{{ __('members.model_55') }}
             </div>
             <div class="form-group">
                 <strong>{{ __('managers.memo') }}:</strong>

@@ -47,7 +47,7 @@
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>{{ __('orders.model') }} :</strong>
-                {{ ($order->model == 1) ? __('orders.model_75') : __('orders.model_65') }}
+                {{ trans_choice('orders.models', $order->model) }}
             </div>
          </div>
          <div class="col-xs-12 col-sm-12 col-md-12">

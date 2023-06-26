@@ -23,7 +23,7 @@ $config = [
       <td>{{ ($order->is_manager) ? $order->manager->user->name : $order->member->introducer->name }}</td>
       <td>{{ ($order->is_manager) ? $order->manager->user->name : $order->member->user->name }}</td>
       <td>{{ $order->phone }}</td>
-      <td>{{ ($order->model == 1) ? __('orders.model_75') : __('orders.model_65') }}</td>
+      <td>{{ trans_choice('orders.models', $order->model) }}</td>
       <td>{{ $order->created_at->toDateString() }}</td>
       <td>{{ trans_choice('orders.flow_statuses', $order->flow_status) }}</td>
       <td>{{ ($order->completed==1) ? __('tables.yes'):__('tables.no') }}</td>

@@ -22,7 +22,7 @@ $config = [
       <td>{{ $order->id }}</td>
       <td>{{ ($order->member) ? $order->member->user->name : "" }}</td>
       <td>{{ $order->phone }}</td>
-      <td>{{ ($order->model == 1) ? __('orders.model_75') : __('orders.model_65') }}</td>
+      <td>{{ trans_choice('orders.models', $order->model) }}</td>
       <td>{{ $order->created_at->toDateString() }}</td>
       <td>{{ trans_choice('orders.flow_statuses', $order->flow_status) }}</td>
       <td>{{ $order->paid_date_1 }}</td>
